@@ -18,7 +18,7 @@ def init():
 @app.route('/home')
 def home():
     """Renders the home page."""
-    return "hello world!"
+    return render_template('home.html')
 
 @app.route('/reset/db')
 def reset_db():
