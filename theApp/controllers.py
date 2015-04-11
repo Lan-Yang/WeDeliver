@@ -14,5 +14,7 @@ def resetdb():
         pickupaddr='haha',
         pickuptime=datetime.today()
         )
+    print order.oid
     db_session.add(order)
     db_session.commit()
+    print order.oid
