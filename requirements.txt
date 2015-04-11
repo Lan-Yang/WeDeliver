@@ -1,0 +1,5 @@
+flask
+Flask-WTF
+pg8000
+Flask-SQLAlchemy
+Flask-Login
