@@ -1,0 +1,8 @@
+flask<1
+Flask-WTF
+Flask-SQLAlchemy
+Flask-Login
+Flask-Uploads
+
+#--allow-external pyodbc --allow-unverified pyodbc pyodbc
+#wheelhouse\Flask-SQLAlchemy-2.0
