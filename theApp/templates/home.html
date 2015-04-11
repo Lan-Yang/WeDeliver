@@ -12,10 +12,10 @@
     <title>WeDeliver-Homepage</title>
 
     <!-- Bootstrap Core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="{{url_for('static', filename='css/bootstrap.min.css')}}" rel="stylesheet">
 
     <!-- Custom CSS -->
-    <link href="css/we-deliver.css" rel="stylesheet">
+    <link href="{{url_for('static', filename='css/we-deliver.css')}}" rel="stylesheet">
 
     <!-- Custom Fonts -->
     <!-- <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
@@ -117,7 +117,7 @@
                     <p class="lead">We provide a platform for your to contact ...</p>
                 </div>
                 <div class="col-lg-5 col-lg-offset-2 col-sm-6">
-                    <img class="img-responsive" src="img/burden.jpg" alt="">
+                    <img class="img-responsive" src="{{url_for('static',filename='img/burden.jpg')}}" alt="">
                 </div>
             </div>
 

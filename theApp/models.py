@@ -5,7 +5,7 @@ Models for database of the flask application.
 
 from theApp import app, db
 from werkzeug.security import generate_password_hash
-from datetime import date, datetime
+
 
 # db.session
 db_session = db.session
@@ -23,18 +23,6 @@ class User(db.Model):
     photo = db.Column(db.String(96))  # file path of photo
     discrip = db.Column(db.String(256))
     # houses = db.relationship('House', backref='person', lazy='dynamic')
-
-    def __init__(self, email, paswd):
-        self.email = email
-        self.paswd = generate_password_hash(paswd)
-        self.fstname = ''
-        self.lstname = ''
-        self.gender = 'Male'
-        self.wechat = ''
-        self.phone = ''
-        self.school = ''
-        self.photo = ''
-        self.discrip = ''
 
     def __repr__(self):
         return '<User %r>' % self.email
