@@ -66,19 +66,6 @@ class Order(db.Model):
     drivername = db.Column(db.String(32))
     driverphone = db.Column(db.String(16))
 
-    def __init__(self):
-        self.pickupaddr = ''
-        self.pickuptime = date.today()
-        self.did = None
-        self.cargosize = 0
-        self.trucksize = 0
-        self.totalfee = 0.0
-        self.basefee = 0.0
-        self.closefee = 0.0
-        self.status = 'O'
-        self.drivername = ''
-        self.driverphone = ''
-
     def __repr__(self):
         return '<Order %r>' % self.oid
 
@@ -95,17 +82,6 @@ class OrderRecord(db.Model):
     status = db.Column(db.String(4))
     grade = db.Column(db.Integer)
     commet = db.Column(db.Text)
-
-    def __init__(self):
-        self.did = None
-        self.stopaddress = ''
-        self.delivertime = date.today()
-        self.cargosize = 0
-        self.fee = 0.0
-        self.acceptedtime = datetime.today()
-        self.status = 'O'
-        self.grade = None
-        self.commet = ''
 
     def __repr__(self):
         return '<OrderRecord %s, %s>' % (self.oid, self.sid)
