@@ -50,16 +50,16 @@ def resetdb():
     
     
     deliverer_2 = Deliverer()
-    deliverer_1.name = "Paul Aho"
-    deliverer_1.passwd = generate_password_hash("123123")
-    deliverer_1.email = "Ahogo@yahoo.com"
-    deliverer_1.phone = "9179132222"
-    deliverer_1.addr_1 = "MailerStreet W107"
-    deliverer_1.addr_2 = ""
-    deliverer_1.city = "New York"
-    deliverer_1.state = "NY"
-    deliverer_1.zip = "10010"
-    deliverer_1.grade = 3.9
+    deliverer_2.name = "Paul Aho"
+    deliverer_2.passwd = generate_password_hash("123123")
+    deliverer_2.email = "Ahogo@yahoo.com"
+    deliverer_2.phone = "9179132222"
+    deliverer_2.addr_1 = "MailerStreet W107"
+    deliverer_2.addr_2 = ""
+    deliverer_2.city = "New York"
+    deliverer_2.state = "NY"
+    deliverer_2.zip = "10010"
+    deliverer_2.grade = 3.9
 
 
     db_session.add(shipper_1)
