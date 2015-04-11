@@ -12,6 +12,7 @@ app = Flask(__name__)
 app.config.from_object('theApp.config')
 
 db = SQLAlchemy(app)
+# db.create_all()
 
 lm = LoginManager(app)
 
