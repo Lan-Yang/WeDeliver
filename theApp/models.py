@@ -79,11 +79,15 @@ class OrderRecord(db.Model):
 class Shipper(db.Model):
     sid = db.Column(db.Integer, primary_key=True)  # auto-inc
     name = db.Column(db.String(32))
-    passwd = db.Column(db.String(32))
+    passwd = db.Column(db.String(128))
     email = db.Column(db.String(32))
     phone = db.Column(db.String(32))
-    homeaddr = db.Column(db.String(128))
-    
+    addr_1 = db.Column(db.String(64))
+    addr_2 = db.Column(db.String(64))
+    city = db.Column(db.String(32))
+    state = db.Column(db.String(16))
+    zip = db.Column(db.String(32))
+
     def __repr__(self):
         return '<Shipper %r>' % self.sid
 
@@ -91,10 +95,14 @@ class Shipper(db.Model):
 class Deliverer(db.Model):
     did = db.Column(db.Integer, primary_key=True)  # auto-inc
     name = db.Column(db.String(32))
-    passwd = db.Column(db.String(32))
+    passwd = db.Column(db.String(128))
     email = db.Column(db.String(32))
     phone = db.Column(db.String(32))
-    companyaddr = db.Column(db.String(128))
+    addr_1 = db.Column(db.String(64))
+    addr_2 = db.Column(db.String(64))
+    city = db.Column(db.String(32))
+    state = db.Column(db.String(16))
+    zip = db.Column(db.String(32))
     grade = db.Column(db.Float)
 
     def __repr__(self):
