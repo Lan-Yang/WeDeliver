@@ -98,6 +98,6 @@ class Deliverer(db.Model):
     grade = db.Column(db.Float)
 
     def __repr__(self):
-        return '<Deliver %r>' % self.oid
+        return '<Deliver %r>' % self.did
 
 
