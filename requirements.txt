@@ -1,8 +1,5 @@
-flask<1
+flask
 Flask-WTF
+pg8000
 Flask-SQLAlchemy
 Flask-Login
-Flask-Uploads
-
-#--allow-external pyodbc --allow-unverified pyodbc pyodbc
-#wheelhouse\Flask-SQLAlchemy-2.0
