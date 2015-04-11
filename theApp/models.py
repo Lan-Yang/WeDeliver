@@ -5,7 +5,7 @@ Models for database of the flask application.
 
 from theApp import app, db
 from werkzeug.security import generate_password_hash
-from datetime import date
+from datetime import date, datetime
 
 # db.session
 db_session = db.session
