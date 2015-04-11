@@ -58,6 +58,7 @@ class Order(db.Model):
         return '<Order %r>' % self.oid
 
 
+
 class OrderRecord(db.Model):
     oid = db.Column(db.Integer, primary_key=True)
     sid = db.Column(db.Integer, primary_key=True)
@@ -68,8 +69,35 @@ class OrderRecord(db.Model):
     fee = db.Column(db.Float)
     acceptedtime = db.Column(db.Float)
     status = db.Column(db.String(4))
-    grade = db.Column(db.Integer)
+    grade = db.Column(db.Float)
     commet = db.Column(db.Text)
 
     def __repr__(self):
         return '<OrderRecord %s, %s>' % (self.oid, self.sid)
+
+
+class Shipper(db.Model):
+    sid = db.Column(db.Integer, primary_key=True)  # auto-inc
+    name = db.Column(db.String(32))
+    passwd = db.Column(db.String(32))
+    email = db.Column(db.String(32))
+    phone = db.Column(db.String(32))
+    homeaddr = db.Column(db.String(128))
+    
+    def __repr__(self):
+        return '<Shipper %r>' % self.sid
+
+
+class Deliverer(db.Model):
+    did = db.Column(db.Integer, primary_key=True)  # auto-inc
+    name = db.Column(db.String(32))
+    passwd = db.Column(db.String(32))
+    email = db.Column(db.String(32))
+    phone = db.Column(db.String(32))
+    companyaddr = db.Column(db.String(128))
+    grade = db.Column(db.Float)
+
+    def __repr__(self):
+        return '<Deliver %r>' % self.oid
+
+
