@@ -171,10 +171,12 @@ $(document).ready(function() {
   $("#shipper-login").click(function(e) {
     $("#loginForm").find("input[name='who']").val("shipper");
     $("#loginForm").submit();
+    e.preventDefault();
   });
   $("#deliverer-login").click(function(e) {
     $("#loginForm").find("input[name='who']").val("deliverer");
     $("#loginForm").submit();
+    e.preventDefault();
   });
 });
 

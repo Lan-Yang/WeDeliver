@@ -2,11 +2,34 @@
 """
 Controllers for the app
 """
-from theApp import db
+from flask import session
+from theApp import app, lm, db
 from .models import *
 from datetime import date, datetime
 from werkzeug.security import generate_password_hash
+from flask.ext.login import user_logged_in, user_logged_out
 
+
+def when_user_logged_in(sender, user, **extra):
+    session['shipper_or_deliverer'] = 1 if hasattr(user, 'sid') else 2
+    print "user_logged_in, %s" % session['shipper_or_deliverer']
+    session.modified = True
+
+def when_user_logged_out(sender, user, **extra):
+    del session['shipper_or_deliverer']
+    session.modified = True
+
+user_logged_in.connect(when_user_logged_in, app)
+user_logged_out.connect(when_user_logged_out, app)
+
+@lm.user_loader
+def load_user(user_id):
+    if session.get('shipper_or_deliverer') == 1:
+        return Shipper.query.get(int(user_id))
+    elif session.get('shipper_or_deliverer') == 2:
+        return Deliverer.query.get(int(user_id))
+    else:
+        return None
 
 def resetdb():
     db.drop_all()
