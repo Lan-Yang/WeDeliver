@@ -6,13 +6,12 @@ from theApp import db
 from .models import *
 from datetime import date, datetime
 
+
 def resetdb():
     db.drop_all()
     db.create_all()
 
-
     shipper_1 = Shipper(
-        sid = 1,
         name = "Jack Ma",
         passwd = "123123",
         email = "jackma@hotmail.com",
@@ -20,9 +19,7 @@ def resetdb():
         homeaddr = "181 Claremont Avenue, Apt 2B, New York"
         )
 
-
     shipper_2 = Shipper(
-        sid = 2,
         name = "Tom Li",
         passwd = "123123",
         email = "tl2929@columbia.edu",
@@ -31,7 +28,6 @@ def resetdb():
         )
 
     deliverer_1 = Deliverer(
-        did = 1,
         name = "Kuaidi wang",
         passwd = "123123",
         email = "kuaidiw@kuaihua.com",
@@ -41,7 +37,6 @@ def resetdb():
         )
 
     deliverer_2 = Deliverer(
-        did = 2,
         name = "Paul Aho",
         passwd = "123123",
         email = "Ahogo@yahoo.com",
@@ -56,4 +51,3 @@ def resetdb():
     db_session.add(deliverer_2)
 
     db_session.commit()
-

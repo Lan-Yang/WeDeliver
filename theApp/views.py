@@ -8,6 +8,7 @@ from theApp import app, db, lm, controllers
 from flask.ext.login import login_required, login_user, logout_user
 from werkzeug.security import generate_password_hash, check_password_hash
 from jinja2 import Environment, Undefined
+from .forms import *
 
 
 @lm.user_loader
@@ -35,9 +36,9 @@ def login():
 		)
 
 
-@app.route('/shipper/login', methods=['POST'])
-def shipper_login():
-    form = SLoginForm()
+@app.route('/user/login', methods=['POST'])
+def user_login():
+    form = LoginForm()
     if not form.validate_on_submit():
         return jsonify(
             status=0,
@@ -45,8 +46,9 @@ def shipper_login():
         )
     # Login valid form
     login_user(form.user, remember=form.rememberme)
+    s = 1 if form.user.get(sid) else 2  # 1 - shipper, 2 - deliverer
     return jsonify(
-        status=1
+        status=s
     )
 
 
