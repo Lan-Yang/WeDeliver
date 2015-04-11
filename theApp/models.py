@@ -50,3 +50,39 @@ class User(db.Model):
 
     def get_id(self):
         return unicode(self.uid)  # python 2
+
+
+class Order(db.Model):
+    oid = db.Column(db.Integer, primary_key=True)  # auto-inc
+    pickupaddr = db.Column(db.String(128))
+    pickuptime = db.Column(db.DateTime())
+    did = db.Column(db.Integer)
+    cargosize = db.Column(db.Integer)
+    trucksize = db.Column(db.Integer)
+    totalfee = db.Column(db.Float)
+    basefee = db.Column(db.Float)
+    closefee = db.Column(db.Float)
+    status = db.Column(db.String(4))
+    drivername = db.Column(db.String(32))
+    driverphone = db.Column(db.String(16))
+
+    def __repr__(self):
+        return '<Order %r>' % self.oid
+
+
+class OrderRecord(db.Model):
+    oid = db.Column(db.Integer, primary_key=True)  # auto-inc
+    sid = db.Column(db.Integer, primary_key=True)
+    did = db.Column(db.Integer)
+    did = db.Column(db.DateTime())
+    cargosize = db.Column(db.Integer)
+    trucksize = db.Column(db.Integer)
+    totalfee = db.Column(db.Float)
+    basefee = db.Column(db.Float)
+    closefee = db.Column(db.Float)
+    status = db.Column(db.String(4))
+    drivername = db.Column(db.String(32))
+    driverphone = db.Column(db.String(16))
+
+    def __repr__(self):
+        return '<Order %r>' % self.oid

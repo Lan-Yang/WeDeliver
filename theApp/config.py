@@ -18,5 +18,5 @@ SQLALCHEMY_DATABASE_URI = r'postgresql+pg8000://groupdelivery:letitgogo@groupdel
 # SQLALCHEMY_DATABASE_URI = 'sqlite:///' + DATABASE_FILE
 
 ## Photo Upload
-UPLOADED_PHOTOS_DEST = os.path.join(APP_DIR, 'static', 'upload')
+# UPLOADED_PHOTOS_DEST = os.path.join(APP_DIR, 'static', 'upload')
 # ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg'])
