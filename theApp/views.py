@@ -31,6 +31,33 @@ def login():
 		title="Login"
 		)
 
+@app.route('/s-search')
+def ssearch():
+	return render_template(
+		's-search.html',
+		title="ShipperSearch"
+		)
+
+@app.route('/s-post')
+def spost():
+	return render_template(
+		's-post.html',
+		title="ShipperPost"
+		)
+
+@app.route('/s-ongoing')
+def songoing():
+	return render_template(
+		's-ongoing.html',
+		title="ShipperOngoing"
+		)
+
+@app.route('/account')
+def account():
+	return render_template(
+		'account.html',
+		title="Account"
+		)
 
 @app.route('/user/login', methods=['POST'])
 def user_login():
@@ -45,7 +72,6 @@ def user_login():
     return jsonify(
         status=1
     )
-
 
 @app.route('/reset/db')
 def reset_db():
