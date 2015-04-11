@@ -12,8 +12,7 @@
   <title>WeDeliver-{{title}}</title>
 
   <!-- Bootstrap Core CSS -->
-  <link href="{{url_for('static', filename='css/bootstrap.min.css')}}" rel="stylesheet">
-
+  <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet">
   <!-- Custom CSS -->
   <link href="{{url_for('static', filename='css/we-deliver.css')}}" rel="stylesheet">
 
@@ -34,8 +33,8 @@
   {% block body %}
   {% endblock %}
   <!-- javascripts -->
-  <script src="{{url_for('static', filename='js/jquery.js')}}"></script>
-  <script src="{{url_for('static', filename='js/bootstrap.min.js')}}"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
   {% block script %}
   {% endblock %}
 </body>
