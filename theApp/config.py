@@ -1,3 +1,6 @@
+"""
+Constants config variables
+"""
 from urllib import quote_plus as enc
 import os
 
