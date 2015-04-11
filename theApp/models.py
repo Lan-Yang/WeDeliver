@@ -10,35 +10,6 @@ from werkzeug.security import generate_password_hash
 # db.session
 db_session = db.session
 
-class User(db.Model):
-    uid = db.Column(db.Integer, primary_key=True)  # auto-inc
-    email = db.Column(db.String(80), unique=True)
-    paswd = db.Column(db.String(64))
-    fstname = db.Column(db.String(64))
-    lstname = db.Column(db.String(64))
-    gender = db.Column(db.String(8))
-    wechat = db.Column(db.String(64))
-    phone = db.Column(db.String(64))
-    school = db.Column(db.String(96))
-    photo = db.Column(db.String(96))  # file path of photo
-    discrip = db.Column(db.String(256))
-    # houses = db.relationship('House', backref='person', lazy='dynamic')
-
-    def __repr__(self):
-        return '<User %r>' % self.email
-
-    def is_authenticated(self):
-        return True
-
-    def is_active(self):
-        return True
-
-    def is_anonymous(self):
-        return False
-
-    def get_id(self):
-        return unicode(self.uid)  # python 2
-
 
 class Order(db.Model):
     oid = db.Column(db.Integer, primary_key=True)  # auto-inc
@@ -56,7 +27,6 @@ class Order(db.Model):
 
     def __repr__(self):
         return '<Order %r>' % self.oid
-
 
 
 class OrderRecord(db.Model):
@@ -79,25 +49,55 @@ class OrderRecord(db.Model):
 class Shipper(db.Model):
     sid = db.Column(db.Integer, primary_key=True)  # auto-inc
     name = db.Column(db.String(32))
-    passwd = db.Column(db.String(32))
+    passwd = db.Column(db.String(128))
     email = db.Column(db.String(32))
     phone = db.Column(db.String(32))
-    homeaddr = db.Column(db.String(128))
-    
+    addr_1 = db.Column(db.String(64))
+    addr_2 = db.Column(db.String(64))
+    city = db.Column(db.String(32))
+    state = db.Column(db.String(16))
+    zip = db.Column(db.String(32))
+
     def __repr__(self):
         return '<Shipper %r>' % self.sid
+
+    def is_authenticated(self):
+        return True
+
+    def is_active(self):
+        return True
+
+    def is_anonymous(self):
+        return False
+
+    def get_id(self):
+        return unicode(self.sid)  # python 2
 
 
 class Deliverer(db.Model):
     did = db.Column(db.Integer, primary_key=True)  # auto-inc
     name = db.Column(db.String(32))
-    passwd = db.Column(db.String(32))
+    passwd = db.Column(db.String(128))
     email = db.Column(db.String(32))
     phone = db.Column(db.String(32))
-    companyaddr = db.Column(db.String(128))
+    addr_1 = db.Column(db.String(64))
+    addr_2 = db.Column(db.String(64))
+    city = db.Column(db.String(32))
+    state = db.Column(db.String(16))
+    zip = db.Column(db.String(32))
     grade = db.Column(db.Float)
 
     def __repr__(self):
         return '<Deliver %r>' % self.did
 
+    def is_authenticated(self):
+        return True
 
+    def is_active(self):
+        return True
+
+    def is_anonymous(self):
+        return False
+
+    def get_id(self):
+        return unicode(self.did)  # python 2
