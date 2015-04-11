@@ -18,7 +18,17 @@ def init():
 @app.route('/home')
 def home():
     """Renders the home page."""
-    return render_template('home.html')
+    return render_template(
+    	'home.html',
+    	title="Home"
+    	)
+
+@app.route('/login')
+def login():
+	return render_template(
+		'log.html',
+		title="Login"
+		)
 
 @app.route('/reset/db')
 def reset_db():
