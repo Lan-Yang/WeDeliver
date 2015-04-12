@@ -56,50 +56,56 @@
   </nav>
 
   <!-- search box-->
-  <div class="intro">
+  <div class="intro result">
     <div class="container">
       <div class="row">
-        <div class="col-lg-12 text-center">
-          <h2 class="section-heading">Cheap Group Delivery</h2>
+        <div class="col-md-3 text-center">
+          <h3 class="section-heading">Cheap Group Delivery</h3>
+          <form name="sentMessage" id="loginForm" action="{{url_for('user_login')}}" novalidate>
+            <div class="form-group">
+              <div class='input-group date'>
+                <input type="text" class="form-control" placeholder="Date *" id="date" required data-validation-required-message="Please enter date." name="date">
+                <span class="input-group-addon">
+                  <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+              </div>
+              <p class="help-block text-danger"></p>
+            </div>
+            <div class="form-group">
+              <div class='input-group'>
+                <input type="text" class="form-control" placeholder="Depart *" id="depart" required data-validation-required-message="Please enter depart location." name="depart">
+                <span class="input-group-addon">
+                  <span class="glyphicon glyphicon-map-marker"></span>
+                </span>
+              </div>
+              <p class="help-block text-danger"></p>
+            </div>
+            <div class="form-group">
+              <div class='input-group'>
+                <input type="weight" class="form-control" placeholder="Weight *" id="weight" required data-validation-required-message="Please enter weight." name="weight">
+                <span class="input-group-addon">
+                  <span class="glyphicon glyphicon-shopping-cart"></span>
+                </span>
+              </div>
+              <p class="help-block text-danger"></p>
+            </div>
+            <button type="submit" class="btn btn-xl" id="shipper-login">Search</button>
         </div>
-        <div class="row">
-          <div class="col-lg-12">
-            <form name="sentMessage" id="loginForm" action="{{url_for('user_login')}}" novalidate>
-              <div class="row">
-                <div class="col-md-4 col-md-offset-4">
-                  <div class="form-group">
-                    <input type="text" class="form-control date" placeholder="Date *" id="date" required data-validation-required-message="Please enter date." name="date">
-                    <span class="input-group-addon">
-                      <span class="glyphicons glyphicons-cargo"></span>
-                    </span>
-                    <p class="help-block text-danger"></p>
-                  </div>
-                  <div class="form-group">
-                    <input type="depart" class="form-control" placeholder="Depart *" id="depart" required data-validation-required-message="Please enter depart location." name="depart">
-                    <p class="help-block text-danger"></p>
-                  </div>
-                  <!-- <div class="form-group">
-                    <input type="hidden" name="who" value="shipper">
-                  </div> -->
-                  <div class="form-group">
-                    <input type="weight" class="form-control" placeholder="Weight *" id="weight" required data-validation-required-message="Please enter weight." name="weight">
-                    <p class="help-block text-danger"></p>
-                  </div>
-                  <div class="col-lg-12 text-center">
-                  <!-- <div id="success"></div> -->
-                    <button type="submit" class="btn btn-xl" id="shipper-login">Search</button>
-                  </div>
+        <div class="col-md-8 col-offset-1 text-center">
+          <h3 class="section-heading">Search Result</h3>
+          <div class="content-section-a">
+            <div class="row">
+              <div class="col-md-10 col-offset-1">
+                <div class="search-result">
+
                 </div>
               </div>
             </div>
           </div>
+        </div>
       </div>
     </div>
   </div>
-
-
-
-  <!-- search result -->
 
 
   <!-- Footer -->
@@ -147,30 +153,22 @@
 
 {% block script %}
 <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.0/js/bootstrap-datepicker.min.js"></script>
- <script type="text/javascript">
-    // When the document is ready
-    $(document).ready(function () {
-        
-        $('.date').datepicker({
-            format: "dd/mm/yyyy"
-        });  
-    
-    });
-<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
-<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true&libraries=places"></script>
+<link href="//fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
+<script src="//maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true&libraries=places"></script>
 <script type="text/javascript">
-function geolocate() {
-  if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(function(position) {
-      var geolocation = new google.maps.LatLng(
-          position.coords.latitude, position.coords.longitude);
-      var circle = new google.maps.Circle({
-        center: geolocation,
-        radius: position.coords.accuracy
-      });
-      autocomplete.setBounds(circle.getBounds());
-    });
-  }
-}
+$(document).ready(function () {
+  $('.date').datepicker({
+      format: "dd/mm/yyyy"
+  });
+  var placeSearch, autocomplete;
+  autocomplete = new google.maps.places.Autocomplete(
+    ($("#depart")[0]),
+    { types: ['geocode'] }
+    );
+  google.maps.event.addListener(autocomplete, 'place_changed', function() {
+    var place = autocomplete.getPlace();
+    console.log(place);
+  });
+});
 </script>
 {% endblock %}
