@@ -12,7 +12,7 @@ from flask.ext.login import user_logged_in, user_logged_out
 
 def when_user_logged_in(sender, user, **extra):
     session['shipper_or_deliverer'] = 1 if hasattr(user, 'sid') else 2
-    print "user_logged_in, %s" % session['shipper_or_deliverer']
+    # print "user_logged_in, %s" % session['shipper_or_deliverer']
     session.modified = True
 
 def when_user_logged_out(sender, user, **extra):

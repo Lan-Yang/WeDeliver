@@ -158,8 +158,10 @@ $(document).ready(function() {
       type: "POST",
       data: postData,
       success: function(data) {
-        if (data.status > 0) {
-          alert('success'); // update global hid
+        if (data.status == 1) { // shipper
+          window.location = "{{url_for('ssearch')}}";
+        } else if (data.status == 2) { // deliverer
+          window.location = "{{url_for('ssearch')}}";
         } else { // error
           alert(data.message);
         }
