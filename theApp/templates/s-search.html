@@ -18,21 +18,36 @@
       <!-- Collect the nav links, forms, and other content for toggling -->
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav navbar-right">
-          <li>
-            <a href="/s-search">Search</a>
-          </li>
-          <li>
-            <a href="/s-post">Post</a>
-          </li>
-          <li>
-            <a href="/s-ongoing">Ongoing</a>
-          </li>
-          <li>
-            <a href="/account">My account</a>
-          </li>
-          <li>
-            <a href="/home">Log out</a>
-          </li>
+          {% if current_user.is_authenticated() %}
+            <li>
+              <a>Hi {{ current_user.name }}!</a>
+            </li>
+            <li>
+              <a href="/s-search">Search</a>
+            </li>
+            <li>
+              <a href="/s-post">Post</a>
+            </li>
+            <li>
+              <a href="/s-ongoing">Ongoing</a>
+            </li>
+            <li>
+              <a href="/account">My account</a>
+            </li>
+            <li>
+              <a href="/home">Log out</a>
+            </li>
+          {% else %}
+            <li>
+              <a href="/s-search">Search</a>
+            </li>
+            <li>
+              <a href="/login">Log in</a>
+            </li>
+            <li>
+              <a href="/login">Sign up</a>
+            </li>
+          {% endif %}
         </ul>
       </div>
       <!-- /.navbar-collapse -->
@@ -42,7 +57,13 @@
 
   <!-- search box-->
   <div class="intro">
-    
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12 text-center">
+          <h2 class="section-heading">Log in or Sign up</h2>
+        </div>
+      </div>
+    </div>
   </div>
 
 
