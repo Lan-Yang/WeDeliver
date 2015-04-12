@@ -39,7 +39,7 @@ class LoginForm(Form):
                 self.email.errors.append(u"This email not registered")
                 return False
             if not check_password_hash(
-                user.paswd,
+                user.passwd,
                 self.passwd.data
                 ):
                 self.passwd.errors.append(u"Username and password don't match")
@@ -52,7 +52,7 @@ class LoginForm(Form):
                 self.email.errors.append(u"This email not registered")
                 return False
             if not check_password_hash(
-                user.paswd,
+                user.passwd,
                 self.passwd.data
                 ):
                 self.passwd.errors.append(u"Username and password don't match")
