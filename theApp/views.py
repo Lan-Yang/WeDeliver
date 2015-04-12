@@ -27,7 +27,7 @@ def home():
 @app.route('/login')
 def login():
 	return render_template(
-		'log.html',
+		'login.html',
 		title="Login"
 		)
 
@@ -71,6 +71,20 @@ def user_login():
     login_user(form.user, remember=form.rememberme)
     return jsonify(
         status=1
+    )
+
+@app.route('/shipper/search', methods=['POST'])
+def shipper_search():
+    form = SSearchForm()
+    if not form.validate_on_submit():
+        return jsonify(
+            status=0,
+            message=form.errors.values()[0]  # first error message
+        )
+    form.search()
+    return jsonify(
+        status=1,
+        results=form.orders
     )
 
 @app.route('/logout')

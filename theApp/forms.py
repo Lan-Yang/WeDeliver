@@ -11,7 +11,7 @@ from .models import *
 
 
 class LoginForm(Form):
-    ''' Shipper Login form '''
+    ''' User Login form '''
     email = StringField('Email', [
         Email(message=u"Invalid email address")
         ])
@@ -60,3 +60,23 @@ class LoginForm(Form):
 
         self.user = user
         return True
+
+class SSearchForm(Form):
+    ''' Shipper Search form '''
+    date = DateField('Date', [
+        DataRequired(message=u"Pickup Date is required")
+        ], format='%m/%d/%Y')
+    depart = StringField('Address', [
+        DataRequired(message=u"Address is required")
+        ])
+    weight = IntegerField('Cargo', [
+        DataRequired(message=u"Cargo weight is required")
+        ])
+
+    def __init__(self, *args, **kwargs):
+        Form.__init__(self, *args, **kwargs)
+        self.orders = []
+
+    def search(self):
+        result = Order.query.filter(Order.pickuptime >= self.date.data)
+        self.orders = [x for x in result]

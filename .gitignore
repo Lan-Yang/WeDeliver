@@ -2,18 +2,6 @@
 __pycache__/
 *.pyc
 
-# PTVS analysis
-.ptvs/
-
-# Build results
-/bin/
-/obj/
-
-# User-specific files
-*.suo
-*.user
-*.sln.docstates
-
 # Auto-generated virtual environment
 /env/
 
@@ -39,4 +27,3 @@ testdb.py
 test.db
 *.old
 *.bak
-
