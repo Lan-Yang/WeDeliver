@@ -39,8 +39,19 @@
     </div>
     <!-- /.container -->
   </nav>
-
-
+<div class="intro row">
+<div class="col-md-offset-2 col-md-offset-8">
+<form id="postForm" action="/spost" method="POST">
+  <label>pickupaddr<input type="text" name="pickupaddr"></label><br/>
+  <label>pickuptime<input type="text" name="pickuptime"></label><br/>
+  <label>cargosize<input type="text" name="cargosize"></label><br/>
+  <label>delivertime<input type="text" name="delivertime"></label><br/>
+  <label>deliveraddr<input type="text" name="deliveraddr"></label><br/>
+  <label>expectfee<input type="text" name="expectfee"></label><br/>
+  <input type="submit" value="Submit">
+</form>
+</div>
+</div>
   <!-- Footer -->
   <footer>
     <div class="container">
