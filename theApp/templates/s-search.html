@@ -18,7 +18,11 @@
       <ul class="nav navbar-nav navbar-right">
         {% if current_user.is_authenticated() %}
         <li>
-          <a>Hi {{ current_user.name }}!<href="/login">Log in</a>
+          <a>Hi {{ current_user.name }}!</a>
+        </li>
+        {% else %}
+        <li>
+          <a href="/login">Log in</a>
         </li>
         <li>
           <a href="/login">Sign up</a>
@@ -73,7 +77,7 @@
             <div class="row">
               <div class="col-md-10 col-offset-1">
                 <div class="search-result">
-                  <button class="btn btn-xl" id="shipper-search-submit">Search</button>
+                  <!-- TODO -->
                 </div>
               </div>
             </div>
