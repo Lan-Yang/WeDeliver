@@ -73,6 +73,12 @@ def user_login():
         status=1
     )
 
+@app.route('/logout')
+@login_required
+def logout():
+    logout_user()
+    return redirect(url_for("home"))
+
 @app.route('/reset/db')
 def reset_db():
     controllers.resetdb()
