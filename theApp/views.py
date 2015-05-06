@@ -59,6 +59,15 @@ def account():
 		title="Account"
 		)
 
+@app.route('/order')
+def view_order():
+    oid = request.args.get("oid")
+    return render_template(
+        'order.html',
+        title="Order Details",
+        oid=oid,
+        )
+
 @app.route('/user/login', methods=['POST'])
 def user_login():
     form = LoginForm()
