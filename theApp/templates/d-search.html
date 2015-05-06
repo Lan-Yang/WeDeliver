@@ -18,19 +18,7 @@
       <ul class="nav navbar-nav navbar-right">
         {% if current_user.is_authenticated() %}
         <li>
-          <a href="/s-account">Hi {{ current_user.name }}!</a>
-        </li>
-        <li>
-          <a href="/s-search">Search</a>
-        </li>
-        <li>
-          <a href="/s-post">Post</a>
-        </li>
-        <li>
-          <a href="/s-ongoing">Ongoing</a>
-        </li>
-        <li>
-          <a href="/logout">Logout</a>
+          <a>Hi {{ current_user.name }}!</a>
         </li>
         {% else %}
         <li>
@@ -89,19 +77,7 @@
             <div class="row">
               <div class="col-md-10 col-offset-1">
                 <div class="search-result">
-                  <table class="table">
-                    <thead>
-                      <tr><td>OID</td><td>Date</td></tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td>haha</td><td>04/01/2015</td>
-                      </tr>
-                      <tr>
-                        <td>haha</td><td>04/01/2015</td>
-                      </tr>
-                    </tbody>
-                  </table>
+                  <!-- TODO -->
                 </div>
               </div>
             </div>
