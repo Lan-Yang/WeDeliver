@@ -52,10 +52,10 @@ def songoing():
 		title="ShipperOngoing"
 		)
 
-@app.route('/account')
+@app.route('/s-account')
 def account():
 	return render_template(
-		'account.html',
+		's-account.html',
 		title="Account"
 		)
 
