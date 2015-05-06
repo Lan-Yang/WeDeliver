@@ -37,10 +37,10 @@ class OrderRecord(db.Model):
     delivertime = db.Column(db.DateTime)
     cargosize = db.Column(db.Integer)
     fee = db.Column(db.Float)
-    acceptedtime = db.Column(db.Float)
+    acceptedtime = db.Column(db.Float)  # DateTime?
     status = db.Column(db.String(4))
     grade = db.Column(db.Float)
-    commet = db.Column(db.Text)
+    commet = db.Column(db.Text)  # comment
 
     def __repr__(self):
         return '<OrderRecord %s, %s>' % (self.oid, self.sid)
