@@ -41,7 +41,7 @@
   </nav>
 <div class="intro row">
 <div class="col-md-offset-2 col-md-offset-8">
-<form id="postForm" action="/spost" method="POST">
+  <form name="sentMessage" id="loginForm" action="{{url_for('handle_shipper_post')}}"  method = "post">
   <label>pickupaddr<input type="text" name="pickupaddr"></label><br/>
   <label>pickuptime<input type="text" name="pickuptime"></label><br/>
   <label>cargosize<input type="text" name="cargosize"></label><br/>

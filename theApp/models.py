@@ -16,7 +16,7 @@ class Order(db.Model):
     pickupaddr = db.Column(db.String(128))
     pickuptime = db.Column(db.DateTime)
     did = db.Column(db.Integer)
-    cargosize = db.Column(db.Integer)
+    cargosize = db.Column(db.Integer) # the totoal cargosize of the order
     trucksize = db.Column(db.Integer)
     totalfee = db.Column(db.Float)
     basefee = db.Column(db.Float)
@@ -36,6 +36,7 @@ class OrderRecord(db.Model):
     stopaddress = db.Column(db.String(128))
     delivertime = db.Column(db.DateTime)
     cargosize = db.Column(db.Integer)
+    expectfee = db.Column(db.Float)
     fee = db.Column(db.Float)
     acceptedtime = db.Column(db.Float)
     status = db.Column(db.String(4))

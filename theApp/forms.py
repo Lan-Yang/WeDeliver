@@ -60,3 +60,82 @@ class LoginForm(Form):
 
         self.user = user
         return True
+
+
+
+class ShipperPostForm(Form):
+    '''Shipper post form'''
+    passwd = PasswordField('Password', [
+                                            DataRequired(message=u"Password is required")
+                                            ])
+    pickupaddr = StringField('pickupaddr')
+    pickuptime = StringField('pickuptime')
+    cargosize = StringField('cargosize')
+    delivertime = StringField('delivertime')
+    stopaddress = StringField('stopaddress')
+    expectfee = StringField('expectfee')
+    
+    
+    def __init__(self, *args, **kwargs):
+        '''initiate self with request parameters'''
+        Form.__init__(self, *args, **kwargs)
+    
+    def validate(self):
+        rv = Form.validate(self)
+        if not rv:
+            return False
+        
+        if self.pickupaddr is None:
+            return False
+        if self.pickuptime is None:
+            return False
+        if self.cargosize is None:
+            return False
+        if self.delivertime is None:
+            return False
+        if self.stopaddress is None:
+            return False
+        if self.expectfee is None:
+            return False
+        return True
+
+
+    def recordPost(self):
+        '''insert the post into database'''
+        order = Order()
+        order.pickupaddr = self.pickupaddr.data
+        order.pickuptime = self.pickuptime.data
+        order.cargosize = self.cargosize.data
+        order.oid = 13
+        
+        order_record = OrderRecord()
+        order_record.sid = 13
+        order_record.oid = 13
+        order_record.delivertime = self.delivertime.data
+        order_record.stopaddress = self.stopaddress.data
+        order_record.expectfee = self.expectfee.data
+
+        db_session.add(order)
+        db_session.add(order_record)
+        db_session.commit()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
