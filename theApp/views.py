@@ -27,7 +27,7 @@ def home():
 @app.route('/login')
 def login():
 	return render_template(
-		'log.html',
+		'login.html',
 		title="Login"
 		)
 
@@ -63,12 +63,21 @@ def songoing():
 		title="ShipperOngoing"
 		)
 
-@app.route('/account')
+@app.route('/s-account')
 def account():
 	return render_template(
-		'account.html',
+		's-account.html',
 		title="Account"
 		)
+
+@app.route('/order')
+def view_order():
+    oid = request.args.get("oid")
+    return render_template(
+        'order.html',
+        title="Order Details",
+        oid=oid,
+        )
 
 @app.route('/user/login', methods=['POST'])
 def user_login():
@@ -82,6 +91,20 @@ def user_login():
     login_user(form.user, remember=form.rememberme)
     return jsonify(
         status=1
+    )
+
+@app.route('/shipper/search', methods=['POST'])
+def shipper_search():
+    form = SSearchForm()
+    if not form.validate_on_submit():
+        return jsonify(
+            status=0,
+            message=form.errors.values()[0]  # first error message
+        )
+    form.search()
+    return jsonify(
+        status=1,
+        results=form.orders
     )
 
 @app.route('/logout')

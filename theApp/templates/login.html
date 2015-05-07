@@ -25,12 +25,6 @@
           <li>
             <a href="/login">My account</a>
           </li>
-          <!-- <li>
-            <a class="page-scroll" href="#about">About</a>
-          </li>
-          <li>
-            <a class="page-scroll" href="#contact">Contact</a>
-          </li> -->
         </ul>
       </div>
       <!-- /.navbar-collapse -->
@@ -148,7 +142,7 @@
 
 {% block script %}
 <script>
-$(document).ready(function() {
+$(function() {
   $("#loginForm").submit(function(e) {
     var postData = $(this).serializeArray();
     console.log(postData);
@@ -158,8 +152,10 @@ $(document).ready(function() {
       type: "POST",
       data: postData,
       success: function(data) {
-        if (data.status > 0) {
-          alert('success'); // update global hid
+        if (data.status == 1) { // shipper
+          window.location = "{{url_for('ssearch')}}";
+        } else if (data.status == 2) { // deliverer
+          window.location = "{{url_for('ssearch')}}";
         } else { // error
           alert(data.message);
         }
