@@ -14,6 +14,7 @@ Query and Pagination
 | Parameter  | type   | value (format)   | default|    Note |
 |:----------:|:------:|:-------:|:------:|:--------:|
 |   pickupaddress|  String    |Columbia|       |      |
+|   stopaddress|  String    |NYU|       |      |
 |   pickuptime|  String |2011-11-03 18:21:26|    |  |
 |remainingspace     |  int    | 333| |  |
 |   offset |  int    |  1/2/3...|    1   |   used for pagination       |
