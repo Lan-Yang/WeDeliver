@@ -48,17 +48,32 @@
 </nav>
 
 <!-- Main begin -->
-<div class="intro row">
-  <div class="col-md-offset-2 col-md-offset-8">
-    <form id="postForm" action="/spost" method="POST">
-      <label>pickupaddr<input type="text" name="pickupaddr"></label><br/>
-      <label>pickuptime<input type="text" name="pickuptime"></label><br/>
-      <label>cargosize<input type="text" name="cargosize"></label><br/>
-      <label>delivertime<input type="text" name="delivertime"></label><br/>
-      <label>deliveraddr<input type="text" name="deliveraddr"></label><br/>
-      <label>expectfee<input type="text" name="expectfee"></label><br/>
-      <input type="submit" value="Submit">
-    </form>
+<div class="intro">
+  <div class="container">
+    <div class="row">
+      <h3>Order{{ oid }}</h3>
+    </div>
+    <div class="row">
+      <div class="col-md-4 map">
+        <div id="map-canvas"></div>
+      </div>
+      <div class="col-md-8">
+        <table>
+          <tr>
+            <td>Pickup time</td><td>Delivered by</td>
+          </tr>
+          <tr>
+            <td>09/09/2015</td><td>John Smith</td>
+          </tr>
+          <tr>
+            <td>Items</td><td>Cost</td>
+          </tr>
+          <tr>
+            <td>5</td><td>$50</td>
+          </tr>
+        </table>
+      </div>
+    </div>
   </div>
 </div>
 <!-- Main end -->
@@ -107,4 +122,25 @@
     </div>
   </div>
 </footer>
+{% endblock %}
+{% block script %}
+<script src="//maps.googleapis.com/maps/api/js"></script>
+<script type="text/javascript">
+$(function() {
+  $(".map").each(function(){
+    var parentHeight = $(this).parent().height();
+    $(this).height(parentHeight);
+  });
+  var mapOptions = {
+    center: new google.maps.LatLng(-34.397, 150.644),
+    zoom: 8,
+    mapTypeId: google.maps.MapTypeId.ROADMAP
+  };
+  var map = new google.maps.Map(
+    document.getElementById("map-canvas"),
+    // $("#map-canvas")[0],
+    mapOptions
+  );
+});
+</script>
 {% endblock %}

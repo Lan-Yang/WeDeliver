@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% block body %}
-<!-- Navigation -->
+
 <nav class="navbar navbar-default navbar-fixed-top topnav" role="navigation">
   <div class="container topnav">
     <!-- Brand and toggle get grouped for better mobile display -->
@@ -47,14 +47,16 @@
   <!-- /.container -->
 </nav>
 
-<!-- search box-->
+<!-- Main begin -->
 <div class="intro result">
   <div class="container">
     <div class="row">
+      <!-- search form begin -->
       <div class="col-md-3 text-center">
         <h3 class="section-heading">Cheap Group Delivery</h3>
         <form name="sentMessage" id="sSearchForm" action="{{url_for('shipper_search')}}" novalidate>
           <div class="form-group">
+            <label for="date">Pickup Date </label>
             <div class='input-group date'>
               <input type="text" class="form-control" placeholder="Date *" id="date" required data-validation-required-message="Please enter date." name="date">
               <span class="input-group-addon">
@@ -64,6 +66,7 @@
             <p class="help-block text-danger"></p>
           </div>
           <div class="form-group">
+            <label for="depart">From </label>
             <div class='input-group'>
               <input type="text" class="form-control" placeholder="Depart *" id="depart" required data-validation-required-message="Please enter depart location." name="depart">
               <span class="input-group-addon">
@@ -73,6 +76,17 @@
             <p class="help-block text-danger"></p>
           </div>
           <div class="form-group">
+            <label for="dest">To </label>
+            <div class='input-group'>
+              <input type="text" class="form-control" placeholder="Destination *" id="dest" required data-validation-required-message="Please enter destination." name="dest">
+              <span class="input-group-addon">
+                <span class="glyphicon glyphicon-map-marker"></span>
+              </span>
+            </div>
+            <p class="help-block text-danger"></p>
+          </div>
+          <div class="form-group">
+            <label for="weight">Size </label>
             <div class='input-group'>
               <input type="weight" class="form-control" placeholder="Weight *" id="weight" required data-validation-required-message="Please enter weight." name="weight">
               <span class="input-group-addon">
@@ -83,38 +97,44 @@
           </div>
           <button type="submit" class="btn btn-xl" id="shipper-login">Search</button>
         </div>
-        <div class="col-md-8 col-offset-1 text-center">
+        <!-- search form end -->
+        <!-- search result begin -->
+        <div class="col-md-9 text-center">
           <h3 class="section-heading">Search Result</h3>
           <div class="content-section-a">
             <div class="row">
-              <div class="col-md-10 col-offset-1">
-                <div class="search-result">
-                  <table class="table">
-                    <thead>
-                      <tr><td>OID</td><td>Date</td></tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td>haha</td><td>04/01/2015</td>
-                      </tr>
-                      <tr>
-                        <td>haha</td><td>04/01/2015</td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
+              <div class="col-md-12 text-center">
+                <!-- <div class="search-result"> -->
+                <table class="table table-hover search-result">
+                  <thead>
+                    <tr>
+                      <th>Pickup Date</th><th>From</th><th>Deliver Date</th><th>To</th><th>Capacity</th><th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>05/01/2015</td><td>1 Beard St, Brooklyn, NY</td><td>05/02/2015</td><td>Flushing, Queens, NY</td><td>6/10</td><td><a href="/order?oid=1">view</a></td>
+                    </tr>
+                    <tr>
+                      <td>05/01/2015</td><td>1 Beard St, Brooklyn, NY</td><td>05/02/2015</td><td>Upper West, New York, NY</td><td>7/10</td><td><a href="/order?oid=2">view</a></td>
+                    </tr>
+                    <tr>
+                      <td>05/01/2015</td><td>1 Beard St, Brooklyn, NY</td><td>05/02/2015</td><td>Flushing, Queens, NY</td><td>5/10</td><td><a href="/order?oid=3">view</a></td>
+                    </tr>
+                  </tbody>
+                </table>
+                <!-- </div> -->
               </div>
             </div>
           </div>
         </div>
+        <!-- search result end -->
       </div>
     </div>
   </div>
 </div>
-<!-- search result -->
+<!-- Main end -->
 
-
-<!-- Footer -->
 <footer>
   <div class="container">
     <div class="row">
@@ -126,6 +146,10 @@
           <li class="footer-menu-divider">&sdot;</li>
           {% if current_user.is_authenticated() %}
           <li>
+            <a href="/s-search">Search</a>
+          </li>
+          <li class="footer-menu-divider">&sdot;</li>
+          <li>
             <a href="/s-post">Post</a>
           </li>
           <li class="footer-menu-divider">&sdot;</li>
@@ -134,7 +158,7 @@
           </li>
           <li class="footer-menu-divider">&sdot;</li>
           <li>
-            <a href="/account">My account</a>
+            <a href="/s-account">My account</a>
           </li>
           <li class="footer-menu-divider">&sdot;</li>
           <li>
@@ -161,7 +185,7 @@
 {% block script %}
 <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.0/js/bootstrap-datepicker.min.js"></script>
 <link href="//fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
-<script src="//maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true&libraries=places"></script>
+<script src="//maps.googleapis.com/maps/api/js?v=3.exp&libraries=places"></script>
 <script type="text/javascript">
 $(function () {
   /* Date Picker */

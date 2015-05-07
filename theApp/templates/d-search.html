@@ -18,7 +18,19 @@
       <ul class="nav navbar-nav navbar-right">
         {% if current_user.is_authenticated() %}
         <li>
-          <a>Hi {{ current_user.name }}!</a>
+          <a href="/d-account">Hi {{ current_user.name }}!</a>
+        </li>
+        <li>
+          <a href="/d-search">Search</a>
+        </li>
+        <li>
+          <a href="/d-post">Post</a>
+        </li>
+        <li>
+          <a href="/d-ongoing">Ongoing</a>
+        </li>
+        <li>
+          <a href="/logout">Log out</a>
         </li>
         {% else %}
         <li>

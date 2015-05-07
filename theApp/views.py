@@ -45,6 +45,17 @@ def spost():
 		title="ShipperPost"
 		)
 
+
+@app.route('/handle_shipper_post', methods=['POST'])
+def handle_shipper_post():
+    form = ShipperPostForm()
+    if not form.validate_on_submit():
+        return "the format of submitted form is not right"
+    form.recordPost()
+    return "Successfully post."
+
+
+
 @app.route('/s-ongoing')
 def songoing():
 	return render_template(
@@ -58,6 +69,15 @@ def account():
 		's-account.html',
 		title="Account"
 		)
+
+@app.route('/order')
+def view_order():
+    oid = request.args.get("oid")
+    return render_template(
+        'order.html',
+        title="Order Details",
+        oid=oid,
+        )
 
 @app.route('/user/login', methods=['POST'])
 def user_login():

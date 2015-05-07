@@ -18,21 +18,30 @@
       <!-- Collect the nav links, forms, and other content for toggling -->
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav navbar-right">
+          {% if current_user.is_authenticated() %}
           <li>
-            <a href="/s-search">Search</a>
+            <a href="/d-account">Hi {{ current_user.name }}!</a>
           </li>
           <li>
-            <a href="/s-post">Post</a>
+            <a href="/d-search">Search</a>
           </li>
           <li>
-            <a href="/s-ongoing">Ongoing</a>
+            <a href="/d-post">Post</a>
           </li>
           <li>
-            <a href="/account">My account</a>
+            <a href="/d-ongoing">Ongoing</a>
           </li>
           <li>
-            <a href="/home">Log out</a>
+            <a href="/logout">Log out</a>
           </li>
+          {% else %}
+          <li>
+            <a href="/login">Log in</a>
+          </li>
+          <li>
+            <a href="/login">Sign up</a>
+          </li>
+          {% endif %}
         </ul>
       </div>
       <!-- /.navbar-collapse -->
