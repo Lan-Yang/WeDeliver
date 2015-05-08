@@ -24,7 +24,13 @@ h6 {
 }
 
 .topnav {
+    font-family: "Noto Sans";
     font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+}
+.navbar-nav navbar-right {
+    font-
 }
 
 .lead {
