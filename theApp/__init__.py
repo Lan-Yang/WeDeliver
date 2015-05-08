@@ -21,3 +21,4 @@ lm = LoginManager(app)
 
 # import FlaskWebProject.apis
 import theApp.views
+import theApp.api
