@@ -124,6 +124,45 @@ def resetdb():
     order_3.drivername = "XiDaDa"
     order_3.driverphone = "821931"
 
+    order_4 = Order()
+    order_4.pickupaddr = "hahaha"
+    order_4.pickuptime = datetime.strptime('2011-11-03 18:21:26', DATETIME_FORMAT)
+    order_4.did = 1
+    order_4.totalcargosize = 5
+    order_4.trucksize = 33
+    order_4.totalfee = 35.5
+    order_4.basefee = 35.5
+    order_4.closefee = 35.5
+    order_4.status = "D"
+    order_4.drivername = "XiDaDa"
+    order_4.driverphone = "821931"
+
+    order_5 = Order()
+    order_5.pickupaddr = "hahaha"
+    order_5.pickuptime = datetime.strptime('2011-11-03 18:21:26', DATETIME_FORMAT)
+    order_5.did = 1
+    order_5.totalcargosize = 5
+    order_5.trucksize = 33
+    order_5.totalfee = 35.5
+    order_5.basefee = 35.5
+    order_5.closefee = 35.5
+    order_5.status = "D"
+    order_5.drivername = "XiDaDa"
+    order_5.driverphone = "821931"
+
+    order_6 = Order()
+    order_6.pickupaddr = "hahaha"
+    order_6.pickuptime = datetime.strptime('2011-11-03 18:21:26', DATETIME_FORMAT)
+    order_6.did = 1
+    order_6.totalcargosize = 5
+    order_6.trucksize = 33
+    order_6.totalfee = 35.5
+    order_6.basefee = 35.5
+    order_6.closefee = 35.5
+    order_6.status = "D"
+    order_6.drivername = "XiDaDa"
+    order_6.driverphone = "821931"
+
     orderRecord_1 = OrderRecord()
     orderRecord_1.oid = 1
     orderRecord_1.sid = 1
@@ -145,6 +184,9 @@ def resetdb():
     db_session.add(order_1)
     db_session.add(order_2)
     db_session.add(order_3)
+    db_session.add(order_4)
+    db_session.add(order_5)
+    db_session.add(order_6)
     db_session.add(orderRecord_1)
 
     db_session.commit()

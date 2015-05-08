@@ -3,12 +3,12 @@
 ---------------
 
 ### Search for orders
- ***example: GET /v1/order?pickupaddress=Columbia&pickuptime=&offset=...***
+ ***example: GET /v1/order?pickupaddress=Columbia&pickuptime=&page_number=...***
  
  **what is this:**
 Query and Pagination
 
- 
+ OFFS
 **Request**
 
 | Parameter  | type   | value (format)   | default|    Note |
@@ -17,8 +17,8 @@ Query and Pagination
 |   stopaddress|  String    |NYU|       |      |
 |   pickuptime|  String |2011-11-03 18:21:26|    |  |
 |cargosize     |  int    | 333| |  |
-|   offset |  int    |  1/2/3...|    1   |   used for pagination       |
-|   limit  |  int    |     10   |    10  |  used for pagination |
+|   page_number |  int    |  1/2/3...|    1   |   used for pagination       |
+|   per_page  |  int    |     10   |    10  |  used for pagination |
 
 
 **Response**
@@ -57,10 +57,10 @@ Query and Pagination
 			...
           ],
   "links":[
-            {"ref":"pre","href":"/v1/order?pickupaddress=Columbia&pickuptime=&offset=4&limit=2"},
-            {"ref":"next","href":"/v1/order?pickupaddress=Columbia&pickuptime=&limit=2"},
-            {"ref":"first","href":"/v1/order?pickupaddress=Columbia&pickuptime=&limit=2"},
-            {"ref":"last","href":"/v1/order?pickupaddress=Columbia&pickuptime=&limit＝2"}
+            {"ref":"pre","href":"/v1/order?pickupaddress=Columbia&pickuptime=&page_number=4&per_page=2"},
+            {"ref":"next","href":"/v1/order?pickupaddress=Columbia&pickuptime=&per_page=2"},
+            {"ref":"first","href":"/v1/order?pickupaddress=Columbia&pickuptime=&per_page=2"},
+            {"ref":"last","href":"/v1/order?pickupaddress=Columbia&pickuptime=&per_page＝2"}
          ]
 }
 ```
@@ -164,7 +164,7 @@ add a new order
 `OrderRecord`
 ---------------
 ### Search for OrderRecord given a shipper id
- ***example: GET /v1/orderRecord?sid=33&offset=11&limit=20***
+ ***example: GET /v1/orderRecord?sid=33&page_number=11&per_page=20***
  
  **what is this:**
 Get all the OrderRecord of one specific user
@@ -175,8 +175,8 @@ Get all the OrderRecord of one specific user
 | Parameter  | type   | value (format)   | default|    Note |
 |:----------:|:------:|:-------:|:------:|:--------:|
 |   sid |  int|33|       |      |
-|   offset |  int    |  1/2/3...|    1   |   used for pagination       |
-|   limit  |  int    |     10   |    10  |  used for pagination |
+|   page_number |  int    |  1/2/3...|    1   |   used for pagination       |
+|   per_page  |  int    |     10   |    10  |  used for pagination |
 
 
 **Response**
@@ -215,10 +215,10 @@ Get all the OrderRecord of one specific user
 			...
           ],
   "links":[
-            {"ref":"pre","href":"/v1/orderRecord?sid=33&offset=1&limit=20"},
-            {"ref":"next","href":"/v1/orderRecord?sid=33&offset=31&limit=20"},
-            {"ref":"first","href":"/v1/orderRecord?sid=33&offset=1&limit=20"},
-            {"ref":"last","href":"/v1/orderRecord?sid=33&offset=44&limit=20"}
+            {"ref":"pre","href":"/v1/orderRecord?sid=33&page_number=1&per_page=20"},
+            {"ref":"next","href":"/v1/orderRecord?sid=33&page_number=31&per_page=20"},
+            {"ref":"first","href":"/v1/orderRecord?sid=33&page_number=1&per_page=20"},
+            {"ref":"last","href":"/v1/orderRecord?sid=33&page_number=44&per_page=20"}
          ]
 }
 ```
