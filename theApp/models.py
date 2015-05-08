@@ -16,7 +16,7 @@ class Order(db.Model):
     pickupaddr = db.Column(db.String(128))
     pickuptime = db.Column(db.DateTime)
     did = db.Column(db.Integer)
-    cargosize = db.Column(db.Integer) # the totoal cargosize of the order
+    totalcargosize = db.Column(db.Integer)
     trucksize = db.Column(db.Integer)
     totalfee = db.Column(db.Float)
     basefee = db.Column(db.Float)
@@ -38,10 +38,10 @@ class OrderRecord(db.Model):
     cargosize = db.Column(db.Integer)
     expectfee = db.Column(db.Float)
     fee = db.Column(db.Float)
-    acceptedtime = db.Column(db.Float)  # DateTime?
+    acceptedtime = db.Column(db.DateTime) 
     status = db.Column(db.String(4))
     grade = db.Column(db.Float)
-    commet = db.Column(db.Text)  # comment
+    comment = db.Column(db.Text)
 
     def __repr__(self):
         return '<OrderRecord %s, %s>' % (self.oid, self.sid)

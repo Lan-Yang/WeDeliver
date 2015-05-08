@@ -117,3 +117,4 @@ def logout():
 def reset_db():
     controllers.resetdb()
     return "reset db."
+
