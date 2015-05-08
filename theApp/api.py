@@ -33,3 +33,11 @@ def search_for_orders():
         links = "links"
     )
 
+@app.route('/v1/order/<oid>', methods=['GET'])
+def get_order_from_oid(oid):
+    order = Order.query.get(oid)
+    return jsonify(
+        status = 200,
+        data = [order.serialize],
+    )
+
