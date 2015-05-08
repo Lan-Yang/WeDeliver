@@ -115,18 +115,28 @@ h6 {
     /*border-bottom: 1px solid #e7e7e7;*/
 }
 
+.search-header {
+    margin-top: 30px;
+    margin-bottom: 5px;
+}
+
 .search-result {
-    padding: 10px 0;
-    border-top: 5px solid #e7e7e7;
-    border-bottom: 5px solid #e7e7e7;
-    border-left: 5px solid #e7e7e7;
-    border-right: 5px solid #e7e7e7;
+    padding: 10px 10px;
+    background: #e7e7e7;
 }
-/*.content-section {
-    padding: 50px 0;
-    background-color: #f8f8f8;
+
+.order-content {
+    margin: 5px 0;
+    padding: 5px 0;
+    border-top: 1px solid #66FF33;
+    border-bottom: 1px solid #66FF33;
 }
-*/
+
+.order-detail {
+    padding-top: 10px;
+    border-top: 1px solid #66FF33;
+}
+
 .section-heading {
     margin-bottom: 30px;
 }
