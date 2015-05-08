@@ -30,8 +30,8 @@ class Order(db.Model):
 
     @property
     def serialize(self):
-       """Return object data in easily serializeable format"""
-       return {
+        """Return object data in easily serializeable format"""
+        return {
             'oid' : self.oid,
             'pickupaddr' : self.pickupaddr,
             'pickuptime' : self.pickuptime.strftime(DATETIME_FORMAT),
@@ -44,7 +44,7 @@ class Order(db.Model):
             'status' : self.status,
             'drivername' : self.drivername,
             'driverphone' : self.driverphone
-       }
+        }
 
 
 class OrderRecord(db.Model):
@@ -65,6 +65,23 @@ class OrderRecord(db.Model):
     def __repr__(self):
         return '<OrderRecord %s, %s>' % (self.oid, self.sid)
 
+    @property
+    def serialize(self):
+        """Return object data in easily serializeable format"""
+        return {
+            'oid' : self.oid,
+            'sid' : self.sid,
+            'did' : self.did,
+            'stopaddress' : self.stopaddress,
+            'delivertime' : self.delivertime.strftime(DATETIME_FORMAT),
+            'cargosize' : self.cargosize,
+            'expectfee' : self.expectfee,
+            'fee' : self.fee,
+            'acceptedtime' : self.acceptedtime.strftime(DATETIME_FORMAT),
+            'status' : self.status,
+            'grade' : self.grade,
+            'comment' : self.comment
+        }
 
 class Shipper(db.Model):
     sid = db.Column(db.Integer, primary_key=True)  # auto-inc
