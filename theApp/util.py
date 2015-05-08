@@ -1,1 +1,2 @@
 DATETIME_FORMAT = '%Y-%m-%d %H:%M:%S'
+DEFAULE_PER_PAGE = 3

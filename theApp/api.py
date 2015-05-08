@@ -17,15 +17,15 @@ def search_for_orders():
     stopaddress = request_args.get('stopaddress', '')
     pickuptime = request_args.get('pickuptime', '')
     cargosize = request_args.get('cargosize', '')
-    offset = request_args.get('offset', '')
-    limit = request_args.get('limit', '')
+    page_number = request_args.get('page_number', '1')
+    per_page = request_args.get('per_page', DEFAULE_PER_PAGE)
 
     results = Order.query.filter(
         and_(
             Order.pickupaddr==pickupaddress,
             Order.pickuptime<=datetime.strptime(pickuptime, DATETIME_FORMAT),
-            Order.trucksize-Order.totalcargosize>=cargosize,
-            )).all()
+            Order.trucksize-Order.totalcargosize>=int(cargosize),
+            )).paginate(int(page_number), int(per_page), False).items
 
     return jsonify(
         status = 200,
@@ -33,9 +33,9 @@ def search_for_orders():
         links = "links"
     )
 
-@app.route('/v1/order/<oid>', methods=['GET'])
+@app.route('/v1/order/<oid>', methods=['GET'])  
 def get_order_from_oid(oid):
-    if oid=="all":
+    if oid=="all":  # used for test
         orders = Order.query.all()
         return jsonify(
             status = 200,
@@ -73,12 +73,12 @@ def add_new_order():
 def search_for_orderRecords_from_sid():
     request_args = request.args
     sid = request_args.get('sid', '')
-    offset = request_args.get('offset', '')
-    limit = request_args.get('limit', '')
+    page_number = request_args.get('page_number', '1')
+    per_page = request_args.get('per_page', DEFAULE_PER_PAGE)
 
     results = OrderRecord.query.filter(
         OrderRecord.sid == sid
-        ).all()
+        ).paginate(int(page_number), int(per_page), False).items
 
     return jsonify(
         status = 200,
@@ -86,7 +86,7 @@ def search_for_orderRecords_from_sid():
         links = "links"
     )
 
-@app.route('/v1/orderRecord/all', methods=['GET'])
+@app.route('/v1/orderRecord/all', methods=['GET'])  # used for test
 def get_orderRecords():
     orders = OrderRecord.query.all()
     return jsonify(
