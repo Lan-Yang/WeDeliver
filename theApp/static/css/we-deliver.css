@@ -25,14 +25,30 @@ h6 {
 
 .topnav {
     font-family: "Noto Sans";
-    font-size: 14px;
+    font-size: 16px;
     font-style: normal;
-    font-weight: 400;
-}
-.navbar-nav navbar-right {
-    font-
+    font-weight: 500;
+    background: transparent;
+    color: white;
 }
 
+.navbar-fixed-top {
+    border-width: 0px 0px 0px;
+}
+.nav > li > a{
+    color: white;
+    font-size: 16px;
+    font-weight: 500;
+    min-width: 120px;
+    min-height: 65px;
+    text-align: center;
+    padding: 25px;
+}
+
+.nav > li > a:hover{
+    color: white;
+    background: transparent;
+}
 .lead {
     font-size: 18px;
     font-weight: 400;
@@ -43,20 +59,24 @@ h6 {
     padding-bottom: 50px;
     text-align: center;
     color: #f8f8f8;
-    background: url(../img/home-bg.png) no-repeat center center;
+    background: url(../img/home-bg.jpg) no-repeat center center;
     background-size: cover;
 }
 
 .intro-message {
     position: relative;
-    padding-top: 20%;
-    padding-bottom: 20%;
+    padding-top: 5%;
+    padding-bottom: 30px;
 }
 
 .intro-message > h1 {
     margin: 0;
     text-shadow: 2px 2px 3px rgba(0,0,0,0.6);
-    font-size: 5em;
+    font-size: 42px;
+    font-family: 'Josefin Sans', sans-serif;
+    font-style: normal;
+    color: white;
+    font-weight: 600;
 }
 
 .intro-divider {
@@ -65,13 +85,29 @@ h6 {
     border-bottom: 1px solid rgba(0,0,0,0.2);
 }
 
-.intro-message > h3 {
-    text-shadow: 2px 2px 3px rgba(0,0,0,0.6);
-}
-
 .intro {
     padding-top: 50px;
     padding-bottom: 50px;
+}
+
+.well {
+    background-color: rgba(255, 255, 255, 0.75);
+    border: 1px solid #FFF;
+    border-radius: 0px;
+}
+
+.delivery-search-wrap {
+    display: block;
+    width: 1100px;
+    height: 85px;
+}
+
+.form-group-lg .form-control {
+    height: 50px;
+    font-size: 13px;
+    font-family: 'Open Sans', sans-serif;
+    border-radius: 0px;
+    font-weight: 100;
 }
 
 .result {
@@ -146,7 +182,7 @@ h6 {
 .banner {
     padding: 100px 0;
     color: #f8f8f8;
-    background: url(../img/home-bg.png) no-repeat center center;
+    background: url(../img/home-bg.jpg) no-repeat center center;
     background-size: cover;
 }
 
