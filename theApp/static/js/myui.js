@@ -1,5 +1,5 @@
 $(function () {
-  // niceScroll
+  /* niceScroll */
   $(function() {
     $("html").niceScroll();
   });
