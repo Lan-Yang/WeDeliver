@@ -5,7 +5,7 @@ Models for database of the flask application.
 
 from theApp import app, db
 from werkzeug.security import generate_password_hash
-
+from .util import *
 
 # db.session
 db_session = db.session
@@ -28,8 +28,27 @@ class Order(db.Model):
     def __repr__(self):
         return '<Order %r>' % self.oid
 
+    @property
+    def serialize(self):
+        """Return object data in easily serializeable format"""
+        return {
+            'oid' : self.oid,
+            'pickupaddr' : self.pickupaddr,
+            'pickuptime' : self.pickuptime.strftime(DATETIME_FORMAT),
+            'did' : self.did,
+            'totalcargosize' : self.totalcargosize,
+            'trucksize' : self.trucksize,
+            'totalfee' : self.totalfee,
+            'basefee' : self.basefee,
+            'closefee' : self.closefee,
+            'status' : self.status,
+            'drivername' : self.drivername,
+            'driverphone' : self.driverphone
+        }
+
 
 class OrderRecord(db.Model):
+    # orid = db.Column(db.Integer, primary_key=True)
     oid = db.Column(db.Integer, primary_key=True)
     sid = db.Column(db.Integer, primary_key=True)
     did = db.Column(db.Integer)
@@ -46,6 +65,23 @@ class OrderRecord(db.Model):
     def __repr__(self):
         return '<OrderRecord %s, %s>' % (self.oid, self.sid)
 
+    @property
+    def serialize(self):
+        """Return object data in easily serializeable format"""
+        return {
+            'oid' : self.oid,
+            'sid' : self.sid,
+            'did' : self.did,
+            'stopaddress' : self.stopaddress,
+            'delivertime' : self.delivertime.strftime(DATETIME_FORMAT),
+            'cargosize' : self.cargosize,
+            'expectfee' : self.expectfee,
+            'fee' : self.fee,
+            'acceptedtime' : self.acceptedtime.strftime(DATETIME_FORMAT),
+            'status' : self.status,
+            'grade' : self.grade,
+            'comment' : self.comment
+        }
 
 class Shipper(db.Model):
     sid = db.Column(db.Integer, primary_key=True)  # auto-inc
