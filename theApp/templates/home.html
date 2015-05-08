@@ -51,16 +51,18 @@
         <div class="well delivery-search-wrap">
           <div class="row">
             <div class="col-xs-3 form-group-lg">
-              <input type="text" class="form-control" placeholder="From Street Address, City, State" id="depart" required data-validation-required-message="Please enter depart location." name="depart">
+              <input type="text" class="form-control place" placeholder="From Street Address, City, State" id="depart" required data-validation-required-message="Please enter depart location." name="depart">
             </div>
             <div class="col-xs-3 form-group-lg">
-              <input type="text" class="form-control" placeholder="To Street Address, City, State" id="dest" required data-validation-required-message="Please enter destination." name="dest">
+              <input type="text" class="form-control place" placeholder="To Street Address, City, State" id="dest" required data-validation-required-message="Please enter destination." name="dest">
             </div>
             <div class="col-xs-2 form-group-lg">
-              <input type="text" class="form-control" placeholder="Shipping Date" id="date" required data-validation-required-message="Please enter date." name="date">
-              <span class="input-group-addon">
-                <span class="glyphicon glyphicon-calendar"></span>
-              </span>
+              <div class="input-group date">
+                <input type="text" class="form-control" placeholder="Shipping Date" id="date" required data-validation-required-message="Please enter date." name="date">
+                <span class="input-group-addon">
+                  <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+              </div>
             </div>
             <div class="col-xs-2 form-group-lg">
               <input type="weight" class="form-control" placeholder="Weight" id="weight" required data-validation-required-message="Please enter weight." name="weight">
@@ -216,7 +218,6 @@
 </footer>
 {% endblock %}
 {% block script %}
-<script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
 <script type="text/javascript">
 var this_map = $("#map")
 var latLng = new google.maps.LatLng(

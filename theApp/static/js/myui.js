@@ -1,4 +1,8 @@
 $(function () {
+  // niceScroll
+  $(function() {
+    $("html").niceScroll();
+  });
   /* Date Picker */
   $('.date').datepicker({
     format: "mm/dd/yyyy"
