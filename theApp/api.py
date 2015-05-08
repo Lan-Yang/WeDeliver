@@ -3,9 +3,12 @@
 data API
 """
 from theApp import app
-from flask import request
+from flask import render_template, request, flash, redirect, url_for, jsonify
 from .models import *
 from sqlalchemy import and_
+from .models import *
+from datetime import date, datetime
+
 
 @app.route('/v1/order', methods=['GET'])
 def search_for_orders():
@@ -14,17 +17,19 @@ def search_for_orders():
     pickupaddress = request_args.get('pickupaddress', '')
     stopaddress = request_args.get('stopaddress', '')
     pickuptime = request_args.get('pickuptime', '')
-    cargosize = request_args.get('remainingspace', '')
+    cargosize = request_args.get('cargosize', '')
     offset = request_args.get('offset', '')
     limit = request_args.get('limit', '')
 
-    # results = Order.query.filter(
-    #     and_(
-    #         Order.pickupaddr==pickupaddress,
-    #         Order.pickuptime>=pickuptime,
-    #         Order.trucksize-Order.cargosize>=cargosize,
-    #         ))
-    results = Order.query
-    print "query"
-    print results.all()
-    return "haha"
+    results = Order.query.filter(
+        and_(
+            Order.pickupaddr==pickupaddress,
+            Order.pickuptime<=datetime.strptime(pickuptime, DATETIME_FORMAT),
+            Order.trucksize-Order.totalcargosize>=cargosize,
+            )).all()
+    return jsonify(
+        status = 200,
+        data = [i.serialize for i in results],
+        links = "links"
+    )
+

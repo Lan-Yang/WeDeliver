@@ -65,8 +65,8 @@ class LoginForm(Form):
 class ShipperPostForm(Form):
     '''Shipper post form'''
     passwd = PasswordField('Password', [
-                                            DataRequired(message=u"Password is required")
-                                            ])
+        DataRequired(message=u"Password is required")
+        ])
     pickupaddr = StringField('pickupaddr')
     pickuptime = StringField('pickuptime')
     cargosize = StringField('cargosize')
