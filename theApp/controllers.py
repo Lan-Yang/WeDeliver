@@ -8,6 +8,7 @@ from .models import *
 from datetime import date, datetime
 from werkzeug.security import generate_password_hash
 from flask.ext.login import user_logged_in, user_logged_out
+from .util import *
 
 
 def when_user_logged_in(sender, user, **extra):
@@ -84,9 +85,66 @@ def resetdb():
     deliverer_2.zip = "10010"
     deliverer_2.grade = 3.9
 
+    order_1 = Order()
+    order_1.pickupaddr = "Columbia"
+    order_1.pickuptime = datetime.strptime('2011-11-03 18:21:26', DATETIME_FORMAT)
+    order_1.did = 1
+    order_1.totalcargosize = 3
+    order_1.trucksize = 33
+    order_1.totalfee = 35.5
+    order_1.basefee = 35.5
+    order_1.closefee = 35.5
+    order_1.status = "D"
+    order_1.drivername = "XiDaDa"
+    order_1.driverphone = "821931"
+
+    order_2 = Order()
+    order_2.pickupaddr = "NYU"
+    order_2.pickuptime = datetime.strptime('2011-11-03 18:21:26', DATETIME_FORMAT)
+    order_2.did = 1
+    order_2.totalcargosize = 3
+    order_2.trucksize = 33
+    order_2.totalfee = 35.5
+    order_2.basefee = 35.5
+    order_2.closefee = 35.5
+    order_2.status = "D"
+    order_2.drivername = "XiDaDa"
+    order_2.driverphone = "821931"
+
+    order_3 = Order()
+    order_3.pickupaddr = "hahaha"
+    order_3.pickuptime = datetime.strptime('2011-11-03 18:21:26', DATETIME_FORMAT)
+    order_3.did = 1
+    order_3.totalcargosize = 5
+    order_3.trucksize = 33
+    order_3.totalfee = 35.5
+    order_3.basefee = 35.5
+    order_3.closefee = 35.5
+    order_3.status = "D"
+    order_3.drivername = "XiDaDa"
+    order_3.driverphone = "821931"
+
+    orderRecord_1 = OrderRecord()
+    orderRecord_1.oid = 1
+    orderRecord_1.sid = 1
+    orderRecord_1.did = 1
+    orderRecord_1.stopaddress = "NYU"
+    orderRecord_1.delivertime = datetime.strptime('2011-11-03 18:21:26', DATETIME_FORMAT)
+    orderRecord_1.cargosize = 33
+    orderRecord_1.expectfee = 35.5
+    orderRecord_1.fee = 33.3
+    orderRecord_1.acceptedtime = datetime.strptime('2011-11-03 18:21:26', DATETIME_FORMAT)
+    orderRecord_1.status = "D"
+    orderRecord_1.grade = 3.5
+    orderRecord_1.comment = "This is great!"
+
     db_session.add(shipper_1)
     db_session.add(shipper_2)
     db_session.add(deliverer_1)
     db_session.add(deliverer_2)
+    db_session.add(order_1)
+    db_session.add(order_2)
+    db_session.add(order_3)
+    db_session.add(orderRecord_1)
 
     db_session.commit()

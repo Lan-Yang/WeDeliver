@@ -59,22 +59,21 @@
     <div class="row">
       <!-- search form begin -->
       <div class="col-md-3 text-center">
-        <h3 class="section-heading">Cheap Group Delivery</h3>
+        <div class="search-header text-center">
+          2 matched orders
+        </div>
         <form name="sentMessage" id="sSearchForm" action="{{url_for('shipper_search')}}" novalidate>
           <div class="form-group">
-            <label for="date">Pickup Date </label>
+            <label for="date">Pickup</label>
             <div class='input-group date'>
-              <input type="text" class="form-control" placeholder="Date *" id="date" required data-validation-required-message="Please enter date." name="date">
+              <input type="text" class="form-control" placeholder="Date *" id="date" name="date">
               <span class="input-group-addon">
                 <span class="glyphicon glyphicon-calendar"></span>
               </span>
             </div>
             <p class="help-block text-danger"></p>
-          </div>
-          <div class="form-group">
-            <label for="depart">From </label>
-            <div class='input-group'>
-              <input type="text" class="form-control" placeholder="Depart *" id="depart" required data-validation-required-message="Please enter depart location." name="depart">
+            <div class="input-group">
+              <input type="text" class="form-control place" placeholder="From *" id="date" name="date">
               <span class="input-group-addon">
                 <span class="glyphicon glyphicon-map-marker"></span>
               </span>
@@ -82,9 +81,16 @@
             <p class="help-block text-danger"></p>
           </div>
           <div class="form-group">
-            <label for="dest">To </label>
+            <label for="depart">Ship to</label>
+            <div class="input-group date">
+              <input type="text" class="form-control" placeholder="Date *" id="date" name="date">
+              <span class="input-group-addon">
+                <span class="glyphicon glyphicon-calendar"></span>
+              </span>
+            </div>
+            <p class="help-block text-danger"></p>
             <div class='input-group'>
-              <input type="text" class="form-control" placeholder="Destination *" id="dest" required data-validation-required-message="Please enter destination." name="dest">
+              <input type="text" class="form-control place" placeholder="Depart *" id="depart" required data-validation-required-message="Please enter depart location." name="depart">
               <span class="input-group-addon">
                 <span class="glyphicon glyphicon-map-marker"></span>
               </span>
@@ -104,34 +110,64 @@
           <button type="submit" class="btn btn-xl" id="shipper-login">Search</button>
         </div>
         <!-- search form end -->
-        <!-- search result begin -->
-        <div class="col-md-9 text-center">
-          <h3 class="section-heading">Search Result</h3>
-          <div class="content-section-a">
+        <!-- search result list begin -->
+        <div class="col-md-9">
+          <!-- search-header begin -->
+          <div class="search-header text-center">
             <div class="row">
-              <div class="col-md-12 text-center">
-                <!-- <div class="search-result"> -->
-                <table class="table table-hover search-result">
-                  <thead>
-                    <tr>
-                      <th>Pickup Date</th><th>From</th><th>Deliver Date</th><th>To</th><th>Capacity</th><th>Action</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>05/01/2015</td><td>1 Beard St, Brooklyn, NY</td><td>05/02/2015</td><td>Flushing, Queens, NY</td><td>6/10</td><td><a href="/order?oid=1">view</a></td>
-                    </tr>
-                    <tr>
-                      <td>05/01/2015</td><td>1 Beard St, Brooklyn, NY</td><td>05/02/2015</td><td>Upper West, New York, NY</td><td>7/10</td><td><a href="/order?oid=2">view</a></td>
-                    </tr>
-                    <tr>
-                      <td>05/01/2015</td><td>1 Beard St, Brooklyn, NY</td><td>05/02/2015</td><td>Flushing, Queens, NY</td><td>5/10</td><td><a href="/order?oid=3">view</a></td>
-                    </tr>
-                  </tbody>
-                </table>
-                <!-- </div> -->
+              <div class="col-md-2">Price/Person</div>
+              <div class="col-md-3">Deliverer</div>
+              <div class="col-md-4">Pickup</div>
+              <div class="col-md-3">Capacity</div>
+            </div>
+          </div>
+          <!-- search-header end -->
+          <!-- search-result begin -->
+          <div class="search-result">
+            <!-- order-content begin -->
+            <div class="order-content text-center">
+              <div class="row">
+                <div class="col-md-2">
+                  <p>$30</p>
+                  <a data-toggle="collapse" href="#detail-1" aria-expanded="false" aria-controls="detail-1">
+                    Detail<span class="caret"></span>
+                  </a>
+                </div>
+                <div class="col-md-3">
+                  <p>Flushing Delivery</p>
+                  <p>
+                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                    <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
+                    <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
+                  </p>
+                </div>
+                <div class="col-md-4">
+                  <p>1 Beard St, Brooklyn, NY</p>
+                  <p>10am, 05/01/2015</p>
+                </div>
+                <div class="col-md-3">
+                  <p>4/10</p>
+                  <p>2 people in group</p>
+                </div>
+              </div>
+              <div class="collapse order-detail" id="detail-1">
+                <div class="row">
+                  <div class="col-md-3">
+                    <p>Estimated Delivery</p>
+                    <p>05/02/2015</p>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="price-linechart">Line Chart HERE</div>
+                  </div>
+                  <div class="col-md-3">
+                    <a class="btn btn-primary" href="#">Join!</a>
+                  </div>
+                </div>
               </div>
             </div>
+            <!-- order-content end -->
           </div>
         </div>
         <!-- search result end -->
@@ -189,25 +225,9 @@
 {% endblock %}
 
 {% block script %}
-<script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.0/js/bootstrap-datepicker.min.js"></script>
-<link href="//fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
-<script src="//maps.googleapis.com/maps/api/js?v=3.exp&libraries=places"></script>
+<script src="https://www.google.com/jsapi"></script>
 <script type="text/javascript">
 $(function () {
-  /* Date Picker */
-  $('.date').datepicker({
-    format: "mm/dd/yyyy"
-  });
-  /* Google Place Search */
-  var placeSearch, autocomplete;
-  autocomplete = new google.maps.places.Autocomplete(
-    ($("#depart")[0]),
-    { types: ['geocode'] }
-    );
-  google.maps.event.addListener(autocomplete, 'place_changed', function() {
-    var place = autocomplete.getPlace();
-    console.log(place);
-  });
   /* Search form */
   $("#sSearchForm").submit(function(e) {
     $.ajax({
@@ -228,6 +248,30 @@ $(function () {
     $("#sSearchForm").submit();
     e.preventDefault();
   });
+  // google.load('visualization', '1.1', {packages: ['line']});
+  // google.setOnLoadCallback(function(){
+  //   var chartOptions = {
+  //     chart: {
+  //       title: 'Box Office Earnings in First Two Weeks of Opening',
+  //       subtitle: 'in millions of dollars (USD)'
+  //     },
+  //     width: 250,
+  //     height: 250
+  //   };
+  //   $('.order-detail').on('shown.bs.collapse', function(){
+  //     var data = new google.visualization.DataTable();
+  //     data.addColumn('number', 'Change');
+  //     data.addColumn('number', 'Price/Unit');
+  //     var divChart = $(this).find(".price-linechart");
+  //     var myData = data;
+  //     myData.addRows([
+  //       [1,  37.8],
+  //       [2,  30.9],
+  //       [3,  25.4],
+  //     ]);
+  //     divChart.draw(myData, chartOptions);
+  //   });
+  // });
 });
 </script>
 {% endblock %}
