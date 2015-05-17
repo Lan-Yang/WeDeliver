@@ -1,46 +1,98 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="Dashboard">
-    <meta name="keyword" content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
+<!--[if lt IE 7]><html lang="en" class="no-js ie6"><![endif]-->
+<!--[if IE 7]><html lang="en" class="no-js ie7"><![endif]-->
+<!--[if IE 8]><html lang="en" class="no-js ie8"><![endif]-->
+<!--[if gt IE 8]><!-->
+<html lang="en" class="no-js">
+<!--<![endif]-->
 
-    <title>Account Information</title>
+<head>
+    <meta charset="UTF-8">
+    <title>We deliver index page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <link rel="shortcut icon" href="favicon.png">
 
-    <!-- Bootstrap core CSS -->
-    <link href="static/css/bootstrap.css" rel="stylesheet">
+    <!-- 
+    <link rel="stylesheet" href="css/bootstrap.css">
+    -->
 
-    <link href="http://fontawesome.io/assets/font-awesome/css/font-awesome.css" rel="stylesheet" media="screen">  
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/animate.css">
+    <link href="http://fontawesome.io/assets/font-awesome/css/font-awesome.css" rel="stylesheet" media="screen">
+    <link rel="stylesheet" href="css/slick.css">
+    <link rel="stylesheet" href="js/rs-plugin/css/settings.css">
+
+    <link rel="stylesheet" href="css/freeze.css">
 
 
-    <!--external css-->
-        
-    <!-- Custom styles for this template -->
-    <link href="static/css/style.css" rel="stylesheet">
-    <link href="static/css/style-responsive.css" rel="stylesheet">
+    <script type="text/javascript" src="js/modernizr.custom.32033.js"></script>
 
-
-    <!--Javascript part-->
-    
     <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
 
-    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-  </head>
 
-  <body>
+</head>
 
-      <!-- **********************************************************************************************************************************************************
-      MAIN CONTENT
-      *********************************************************************************************************************************************************** -->
-    <div class="container" >
+<body>
 
-    <div class="row  user-menu-container square">
+    <div class="pre-loader">
+        <div class="load-con">
+            <img src="logo.png" class="animated fadeInDown" alt="">
+            <div class="spinner">
+                <div class="bounce1"></div>
+                <div class="bounce2"></div>
+                <div class="bounce3"></div>
+            </div>
+        </div>
+    </div>
+
+    <header>
+
+        <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+            <div class="container">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                        <span class="fa fa-bars fa-lg"></span>
+                    </button>
+                    <a class="navbar-brand" href="index.html">
+                        <img src="logo.png" alt="" class="logo">
+                    </a>
+                </div>
+
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="#about">Search</a>
+                        </li>
+                        <li><a href="#features">Post</a>
+                        </li>
+                        <li><a href="#favoriates">My Orders</a>
+                        </li>
+                        <li><a href="#login in">Log Out <i class="fa fa-user"></i> </a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- /.navbar-collapse -->
+            </div>
+            <!-- /.container-->
+        </nav>
+    </header>
+
+
+
+
+
+
+        <div class="container" >
+
+    <div class="row  user-menu-container square" style="margin-top: 150px;">
         <div class="col-md-12 user-details">
             <div class="row coralbg white">
                 <div class="col-md-6 no-pad">
@@ -197,52 +249,23 @@
 
     </div>
 
-      
 
 
 
-    <script>
-        $(document).ready(function() {
-    var $btnSets = $('#responsive'),
-    $btnLinks = $btnSets.find('a');
- 
-    $btnLinks.click(function(e) {
-        e.preventDefault();
-        $(this).siblings('a.active').removeClass("active");
-        $(this).addClass("active");
-        var index = $(this).index();
-        $("div.user-menu>div.user-menu-content").removeClass("active");
-        $("div.user-menu>div.user-menu-content").eq(index).addClass("active");
-    });
-});
+<!--the style for profile part-->
 
-
-function initiateProfile() {
-    $("[rel='tooltip']").tooltip();    
- 
-    $('.view').hover(
-        function(){
-            $(this).find('.caption').slideDown(250); //.fadeIn(250)
-        },
-        function(){
-            $(this).find('.caption').slideUp(250); //.fadeOut(205)
-        }
-    ); 
-    initiateProfile();
-}
-
-    </script>
-
-
-
-
-
-    <style>
+   <style>
         .square, .btn {
     border-radius: 0px!important;
 }
 
     /* -- color classes -- */
+    /*the color needed to be specially configured to overlay the parent css*/
+    h3,
+    .h3 {
+        color: #181717;    
+    }
+
     .coralbg {
         background-color: #978D8F;
     } 
@@ -472,17 +495,77 @@ div.user-menu div.user-menu-content:not(.active){
 
     </style>
 
-    <!-- js placed at the end of the document so the pages load faster -->
-    <script src="static/js/jquery.js"></script>
-    <script src="static/js/bootstrap.min.js"></script>
-
-    <!--BACKSTRETCH-->
-    <!-- You can use an image of whatever size. This script will stretch to fit in any screen size.-->
-    <script type="text/javascript" src="static/js/jquery.backstretch.min.js"></script>
 
 
 
+<!--This part is for click action in profile -->
+<script>
+    $(document).ready(function() {
+    var $btnSets = $('#responsive'),
+    $btnLinks = $btnSets.find('a');
+ 
+    $btnLinks.click(function(e) {
+        e.preventDefault();
+        $(this).siblings('a.active').removeClass("active");
+        $(this).addClass("active");
+        var index = $(this).index();
+        $("div.user-menu>div.user-menu-content").removeClass("active");
+        $("div.user-menu>div.user-menu-content").eq(index).addClass("active");
+    });
+});
 
 
-  </body>
+function initiateProfile() {
+    $("[rel='tooltip']").tooltip();    
+ 
+    $('.view').hover(
+        function(){
+            $(this).find('.caption').slideDown(250); //.fadeIn(250)
+        },
+        function(){
+            $(this).find('.caption').slideUp(250); //.fadeOut(205)
+        }
+    ); 
+    initiateProfile();
+}
+    </script>
+
+
+
+    <script src="js/jquery-1.11.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/slick.min.js"></script>
+    <script src="js/placeholdem.min.js"></script>
+    <script src="js/rs-plugin/js/jquery.themepunch.plugins.min.js"></script>
+    <script src="js/rs-plugin/js/jquery.themepunch.revolution.min.js"></script>
+    <script src="js/waypoints.min.js"></script>
+    <script src="js/scripts.js"></script>
+
+
+
+
+    <!-- This part is for background with header-->
+    <style>
+        .margin-top-20 {
+            margin-top: 20px;
+        }
+        
+        body {
+            background: url('img/freeze/bk-freeze-ga.jpg');
+            background-size: 100% 100%;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            font-family: 'Open Sans', sans-serif;
+            padding-bottom: 40px;
+        }       
+    </style>
+
+    <script>
+        $(document).ready(function() {
+            appMaster.preLoader();
+        });
+    </script>
+
+</body>
+
 </html>
