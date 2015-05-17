@@ -105,7 +105,7 @@
 
     <div class="container auth" style="padding: 250px 110px;">
         <div id="big-form" class="well auth-box">
-            <form>
+            <form id="searchForm" action="/s-search" method="GET">
                 <fieldset>
                     <!-- Text input-->
                     <div class="row">
@@ -144,12 +144,12 @@
 
                     <!-- Button -->
                     <div class = "row">
-                    <div class="form-group">
-                        <div class="col-sm-3 col-sm-offset-5">
-                            <button id="singlebutton" name="singlebutton" class="btn btn-primary">Search</button>
+                        <div class="form-group">
+                            <div class="col-sm-3 col-sm-offset-5">
+                                <button id="submitSearch" name="" class="btn btn-primary">Search</button>
+                            </div>
                         </div>
                     </div>
-                </div>
 
                 </fieldset>
             </form>
@@ -448,10 +448,14 @@
     </style>
 
     <script>
-    $(document).ready(function() {
+    $(function() {
         // $('input').floatlabel();
         $('a, button').click(function(e) {
             e.preventDefault();
+        });
+        // submit search buttton
+        $('#submitSearch').click(function(e){
+            $('#searchForm').submit();
         });
     });
     </script>
