@@ -23,6 +23,7 @@ def when_user_logged_out(sender, user, **extra):
 user_logged_in.connect(when_user_logged_in, app)
 user_logged_out.connect(when_user_logged_out, app)
 
+
 @lm.user_loader
 def load_user(user_id):
     if session.get('shipper_or_deliverer') == 1:
