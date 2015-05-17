@@ -20,31 +20,30 @@ def init():
 def home():
     """Renders the home page."""
     return render_template(
-    	'home.html',
-    	title="Home"
-    	)
+        'home.html',
+        title="Home"
+        )
 
 @app.route('/login')
 def login():
-	return render_template(
-		'login.html',
-		title="Login"
-		)
+    return render_template(
+        'login.html',
+        title="Login"
+        )
 
 @app.route('/s-search')
 def ssearch():
-	return render_template(
-		's-search.html',
-		title="ShipperSearch"
-		)
+    return render_template(
+        's-search.html',
+        title="ShipperSearch"
+        )
 
 @app.route('/s-post')
 def spost():
-	return render_template(
-		's-post.html',
-		title="ShipperPost"
-		)
-
+    return render_template(
+        's-post.html',
+        title="ShipperPost"
+        )
 
 @app.route('/handle_shipper_post', methods=['POST'])
 def handle_shipper_post():
@@ -54,21 +53,26 @@ def handle_shipper_post():
     form.recordPost()
     return "Successfully post."
 
-
+@app.route('/searchlist')  # test search_list.html
+def searchlist():
+    return render_template(
+        'search_list.html',
+        # title="ShipperSearch"
+        )
 
 @app.route('/s-ongoing')
 def songoing():
-	return render_template(
-		's-ongoing.html',
-		title="ShipperOngoing"
-		)
+    return render_template(
+        's-ongoing.html',
+        title="ShipperOngoing"
+        )
 
 @app.route('/s-account')
 def account():
-	return render_template(
-		's-account.html',
-		title="Account"
-		)
+    return render_template(
+        's-account.html',
+        title="Account"
+        )
 
 @app.route('/order')
 def view_order():
@@ -117,4 +121,3 @@ def logout():
 def reset_db():
     controllers.resetdb()
     return "reset db."
-

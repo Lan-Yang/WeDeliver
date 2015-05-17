@@ -1,14 +1,16 @@
 $(function () {
-  // niceScroll
-  $(function() {
-    $("html").niceScroll();
+  /* niceScroll */
+  $("html").niceScroll();
+  /* popover tooltip */
+  $('[data-toggle="tooltip"]').each(function(){
+    var title = $(this).attr("placeholder");
+    $(this).attr("title", title).tooltip();
   });
   /* Date Picker */
   $('.date').datepicker({
     format: "mm/dd/yyyy"
   });
   /* Google Place Search */
-  // var autoComplete = [];
   $('.place').each(function(index){
     // console.log(this);
     var ap = new google.maps.places.Autocomplete(this, {types: ['geocode']});
@@ -16,6 +18,5 @@ $(function () {
       var place = ap.getPlace();
       console.log(place);
     });
-    // autoComplete.push(ap);
   });
 });
