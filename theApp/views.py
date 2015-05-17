@@ -20,7 +20,7 @@ def init():
 def home():
     """Renders the home page."""
     return render_template(
-        'home.html',
+        'index-login.html',
         title="Home"
         )
 
