@@ -13,7 +13,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <link rel="shortcut icon" href="favicon.png">
 
-    <!-- 
+    <!--
     <link rel="stylesheet" href="css/bootstrap.css">
     -->
 
@@ -85,21 +85,21 @@
 
     <div class="container auth" style="padding: 250px 110px;">
         <div id="big-form" class="well auth-box">
-            <form>
+            <form id="search-form" action="" method="POST">
                 <fieldset>
                     <!-- Text input-->
                     <div class="row">
                         <div class="col-xs-3 col-sm-3 col-md-3">
                             <div class="form-group">
                                 <label class="control-label" for="textinput"> <i class="fa fa-truck"></i> Pickup </label>
-                                <input id="textinput" name="textinput" placeholder="IKEA Brooklyn" class="form-control input-md" type="text">
+                                <input id="" name="pickupaddr" placeholder="IKEA Brooklyn" class="form-control input-md" type="text">
                             </div>
                         </div>
 
                         <div class="col-xs-3 col-sm-3 col-md-3">
                         <div class="form-group">
                             <label class="control-label" for="textinput"><i class="fa fa-street-view"></i> Deliver</label>
-                            <input id="textinput" name="textinput" placeholder="Columbia University" class="form-control input-md" type="text">
+                            <input id="" name="deliveraddr" placeholder="Columbia University" class="form-control input-md" type="text">
                          </div>
                         </div>
 
@@ -107,14 +107,14 @@
                         <div class="col-xs-3 col-sm-3 col-md-3">
                             <div class="form-group">
                                 <label class=" control-label" for="textinput"> <i class="fa fa-calendar"></i> Pickup </label>
-                                <input id="textinput" placeholder="May 12, 2015. 5:00 PM" name="textinput"  class="form-control input-md" type="text">
+                                <input id="" name="pickuptime" placeholder="May 12, 2015. 5:00 PM" name="textinput"  class="form-control input-md" type="text">
                             </div>
                         </div>
 
                         <div class="col-xs-3 col-sm-3 col-md-3">
                             <div class="form-group">
                                 <label class=" control-label" for="textinput"> <i class="fa fa-calendar-o"></i> Deliver </label>
-                                <input id="textinput" name="textinput" placeholder="May 13, 2015. 10:00 AM" class="form-control input-md" type="text">
+                                <input id="" name="delivertime" placeholder="May 13, 2015. 10:00 AM" class="form-control input-md" type="text">
                             </div>
                         </div>
 
@@ -126,7 +126,7 @@
                     <div class = "row">
                     <div class="form-group">
                         <div class="col-sm-3 col-sm-offset-5">
-                            <button id="singlebutton" name="singlebutton" class="btn btn-primary">Search</button>
+                            <button id="search-submit" class="btn btn-primary">Search</button>
                         </div>
                     </div>
                 </div>
@@ -177,7 +177,7 @@
         .margin-top-20 {
             margin-top: 20px;
         }
-        
+
         body {
             background: url('img/freeze/bk-freeze-ga.jpg');
             background-size: 100% 100%;
@@ -186,26 +186,26 @@
             font-family: 'Open Sans', sans-serif;
             padding-bottom: 40px;
         }
-        
+
         .auth h1 {
             color: #fff!important;
             font-weight: 300;
             font-family: 'Open Sans', sans-serif;
         }
-        
+
         .auth h1 span {
             font-size: 21px;
             display: block;
             padding-top: 20px;
         }
-        
+
         .auth .auth-box legend {
             color: #fff;
             border: none;
             font-weight: 300;
             font-size: 24px;
         }
-        
+
         .auth .auth-box {
             background-color: #fff;
             margin: 0 auto;
@@ -226,52 +226,52 @@
             -o-transition: background 1s ease-in-out;
             transition: background 1s ease-in-out;
         }
-        
+
         @media(max-width:460px) {
             .auth .auth-box {
                 margin: 0 10px;
             }
         }
-        
+
         .auth .auth-box input::-webkit-input-placeholder {
             /* WebKit browsers */
-            
+
             color: #fff;
             font-weight: 300;
         }
-        
+
         .auth .auth-box input:-moz-placeholder {
             /* Mozilla Firefox 4 to 18 */
-            
+
             color: #fff;
             font-weight: 300;
         }
-        
+
         .auth .auth-box input::-moz-placeholder {
             /* Mozilla Firefox 19+ */
-            
+
             color: #fff;
             font-weight: 300;
         }
-        
+
         .auth .auth-box input:-ms-input-placeholder {
             /* Internet Explorer 10+ */
-            
+
             color: #fff;
             font-weight: 300;
         }
-        
+
         .auth span.input-group-addon,
         .input-group-btn button {
             border: none;
             background: #fff!important;
             color: #000!important;
         }
-        
+
         .auth form {
             font-weight: 300!important;
         }
-        
+
         .auth form input[type="text"],
         .auth form input[type="password"],
         .auth form input[type="email"],
@@ -287,34 +287,34 @@
             box-shadow: none!important;
             height: auto;
         }
-        
+
         .auth textarea {
             background-color: rgba(255, 255, 255, 0)!important;
             color: #fff!important;
         }
-        
+
         .auth input[type="file"] {
             color: #fff;
         }
-        
+
         .auth form label {
             color: #fff;
             font-size: 21px;
             font-weight: 300;
         }
         /*for radios & checkbox labels*/
-        
+
         .auth .radio label,
         .auth label.radio-inline,
         .auth .checkbox label,
         .auth label.checkbox-inline {
             font-size: 14px;
         }
-        
+
         .auth form .help-block {
             color: #fff;
         }
-        
+
         .auth form select {
             background-color: rgba(255, 255, 255, 0)!important;
             background: rgba(255, 255, 255, 0);
@@ -323,18 +323,18 @@
             border-radius: 0;
             box-shadow: none;
         }
-        
+
         .auth form select option {
             color: #000;
         }
         /*multiple select*/
-        
+
         .auth select[multiple] option,
         .auth select[size] {
             color: #fff!important;
         }
         /*Form buttons*/
-        
+
         .auth form .btn {
             background: none;
             -webkit-transition: background 0.2s ease-in-out;
@@ -343,48 +343,48 @@
             -o-transition: background 0.2s ease-in-out;
             transition: background 0.2s ease-in-out;
         }
-        
+
         .auth form .btn-default {
             color: #fff;
             border-color: #fff;
         }
-        
+
         .auth form .btn-default:hover {
             background: rgba(225, 225, 225, 0.3);
             color: #fff;
             border-color: #fff;
         }
-        
+
         .auth form .btn-primary:hover {
             background: rgba(66, 139, 202, 0.3);
         }
-        
+
         .auth form .btn-success:hover {
             background: rgba(92, 184, 92, 0.3);
         }
-        
+
         .auth form .btn-info:hover {
             background: rgba(91, 192, 222, 0.3);
         }
-        
+
         .auth form .btn-warning:hover {
             background: rgba(240, 173, 78, 0.3);
         }
-        
+
         .auth form .btn-danger:hover {
             background: rgba(217, 83, 79, 0.3);
         }
-        
+
         .auth form .btn-link {
             border: none;
             color: #fff;
             padding-left: 0;
         }
-        
+
         .auth form .btn-link:hover {
             background: none;
         }
-        
+
         .auth label.label-floatlabel {
             font-weight: 300;
             font-size: 11px;
@@ -557,6 +557,27 @@
     <script>
         $(document).ready(function() {
             appMaster.preLoader();
+
+            $('#search-form').submit(function(e){
+                var postData = $(this).serializeArray();
+                var formURL = $(this).attr("action");
+                console.log(postData);
+                $.ajax({
+                    url : formURL,
+                    type: "POST",
+                    data : postData,
+                    success: function(data) {
+                        //data: return data from server
+                    },
+                });
+                e.preventDefault(); //STOP default action
+            });
+
+            $('#search-submit').click(function(e){
+                console.log("Click!");
+                $('#search-form').submit();
+                e.preventDefault();
+            });
         });
     </script>
 
