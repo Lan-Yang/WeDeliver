@@ -19,7 +19,10 @@
     <link rel="stylesheet" href="/static/css/slick.css">
     <link rel="stylesheet" href="/static/js/rs-plugin/css/settings.css">
     <link rel="stylesheet" href="/static/css/freeze.css">
+    <link href='http://fonts.googleapis.com/css?family=PT+Sans' rel='stylesheet' type='text/css'>
     <script type="text/javascript" src="/static/js/modernizr.custom.32033.js"></script>
+    <link href='http://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="/static/css/index-login.css">
 
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
@@ -65,7 +68,7 @@
                         </li>
                         <li><a href="#favoriates">favoriates</a>
                         </li>
-                        <li><a href="#login" data-toggle="modal" data-target="#loginModal">Log in <i class="fa fa-user"></i> </a>
+                        <li><a href="#login" data-toggle="modal" data-target="#loginModal"><i class="fa fa-user"></i> </a>
                         </li>
                     </ul>
                 </div>
@@ -77,22 +80,34 @@
 
     <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
-            <form class="form-login" action="index.html">
+            <form class="form-login" action="index.html" >
 
                 <div class = "row">
                     <div clss = "col-sm-3">
-                        <h2 class="form-login-heading" style = "margin-left: 15px;" >Sign in now</h2>
+                        <h2 class="form-login-heading" style = "margin-left: 15px; font-weight: 300; font-family: 'Montserrat', sans-serif; padding: 20px 20px; font-size: 22px;" >Sign in</h2>
                     </div>
 
-                    <div class="login-wrap">
-                        <input type="text" class="form-control"  placeholder="UserName" autofocus>
+                    <div class="login-wrap" style = "padding: 30px;">
+                        <!-- <button class="btn btn-facebook"> -->
+                        <p class="background-line"><span>SIGN IN</span></p>
+                        <button class="btn btn-theme btn-block btn-facebook" href="index.html" type="submit">
+                            <i class="fa fa-facebook-official fa-2x"></i>  CONNECT WITH FACEBOOK
+                        </button>
                         <br>
-                        <input type="password" class="form-control" placeholder="Password">
+                        <label class="label">EMAIL</label>
+                        <input type="text" class="form-control" placeholder="Email Address" autofocus>
+                        <br>
+                        <label class="label">PASSWORD</label>
+                        <input type="text" class="form-control" placeholder="Password" autofocus>
+                        <br>
+
                         <label class="checkbox">
                             <span class="pull-right">
-                                <a data-toggle="modal" href="login.html#myModal"> Forgot Password?</a>
+                                <a data-toggle="modal" href="login.html#myModal" style= "position: middle;"> Forgot Password?</a>
                             </span>
                         </label>
+                        <br>
+
                         <button class="btn btn-theme btn-block" href="index.html" type="submit">
                             <i class="fa fa-lock"></i> SIGN IN
                         </button>

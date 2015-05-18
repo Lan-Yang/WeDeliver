@@ -1,0 +1,26 @@
+.label {
+	color: #C0C0D0;
+	font-size: 14px;
+	font-family: 'Montserrat', sans-serif;
+	font-weight: 100;
+}
+
+.form .form-control {
+	font-family: 'PT Sans', sans-serif;
+	border-radius: 0.5em;
+}
+
+.form-login.btn {
+	border-radius: 0.5em;
+	height: 44px;
+}
+
+.btn-facebook {
+	background-color: #5172AB;
+	border-color: #5D7EB6;
+	color: white;
+	font-size: 14px;
+	font-family: 'Montserrat', sans-serif;
+	font-weight: 100;
+	border-radius: 0.5em;
+}
