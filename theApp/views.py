@@ -41,7 +41,7 @@ def ssearch():
 @app.route('/s-post')
 def spost():
     return render_template(
-        's-post.html',
+        'post-header.html',
         title="ShipperPost"
         )
 
@@ -70,7 +70,7 @@ def songoing():
 @app.route('/s-account')
 def account():
     return render_template(
-        's-account.html',
+        'profile-header.html',
         title="Account"
         )
 
