@@ -20,6 +20,7 @@
     <link rel="stylesheet" href="/static/css/slick.css">
     <link rel="stylesheet" href="/static/js/rs-plugin/css/settings.css">
     <link rel="stylesheet" href="/static/css/freeze.css">
+    <link href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.0/css/bootstrap-datepicker.min.css" rel="stylesheet">
     <script type="text/javascript" src="/static/js/modernizr.custom.32033.js"></script>
 
     <!--[if lt IE 9]>
@@ -64,9 +65,9 @@
                         <li><a href="#features">Post</a></li>
                         <li><a href="#favoriates">My Orders</a></li>
                         <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"> John Doe <i class="fa fa-user"></i> </a>
+                            <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"> John Doe <i class="fa fa-user"></i> </a>
                             <ul class="dropdown-menu" role="menu">
-                                <li><a href="#">Profile</a></li>
+                                <li><a href="/profile">Profile</a></li>
                                 <li class="divider"></li>
                                 <li><a href="/logout">Logout</a></li>
                             </ul>
@@ -90,40 +91,29 @@
                             <fieldset>
                                 <!-- Text input-->
                                 <div class="form-group">
-                                    <label class="control-label" for="textinput"> <i class="fa fa-truck"></i> Pickup Location</label>
-                                    <div class="">
-                                        <input id="textinput" name="textinput" placeholder="IKEA Brooklyn" class="form-control input-md" type="text">
-                                    </div>
+                                    <label class="control-label" for="pickup-loc"> <i class="fa fa-truck"></i> Pickup Location</label>
+                                    <input id="pickup-loc" name="pickuploc" placeholder="IKEA Brooklyn" class="form-control input-md place" type="text">
                                 </div>
 
                                 <!-- Text input-->
                                 <div class="form-group">
-                                    <label class=" control-label" for="textinput"><i class="fa fa-street-view"></i> Delivery Location</label>
-                                    <div class="">
-                                        <input id="textinput" name="textinput" placeholder="Columbia University" class="form-control input-md" type="text">
-                                    </div>
+                                    <label class="control-label" for="deliver-loc"><i class="fa fa-street-view"></i> Delivery Location</label>
+                                    <input id="deliver-loc" name="deliverloc" placeholder="Columbia University" class="form-control input-md place" type="text">
                                 </div>
 
                                 <div class="form-group">
-                                    <label class=" control-label" for="textinput"> <i class="fa fa-calendar"></i> Pickup Time</label>
-                                    <div class="">
-                                        <input id="textinput" name="textinput" placeholder="May 12, 2015. 5:00 PM" class="form-control input-md" type="text">
-                                    </div>
+                                    <label class="control-label" for="pickup-date"> <i class="fa fa-calendar"></i> Pickup Time</label>
+                                    <input id="pickup-date" name="pickupdate" placeholder="May 12, 2015. 5:00 PM" class="form-control input-md date" type="text">
                                 </div>
 
-
                                 <div class="form-group">
-                                    <label class=" control-label" for="textinput"> <i class="fa fa-calendar-o"></i> Delivery Time</label>
-                                    <div class="">
-                                        <input id="textinput" name="textinput" placeholder="May 13, 2015. 10:00 AM" class="form-control input-md" type="text">
-                                    </div>
+                                    <label class="control-label" for="deliver-date"> <i class="fa fa-calendar-o"></i> Delivery Time</label>
+                                    <input id="deliver-date" name="deliverdate" placeholder="May 13, 2015. 10:00 AM" class="form-control input-md date" type="text">
                                 </div>
 
                                 <!-- Button -->
                                 <div class="form-group">
-                                    <div class="">
-                                        <button id="singlebutton" name="singlebutton" class="btn btn-primary">Search</button>
-                                    </div>
+                                    <button id="submit-search" class="btn btn-primary">Search</button>
                                 </div>
 
                             </fieldset>
@@ -284,6 +274,8 @@
 
     <script src="/static/js/jquery-1.11.1.min.js"></script>
     <script src="/static/js/bootstrap.min.js"></script>
+    <script src="//maps.googleapis.com/maps/api/js?v=3.exp&libraries=places"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.0/js/bootstrap-datepicker.min.js"></script>
     <script src="/static/js/slick.min.js"></script>
     <script src="/static/js/floatlabels.min.js"></script>
     <script src="/static/js/placeholdem.min.js"></script>
@@ -526,6 +518,23 @@
         $('input').floatlabel();
         $('a, button').click(function(e) {
             e.preventDefault();
+        });
+        // submit search buttton
+        $('#submit-search').click(function(e){
+            $('#search-form').submit();
+        });
+        /* Date Picker */
+        $('.date').datepicker({
+            format: "mm/dd/yyyy"
+        });
+        /* Google Place Search */
+        $('.place').each(function(index){
+            // console.log(this);
+            var ap = new google.maps.places.Autocomplete(this, {types: ['geocode']});
+            google.maps.event.addListener(ap, 'place_changed', function() {
+                var place = ap.getPlace();
+                console.log(place);
+            });
         });
     });
     </script>
