@@ -83,36 +83,31 @@
         <div class="modal-dialog">
             <form class="form-login" action="index.html" >
 
-                <div class = "row">
-                    <div clss = "col-sm-3">
-                        <h2 class="form-login-heading" style = "margin-left: 15px; font-weight: 300; font-family: 'Montserrat', sans-serif; padding: 20px 20px; font-size: 22px;" >Sign in</h2>
-                    </div>
+                <div class="row">
+                    <h2 class="form-login-heading" style="margin-left: 15px; font-weight: 300; font-family: 'Montserrat', sans-serif; padding: 20px 20px; font-size: 22px;" >Sign in</h2>
 
-                    <div class="login-wrap" style = "padding: 30px;">
-                        <!-- <button class="btn btn-facebook"> -->
-                        <p class="background-line"><span>SIGN IN</span></p>
-                        <button class="btn btn-theme btn-block btn-facebook" href="index.html" type="submit">
-                            <i class="fa fa-facebook-official fa-2x"></i>  CONNECT WITH FACEBOOK
+                    <div class="login-wrap">
+                        <button class="btn btn-block btn-facebook">
+                            CONNECT WITH FACEBOOK
                         </button>
-                        <br>
-                        <label class="label">EMAIL</label>
-                        <input type="text" class="form-control" placeholder="Email Address" autofocus>
-                        <br>
-                        <label class="label">PASSWORD</label>
-                        <input type="text" class="form-control" placeholder="Password" autofocus>
-                        <br>
+                        <hr>
 
-                        <label class="checkbox">
-                            <span class="pull-right">
+                        <div class="form-group">
+                            <label class="label">EMAIL</label>
+                            <input type="text" class="form-control" placeholder="Email Address">
+                        </div>
+                        <div class="form-group">
+                            <label class="label">PASSWORD</label>
+                            <input type="text" class="form-control" placeholder="Password">
+                        </div>
+                        <div class="checkbox">
+                            <label class="pull-right">
                                 <a data-toggle="modal" href="login.html#myModal" style= "position: middle;"> Forgot Password?</a>
-                            </span>
-                        </label>
-                        <br>
-
+                            </label>
+                        </div>
                         <button class="btn btn-theme btn-block" href="index.html" type="submit">
                             <i class="fa fa-lock"></i> SIGN IN
                         </button>
-                        <hr>
                     </div>
                 </div>
             </form>
@@ -235,10 +230,6 @@
         font-size: 20px;
         text-transform: uppercase;
         font-weight: 300;
-    }
-
-    .login-wrap {
-        padding: 20px;
     }
     </style>
 
