@@ -13,13 +13,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <link rel="shortcut icon" href="favicon.png">
     <!-- <link rel="stylesheet" href="css/bootstrap.css"> -->
-    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
     <link rel="stylesheet" href="/static/css/animate.css">
     <link href="http://fontawesome.io/assets/font-awesome/css/font-awesome.css" rel="stylesheet" media="screen">
     <link rel="stylesheet" href="/static/css/slick.css">
     <link rel="stylesheet" href="/static/js/rs-plugin/css/settings.css">
     <link rel="stylesheet" href="/static/css/freeze.css">
     <link href='http://fonts.googleapis.com/css?family=PT+Sans' rel='stylesheet' type='text/css'>
+    <link href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.0/css/bootstrap-datepicker.min.css" rel="stylesheet">
     <script type="text/javascript" src="/static/js/modernizr.custom.32033.js"></script>
     <link href='http://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="/static/css/index-login.css">
@@ -35,7 +36,7 @@
 
     <div class="pre-loader">
         <div class="load-con">
-            <img src="/static/logo.png" class="animated fadeInDown" alt="">
+            <img src="/static/logo.png" class="animated fadeInDown" alt="logo">
             <div class="spinner">
                 <div class="bounce1"></div>
                 <div class="bounce2"></div>
@@ -68,7 +69,7 @@
                         </li>
                         <li><a href="#favoriates">favoriates</a>
                         </li>
-                        <li><a href="#login" data-toggle="modal" data-target="#loginModal"><i class="fa fa-user"></i> </a>
+                        <li><a href="#login" data-toggle="modal" data-target="#login-modal">Log in <i class="fa fa-user"></i> </a>
                         </li>
                     </ul>
                 </div>
@@ -78,7 +79,7 @@
         </nav>
     </header>
 
-    <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog">
             <form class="form-login" action="index.html" >
 
@@ -120,36 +121,35 @@
 
     <div class="container auth" style="padding: 250px 110px;">
         <div id="big-form" class="well auth-box">
-            <form id="searchForm" action="/s-search" method="GET">
+            <form id="search-form" action="/s-search" method="GET">
                 <fieldset>
                     <!-- Text input-->
                     <div class="row">
                         <div class="col-xs-3 col-sm-3 col-md-3">
                             <div class="form-group">
-                                <label class="control-label" for="textinput"> <i class="fa fa-truck"></i> Pickup </label>
-                                <input id="textinput" name="textinput" placeholder="IKEA Brooklyn" class="form-control input-md" type="text">
-                            </div>
-                        </div>
-
-                        <div class="col-xs-3 col-sm-3 col-md-3">
-                        <div class="form-group">
-                            <label class="control-label" for="textinput"><i class="fa fa-street-view"></i> Deliver</label>
-                            <input id="textinput" name="textinput" placeholder="Columbia University" class="form-control input-md" type="text">
-                         </div>
-                        </div>
-
-
-                        <div class="col-xs-3 col-sm-3 col-md-3">
-                            <div class="form-group">
-                                <label class=" control-label" for="textinput"> <i class="fa fa-calendar"></i> Pickup </label>
-                                <input id="textinput" placeholder="May 12, 2015. 5:00 PM" name="textinput"  class="form-control input-md" type="text">
+                                <label class="control-label" for="pickup-loc"> <i class="fa fa-truck"></i> Pickup </label>
+                                <input id="pickup-loc" name="pickuploc" placeholder="IKEA Brooklyn" class="form-control input-md place" type="text">
                             </div>
                         </div>
 
                         <div class="col-xs-3 col-sm-3 col-md-3">
                             <div class="form-group">
-                                <label class=" control-label" for="textinput"> <i class="fa fa-calendar-o"></i> Deliver </label>
-                                <input id="textinput" name="textinput" placeholder="May 13, 2015. 10:00 AM" class="form-control input-md" type="text">
+                                <label class="control-label" for="deliver-loc"><i class="fa fa-street-view"></i> Deliver</label>
+                                <input id="deliver-loc" name="deliverloc" placeholder="Columbia University" class="form-control input-md place" type="text">
+                            </div>
+                        </div>
+
+                        <div class="col-xs-3 col-sm-3 col-md-3">
+                            <div class="form-group">
+                                <label class="control-label" for="pickup-date"> <i class="fa fa-calendar"></i> Pickup </label>
+                                <input id="pickup-date" placeholder="May 12, 2015. 5:00 PM" name="pickupdate"  class="form-control input-md date" type="text">
+                            </div>
+                        </div>
+
+                        <div class="col-xs-3 col-sm-3 col-md-3">
+                            <div class="form-group">
+                                <label class="control-label" for="deliver-date"> <i class="fa fa-calendar-o"></i> Deliver </label>
+                                <input id="deliver-date" name="deliverdate" placeholder="May 13, 2015. 10:00 AM" class="form-control input-md date" type="text">
                             </div>
                         </div>
 
@@ -161,7 +161,7 @@
                     <div class = "row">
                         <div class="form-group">
                             <div class="col-sm-3 col-sm-offset-5">
-                                <button id="submitSearch" name="" class="btn btn-primary">Search</button>
+                                <button id="submit-search" class="btn btn-primary">Search</button>
                             </div>
                         </div>
                     </div>
@@ -185,18 +185,21 @@
                 </div>
                 <div class="rights">
                     <p>Copyright &copy; 2014</p>
-                    <p>We deliver <a href="http://www.scoopthemes.com" target="_blank">together !</a></p>
+                    <p>We deliver <a href="/home" target="_blank">together !</a></p>
                 </div>
             </div>
         </footer>
     </div>
 
     <!-- <script src="/static/js/jquery-1.11.1.min.js"></script> -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-    <script src="/static/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <!-- <script src="/static/js/bootstrap.min.js"></script> -->
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <script src="//maps.googleapis.com/maps/api/js?v=3.exp&libraries=places"></script>
     <script src="/static/js/slick.min.js"></script>
     <script src="/static/js/floatlabels.min.js"></script>
     <script src="/static/js/placeholdem.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.0/js/bootstrap-datepicker.min.js"></script>
     <script src="/static/js/rs-plugin/js/jquery.themepunch.plugins.min.js"></script>
     <script src="/static/js/rs-plugin/js/jquery.themepunch.revolution.min.js"></script>
     <script src="/static/js/waypoints.min.js"></script>
@@ -233,7 +236,6 @@
         text-transform: uppercase;
         font-weight: 300;
     }
-
 
     .login-wrap {
         padding: 20px;
@@ -469,14 +471,53 @@
             e.preventDefault();
         });
         // submit search buttton
-        $('#submitSearch').click(function(e){
-            $('#searchForm').submit();
+        $('#submit-search').click(function(e){
+            $('#search-form').submit();
+        });
+        //
+        $('#login-form').submit(function(e){
+            var postData = $(this).serializeArray();
+            var formURL = $(this).attr("action");
+            $(this).find("p.error").html("");
+            var _this = this;
+            $.ajax({
+                url: formURL,
+                type: "POST",
+                data: postData,
+                success: function(data){
+                    if (data.status == 0) { // fail
+                        // console.log(_this);
+                        $.each(data.errors, function(key, val){
+                            $(_this).find("input[name=\""+key+"\"]").next().html(val[0]);
+                        });
+                    } else { // sucess
+                        location.reload();
+                    }
+                },
+            });
+            e.preventDefault(); //STOP default action
+        });
+        $('#login-submit').click(function(e){
+            $('#login-form').submit();
+        });
+        /* Date Picker */
+        $('.date').datepicker({
+            format: "mm/dd/yyyy"
+        });
+        /* Google Place Search */
+        $('.place').each(function(index){
+            // console.log(this);
+            var ap = new google.maps.places.Autocomplete(this, {types: ['geocode']});
+            google.maps.event.addListener(ap, 'place_changed', function() {
+                var place = ap.getPlace();
+                console.log(place);
+            });
         });
     });
     </script>
 
     <script>
-    $(document).ready(function() {
+    $(function() {
         appMaster.preLoader();
     });
     </script>

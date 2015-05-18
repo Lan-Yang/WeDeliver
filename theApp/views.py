@@ -24,12 +24,12 @@ def home():
         title="Home"
         )
 
-@app.route('/login')
-def login():
-    return render_template(
-        'login.html',
-        title="Login"
-        )
+# @app.route('/login')
+# def login():
+#     return render_template(
+#         'login.html',
+#         title="Login"
+#         )
 
 @app.route('/s-search')
 def ssearch():
@@ -41,7 +41,7 @@ def ssearch():
 @app.route('/s-post')
 def spost():
     return render_template(
-        's-post.html',
+        'post-header.html',
         title="ShipperPost"
         )
 
@@ -70,7 +70,7 @@ def songoing():
 @app.route('/s-account')
 def account():
     return render_template(
-        's-account.html',
+        'profile-header.html',
         title="Account"
         )
 
@@ -89,7 +89,7 @@ def user_login():
     if not form.validate_on_submit():
         return jsonify(
             status=0,
-            message=form.errors.values()[0]  # first error message
+            errors=form.errors  # first error message
         )
     # Login valid form
     login_user(form.user, remember=form.rememberme)

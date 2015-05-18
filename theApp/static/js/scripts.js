@@ -15,7 +15,6 @@ var appMaster = {
         // Smooth Scrolling
         $('a[href*=#]:not([href=#carousel-example-generic])').click(function() {
             if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname) {
-
                 var target = $(this.hash);
                 target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
                 if (target.length) {
@@ -104,10 +103,7 @@ var appMaster = {
     },
 
     revSlider: function() {
-
         var docHeight = $(window).height();
-
-
         var mainSlider = $('.tp-banner').revolution({
             delay: 9000,
             startwidth: 1170,
@@ -120,43 +116,32 @@ var appMaster = {
             onHoverStop: "off",
             fullScreenOffsetContainer: ""
         });
-
     },
 
     scrollMenu: function(){
         var num = 50; //number of pixels before modifying styles
-
         $(window).bind('scroll', function () {
             if ($(window).scrollTop() > num) {
                 $('nav').addClass('scrolled');
-
             } else {
                 $('nav').removeClass('scrolled');
             }
         });
     },
+
     placeHold: function(){
         // run Placeholdem on all elements with placeholders
-        Placeholdem(document.querySelectorAll('[placeholder]'));
+        // Placeholdem(document.querySelectorAll('[placeholder]'));
     }
 
 }; // AppMaster
 
-
 $(document).ready(function() {
-
     appMaster.smoothScroll();
-
     appMaster.reviewsCarousel();
-
     appMaster.screensCarousel();
-
     appMaster.animateScript();
-
     appMaster.revSlider();
-
     appMaster.scrollMenu();
-
     appMaster.placeHold();
-
 });

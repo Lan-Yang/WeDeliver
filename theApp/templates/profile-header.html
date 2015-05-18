@@ -13,23 +13,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <link rel="shortcut icon" href="favicon.png">
 
-    <!-- 
-    <link rel="stylesheet" href="css/bootstrap.css">
-    -->
-
+    <!-- <link rel="stylesheet" href="css/bootstrap.css"> -->
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/animate.css">
+    <link rel="stylesheet" href="/static/css/animate.css">
     <link href="http://fontawesome.io/assets/font-awesome/css/font-awesome.css" rel="stylesheet" media="screen">
-    <link rel="stylesheet" href="css/slick.css">
-    <link rel="stylesheet" href="js/rs-plugin/css/settings.css">
-
-    <link rel="stylesheet" href="css/freeze.css">
-
-
-    <script type="text/javascript" src="js/modernizr.custom.32033.js"></script>
-
-    <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
-
+    <link rel="stylesheet" href="/static/css/slick.css">
+    <link rel="stylesheet" href="/static/js/rs-plugin/css/settings.css">
+    <link rel="stylesheet" href="/static/css/freeze.css">
+    <link href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.0/css/bootstrap-datepicker.min.css" rel="stylesheet">
+    <script type="text/javascript" src="/static/js/modernizr.custom.32033.js"></script>
 
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
@@ -42,7 +34,7 @@
 
     <div class="pre-loader">
         <div class="load-con">
-            <img src="logo.png" class="animated fadeInDown" alt="">
+            <img src="/static/logo.png" class="animated fadeInDown" alt="logo">
             <div class="spinner">
                 <div class="bounce1"></div>
                 <div class="bounce2"></div>
@@ -60,8 +52,8 @@
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                         <span class="fa fa-bars fa-lg"></span>
                     </button>
-                    <a class="navbar-brand" href="index.html">
-                        <img src="logo.png" alt="" class="logo">
+                    <a class="navbar-brand" href="/">
+                        <img src="/static/logo.png" alt="logo" class="logo">
                     </a>
                 </div>
 
@@ -69,13 +61,16 @@
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="#about">Search</a>
-                        </li>
-                        <li><a href="#features">Post</a>
-                        </li>
-                        <li><a href="#favoriates">My Orders</a>
-                        </li>
-                        <li><a href="#login in">Log Out <i class="fa fa-user"></i> </a>
+                        <li><a href="/s-search">Search</a></li>
+                        <li><a href="#features">Post</a></li>
+                        <li><a href="#favoriates">My Orders</a></li>
+                        <li class="dropdown">
+                            <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"> John Doe <i class="fa fa-user"></i> </a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="/s-account">Profile</a></li>
+                                <li class="divider"></li>
+                                <li><a href="/logout">Logout</a></li>
+                            </ul>
                         </li>
                     </ul>
                 </div>
@@ -263,12 +258,12 @@
     /*the color needed to be specially configured to overlay the parent css*/
     h3,
     .h3 {
-        color: #181717;    
+        color: #181717;
     }
 
     .coralbg {
         background-color: #978D8F;
-    } 
+    }
 
     .coral {
         color: #FA396f;
@@ -295,7 +290,7 @@
         opacity: 0.97;
         filter: alpha(opacity=97);
         -webkit-box-shadow: 0 1px 6px rgba(0, 0, 0, 0.175);
-        box-shadow: 0 1px 6px rgba(0, 0, 0, 0.175);               
+        box-shadow: 0 1px 6px rgba(0, 0, 0, 0.175);
     }
 
     div.user-menu-container .btn-lg {
@@ -342,7 +337,7 @@
         box-shadow: none;
         color: white;
     }
-    
+
     /* -- Individual button styles of vertical btn group -- */
         div.user-menu-btns {
         padding-right: 0;
@@ -361,7 +356,7 @@
         border-top: 13px solid transparent;
         border-left: 10px solid #978D8F;
     }
-    
+
 /* -- The main tab & content styling of the vertical buttons info-- */
 div.user-menu-content {
     color: #323232;
@@ -431,7 +426,7 @@ div.user-menu div.user-menu-content:not(.active){
     margin-top: 20px;
     margin-bottom: 0;
 }
- 
+
 .caption {
     position:absolute;
     top:0;
@@ -495,70 +490,63 @@ div.user-menu div.user-menu-content:not(.active){
 
     </style>
 
-
-
-
-<!--This part is for click action in profile -->
-<script>
-    $(document).ready(function() {
-    var $btnSets = $('#responsive'),
-    $btnLinks = $btnSets.find('a');
- 
-    $btnLinks.click(function(e) {
-        e.preventDefault();
-        $(this).siblings('a.active').removeClass("active");
-        $(this).addClass("active");
-        var index = $(this).index();
-        $("div.user-menu>div.user-menu-content").removeClass("active");
-        $("div.user-menu>div.user-menu-content").eq(index).addClass("active");
-    });
-});
-
-
-function initiateProfile() {
-    $("[rel='tooltip']").tooltip();    
- 
-    $('.view').hover(
-        function(){
-            $(this).find('.caption').slideDown(250); //.fadeIn(250)
-        },
-        function(){
-            $(this).find('.caption').slideUp(250); //.fadeOut(205)
-        }
-    ); 
-    initiateProfile();
-}
-    </script>
-
-
-
-    <script src="js/jquery-1.11.1.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/slick.min.js"></script>
-    <script src="js/placeholdem.min.js"></script>
-    <script src="js/rs-plugin/js/jquery.themepunch.plugins.min.js"></script>
-    <script src="js/rs-plugin/js/jquery.themepunch.revolution.min.js"></script>
-    <script src="js/waypoints.min.js"></script>
-    <script src="js/scripts.js"></script>
-
-
-
+    <script src="/static/js/jquery-1.11.1.min.js"></script>
+    <script src="/static/js/bootstrap.min.js"></script>
+    <script src="//maps.googleapis.com/maps/api/js?v=3.exp&libraries=places"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.0/js/bootstrap-datepicker.min.js"></script>
+    <script src="/static/js/slick.min.js"></script>
+    <script src="/static/js/floatlabels.min.js"></script>
+    <script src="/static/js/placeholdem.min.js"></script>
+    <script src="/static/js/rs-plugin/js/jquery.themepunch.plugins.min.js"></script>
+    <script src="/static/js/rs-plugin/js/jquery.themepunch.revolution.min.js"></script>
+    <script src="/static/js/waypoints.min.js"></script>
+    <script src="/static/js/scripts.js"></script>
 
     <!-- This part is for background with header-->
     <style>
         .margin-top-20 {
             margin-top: 20px;
         }
-        
+
         body {
-            background: url('img/freeze/bk-freeze-ga.jpg');
+            background: url('/static/img/freeze/bk-freeze-ga.jpg');
             background-size: 100% 100%;
             background-attachment: fixed;
             background-repeat: no-repeat;
             font-family: 'Open Sans', sans-serif;
             padding-bottom: 40px;
-        }       
+        }
     </style>
+
+    <!--This part is for click action in profile -->
+    <script>
+    $(document).ready(function() {
+        var $btnSets = $('#responsive'),
+        $btnLinks = $btnSets.find('a');
+
+        $btnLinks.click(function(e) {
+            e.preventDefault();
+            $(this).siblings('a.active').removeClass("active");
+            $(this).addClass("active");
+            var index = $(this).index();
+            $("div.user-menu>div.user-menu-content").removeClass("active");
+            $("div.user-menu>div.user-menu-content").eq(index).addClass("active");
+        });
+    });
+
+    $(function(){
+        $("[rel='tooltip']").tooltip();
+
+        $('.view').hover(
+            function(){
+                $(this).find('.caption').slideDown(250); //.fadeIn(250)
+            },
+            function(){
+                $(this).find('.caption').slideUp(250); //.fadeOut(205)
+            }
+        );
+    });
+    </script>
 
     <script>
         $(document).ready(function() {
