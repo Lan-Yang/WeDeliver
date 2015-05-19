@@ -9,14 +9,18 @@
     font-weight: 100;
 }
 
-.form .form-control {
+form .form-control {
     font-family: 'PT Sans', sans-serif;
     border-radius: 0.5em;
 }
 
-.form-login.btn {
+.form-login .btn {
     border-radius: 0.5em;
     height: 44px;
+}
+
+.btn {
+    font-family: 'Montserrat', sans-serif;
 }
 
 .btn-facebook {
