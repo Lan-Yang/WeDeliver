@@ -100,7 +100,7 @@
                         <div class="col-xs-3 col-sm-3 col-md-3">
                             <div class="form-group">
                                 <label class="control-label" for="deliver-loc"><i class="fa fa-street-view"></i> Deliver</label>
-                                <input id="deliver-loc" name="deliverloc" placeholder="Columbia University" class="form-control input-md place" type="text">
+                                <input id="deliver-loc" name="deliverloc" placeholder="Columbia University" class="form-control input-md" type="text" data-toggle="modal" data-target="#place-modal">
                             </div>
                         </div>
 
@@ -490,9 +490,13 @@
             $(this).find('.modal-content').load('/placemodal');
         });
         $('#place-modal').on('shown.bs.modal', function(e) {
-            // console.log(document.getElementById('pac-input'));
             initGmap();
-            // $('#map-canvas').css("background", "white");
+            $(this).data('source', e.relatedTarget);
+        });
+        $('#place-modal').on('hide.bs.modal', function(e) {
+            var source = $(this).data('source');
+            var addr = $('#pac-input').data('addr');
+            if (addr) { $(source).val(addr); }
         });
     });
     </script>
@@ -505,69 +509,53 @@
 
     <script type="text/javascript">
     function initGmap() {
+        var marker = null;
+        var map = new google.maps.Map(document.getElementById('map-canvas'), {
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+        });
+        var defaultBounds = new google.maps.LatLngBounds(
+            new google.maps.LatLng(-33.8902, 151.1759),
+            new google.maps.LatLng(-33.8474, 151.2631));
+        map.fitBounds(defaultBounds);
 
-      var markers = [];
-      var map = new google.maps.Map(document.getElementById('map-canvas'), {
-        mapTypeId: google.maps.MapTypeId.ROADMAP
-      });
+        // Create the search box and link it to the UI element.
+        var input = document.getElementById('pac-input');
+        map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
 
-      var defaultBounds = new google.maps.LatLngBounds(
-          new google.maps.LatLng(-33.8902, 151.1759),
-          new google.maps.LatLng(-33.8474, 151.2631));
-      map.fitBounds(defaultBounds);
+        var searchBox = new google.maps.places.Autocomplete(input);
 
-      // Create the search box and link it to the UI element.
-      var input = document.getElementById('pac-input');
-      map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+        google.maps.event.addListener(searchBox, 'place_changed', function() {
+            var place = searchBox.getPlace();
+            if (marker) { marker.setMap(null); }
+            var bounds = new google.maps.LatLngBounds();
 
-      var searchBox = new google.maps.places.SearchBox(input);
+            var image = {
+                url: place.icon,
+                size: new google.maps.Size(71, 71),
+                origin: new google.maps.Point(0, 0),
+                anchor: new google.maps.Point(17, 34),
+                scaledSize: new google.maps.Size(25, 25)
+            };
+            marker = new google.maps.Marker({
+                map: map,
+                icon: image,
+                title: place.name,
+                position: place.geometry.location
+            });
 
-      // Listen for the event fired when the user selects an item from the
-      // pick list. Retrieve the matching places for that item.
-      google.maps.event.addListener(searchBox, 'places_changed', function() {
-        var places = searchBox.getPlaces();
-        console.log(places);
-        if (places.length == 0) {
-          return;
-        }
-        for (var i = 0, marker; marker = markers[i]; i++) {
-          marker.setMap(null);
-        }
+            bounds.extend(place.geometry.location);
+            map.fitBounds(bounds);
 
-        // For each place, get the icon, place name, and location.
-        markers = [];
-        var bounds = new google.maps.LatLngBounds();
-        for (var i = 0, place; place = places[i]; i++) {
-          var image = {
-            url: place.icon,
-            size: new google.maps.Size(71, 71),
-            origin: new google.maps.Point(0, 0),
-            anchor: new google.maps.Point(17, 34),
-            scaledSize: new google.maps.Size(25, 25)
-          };
+            // Write data back to DOM
+            var _input = $(input);
+            _input.data("latlng", place.geometry.location);
+            _input.data("addr", place.formatted_address)
+        });
 
-          // Create a marker for each place.
-          var marker = new google.maps.Marker({
-            map: map,
-            icon: image,
-            title: place.name,
-            position: place.geometry.location
-          });
-
-          markers.push(marker);
-
-          bounds.extend(place.geometry.location);
-        }
-
-        map.fitBounds(bounds);
-      });
-
-      // Bias the SearchBox results towards places that are within the bounds of the
-      // current map's viewport.
-      google.maps.event.addListener(map, 'bounds_changed', function() {
-        var bounds = map.getBounds();
-        searchBox.setBounds(bounds);
-      });
+        google.maps.event.addListener(map, 'bounds_changed', function() {
+            var bounds = map.getBounds();
+            searchBox.setBounds(bounds);
+        });
     }
     </script>
 
