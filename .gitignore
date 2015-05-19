@@ -27,3 +27,4 @@ testdb.py
 test.db
 *.old
 *.bak
+.DS_Store
