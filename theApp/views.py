@@ -24,12 +24,19 @@ def home():
         title="Home"
         )
 
-# @app.route('/login')
-# def login():
-#     return render_template(
-#         'login.html',
-#         title="Login"
-#         )
+@app.route('/loginmodal')
+def login():
+    return render_template(
+        'login-modal.html',
+        title="Login"
+        )
+
+@app.route('/placemodal')
+def placemodal():
+    return render_template(
+        'place-modal.html',
+        title="Login"
+        )
 
 @app.route('/s-search')
 def ssearch():
