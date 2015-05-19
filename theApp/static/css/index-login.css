@@ -34,3 +34,7 @@
     background-repeat: no-repeat;
     padding-left: 50px;
 }
+
+.modal .map-dialog {
+    width: 80%;
+}

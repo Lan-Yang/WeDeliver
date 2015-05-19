@@ -137,8 +137,10 @@
     </div>
 
     <div class="modal fade" id="place-modal" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog">
-            <!-- TO BE LODADED -->
+        <div class="modal-dialog map-dialog">
+            <div class="modal-content">
+                <!-- TO BE LODADED -->
+            </div><!-- /.modal-content -->
         </div> <!-- /.modal-dialog -->
     </div> <!-- /.modal -->
 
@@ -165,7 +167,7 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <!-- <script src="/static/js/bootstrap.min.js"></script> -->
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-    <script src="//maps.googleapis.com/maps/api/js?v=3.exp&libraries=places"></script>
+    <script src="//maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true&libraries=places"></script>
     <script src="/static/js/slick.min.js"></script>
     <script src="/static/js/floatlabels.min.js"></script>
     <script src="/static/js/placeholdem.min.js"></script>
@@ -484,10 +486,12 @@
             $(this).find('.modal-dialog').load('/loginmodal');
         });
         $('#place-modal').on('show.bs.modal', function(e) {
-            $(this).find('.modal-dialog').load('/placemodal');
+            $(this).find('.modal-content').load('/placemodal');
         });
         $('#place-modal').on('shown.bs.modal', function(e) {
-            initGmap("map-canvas");
+            // console.log(document.getElementById('pac-input'));
+            initGmap();
+            // $('#map-canvas').css("background", "white");
         });
     });
     </script>
@@ -499,10 +503,10 @@
     </script>
 
     <script type="text/javascript">
-    function initGmap(idName) {
+    function initGmap() {
 
       var markers = [];
-      var map = new google.maps.Map(document.getElementById(idName), {
+      var map = new google.maps.Map(document.getElementById('map-canvas'), {
         mapTypeId: google.maps.MapTypeId.ROADMAP
       });
 
@@ -512,21 +516,18 @@
       map.fitBounds(defaultBounds);
 
       // Create the search box and link it to the UI element.
-      var input = /** @type {HTMLInputElement} */(
-          document.getElementById('pac-input'));
+      var input = document.getElementById('pac-input');
       map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
 
-      var searchBox = new google.maps.places.SearchBox(
-        /** @type {HTMLInputElement} */(input));
+      console.log(input);
+      var searchBox = new google.maps.places.Autocomplete(input, {types: ['geocode']});
 
       // Listen for the event fired when the user selects an item from the
       // pick list. Retrieve the matching places for that item.
-      google.maps.event.addListener(searchBox, 'places_changed', function() {
-        var places = searchBox.getPlaces();
-
-        if (places.length == 0) {
-          return;
-        }
+      google.maps.event.addListener(searchBox, 'place_changed', function() {
+        var place = searchBox.getPlace();
+        console.log(place);
+        places = [place];
         for (var i = 0, marker; marker = markers[i]; i++) {
           marker.setMap(null);
         }
