@@ -96,13 +96,25 @@ def search_for_orderRecords_from_sid():
     per_page = request_args.get('per_page', DEFAULE_PER_PAGE)
 
     results = OrderRecord.query.filter(
-        OrderRecord.sid == sid
-        ).paginate(int(page_number), int(per_page), False).items
+            OrderRecord.sid == sid
+        )
+    results_pagination = results.paginate(int(page_number), int(per_page), False).items
+
+    total_count = results.count()
+    total_page = int(math.ceil(total_count*1.0/DEFAULE_PER_PAGE))
+    first_page_num,last_page_num = 1,total_page
+    pre_page_num = int(page_number)-1 if int(page_number)>1 else first_page_num
+    next_page_num = int(page_number)+1 if int(page_number)<last_page_num else last_page_num
 
     return jsonify(
         status = 200,
-        data = [i.serialize for i in results],
-        links = "links"
+        data = [i.serialize for i in results_pagination],
+        links = [
+            {"ref":"pre", "href":"/v1/orderRecord?"+"sid="+sid+"&page_number="+str(pre_page_num)+"&per_page="+str(per_page)},
+            {"ref":"next","href":"/v1/orderRecord?"+"sid="+sid+"&page_number="+str(next_page_num)+"&per_page="+str(per_page)},
+            {"ref":"first","href":"/v1/orderRecord?"+"sid="+sid+"&page_number="+str(first_page_num)+"&per_page="+str(per_page)},
+            {"ref":"last","href":"/v1/orderRecord?"+"sid="+sid+"&page_number="+str(last_page_num)+"&per_page="+str(per_page)},
+            ]
     )
 
 @app.route('/v1/orderRecord/all', methods=['GET'])  # used for test
