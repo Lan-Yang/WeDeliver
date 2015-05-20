@@ -8,6 +8,7 @@ from .models import *
 from sqlalchemy import and_
 from .util import *
 from datetime import date, datetime
+import math
 
 
 @app.route('/v1/order', methods=['GET'])
@@ -21,21 +22,34 @@ def search_for_orders():
     per_page = request_args.get('per_page', DEFAULE_PER_PAGE)
     debug = request_args.get('debug', '0')  # for testing, return all records
 
+    results = None
+
     if debug != '0':
-        results = Order.query.paginate(
-            int(page_number), int(per_page), False).items
+        results = Order.query
+        results_pagination = Order.query.paginate(int(page_number), int(per_page), False).items
     else:
         results = Order.query.filter(
             and_(
                 Order.pickupaddr==pickupaddress,
                 Order.pickuptime<=datetime.strptime(pickuptime, DATETIME_FORMAT),
                 Order.trucksize-Order.totalcargosize>=int(cargosize),
-                )).paginate(int(page_number), int(per_page), False).items
+                ))
+        results_pagination = results.paginate(int(page_number), int(per_page), False).items
+    total_count = results.count()
+    total_page = int(math.ceil(total_count*1.0/DEFAULE_PER_PAGE))
+    first_page_num,last_page_num = 1,total_page
+    pre_page_num = int(page_number)-1 if int(page_number)>1 else first_page_num
+    next_page_num = int(page_number)+1 if int(page_number)<last_page_num else last_page_num
 
     return jsonify(
         status = 200,
-        data = [i.serialize for i in results],
-        links = "links"
+        data = [i.serialize for i in results_pagination],
+        links = [
+            {"ref":"pre", "href":"/v1/order?"+"pickupaddress="+pickupaddress+"&stopaddress="+stopaddress+"&pickuptime="+pickuptime+"&cargosize="+cargosize+"&page_number="+str(pre_page_num)+"&per_page="+str(per_page)+"&debug="+debug},
+            {"ref":"next","href":"/v1/order?"+"pickupaddress="+pickupaddress+"&stopaddress="+stopaddress+"&pickuptime="+pickuptime+"&cargosize="+cargosize+"&page_number="+str(next_page_num)+"&per_page="+str(per_page)+"&debug="+debug},
+            {"ref":"first","href":"/v1/order?"+"pickupaddress="+pickupaddress+"&stopaddress="+stopaddress+"&pickuptime="+pickuptime+"&cargosize="+cargosize+"&page_number="+str(first_page_num)+"&per_page="+str(per_page)+"&debug="+debug},
+            {"ref":"last","href":"/v1/order?"+"pickupaddress="+pickupaddress+"&stopaddress="+stopaddress+"&pickuptime="+pickuptime+"&cargosize="+cargosize+"&page_number="+str(last_page_num)+"&per_page="+str(per_page)+"&debug="+debug},
+            ]
     )
 
 @app.route('/v1/order/<oid>', methods=['GET'])
