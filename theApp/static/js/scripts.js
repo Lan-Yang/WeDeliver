@@ -145,3 +145,62 @@ $(document).ready(function() {
     appMaster.scrollMenu();
     appMaster.placeHold();
 });
+
+
+function urldecode(str) {
+    return decodeURIComponent((str+'').replace(/\+/g, '%20'));
+}
+
+/*
+ * Initialize google map with address search modal-dialog
+ * Make sure the there are div#map-canvas and input#pac-input
+ */
+function initGmapSearch() {
+    var marker = null;
+    var map = new google.maps.Map(document.getElementById('map-canvas'), {
+        mapTypeId: google.maps.MapTypeId.ROADMAP
+    });
+    var defaultBounds = new google.maps.LatLngBounds(
+        new google.maps.LatLng(40.8130, -73.9625),
+        new google.maps.LatLng(40.8148, -73.9567));
+    map.fitBounds(defaultBounds);
+
+    // Create the search box and link it to the UI element.
+    var input = document.getElementById('pac-input');
+    map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+
+    var searchBox = new google.maps.places.Autocomplete(input);
+
+    google.maps.event.addListener(searchBox, 'place_changed', function() {
+        var place = searchBox.getPlace();
+        if (marker) { marker.setMap(null); }
+        var bounds = new google.maps.LatLngBounds();
+
+        var image = {
+            url: place.icon,
+            size: new google.maps.Size(71, 71),
+            origin: new google.maps.Point(0, 0),
+            anchor: new google.maps.Point(17, 34),
+            scaledSize: new google.maps.Size(25, 25)
+        };
+        marker = new google.maps.Marker({
+            map: map,
+            icon: image,
+            title: place.name,
+            position: place.geometry.location
+        });
+
+        bounds.extend(place.geometry.location);
+        map.fitBounds(bounds);
+
+        // Write data back to DOM
+        var _input = $(input);
+        _input.data("latlng", place.geometry.location);
+        _input.data("addr", place.formatted_address)
+    });
+
+    google.maps.event.addListener(map, 'bounds_changed', function() {
+        var bounds = map.getBounds();
+        searchBox.setBounds(bounds);
+    });
+}
