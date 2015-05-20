@@ -38,3 +38,11 @@ form .form-control {
     background-repeat: no-repeat;
     padding-left: 50px;
 }
+
+.modal .map-dialog {
+    width: 80%;
+}
+
+.pac-container {
+    z-index: 1051 !important;
+}

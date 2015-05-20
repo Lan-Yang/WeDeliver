@@ -19,13 +19,18 @@ def search_for_orders():
     cargosize = request_args.get('cargosize', '')
     page_number = request_args.get('page_number', '1')
     per_page = request_args.get('per_page', DEFAULE_PER_PAGE)
+    debug = request_args.get('debug', '0')  # for testing, return all records
 
-    results = Order.query.filter(
-        and_(
-            Order.pickupaddr==pickupaddress,
-            Order.pickuptime<=datetime.strptime(pickuptime, DATETIME_FORMAT),
-            Order.trucksize-Order.totalcargosize>=int(cargosize),
-            )).paginate(int(page_number), int(per_page), False).items
+    if debug != '0':
+        results = Order.query.paginate(
+            int(page_number), int(per_page), False).items
+    else:
+        results = Order.query.filter(
+            and_(
+                Order.pickupaddr==pickupaddress,
+                Order.pickuptime<=datetime.strptime(pickuptime, DATETIME_FORMAT),
+                Order.trucksize-Order.totalcargosize>=int(cargosize),
+                )).paginate(int(page_number), int(per_page), False).items
 
     return jsonify(
         status = 200,
@@ -33,7 +38,7 @@ def search_for_orders():
         links = "links"
     )
 
-@app.route('/v1/order/<oid>', methods=['GET'])  
+@app.route('/v1/order/<oid>', methods=['GET'])
 def get_order_from_oid(oid):
     if oid=="all":  # used for test
         orders = Order.query.all()
