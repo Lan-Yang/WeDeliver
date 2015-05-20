@@ -214,7 +214,7 @@
     <script id="list-template" type="text/x-jsrender">
     {{for data}}
     <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
-        <div class="offer offer-info">
+        <div class="offer {{:label}}">
             <div class="shape">
                 <div class="shape-text"> ${{:closefee}} </div>
             </div>
@@ -651,12 +651,26 @@
     </script>
     <script>
     $(function() {
+        function value2label(x) {
+            if (x < 30)
+                return "offer-danger";
+            if (x < 50)
+                return "offer-success";
+            if (x < 100)
+                return "offer-primary";
+            return "offer-default";
+        }
         $.getJSON('/v1/order', { // data
             userid: 0,  // {{current_user.uid}}
             state: 'O, D, C',
             debug: 1,  // testing backdoor
         }, function(data) { // success
             console.log(data);
+            // add color, for html
+            $.each(data.data, function(i, o) {
+                o.label = value2label(o.closefee);
+            });
+            // render
             $('#ongoing-panel').html(
                 $("#list-template").render(data)
             );
@@ -667,6 +681,11 @@
             debug: 1,  // testing backdoor
         }, function(data) { // success
             console.log(data);
+            // add color, for html
+            $.each(data.data, function(i, o) {
+                o.label = value2label(o.closefee);
+            });
+            // render
             $('#finished-panel').html(
                 $("#list-template").render(data)
             );

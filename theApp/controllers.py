@@ -3,7 +3,7 @@
 Controllers for the app
 """
 from flask import session
-from theApp import app, lm, db
+from theApp import app, lm, db, ses
 from .models import *
 from datetime import date, datetime
 from werkzeug.security import generate_password_hash
@@ -32,6 +32,12 @@ def load_user(user_id):
         return Deliverer.query.get(int(user_id))
     else:
         return None
+
+
+def sendmail(title, body, recipients):
+    ses.send_email(
+        app.config['SES_SENDER_EMAIL'],
+        title, body, recipients)
 
 def resetdb():
     db.drop_all()
@@ -94,7 +100,7 @@ def resetdb():
     order_1.trucksize = 33
     order_1.totalfee = 35.5
     order_1.basefee = 35.5
-    order_1.closefee = 35.5
+    order_1.closefee = 25.5
     order_1.status = "D"
     order_1.drivername = "XiDaDa"
     order_1.driverphone = "821931"
@@ -120,7 +126,7 @@ def resetdb():
     order_3.trucksize = 33
     order_3.totalfee = 35.5
     order_3.basefee = 35.5
-    order_3.closefee = 35.5
+    order_3.closefee = 55.5
     order_3.status = "D"
     order_3.drivername = "XiDaDa"
     order_3.driverphone = "821931"
@@ -133,7 +139,7 @@ def resetdb():
     order_4.trucksize = 33
     order_4.totalfee = 35.5
     order_4.basefee = 35.5
-    order_4.closefee = 35.5
+    order_4.closefee = 355
     order_4.status = "D"
     order_4.drivername = "XiDaDa"
     order_4.driverphone = "821931"
