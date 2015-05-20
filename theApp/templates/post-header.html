@@ -21,7 +21,7 @@
     <link rel="stylesheet" href="/static/js/rs-plugin/css/settings.css">
     <link rel="stylesheet" href="/static/css/freeze.css">
     <link rel="stylesheet" href="/static/css/index-login.css">
-    <link href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.0/css/bootstrap-datepicker.min.css" rel="stylesheet">
+    <link href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.7.14/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
     <script type="text/javascript" src="/static/js/modernizr.custom.32033.js"></script>
 
     <!--[if lt IE 9]>
@@ -83,22 +83,22 @@
                 <!--search box-->
                 <div class="container auth col-sm-8 col-sm-offset-2" style="padding-top: 150px; padding-left: 50px; padding-right: 50px;">
                     <div id="big-form" class="well auth-box">
-                        <form id="" action="" method="POST">
+                        <form id="post-form" action="/v1/order" method="POST">
                             <fieldset>
                                 <div class="form-group">
-                                    <label class="control-label" for="the-title">Title</label>
+                                    <label for="the-title">Title</label>
                                     <input id="the-title" placeholder="IKEA, GO!" class="form-control input-md" type="text" name="title">
                                 </div>
                                 <div class="row">
                                     <div class="col-sm-6">
                                         <div class="form-group">
-                                            <label class="control-label" for="pickup-addr"> <i class="fa fa-truck"></i> Pickup Location</label>
+                                            <label for="pickup-addr"> <i class="fa fa-truck"></i> Pickup Location</label>
                                             <input id="pickup-addr" name="pickupaddr" placeholder="IKEA Brooklyn" class="form-control input-md" type="text" data-toggle="modal" data-target="#place-modal">
                                         </div>
                                     </div>
                                     <div class = "col-sm-6">
                                         <div class="form-group">
-                                            <label class="control-label" for="deliver-addr"><i class="fa fa-street-view"></i> Delivery Location</label>
+                                            <label for="deliver-addr"><i class="fa fa-street-view"></i> Delivery Location</label>
                                             <input id="deliver-addr" name="deliveraddr" placeholder="Columbia University" class="form-control input-md" type="text" data-toggle="modal" data-target="#place-modal">
                                         </div>
                                     </div>
@@ -106,7 +106,7 @@
                                 <div class="row">
                                     <div class="col-sm-6">
                                         <div class="form-group">
-                                            <label class="control-label" for="pickup-time"> <i class="fa fa-calendar"></i> Pickup Time</label>
+                                            <label for="pickup-time"> <i class="fa fa-calendar"></i> Pickup Time</label>
                                             <input id="pickup-time" name="pickuptime" placeholder="May 12, 2015. 5:00 PM" class="form-control input-md datetime" type="text">
                                         </div>
                                     </div>
@@ -120,25 +120,25 @@
                                 <div class="row">
                                     <div class="col-sm-6">
                                         <div class="form-group">
-                                            <label class=" control-label" for="textinput"> <i class="fa fa-th"></i> Cargo Size</label>
-                                            <input id="textinput" name="textinput" placeholder="5 Unit" class="form-control input-md" type="text">
+                                            <label for="cargo-size"> <i class="fa fa-th"></i> Cargo Size</label>
+                                            <input id="cargo-size" name="cargosize" placeholder="5 Unit" class="form-control input-md" type="text">
                                         </div>
                                     </div>
-                                    <div class = "col-sm-6">
+                                    <div class="col-sm-6">
                                         <div class="form-group">
-                                            <label class=" control-label" for="textinput"> <i class="fa fa-money"></i> Max Bid</label>
-                                            <input id="textinput" name="textinput" placeholder="50" class="form-control input-md" type="text">
+                                            <label for="max-bid"> <i class="fa fa-money"></i> Max Bid</label>
+                                            <input id="max-bid" name="maxbid" placeholder="50" class="form-control input-md" type="text">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class=" control-label" for="textarea">Comment</label>
-                                    <textarea class="form-control" id="textarea" name="textarea"> This shopping experience at IKEA must be awsesome. But as a poor student, I really want to save my limited budget by grouping my deliver with you!</textarea>
+                                    <label for="comment-text">Comment</label>
+                                    <textarea class="form-control" id="comment-text" name="comment"> This shopping experience at IKEA must be awsesome. But as a poor student, I really want to save my limited budget by grouping my deliver with you!</textarea>
                                 </div>
                                 <!-- Button -->
                                 <div class="form-group">
                                     <div class="col-sm-2 col-sm-offset-5">
-                                        <button id="" class="btn btn-primary">Post</button>
+                                        <button id="submit-post" class="btn btn-primary">Post</button>
                                     </div>
                                 </div>
                             </fieldset>
@@ -160,8 +160,9 @@
 
     <script src="/static/js/jquery-1.11.1.min.js"></script>
     <script src="/static/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.2/moment.min.js"></script>
     <script src="//maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true&libraries=places"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.0/js/bootstrap-datepicker.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.7.14/js/bootstrap-datetimepicker.min.js"></script>
     <script src="/static/js/slick.min.js"></script>
     <script src="/static/js/floatlabels.min.js"></script>
     <script src="/static/js/placeholdem.min.js"></script>
@@ -406,6 +407,7 @@
 
     <script>
     $(function() {
+        $('.datetime').datetimepicker();
         /* load modals */
         $('#place-modal').on('show.bs.modal', function(e) {
             $(this).find('.modal-content').load('/placemodal');
@@ -420,6 +422,24 @@
             var source = $(this).data('source');
             var addr = $('#pac-input').data('addr');
             if (addr) { $(source).val(addr); }
+        });
+        /* submit */
+        $('#post-form').submit(function(e){
+            var uri = $(this).attr('action');
+            var data = $(this).serialize();
+            $.post(uri, data, function(result){
+                if (result.status == 201) {
+                    alert("Post success!");
+                    location.href = '/myorder';
+                } else {
+                    alert('Server error :(');
+                }
+            });
+            e.preventDefault();
+        });
+        $('#submit-post').click(function(e){
+            $('#post-form').submit();
+            e.preventDefault();
         });
     });
     </script>
