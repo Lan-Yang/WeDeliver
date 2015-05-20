@@ -24,7 +24,8 @@
     <link rel="stylesheet" href="/static/css/searchlist-header.css">
     <link href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.0/css/bootstrap-datepicker.min.css" rel="stylesheet">
     <script type="text/javascript" src="/static/js/modernizr.custom.32033.js"></script>
-
+    <link href='http://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Raleway:500' rel='stylesheet' type='text/css'>
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
@@ -91,37 +92,36 @@
     <div class="wrapper">
         <div class="box">
             <div class="row">
-
                 <!--search box-->
-                <div class="container auth col-sm-3" style = "padding-top: 250px; padding-left: 50px; padding-right: 50px;">
+                <div class="container auth col-sm-3" style = "padding-top: 170px; padding-left: 70px; padding-right: 30px;">
                     <div id="big-form" class="well auth-box">
                         <form id="search-form" action="" method="GET">
                             <fieldset>
                                 <!-- Text input-->
                                 <div class="form-group">
-                                    <label class="control-label" for="pickup-loc"> <i class="fa fa-truck"></i> Pickup Location</label>
-                                    <input id="pickup-loc" name="pickuploc" placeholder="IKEA Brooklyn" class="form-control input-md" type="text" data-toggle="modal" data-target="#place-modal">
+                                    <label class="control-label" for="pickup-loc" style="font-size: 16px;"> <i class="fa fa-truck"></i> Pickup Location</label>
+                                    <input id="pickup-loc" name="pickuploc" placeholder="IKEA Brooklyn" class="form-control input-md" type="text" data-toggle="modal" data-target="#place-modal" style="padding: 0 0;">
                                 </div>
 
                                 <!-- Text input-->
                                 <div class="form-group">
-                                    <label class="control-label" for="deliver-loc"><i class="fa fa-street-view"></i> Delivery Location</label>
-                                    <input id="deliver-loc" name="deliverloc" placeholder="Columbia University" class="form-control input-md" type="text" data-toggle="modal" data-target="#place-modal">
+                                    <label class="control-label" for="deliver-loc" style="font-size: 16px;"><i class="fa fa-street-view"></i> Delivery Location</label>
+                                    <input id="deliver-loc" name="deliverloc" placeholder="Columbia University" class="form-control input-md" type="text" data-toggle="modal" data-target="#place-modal" style="padding: 0 0;">
                                 </div>
 
                                 <div class="form-group">
-                                    <label class="control-label" for="pickup-date"> <i class="fa fa-calendar"></i> Pickup Time</label>
-                                    <input id="pickup-date" name="pickupdate" placeholder="May 12, 2015. 5:00 PM" class="form-control input-md date" type="text" readonly="readonly">
+                                    <label class="control-label" for="pickup-date" style="font-size: 16px;"> <i class="fa fa-calendar"></i> Pickup Time</label>
+                                    <input id="pickup-date" name="pickupdate" placeholder="04/29/2015" class="form-control input-md date" type="text" readonly="readonly" style="padding: 0 0;">
                                 </div>
 
                                 <div class="form-group">
-                                    <label class="control-label" for="deliver-date"> <i class="fa fa-calendar-o"></i> Delivery Time</label>
-                                    <input id="deliver-date" name="deliverdate" placeholder="May 13, 2015. 10:00 AM" class="form-control input-md date" type="text" readonly="readonly">
+                                    <label class="control-label" for="deliver-date" style="font-size: 16px;"> <i class="fa fa-calendar-o"></i> Delivery Time</label>
+                                    <input id="deliver-date" name="deliverdate" placeholder="04/30/2015" class="form-control input-md date" type="text" readonly="readonly" style="padding: 0 0;">
                                 </div>
 
                                 <!-- Button -->
-                                <div class="form-group">
-                                    <button id="submit-search" class="btn btn-primary">Search</button>
+                                <div class="form-group" style="margin-bottom: 25px;">
+                                    <button id="submit-search" class="btn btn-primary btn-search" style="background-color:#256EB8;">Search</button>
                                 </div>
 
                             </fieldset>
