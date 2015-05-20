@@ -90,6 +90,15 @@ def view_order():
         oid=oid,
         )
 
+@app.route('/myorder')
+def list_orders():
+    return render_template(
+        'shipper_orders.html',
+        title="My orders",
+        )
+
+
+
 @app.route('/user/login', methods=['POST'])
 def user_login():
     form = LoginForm()
