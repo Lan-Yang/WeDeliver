@@ -153,9 +153,11 @@ def get_shipper_profile(sid):
     shipper = Shipper.query.get(sid)
     if shipper:  # if found
         shipper_data = shipper.serialize
-        shipper_data['shipper_total_delivers'] = get_shipper_total_delivers(sid)
-        shipper_data['shipper_total_savings'] = get_shipper_total_savings(sid)
-        shipper_data['shipper_credits'] = get_shipper_credits(sid)
+        shipping_history = get_shipping_history(sid)
+        shipper_data['shipping_history'] = shipping_history
+        shipper_data['shipper_total_delivers'] = get_shipper_total_delivers(shipping_history)
+        shipper_data['shipper_total_savings'] = get_shipper_total_savings(shipping_history)
+        shipper_data['shipper_credits'] = get_shipper_credits(shipping_history)
         return jsonify(
             status = 200,
             data = [shipper_data],
@@ -166,23 +168,23 @@ def get_shipper_profile(sid):
             data = "shipper not found"
         )
 
-def get_shipper_total_delivers(sid):
-    return OrderRecord.query.filter(OrderRecord.sid == sid).count()
+def get_shipper_total_delivers(shipping_history):
+    return len(shipping_history)
 
-def get_shipper_total_savings(sid):
-    shipper_complete_order_records = get_shipper_complete_order_records(sid)
-    totalfees = 0
-    for orderRecord in shipper_complete_order_records:
-        shipper_order = Order.query.get(orderRecord.oid)
-        totalfees += shipper_order.totalfee
-    return totalfees-get_shipper_credits(sid)
+def get_shipper_total_savings(shipping_history):
+    total_savings = 0
+    for sh in shipping_history:
+        total_savings += sh["you_save"]
+    return total_savings
 
-def get_shipper_credits(sid):
+def get_shipper_credits(shipping_history):
     shipper_credits = 0
-    shipper_complete_order_records = get_shipper_complete_order_records(sid)
-    for orderRecord in shipper_complete_order_records:
-        shipper_credits += orderRecord.fee
-    return shipper_credits
+    for sh in shipping_history:
+        shipper_credits += sh["actual_pay"]
+
+def get_totalfee_from_oid(oid):
+    shipper_order = Order.query.get(oid)
+    return shipper_order.totalfee
 
 def get_shipper_complete_order_records(sid):
     return OrderRecord.query.filter(
@@ -190,3 +192,18 @@ def get_shipper_complete_order_records(sid):
             OrderRecord.sid == sid,
             OrderRecord.status == "F"
         ))
+
+def get_shipping_history(sid):
+    shipper_complete_order_records = get_shipper_complete_order_records(sid)
+    shipping_history = []
+    for orderRecord in shipper_complete_order_records:
+        actual_pay = orderRecord.fee
+        expected_pay = get_totalfee_from_oid(orderRecord.oid)
+        record = {
+            "order_record_date": orderRecord.acceptedtime.strftime(DATETIME_FORMAT),
+            "actual_pay": actual_pay,
+            "expected_pay": expected_pay,
+            "you_save": expected_pay-actual_pay
+        }
+        shipping_history.append(record)
+    return shipping_history
