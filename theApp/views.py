@@ -97,6 +97,14 @@ def list_orders():
         title="My orders",
         )
 
+@app.route('/search_order_detail')
+def list_search_order_detail():
+    return render_template(
+        'search-order-detail.html',
+        title="Order Detail",
+        )
+
+
 
 
 @app.route('/user/login', methods=['POST'])
