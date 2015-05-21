@@ -106,6 +106,18 @@ def list_search_order_detail():
         )
 
 
+@app.route('/rate_order')
+def rate_order():
+    return render_template(
+        'rate_order.html',
+        title="Rate My Order",
+        )
+
+
+
+
+
+
 @app.route('/test/email')
 def test_ses():
     title = "We Deliver Email Test"
