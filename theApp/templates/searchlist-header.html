@@ -69,29 +69,41 @@
 
                             <div id="orderlist"></div> <!-- /#orderlist -->
 
-                            <div class="row">
+                            <div class="col-sm-12">
                                 <div class="page-header text-muted divider">
-                                    <i class="fa fa-angle-up"></i> Up <i class="fa fa-angle-down"></i>Next
+                                    <a onclick="showPrePage()"> <font size="3" color="black"> <i class="fa fa-angle-up"></i> Up </font></a>
+                                    <a onclick="showNextPage()"> <font size="3" color="black"> <i class="fa fa-angle-down"></i> Next </font></a>
                                 </div>
                             </div>
 
 
-                            <!--This part is for log-->
 
-                            <div class="row">
-                                <div class="col-sm-4 text-center">
-                                    <h4>Tom Delivery</h4>
-                                    <a href="#"><img src="" class="img-respsonsive img-circle"></a>
-                                </div>
-                                <div class="col-sm-4 text-center">
-                                    <h4>Lighting Delivery</h4>
-                                    <a href="#"><img src="" class="img-respsonsive img-circle"></a>
-                                </div>
-                                <div class="col-sm-4 text-center">
-                                    <h4>Sweet Delivery</h4>
-                                    <a href="#"><img src="" class="img-respsonsive img-circle"></a>
-                                </div>
+                            <!--This part is for showing favoriate deliver's logo-->
+
+                        <div class ="row">
+                            <div class="col-sm-4 text-center">
+                                <div class="view">
+                                     <h4>Tom Delivery</h4>
+                                     <img src="http://24.media.tumblr.com/273167b30c7af4437dcf14ed894b0768/tumblr_n5waxesawa1st5lhmo1_1280.jpg" class="img-responsive"> 
+                                 </div>
                             </div>
+
+                            <div class="col-sm-4 text-center">
+                                <div class="view">
+                                     <h4>Lighting Delivery</h4>
+                                     <img src="http://24.media.tumblr.com/273167b30c7af4437dcf14ed894b0768/tumblr_n5waxesawa1st5lhmo1_1280.jpg" class="img-responsive"> 
+                                 </div>
+                            </div>
+
+                            <div class="col-sm-4 text-center">
+                                <div class="view">
+                                     <h4>Sweet Delivery</h4>
+                                     <img src="http://24.media.tumblr.com/273167b30c7af4437dcf14ed894b0768/tumblr_n5waxesawa1st5lhmo1_1280.jpg" class="img-responsive"> 
+                                 </div>
+                            </div>
+                        </div>
+
+
 
                             <div class="col-sm-12 col-header-list"  style="font-size: 13px; font-family: 'Source Sans Pro', sans-serif;">
                                 <div class="page-header text-muted divider">
@@ -425,6 +437,20 @@
         top: 1px!important;
     }
     </style>
+
+
+
+    <!--show the script for show pre page and next page-->
+    <script>
+        function showPrePage() {
+            alert("want to show previous page?");
+        }
+
+        function showNextPage() {
+            alert("want to show next page?");
+        }
+    </script>
+
 
     <script>
     $(document).ready(function() {
