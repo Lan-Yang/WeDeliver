@@ -43,6 +43,10 @@
 	margin-left: 65%;
 }
 
+.btn-post {
+	margin-left: 0;
+	margin-bottom: 15px;
+}
 
 .btn.btn-primary:hover {
     color: black;
@@ -97,5 +101,4 @@
 .othertext {
 	font-size: 16px;
 }
-
 
