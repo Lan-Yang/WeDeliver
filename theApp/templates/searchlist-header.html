@@ -71,39 +71,34 @@
 
                             <div class="col-sm-12">
                                 <div class="page-header text-muted divider">
-                                    <a id="prev-page"> <font size="3" color="black"> <i class="fa fa-angle-up"></i> Up </font></a>
-                                    <a id="next-page"> <font size="3" color="black"> <i class="fa fa-angle-down"></i> Next </font></a>
+                                    <span id="prev-page"> <font size="3" color="black"> <i class="fa fa-angle-up"></i> Prev </font></span>
+                                    <span id="next-page"> <font size="3" color="black"> <i class="fa fa-angle-down"></i> Next </font></span>
                                 </div>
                             </div>
 
-
-
                             <!--This part is for showing favoriate deliver's logo-->
+                            <div class ="row">
+                                <div class="col-sm-4 text-center">
+                                    <div class="view">
+                                         <h4>Tom Delivery</h4>
+                                         <img src="http://24.media.tumblr.com/273167b30c7af4437dcf14ed894b0768/tumblr_n5waxesawa1st5lhmo1_1280.jpg" class="img-responsive">
+                                     </div>
+                                </div>
 
-                        <div class ="row">
-                            <div class="col-sm-4 text-center">
-                                <div class="view">
-                                     <h4>Tom Delivery</h4>
-                                     <img src="http://24.media.tumblr.com/273167b30c7af4437dcf14ed894b0768/tumblr_n5waxesawa1st5lhmo1_1280.jpg" class="img-responsive">
-                                 </div>
+                                <div class="col-sm-4 text-center">
+                                    <div class="view">
+                                         <h4>Lighting Delivery</h4>
+                                         <img src="http://24.media.tumblr.com/273167b30c7af4437dcf14ed894b0768/tumblr_n5waxesawa1st5lhmo1_1280.jpg" class="img-responsive">
+                                     </div>
+                                </div>
+
+                                <div class="col-sm-4 text-center">
+                                    <div class="view">
+                                         <h4>Sweet Delivery</h4>
+                                         <img src="http://24.media.tumblr.com/273167b30c7af4437dcf14ed894b0768/tumblr_n5waxesawa1st5lhmo1_1280.jpg" class="img-responsive">
+                                     </div>
+                                </div>
                             </div>
-
-                            <div class="col-sm-4 text-center">
-                                <div class="view">
-                                     <h4>Lighting Delivery</h4>
-                                     <img src="http://24.media.tumblr.com/273167b30c7af4437dcf14ed894b0768/tumblr_n5waxesawa1st5lhmo1_1280.jpg" class="img-responsive">
-                                 </div>
-                            </div>
-
-                            <div class="col-sm-4 text-center">
-                                <div class="view">
-                                     <h4>Sweet Delivery</h4>
-                                     <img src="http://24.media.tumblr.com/273167b30c7af4437dcf14ed894b0768/tumblr_n5waxesawa1st5lhmo1_1280.jpg" class="img-responsive">
-                                 </div>
-                            </div>
-                        </div>
-
-
 
                             <div class="col-sm-12 col-header-list"  style="font-size: 13px; font-family: 'Source Sans Pro', sans-serif;">
                                 <div class="page-header text-muted divider">
@@ -130,12 +125,9 @@
                                 </div>
                             </div>
 
-                        </div>
-                        <!-- /col-9 -->
-                    </div>
-                    <!-- /padding -->
-                </div>
-                <!-- /main -->
+                        </div> <!-- /col-9 -->
+                    </div> <!-- /padding -->
+                </div> <!-- /main -->
             </div>
         </div>
     </div>
@@ -497,7 +489,7 @@
             $.getJSON($(this).data('href'), updateHTML);
             e.preventDefault();
         });
-        $('#next-page').click(function(){
+        $('#next-page').click(function(e){
             $.getJSON($(this).data('href'), updateHTML);
             e.preventDefault();
         });
