@@ -131,15 +131,15 @@ def add_new_orderRecord():
     orderRecord = OrderRecord()
     orderRecord.oid = data.get("oid", "")
     orderRecord.sid = data.get("sid", "")
-    orderRecord.did = data.get("did", "")
+    orderRecord.did = data.get("did", "0")
     orderRecord.stopaddress = data.get("stopaddress", "")
-    orderRecord.delivertime = data.get("delivertime", "")
-    orderRecord.cargosize = data.get("cargosize", "")
-    orderRecord.expectfee = data.get("expectfee", "")
-    orderRecord.fee = data.get("fee", "")
-    orderRecord.acceptedtime = data.get("acceptedtime", "")
+    orderRecord.delivertime = data.get("delivertime", "2011-11-03 18:21:26")
+    orderRecord.cargosize = data.get("cargosize", "5")
+    orderRecord.expectfee = data.get("expectfee", "0.0")
+    orderRecord.fee = data.get("fee", "0.0")
+    orderRecord.acceptedtime = data.get("acceptedtime", "2011-11-03 18:21:26")
     orderRecord.status = data.get("status", "")
-    orderRecord.grade = data.get("grade", "")
+    orderRecord.grade = data.get("grade", "0.0")
     orderRecord.comment = data.get("comment", "")
     db_session.add(orderRecord)
     db_session.commit()
@@ -147,3 +147,63 @@ def add_new_orderRecord():
         status = 201,
         data = "orderRecord creation succeeds"
     )
+
+@app.route('/v1/shipper/<sid>', methods=['GET'])
+def get_shipper_profile(sid):
+    shipper = Shipper.query.get(sid)
+    if shipper:  # if found
+        shipper_data = shipper.serialize
+        shipping_history = get_shipping_history(sid)
+        shipper_data['shipping_history'] = shipping_history
+        shipper_data['shipper_total_delivers'] = get_shipper_total_delivers(shipping_history)
+        shipper_data['shipper_total_savings'] = get_shipper_total_savings(shipping_history)
+        shipper_data['shipper_credits'] = get_shipper_credits(shipping_history)
+        return jsonify(
+            status = 200,
+            data = [shipper_data],
+        )
+    else:  # not found
+        return jsonify(
+            status = 404,
+            data = "shipper not found"
+        )
+
+def get_shipper_total_delivers(shipping_history):
+    return len(shipping_history)
+
+def get_shipper_total_savings(shipping_history):
+    total_savings = 0
+    for sh in shipping_history:
+        total_savings += sh["you_save"]
+    return total_savings
+
+def get_shipper_credits(shipping_history):
+    shipper_credits = 0
+    for sh in shipping_history:
+        shipper_credits += sh["actual_pay"]
+
+def get_totalfee_from_oid(oid):
+    shipper_order = Order.query.get(oid)
+    return shipper_order.totalfee
+
+def get_shipper_complete_order_records(sid):
+    return OrderRecord.query.filter(
+        and_(
+            OrderRecord.sid == sid,
+            OrderRecord.status == "F"
+        ))
+
+def get_shipping_history(sid):
+    shipper_complete_order_records = get_shipper_complete_order_records(sid)
+    shipping_history = []
+    for orderRecord in shipper_complete_order_records:
+        actual_pay = orderRecord.fee
+        expected_pay = get_totalfee_from_oid(orderRecord.oid)
+        record = {
+            "order_record_date": orderRecord.acceptedtime.strftime(DATETIME_FORMAT),
+            "actual_pay": actual_pay,
+            "expected_pay": expected_pay,
+            "you_save": expected_pay-actual_pay
+        }
+        shipping_history.append(record)
+    return shipping_history

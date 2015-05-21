@@ -12,29 +12,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <link rel="shortcut icon" href="favicon.png">
-
     <!-- <link rel="stylesheet" href="css/bootstrap.css"> -->
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="/static/css/animate.css">
-    <link href="http://fontawesome.io/assets/font-awesome/css/font-awesome.css" rel="stylesheet" media="screen">
+    <link href="//fontawesome.io/assets/font-awesome/css/font-awesome.css" rel="stylesheet" media="screen">
     <link rel="stylesheet" href="/static/css/slick.css">
     <link rel="stylesheet" href="/static/js/rs-plugin/css/settings.css">
     <link rel="stylesheet" href="/static/css/freeze.css">
+    <link rel="stylesheet" href="/static/css/index-login.css">
     <link href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.0/css/bootstrap-datepicker.min.css" rel="stylesheet">
     <script type="text/javascript" src="/static/js/modernizr.custom.32033.js"></script>
-
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-
 </head>
 
 <body>
-
     <div class="pre-loader">
-        <div class="load-con">
-            <img src="/static/logo.png" class="animated fadeInDown" alt="logo">
+        <div class="load-con"> <img src="/static/logo.png" class="animated fadeInDown" alt="logo">
             <div class="spinner">
                 <div class="bounce1"></div>
                 <div class="bounce2"></div>
@@ -42,30 +38,21 @@
             </div>
         </div>
     </div>
-
     <header>
-
         <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
             <div class="container">
                 <!-- Brand and toggle get grouped for better mobile display -->
                 <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                        <span class="fa fa-bars fa-lg"></span>
-                    </button>
-                    <a class="navbar-brand" href="index.html">
-                        <img src="/static/logo.png" alt="logo" class="logo">
-                    </a>
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"> <span class="fa fa-bars fa-lg"></span> </button>
+                    <a class="navbar-brand" href="index.html"> <img src="/static/logo.png" alt="logo" class="logo"> </a>
                 </div>
-
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-
                     <ul class="nav navbar-nav navbar-right">
                         <li><a href="/s-search">Search</a></li>
                         <li><a href="/s-post">Post</a></li>
                         <li><a href="#favoriates">My Orders</a></li>
-                        <li class="dropdown">
-                            <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"> John Doe <i class="fa fa-user"></i> </a>
+                        <li class="dropdown"> <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"> John Doe <i class="fa fa-user"></i> </a>
                             <ul class="dropdown-menu" role="menu">
                                 <li><a href="/s-account">Profile</a></li>
                                 <li class="divider"></li>
@@ -79,599 +66,432 @@
             <!-- /.container-->
         </nav>
     </header>
-
     <div class="wrapper">
         <div class="box">
             <div class="row">
-
-
                 <!--search box-->
-                <div class="container auth col-sm-10 col-sm-offset-1" style = "padding-top: 150px; padding-left: 50px; padding-right: 20px;">
+                <div class="container auth col-sm-10 col-sm-offset-1" style="padding-top: 150px; padding-left: 50px; padding-right: 20px;">
                     <div id="big-form" class="well auth-box">
-                        <form>
+                        <form id="join-form" action="" method="POST">
                             <fieldset>
-
                                 <div class="form-group">
-                                    <div class="">
-                                        <h1>IKEA GO!</h1>
-                                    </div>
+                                    <h1 id="order-title">IKEA GO!</h1>
                                 </div>
-
-
                                 <div class="col-sm-12">
-                                    <div class="page-header text-muted divider">
-                                      <i class="fa fa-info-circle"></i> Order Info
-                                  </div>
-                              </div>
-
-
-                              <div class = "row">
-                                <div class = "col-sml-1 col-sm-offset-1">
-                                    <div class = "row">
-
-
-                                        <div class = "col-sm-4">
-                                            <div class="form-group">
-                                                <label class="control-label" for="pickup_location"> <i class="fa fa-truck"></i> Pickup Location</label>
-                                                <h4>IKEA Brooklyn</h4>
+                                    <div class="page-header text-muted divider"> <i class="fa fa-info-circle"></i> Order Info </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sml-1 col-sm-offset-1">
+                                        <div class="row">
+                                            <div class="col-sm-4">
+                                                <div class="form-group">
+                                                    <label class="control-label" for="pickup_location"> <i class="fa fa-truck"></i> Pickup Location</label>
+                                                    <h4 id="pickupaddr">IKEA Brooklyn</h4> </div>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <div class="form-group">
+                                                    <label class="control-label" for="pickup_time"> <i class="fa fa-calendar"></i> Pickup Time</label>
+                                                    <h4 id="pickuptime"> May 12, 2015. 5:00 PM </h4> </div>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <div class="form-group">
+                                                    <label class="control-label" for="base_price"> <i class="fa fa-money"></i> Base Price</label>
+                                                    <h3 id="basefee"> $5.00 </h3> </div>
                                             </div>
                                         </div>
-
-
-                                        <div class = "col-sm-4">
-                                            <div class="form-group">
-                                                <label class=" control-label" for="pickup_time"> <i class="fa fa-calendar"></i> Pickup Time</label>
-                                                <h4> May 12, 2015. 5:00 PM </h4>
-                                            </div>
-                                        </div>
-
-
-                                        <div class = "col-sm-4">
-                                            <div class="form-group">
-                                                <label class=" control-label" for="base_price"> <i class="fa fa-money"></i> Base Price</label>
-                                                <h3> $5.00 </h3>
-                                            </div>
-                                        </div>
-
-
                                     </div>
                                 </div>
-                            </div>
-
-
-
-
-                            <div class = "row">
-                                <div class = "col-sml-1 col-sm-offset-1">
-                                    <div class = "row">
-
-
-                                        <div class = "col-sm-4">
-                                            <div class="form-group">
-                                                <label class=" control-label" for="deliver_location"><i class="fa fa-street-view"></i> Delivery Location</label>
-                                                <h4>Columbia University</h4>
+                                <div class="row">
+                                    <div class="col-sml-1 col-sm-offset-1">
+                                        <div class="row">
+                                            <div class="col-sm-4">
+                                                <div class="form-group">
+                                                    <label class="control-label" for="deliver_location"><i class="fa fa-street-view"></i> Delivery Location</label>
+                                                    <h4 id="deliveryaddr">Columbia University</h4> </div>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <div class="form-group">
+                                                    <label class="control-label" for="delvier_time"> <i class="fa fa-calendar-o"></i> Delivery Time</label>
+                                                    <h4 id="deliverytime"> May 13, 2015. 10:00 AM </h4> </div>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <div class="form-group">
+                                                    <label class="control-label" for="unit_price"> <i class="fa fa-money"></i></i> Current Unit Price</label>
+                                                    <h3 id="unitfee"> $10 </h3> </div>
                                             </div>
                                         </div>
-
-
-                                        <div class = "col-sm-4">
-                                            <div class="form-group">
-                                                <label class=" control-label" for="delvier_time"> <i class="fa fa-calendar-o"></i> Delivery Time</label>
-                                                <h4> May 13, 2015. 10:00 AM </h4>
-                                            </div>
-                                        </div>
-
-                                        <div class = "col-sm-4">
-                                            <div class="form-group">
-                                                <label class=" control-label" for="unit_price"> <i class="fa fa-money"></i></i> Current Unit Price</label>
-                                                <h3> $10 </h3>
-                                            </div>
-                                        </div>
-
-
                                     </div>
                                 </div>
-                            </div>
-
-
-                            <div class="col-sm-12">
-                                <div class="page-header text-muted divider">
-                                    <i class="fa fa-bar-chart"></i>Prices Trend
+                                <div class="col-sm-12">
+                                    <div class="page-header text-muted divider"> <i class="fa fa-bar-chart"></i>Prices Trend </div>
                                 </div>
-                            </div>
-
-
-
-                            <div class = "row">
-                                <div class = "col-sm-4 col-sm-offset-1">
-                                    <div class="form-group">
-                                        <label class=" control-label" for="textinput"> <i class="fa fa-users"></i> Participants</label>
-                                        <h1> 5 </h1>
+                                <div class="row">
+                                    <div class="col-sm-4 col-sm-offset-1">
+                                        <div class="form-group">
+                                            <label class="control-label" for="textinput"> <i class="fa fa-users"></i> Participants</label>
+                                            <h1 id="membernum"> 5 </h1> </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="view">
+                                            <div class="caption">
+                                                <p>Prices trend</p>
+                                            </div> <img src="http://24.media.tumblr.com/273167b30c7af4437dcf14ed894b0768/tumblr_n5waxesawa1st5lhmo1_1280.jpg" class="img-responsive"> </div>
                                     </div>
                                 </div>
-
-                                <div class = "col-sm-4">
-                                    <div class="view">
-                                        <div class="caption">
-                                            <p>Prices trend</p>
-                                        </div>
-                                        <img src="http://24.media.tumblr.com/273167b30c7af4437dcf14ed894b0768/tumblr_n5waxesawa1st5lhmo1_1280.jpg" class="img-responsive">
-                                    </div>
-                                </div>
-                            </div>
-
-
-
                                 <div class="col-sm-12" id="orderlist">
-                                    <div class="page-header text-muted">
-                                        <i class="fa fa-user-plus"></i>Want Join
-                                    </div>
+                                    <div class="page-header text-muted"> <i class="fa fa-user-plus"></i>Want Join </div>
                                 </div>
-
-
-                                <div class = "row">
+                                <div class="row">
                                     <div class="col-xs-4 col-sm-4 col-md-4 col-sm-offset-2">
                                         <div class="form-group">
-                                            <label class="control-label" for="textinput"> <i class="fa fa-truck"></i> Delivery Location </label>
-                                            <input id="textinput" name="textinput" placeholder="IKEA Brooklyn" class="form-control input-md" type="text">
-                                        </div>
+                                            <label class="control-label" for="deliver-addr"> <i class="fa fa-truck"></i> Delivery Location </label>
+                                            <input id="deliver-addr" name="deliveraddr" placeholder="IKEA Brooklyn" class="form-control input-md" type="text" data-toggle="modal" data-target="#place-modal"> </div>
                                     </div>
-
                                     <div class="col-xs-4 col-sm-4 col-md-4">
                                         <div class="form-group">
-                                            <label class="control-label" for="textinput"><i class="fa fa-th"></i> Cargo Size (unit)</label>
-                                            <input id="textinput" name="textinput" placeholder="12" class="form-control input-md" type="text">
-                                        </div>
+
+                                            <label class="control-label" for="cargo-size"><i class="fa fa-street-view"></i> Cargo Size (unit)</label>
+                                            <input id="cargo-size" name="cargosize" placeholder="12" class="form-control input-md" type="text"> </div>
                                     </div>
                                 </div>
-
-
-                                <div class = "row">
-
+                                <div class="row">
                                     <div class="col-xs-2 col-sm-2 col-md-2"> </div>
-
                                     <div class="form-group col-xs-8 col-sm-8 col-md-8">
-                                        <label class=" control-label" for="textarea">Your Comment</label>
-                                        <div class="">
-                                            <textarea class="form-control" id="textarea" name="textarea"> Nice to meet your guys! Let us rock the price!</textarea>
-                                        </div>
+                                        <label class="control-label" for="order-comment">Your Comment</label>
+                                        <textarea class="form-control" id="order-comment" name="comment"> Nice to meet your guys! Let us rock the price!</textarea>
                                     </div>
-
                                     <div class="col-xs-2 col-sm-2 col-md-2"> </div>
-
                                 </div>
-
                                 <!-- Button -->
                                 <div class="form-group">
                                     <div class="col-sm-offset-5">
-                                        <button id="singlebutton" name="singlebutton" class="btn btn-primary">Join The Order</button>
+                                        <button id="join-submit" class="btn btn-primary">Join The Order</button>
                                     </div>
                                 </div>
-
-
                             </fieldset>
                         </form>
                     </div>
                     <div class="clearfix"></div>
                 </div>
-
             </div>
         </div>
     </div>
 
+    <div class="modal fade" id="place-modal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog map-dialog">
+            <div class="modal-content">
+                <!-- TO BE LODADED -->
+            </div><!-- /.modal-content -->
+        </div> <!-- /.modal-dialog -->
+    </div> <!-- /.modal -->
 
     <script src="/static/js/jquery-1.11.1.min.js"></script>
     <script src="/static/js/bootstrap.min.js"></script>
-    <script src="//maps.googleapis.com/maps/api/js?v=3.exp&libraries=places"></script>
+    <script src="//maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true&libraries=places"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.0/js/bootstrap-datepicker.min.js"></script>
     <script src="/static/js/slick.min.js"></script>
     <script src="/static/js/floatlabels.min.js"></script>
     <script src="/static/js/placeholdem.min.js"></script>
     <script src="/static/js/rs-plugin/js/jquery.themepunch.plugins.min.js"></script>
     <script src="/static/js/rs-plugin/js/jquery.themepunch.revolution.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/js-url/1.8.4/url.min.js"></script>
     <script src="/static/js/waypoints.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery.nicescroll/3.6.0/jquery.nicescroll.min.js"></script>
     <script src="/static/js/scripts.js"></script>
-
     <!--This part is for overlaying text-muted css, to make some headline as white color-->
     <style>
     .text-muted {
         color: #FFF;
     }
     </style>
-
-
-
-
     <!-- This script and style part is for search form-->
     <style>
-        .margin-top-20 {
-            margin-top: 20px;
-        }
+    .margin-top-20 {
+        margin-top: 20px;
+    }
 
-        body {
-            background: url('/static/img/freeze/bk-freeze-ga.jpg');
-            background-size: 100% 100%;
-            background-attachment: fixed;
-            background-repeat: no-repeat;
-            font-family: 'Open Sans', sans-serif;
-            padding-bottom: 40px;
-        }
+    body {
+        background: url('/static/img/freeze/bk-freeze-ga.jpg');
+        background-size: 100% 100%;
+        background-attachment: fixed;
+        background-repeat: no-repeat;
+        font-family: 'Open Sans', sans-serif;
+        padding-bottom: 40px;
+    }
 
-        .auth h1 {
-            color: #fff!important;
-            font-weight: 300;
-            font-family: 'Open Sans', sans-serif;
-        }
+    .auth h1 {
+        color: #fff!important;
+        font-weight: 300;
+        font-family: 'Open Sans', sans-serif;
+    }
 
-        .auth h1 span {
-            font-size: 21px;
-            display: block;
-            padding-top: 20px;
-        }
+    .auth h1 span {
+        font-size: 21px;
+        display: block;
+        padding-top: 20px;
+    }
 
-        .auth .auth-box legend {
-            color: #fff;
-            border: none;
-            font-weight: 300;
-            font-size: 24px;
-        }
+    .auth .auth-box legend {
+        color: #fff;
+        border: none;
+        font-weight: 300;
+        font-size: 24px;
+    }
 
+    .auth .auth-box {
+        background-color: #fff;
+        margin: 0 auto;
+        border: 1px solid rgba(255, 255, 255, 0.4);
+        ;
+        background-color: rgba(255, 255, 255, 0.2);
+        margin-top: 40px;
+        -webkit-box-shadow: 0px 0px 30px 0px rgba(50, 50, 50, 0.32);
+        -moz-box-shadow: 0px 0px 30px 0px rgba(50, 50, 50, 0.32);
+        box-shadow: 0px 0px 30px 0px rgba(50, 50, 50, 0.32);
+        -webkit-border-radius: 3px;
+        -moz-border-radius: 3px;
+        border-radius: 3px;
+        -webkit-transition: background 1s ease-in-out;
+        -moz-transition: background 1s ease-in-out;
+        -ms-transition: background 1s ease-in-out;
+        -o-transition: background 1s ease-in-out;
+        transition: background 1s ease-in-out;
+    }
+
+    @media(max-width:460px) {
         .auth .auth-box {
-            background-color: #fff;
-            margin: 0 auto;
-            border: 1px solid rgba(255, 255, 255, 0.4);
-            ;
-            background-color: rgba(255, 255, 255, 0.2);
-            margin-top: 40px;
-            -webkit-box-shadow: 0px 0px 30px 0px rgba(50, 50, 50, 0.32);
-            -moz-box-shadow: 0px 0px 30px 0px rgba(50, 50, 50, 0.32);
-            box-shadow: 0px 0px 30px 0px rgba(50, 50, 50, 0.32);
-            -webkit-border-radius: 3px;
-            -moz-border-radius: 3px;
-            border-radius: 3px;
-            -webkit-transition: background 1s ease-in-out;
-            -moz-transition: background 1s ease-in-out;
-            -ms-transition: background 1s ease-in-out;
-            -o-transition: background 1s ease-in-out;
-            transition: background 1s ease-in-out;
+            margin: 0 10px;
         }
+    }
 
-        @media(max-width:460px) {
-            .auth .auth-box {
-                margin: 0 10px;
-            }
-        }
+    .auth .auth-box input::-webkit-input-placeholder {
+        /* WebKit browsers */
 
-        .auth .auth-box input::-webkit-input-placeholder {
-            /* WebKit browsers */
+        color: #fff;
+        font-weight: 300;
+    }
 
-            color: #fff;
-            font-weight: 300;
-        }
+    .auth .auth-box input:-moz-placeholder {
+        /* Mozilla Firefox 4 to 18 */
 
-        .auth .auth-box input:-moz-placeholder {
-            /* Mozilla Firefox 4 to 18 */
+        color: #fff;
+        font-weight: 300;
+    }
 
-            color: #fff;
-            font-weight: 300;
-        }
+    .auth .auth-box input::-moz-placeholder {
+        /* Mozilla Firefox 19+ */
 
-        .auth .auth-box input::-moz-placeholder {
-            /* Mozilla Firefox 19+ */
+        color: #fff;
+        font-weight: 300;
+    }
 
-            color: #fff;
-            font-weight: 300;
-        }
+    .auth .auth-box input:-ms-input-placeholder {
+        /* Internet Explorer 10+ */
 
-        .auth .auth-box input:-ms-input-placeholder {
-            /* Internet Explorer 10+ */
+        color: #fff;
+        font-weight: 300;
+    }
 
-            color: #fff;
-            font-weight: 300;
-        }
+    .auth span.input-group-addon,
+    .input-group-btn button {
+        border: none;
+        background: #fff!important;
+        color: #000!important;
+    }
 
-        .auth span.input-group-addon,
-        .input-group-btn button {
-            border: none;
-            background: #fff!important;
-            color: #000!important;
-        }
+    .auth form {
+        font-weight: 300!important;
+    }
 
-        .auth form {
-            font-weight: 300!important;
-        }
+    .auth form input[type="text"],
+    .auth form input[type="password"],
+    .auth form input[type="email"],
+    .auth form input[type="search"] {
+        border: none;
+        padding: 10px 0 10px 0;
+        background-color: rgba(255, 255, 255, 0)!important;
+        background: rgba(255, 255, 255, 0);
+        color: #fff;
+        font-size: 16px;
+        border-bottom: 1px dotted #fff;
+        border-radius: 0;
+        box-shadow: none!important;
+        height: auto;
+    }
 
-        .auth form input[type="text"],
-        .auth form input[type="password"],
-        .auth form input[type="email"],
-        .auth form input[type="search"] {
-            border: none;
-            padding: 10px 0 10px 0;
-            background-color: rgba(255, 255, 255, 0)!important;
-            background: rgba(255, 255, 255, 0);
-            color: #fff;
-            font-size: 16px;
-            border-bottom: 1px dotted #fff;
-            border-radius: 0;
-            box-shadow: none!important;
-            height: auto;
-        }
+    .auth textarea {
+        background-color: rgba(255, 255, 255, 0)!important;
+        color: #fff!important;
+    }
 
-        .auth textarea {
-            background-color: rgba(255, 255, 255, 0)!important;
-            color: #fff!important;
-        }
+    .auth input[type="file"] {
+        color: #fff;
+    }
 
-        .auth input[type="file"] {
-            color: #fff;
-        }
+    .auth form label {
+        color: #fff;
+        font-size: 15px;
+        font-weight: 300;
+    }
+    /*for radios & checkbox labels*/
 
-        .auth form label {
-            color: #fff;
-            font-size: 15px;
-            font-weight: 300;
-        }
-        /*for radios & checkbox labels*/
+    .auth .radio label,
+    .auth label.radio-inline,
+    .auth .checkbox label,
+    .auth label.checkbox-inline {
+        font-size: 14px;
+    }
 
-        .auth .radio label,
-        .auth label.radio-inline,
-        .auth .checkbox label,
-        .auth label.checkbox-inline {
-            font-size: 14px;
-        }
+    .auth form .help-block {
+        color: #fff;
+    }
 
-        .auth form .help-block {
-            color: #fff;
-        }
+    .auth form select {
+        background-color: rgba(255, 255, 255, 0)!important;
+        background: rgba(255, 255, 255, 0);
+        color: #fff!important;
+        border-bottom: 1px solid #fff!important;
+        border-radius: 0;
+        box-shadow: none;
+    }
 
-        .auth form select {
-            background-color: rgba(255, 255, 255, 0)!important;
-            background: rgba(255, 255, 255, 0);
-            color: #fff!important;
-            border-bottom: 1px solid #fff!important;
-            border-radius: 0;
-            box-shadow: none;
-        }
+    .auth form select option {
+        color: #000;
+    }
+    /*multiple select*/
 
-        .auth form select option {
-            color: #000;
-        }
-        /*multiple select*/
+    .auth select[multiple] option,
+    .auth select[size] {
+        color: #fff!important;
+    }
+    /*Form buttons*/
 
-        .auth select[multiple] option,
-        .auth select[size] {
-            color: #fff!important;
-        }
-        /*Form buttons*/
+    .auth form .btn {
+        background: none;
+        -webkit-transition: background 0.2s ease-in-out;
+        -moz-transition: background 0.2s ease-in-out;
+        -ms-transition: background 0.2s ease-in-out;
+        -o-transition: background 0.2s ease-in-out;
+        transition: background 0.2s ease-in-out;
+    }
 
-        .auth form .btn {
-            background: none;
-            -webkit-transition: background 0.2s ease-in-out;
-            -moz-transition: background 0.2s ease-in-out;
-            -ms-transition: background 0.2s ease-in-out;
-            -o-transition: background 0.2s ease-in-out;
-            transition: background 0.2s ease-in-out;
-        }
+    .auth form .btn-default {
+        color: #fff;
+        border-color: #fff;
+    }
 
-        .auth form .btn-default {
-            color: #fff;
-            border-color: #fff;
-        }
+    .auth form .btn-default:hover {
+        background: rgba(225, 225, 225, 0.3);
+        color: #fff;
+        border-color: #fff;
+    }
 
-        .auth form .btn-default:hover {
-            background: rgba(225, 225, 225, 0.3);
-            color: #fff;
-            border-color: #fff;
-        }
+    .auth form .btn-primary:hover {
+        background: rgba(66, 139, 202, 0.3);
+    }
 
-        .auth form .btn-primary:hover {
-            background: rgba(66, 139, 202, 0.3);
-        }
+    .auth form .btn-success:hover {
+        background: rgba(92, 184, 92, 0.3);
+    }
 
-        .auth form .btn-success:hover {
-            background: rgba(92, 184, 92, 0.3);
-        }
+    .auth form .btn-info:hover {
+        background: rgba(91, 192, 222, 0.3);
+    }
 
-        .auth form .btn-info:hover {
-            background: rgba(91, 192, 222, 0.3);
-        }
+    .auth form .btn-warning:hover {
+        background: rgba(240, 173, 78, 0.3);
+    }
 
-        .auth form .btn-warning:hover {
-            background: rgba(240, 173, 78, 0.3);
-        }
+    .auth form .btn-danger:hover {
+        background: rgba(217, 83, 79, 0.3);
+    }
 
-        .auth form .btn-danger:hover {
-            background: rgba(217, 83, 79, 0.3);
-        }
+    .auth form .btn-link {
+        border: none;
+        color: #fff;
+        padding-left: 0;
+    }
 
-        .auth form .btn-link {
-            border: none;
-            color: #fff;
-            padding-left: 0;
-        }
+    .auth form .btn-link:hover {
+        background: none;
+    }
 
-        .auth form .btn-link:hover {
-            background: none;
-        }
-
-        .auth label.label-floatlabel {
-            font-weight: 300;
-            font-size: 11px;
-            color: #fff;
-            left: 0!important;
-            top: 1px!important;
-        }
+    .auth label.label-floatlabel {
+        font-weight: 300;
+        font-size: 11px;
+        color: #fff;
+        left: 0!important;
+        top: 1px!important;
+    }
     </style>
-
-
     <script>
-        (function(e, t, n, r) {
-            function o(t, n) {
-                this.$element = e(t);
-                this.settings = e.extend({}, s, n);
-                this.init()
+    $(document).ready(function() {
+        //Floatlabel
+        // $('input').floatlabel();
+        var oid = $.url('?oid');
+        $.getJSON('v1/order/' + oid, function(data){
+            if (Math.floor(data.status/100) == 2) {
+                console.log(data.data[0]);
+                fillOrderHTML(data.data[0]);
+            } else {
+                console.log('Fetch order failed');
             }
-            var i = "floatlabel",
-                s = {
-                    slideInput: true,
-                    labelStartTop: "20px",
-                    labelEndTop: "10px",
-                    transitionDuration: .3,
-                    transitionEasing: "ease-in-out",
-                    labelClass: "",
-                    typeMatches: /text|password|email|number|search|url/
-                };
-            o.prototype = {
-                init: function() {
-                    var e = this;
-                    var n = {
-                        "-webkit-transition": "all " + this.settings.transitionDuration + "s " + this.settings.transitionEasing,
-                        "-moz-transition": "all " + this.settings.transitionDuration + "s " + this.settings.transitionEasing,
-                        "-o-transition": "all " + this.settings.transitionDuration + "s " + this.settings.transitionEasing,
-                        "-ms-transition": "all " + this.settings.transitionDuration + "s " + this.settings.transitionEasing,
-                        transition: "all " + this.settings.transitionDuration + "s " + this.settings.transitionEasing
-                    };
-                    if (this.$element.prop("tagName").toUpperCase() !== "INPUT") {
-                        return
-                    }
-                    if (!this.settings.typeMatches.test(this.$element.attr("type"))) {
-                        return
-                    }
-                    var r = this.$element.attr("id");
-                    if (!r) {
-                        r = Math.floor(Math.random() * 100) + 1;
-                        this.$element.attr("id", r)
-                    }
-                    var i = this.$element.attr("placeholder");
-                    var s = this.$element.data("label");
-                    var o = this.$element.data("class");
-                    if (!o) {
-                        o = ""
-                    }
-
-                    if (!i || i === "") {
-                        i = "You forgot to add placeholder attribute!"
-                    }
-
-                    if (!s || s === "") {
-                        s = i
-                    }
-                    this.inputPaddingTop = parseFloat(this.$element.css("padding-top")) + 10;
-                    this.$element.wrap('<div class="floatlabel-wrapper" style="position:relative"></div>');
-                    this.$element.before('<label for="' + r + '" class="label-floatlabel ' + this.settings.labelClass + " " + o + '">' + s + "</label>");
-                    this.$label = this.$element.prev("label");
-                    this.$label.css({
-                        position: "absolute",
-                        top: this.settings.labelStartTop,
-                        left: this.$element.css("padding-left"),
-                        display: "none",
-                        "-moz-opacity": "0",
-                        "-khtml-opacity": "0",
-                        "-webkit-opacity": "0",
-                        opacity: "0"
-                    });
-                    if (!this.settings.slideInput) {
-                        this.$element.css({
-                            "padding-top": this.inputPaddingTop
-                        })
-                    }
-                    this.$element.on("keyup blur change", function(t) {
-                        e.checkValue(t)
-                    });
-                    t.setTimeout(function() {
-                        e.$label.css(n);
-                        e.$element.css(n)
-                    }, 100);
-                    this.checkValue()
-                },
-                checkValue: function(e) {
-                    if (e) {
-                        var t = e.keyCode || e.which;
-                        if (t === 9) {
-                            return
-                        }
-                    }
-                    var n = this.$element.data("flout");
-                    if (this.$element.val() !== "") {
-                        this.$element.data("flout", "1")
-                    }
-                    if (this.$element.val() === "") {
-                        this.$element.data("flout", "0")
-                    }
-                    if (this.$element.data("flout") === "1" && n !== "1") {
-                        this.showLabel()
-                    }
-                    if (this.$element.data("flout") === "0" && n !== "0") {
-                        this.hideLabel()
-                    }
-                },
-                showLabel: function() {
-                    var e = this;
-                    e.$label.css({
-                        display: "block"
-                    });
-                    t.setTimeout(function() {
-                        e.$label.css({
-                            top: e.settings.labelEndTop,
-                            "-moz-opacity": "1",
-                            "-khtml-opacity": "1",
-                            "-webkit-opacity": "1",
-                            opacity: "1"
-                        });
-                        if (e.settings.slideInput) {
-                            e.$element.css({
-                                "padding-top": e.inputPaddingTop
-                            })
-                        }
-                    }, 50)
-                },
-                hideLabel: function() {
-                    var e = this;
-                    e.$label.css({
-                        top: e.settings.labelStartTop,
-                        "-moz-opacity": "0",
-                        "-khtml-opacity": "0",
-                        "-webkit-opacity": "0",
-                        opacity: "0"
-                    });
-                    if (e.settings.slideInput) {
-                        e.$element.css({
-                            "padding-top": parseFloat(e.inputPaddingTop) - 10
-                        })
-                    }
-                    t.setTimeout(function() {
-                        e.$label.css({
-                            display: "none"
-                        })
-                    }, e.settings.transitionDuration * 1e3)
+        });
+        /* load modals */
+        $('#place-modal').on('show.bs.modal', function(e) {
+            $(this).find('.modal-content').load('/placemodal');
+        });
+        $('#place-modal').on('shown.bs.modal', function(e) {
+            var source = e.relatedTarget;
+            initGmapSearch();
+            $(this).data('source', source);
+            $('#pac-input').val($(source).val());
+        });
+        $('#place-modal').on('hide.bs.modal', function(e) {
+            var source = $(this).data('source');
+            var addr = $('#pac-input').data('addr');
+            if (addr) { $(source).val(addr); }
+        });
+        // join order form
+        $('#join-form').submit(function(e){
+            $.post('/v1/orderRecord', {
+                oid: oid,
+                sid: 101, // FIXME: Real SID !
+                stopaddress: $('input[name="deliveraddr"]').val(),
+                cargosize: $('input[name="cargosize"]').val(),
+                comment: $('input[name="comment"]').val(),
+            }, function(data){
+                if (Math.floor(data.status/100) == 2) {
+                    alert('Success!');
+                    location.href = '/myorder';
+                } else {
+                    console.log('Join order failed. Change sid and try again');
                 }
-            };
-            e.fn[i] = function(t) {
-                return this.each(function() {
-                    if (!e.data(this, "plugin_" + i)) {
-                        e.data(this, "plugin_" + i, new o(this, t))
-                    }
-                })
-            }
-        })(jQuery, window, document)
-
-        $(document).ready(function() {
-            //Floatlabel
-            // $('input').floatlabel();
-            // $('a, button').click(function(e) {
-            //     e.preventDefault();
-            // });
+            });
+            e.preventDefault();
         });
+        $('#join-submit').click(function(e){
+            $('#join-form').submit();
+            e.preventDefault();
+        });
+    });
+    function fillOrderHTML(data) {
+        $('#order-title').html(data.title);
+        $('#pickupaddr').html(data.pickupaddr);
+        $('#pickuptime').html(data.pickuptime);
+        $('#basefee').html('$' + data.basefee);
+        $('#deliveryaddr').html(data.deliveryaddr);
+        $('#deliverytime').html(data.deliverytime);
+        $('#unitfee').html('$' + data.unitfee);
+        $('#membernum').html('$' + data.membernum);
+    }
     </script>
-
-
     <script>
-        $(document).ready(function() {
-            appMaster.preLoader();
-        });
+    $(document).ready(function() {
+        appMaster.preLoader();
+        $("html").niceScroll();
+    });
     </script>
-
-
 </body>
 
 </html>
