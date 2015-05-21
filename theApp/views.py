@@ -97,7 +97,13 @@ def list_orders():
         title="My orders",
         )
 
-
+@app.route('/test/email')
+def test_ses():
+    title = "We Deliver Email Test"
+    body = "This is a test email, send by We Deliver 2015."
+    recipients = ["mw2972@columbia.edu", "ly2331@columbia.edu", "jy2653@columbia.edu"]
+    controllers.sendmail(title, body, recipients)
+    return "Email send to %r" % recipients
 
 @app.route('/user/login', methods=['POST'])
 def user_login():

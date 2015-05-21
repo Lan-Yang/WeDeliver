@@ -24,8 +24,6 @@
     <link rel="stylesheet" href="/static/css/searchlist-header.css">
     <link href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.0/css/bootstrap-datepicker.min.css" rel="stylesheet">
     <script type="text/javascript" src="/static/js/modernizr.custom.32033.js"></script>
-    <!--javascript should be udpated for the latest versions, for some pages to function normally-->
-    <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
     <!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
@@ -34,7 +32,8 @@
 
 <body>
     <div class="pre-loader">
-        <div class="load-con"> <img src="logo.png" class="animated fadeInDown" alt="">
+        <div class="load-con">
+            <img src="/static/logo.png" class="animated fadeInDown" alt="logo">
             <div class="spinner">
                 <div class="bounce1"></div>
                 <div class="bounce2"></div>
@@ -214,7 +213,7 @@
     <script id="list-template" type="text/x-jsrender">
     {{for data}}
     <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
-        <div class="offer offer-info">
+        <div class="offer {{:label}}">
             <div class="shape">
                 <div class="shape-text"> ${{:closefee}} </div>
             </div>
@@ -601,6 +600,22 @@
         }
     }
     </style>
+    <!-- <script src="/static/js/jquery-1.11.1.min.js"></script> -->
+    <!--javascript should be udpated for the latest versions, for some pages to function normally-->
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+    <script src="/static/js/bootstrap.min.js"></script>
+    <script src="//maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true&libraries=places"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.0/js/bootstrap-datepicker.min.js"></script>
+    <script src="/static/js/slick.min.js"></script>
+    <script src="/static/js/floatlabels.min.js"></script>
+    <script src="/static/js/placeholdem.min.js"></script>
+    <script src="/static/js/jsrender.js"></script>
+    <script src="/static/js/rs-plugin/js/jquery.themepunch.plugins.min.js"></script>
+    <script src="/static/js/rs-plugin/js/jquery.themepunch.revolution.min.js"></script>
+    <script src="/static/js/waypoints.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/js-url/1.8.4/url.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery.nicescroll/3.6.0/jquery.nicescroll.min.js"></script>
+
     <!--This part is for click action in profile -->
     <script>
     $(document).ready(function() {
@@ -616,18 +631,7 @@
         });
     });
     </script>
-    <script src="/static/js/jquery-1.11.1.min.js"></script>
-    <script src="/static/js/bootstrap.min.js"></script>
-    <script src="//maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true&libraries=places"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.0/js/bootstrap-datepicker.min.js"></script>
-    <script src="/static/js/slick.min.js"></script>
-    <script src="/static/js/floatlabels.min.js"></script>
-    <script src="/static/js/placeholdem.min.js"></script>
-    <script src="/static/js/jsrender.js"></script>
-    <script src="/static/js/rs-plugin/js/jquery.themepunch.plugins.min.js"></script>
-    <script src="/static/js/rs-plugin/js/jquery.themepunch.revolution.min.js"></script>
-    <script src="/static/js/waypoints.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/js-url/1.8.4/url.min.js"></script>
+    <!-- Gloabl Custom Javascript -->
     <script src="/static/js/scripts.js"></script>
     <!-- This part is for background with header-->
     <style>
@@ -647,16 +651,31 @@
     <script>
     $(document).ready(function() {
         appMaster.preLoader();
+        $("html").niceScroll();
     });
     </script>
     <script>
     $(function() {
+        function value2label(x) {
+            if (x < 30)
+                return "offer-danger";
+            if (x < 50)
+                return "offer-success";
+            if (x < 100)
+                return "offer-primary";
+            return "offer-default";
+        }
         $.getJSON('/v1/order', { // data
             userid: 0,  // {{current_user.uid}}
             state: 'O, D, C',
             debug: 1,  // testing backdoor
         }, function(data) { // success
             console.log(data);
+            // add color, for html
+            $.each(data.data, function(i, o) {
+                o.label = value2label(o.closefee);
+            });
+            // render
             $('#ongoing-panel').html(
                 $("#list-template").render(data)
             );
@@ -667,6 +686,11 @@
             debug: 1,  // testing backdoor
         }, function(data) { // success
             console.log(data);
+            // add color, for html
+            $.each(data.data, function(i, o) {
+                o.label = value2label(o.closefee);
+            });
+            // render
             $('#finished-panel').html(
                 $("#list-template").render(data)
             );

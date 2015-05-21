@@ -35,9 +35,3 @@ ses = boto.ses.connect_to_region(
 
 import theApp.views
 import theApp.api
-
-# ses.send_email(
-#     app.config['SES_SENDER_EMAIL'],
-#     'WeDeliver online!',
-#     'Body!',
-#     ['wm19922009@gmail.com'])
