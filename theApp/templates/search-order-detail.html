@@ -3,41 +3,14 @@
     <link rel="stylesheet" href="/static/css/index-login.css">
 {% endblock %}
 {% block body %}
-    <header>
-        <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
-            <div class="container">
-                <!-- Brand and toggle get grouped for better mobile display -->
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"> <span class="fa fa-bars fa-lg"></span> </button>
-                    <a class="navbar-brand" href="index.html"> <img src="/static/logo.png" alt="logo" class="logo"> </a>
-                </div>
-                <!-- Collect the nav links, forms, and other content for toggling -->
-                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                    <ul class="nav navbar-nav navbar-right">
-                        <li><a href="/s-search">Search</a></li>
-                        <li><a href="/s-post">Post</a></li>
-                        <li><a href="#favoriates">My Orders</a></li>
-                        <li class="dropdown"> <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"> John Doe <i class="fa fa-user"></i> </a>
-                            <ul class="dropdown-menu" role="menu">
-                                <li><a href="/s-account">Profile</a></li>
-                                <li class="divider"></li>
-                                <li><a href="/logout">Logout</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                </div>
-                <!-- /.navbar-collapse -->
-            </div>
-            <!-- /.container-->
-        </nav>
-    </header>
+    {% include "s-header.html" %}
     <div class="wrapper">
         <div class="box">
             <div class="row">
                 <!--search box-->
                 <div class="container auth col-sm-10 col-sm-offset-1" style="padding-top: 150px; padding-left: 50px; padding-right: 20px;">
                     <div id="big-form" class="well auth-box">
-                        <form id="join-form" action="" method="POST">
+                        <form id="join-form" action="#" method="POST">
                             <fieldset>
                                 <div class="form-group">
                                     <h1 id="order-title">IKEA GO!</h1>

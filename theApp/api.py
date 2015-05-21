@@ -5,7 +5,7 @@ data API
 from theApp import app
 from flask import render_template, request, flash, redirect, url_for, jsonify
 from .models import *
-from sqlalchemy import and_
+from sqlalchemy import and_, desc
 from .util import *
 from datetime import date, datetime
 import math
@@ -25,16 +25,15 @@ def search_for_orders():
     results = None
 
     if debug != '0':
-        results = Order.query
-        results_pagination = results.paginate(int(page_number), int(per_page), False).items
+        results = Order.query.order_by(desc(Order.oid))
     else:
         results = Order.query.filter(
             and_(
                 Order.pickupaddr==pickupaddress,
                 Order.pickuptime<=datetime.strptime(pickuptime, DATETIME_FORMAT),
                 Order.trucksize-Order.totalcargosize>=int(cargosize),
-                ))
-        results_pagination = results.paginate(int(page_number), int(per_page), False).items
+                )).order_by(desc(Order.oid))
+    results_pagination = results.paginate(int(page_number), int(per_page), False).items
     total_count = results.count()
     total_page = int(math.ceil(total_count*1.0/DEFAULE_PER_PAGE))
     first_page_num,last_page_num = 1,total_page
