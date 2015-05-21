@@ -819,19 +819,19 @@ header .navbar-default ul.navbar-nav li a:hover {
   transition: all 0.25s ease-in-out;
 }
 header .navbar-default.scrolled {
-  border-bottom: 3px solid #336799;
+  border-bottom: 3px solid #007A7A;
 }
 header .navbar-default.scrolled ul.navbar-nav li a {
-  color: #336799;
+  color: #007A7A;
 }
 header .navbar-default.scrolled ul.navbar-nav li a:hover {
-  color: #336799;
+  color: #007A7A;
 }
 header .navbar-default.scrolled ul.navbar-nav li a:hover:after {
-  background: #336799;
+  background: #007A7A;
 }
 header .navbar-default.scrolled .navbar-brand {
-  background: #336799;
+  background: #007A7A;
 }
 section .section-heading .divider:after {
   background: #66cdcc;
@@ -985,21 +985,21 @@ section#support .media:hover h3 {
 }
 /* footer section */
 footer {
-  background: #B6B6B6;
+  background: #66cdcc;
   /* Old browsers */
-  background: -moz-linear-gradient(-45deg, #B6B6B6 0%, #4A4A4A 100%);
+  background: -moz-linear-gradient(-45deg, #333354 0%, #000029 100%);
   /* FF3.6+ */
-  background: -webkit-gradient(linear, left top, right bottom, color-stop(0%, #B6B6B6), color-stop(100%, #4A4A4A));
+  background: -webkit-gradient(linear, left top, right bottom, color-stop(0%, #333354), color-stop(100%, #000029));
   /* Chrome,Safari4+ */
-  background: -webkit-linear-gradient(-45deg, #B6B6B6 0%, #4A4A4A 100%);
+  background: -webkit-linear-gradient(-45deg, #333354 0%, #000029 100%);
   /* Chrome10+,Safari5.1+ */
-  background: -o-linear-gradient(-45deg, #B6B6B6 0%, #4A4A4A 100%);
+  background: -o-linear-gradient(-45deg, #333354 0%, #000029 100%);
   /* Opera 11.10+ */
-  background: -ms-linear-gradient(-45deg, #B6B6B6 0%, #4A4A4A 100%);
+  background: -ms-linear-gradient(-45deg, #333354 0%, #000029 100%);
   /* IE10+ */
-  background: linear-gradient(-45deg, #B6B6B6 0%, #4A4A4A 100%);
+  background: linear-gradient(-45deg, #333354 0%, #000029 100%);
   /* W3C */
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#B6B6B6, endColorstr=#4A4A4A, GradientType=1);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#333354, endColorstr=#000029, GradientType=1);
   /* IE6-9 fallback on horizontal gradient */
 }
 footer .social a {

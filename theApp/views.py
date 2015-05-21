@@ -163,3 +163,38 @@ def logout():
 def reset_db():
     controllers.resetdb()
     return "reset db."
+
+@app.route('/d-home')
+def d_home():
+    """Renders the home page."""
+    return render_template(
+        'd-index-login.html',
+        title="Home"
+        )
+
+@app.route('/d-loginmodal')
+def d_login():
+    return render_template(
+        'd-login-modal.html',
+        title="Login"
+        )
+
+@app.route('/d-search')
+def d_search():
+    return render_template(
+        'd-searchlist.html',
+        title="DelivererSearch"
+        )
+
+@app.route('/d-myorder')
+def d_list_orders():
+    return render_template(
+        'deliverer_orders.html',
+        title="My orders",
+        )
+@app.route('/d-post')
+def d_post():
+    return render_template(
+        'd-post-header.html',
+        title="DelivererPost"
+        )
