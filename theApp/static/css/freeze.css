@@ -985,21 +985,21 @@ section#support .media:hover h3 {
 }
 /* footer section */
 footer {
-  background: #66cdcc;
+  background: #B6B6B6;
   /* Old browsers */
-  background: -moz-linear-gradient(-45deg, #66cdcc 0%, #336799 100%);
+  background: -moz-linear-gradient(-45deg, #B6B6B6 0%, #4A4A4A 100%);
   /* FF3.6+ */
-  background: -webkit-gradient(linear, left top, right bottom, color-stop(0%, #66cdcc), color-stop(100%, #336799));
+  background: -webkit-gradient(linear, left top, right bottom, color-stop(0%, #B6B6B6), color-stop(100%, #4A4A4A));
   /* Chrome,Safari4+ */
-  background: -webkit-linear-gradient(-45deg, #66cdcc 0%, #336799 100%);
+  background: -webkit-linear-gradient(-45deg, #B6B6B6 0%, #4A4A4A 100%);
   /* Chrome10+,Safari5.1+ */
-  background: -o-linear-gradient(-45deg, #66cdcc 0%, #336799 100%);
+  background: -o-linear-gradient(-45deg, #B6B6B6 0%, #4A4A4A 100%);
   /* Opera 11.10+ */
-  background: -ms-linear-gradient(-45deg, #66cdcc 0%, #336799 100%);
+  background: -ms-linear-gradient(-45deg, #B6B6B6 0%, #4A4A4A 100%);
   /* IE10+ */
-  background: linear-gradient(-45deg, #66cdcc 0%, #336799 100%);
+  background: linear-gradient(-45deg, #B6B6B6 0%, #4A4A4A 100%);
   /* W3C */
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#66cdcc, endColorstr=#336799, GradientType=1);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#B6B6B6, endColorstr=#4A4A4A, GradientType=1);
   /* IE6-9 fallback on horizontal gradient */
 }
 footer .social a {
