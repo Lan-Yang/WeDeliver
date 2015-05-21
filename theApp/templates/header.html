@@ -13,7 +13,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <link rel="shortcut icon" href="favicon.png">
 
-    <!-- 
+    <!--
     <link rel="stylesheet" href="css/bootstrap.css">
     -->
 
@@ -24,6 +24,11 @@
     <link rel="stylesheet" href="js/rs-plugin/css/settings.css">
 
     <link rel="stylesheet" href="css/freeze.css">
+    <link href='http://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Raleway:500' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="/static/css/searchlist-header.css">
 
 
     <script type="text/javascript" src="js/modernizr.custom.32033.js"></script>
@@ -72,7 +77,19 @@
                         </li>
                         <li><a href="#favoriates">My Orders</a>
                         </li>
-                        <li><a href="#login in">Log Out <i class="fa fa-user"></i> </a>
+                        <li class="dropdown">
+                            <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">John</a>
+                            <ul class="dropdown-menu profileselect" role="menu">
+                                <li id="prettySurname" class="text-center">
+                                    <h5 class="text-name">Hi! John Doe</h5>
+                                </li>
+                                <li id="toProfile"><a href="/s-account" style="color: #555; font-size: 14px;">Profile</a></li>
+                                <!-- <li class="divider"></li> -->
+                                <li id="toHelp"><a href="/logout" style="color: #555; font-size: 14px;">Help</a></li>
+                                <li id="logOutButton" class="text-center">
+                                    <button class="btn btn-block btn-logout" href="" type="submit">Log out</button>
+                                </li>
+                            </ul>
                         </li>
                     </ul>
                 </div>
@@ -101,7 +118,7 @@
         .margin-top-20 {
             margin-top: 20px;
         }
-        
+
         body {
             background: url('img/freeze/bk-freeze-ga.jpg');
             background-size: 100% 100%;
