@@ -4,4 +4,4 @@
 `pip install -r requirements.txt`
 
 ## Run
-`python runserver.py`
+`python application.py`
