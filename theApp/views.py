@@ -83,11 +83,10 @@ def account():
 
 @app.route('/order')
 def view_order():
-    oid = request.args.get("oid")
+    # oid = request.args.get("oid")
     return render_template(
-        'order.html',
+        'search-order-detail.html',
         title="Order Details",
-        oid=oid,
         )
 
 @app.route('/myorder')
@@ -104,6 +103,18 @@ def list_search_order_detail():
         'search-order-detail.html',
         title="Order Detail",
         )
+
+
+@app.route('/rate_order')
+def rate_order():
+    return render_template(
+        'rate_order.html',
+        title="Rate My Order",
+        )
+
+
+
+
 
 
 @app.route('/test/email')
