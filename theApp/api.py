@@ -26,7 +26,7 @@ def search_for_orders():
 
     if debug != '0':
         results = Order.query
-        results_pagination = Order.query.paginate(int(page_number), int(per_page), False).items
+        results_pagination = results.paginate(int(page_number), int(per_page), False).items
     else:
         results = Order.query.filter(
             and_(
@@ -72,13 +72,13 @@ def add_new_order():
     order = Order()
     order.pickupaddr = data.get("pickupaddr", "")
     order.pickuptime = data.get("pickuptime", "")
-    order.did = data.get("did", "")
-    order.cargosize = data.get("cargosize", "")
-    order.trucksize = data.get("trucksize", "")
-    order.totalfee = data.get("totalfee", "")
-    order.basefee = data.get("basefee", "")
-    order.closefee = data.get("closefee", "")
-    order.status = data.get("status", "")
+    order.did = data.get("did", "0")
+    order.cargosize = data.get("cargosize", "0")
+    order.trucksize = data.get("trucksize", "0")
+    order.totalfee = data.get("totalfee", "0")
+    order.basefee = data.get("basefee", "0")
+    order.closefee = data.get("closefee", "0")
+    order.status = data.get("status", "O")
     order.drivername = data.get("drivername", "")
     order.driverphone = data.get("driverphone", "")
     db_session.add(order)

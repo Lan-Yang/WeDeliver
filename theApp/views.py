@@ -97,6 +97,7 @@ def list_orders():
         title="My orders",
         )
 
+
 @app.route('/search_order_detail')
 def list_search_order_detail():
     return render_template(
@@ -105,7 +106,14 @@ def list_search_order_detail():
         )
 
 
-
+@app.route('/test/email')
+def test_ses():
+    title = "We Deliver Email Test"
+    body = "This is a test email, send by We Deliver 2015."
+    recipients = ["mw2972@columbia.edu", "ly2331@columbia.edu", "jy2653@columbia.edu"]
+    controllers.sendmail(title, body, recipients)
+    return "Email send to %r" % recipients
+>>>>>>> 07007b8769e9cad3cded55b75f0b8e4d7cb3d15a
 
 @app.route('/user/login', methods=['POST'])
 def user_login():

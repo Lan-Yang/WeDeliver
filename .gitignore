@@ -27,3 +27,5 @@ testdb.py
 test.db
 *.old
 *.bak
+old-*
+*.zip
