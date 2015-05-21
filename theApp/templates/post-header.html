@@ -21,8 +21,13 @@
     <link rel="stylesheet" href="/static/js/rs-plugin/css/settings.css">
     <link rel="stylesheet" href="/static/css/freeze.css">
     <link rel="stylesheet" href="/static/css/index-login.css">
+    <link rel="stylesheet" href="/static/css/searchlist-header.css">
     <link href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.7.14/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
     <script type="text/javascript" src="/static/js/modernizr.custom.32033.js"></script>
+    <link href='http://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Raleway:500' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
 
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
@@ -63,11 +68,17 @@
                         <li><a href="/s-post">Post</a></li>
                         <li><a href="/myorder">My Orders</a></li>
                         <li class="dropdown">
-                            <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"> John Doe <i class="fa fa-user"></i> </a>
-                            <ul class="dropdown-menu" role="menu">
-                                <li><a href="/s-account">Profile</a></li>
-                                <li class="divider"></li>
-                                <li><a href="/logout">Logout</a></li>
+                            <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">John</a>
+                            <ul class="dropdown-menu profileselect" role="menu">
+                                <li id="prettySurname" class="text-center">
+                                    <h5 class="text-name">Hi! John Doe</h5>
+                                </li>
+                                <li id="toProfile"><a href="/s-account" style="color: #555; font-size: 14px;">Profile</a></li>
+                                <!-- <li class="divider"></li> -->
+                                <li id="toHelp"><a href="/logout" style="color: #555; font-size: 14px;">Help</a></li>
+                                <li id="logOutButton" class="text-center">
+                                    <button class="btn btn-block btn-logout" href="" type="submit">Log out</button>
+                                </li>
                             </ul>
                         </li>
                     </ul>
@@ -85,20 +96,22 @@
                     <div id="big-form" class="well auth-box">
                         <form id="post-form" action="/v1/order" method="POST">
                             <fieldset>
-                                <div class="form-group">
-                                    <label for="the-title">Title</label>
-                                    <input id="the-title" placeholder="IKEA, GO!" class="form-control input-md" type="text" name="title">
+                                <div class="col-sm-12">
+                                    <div class="form-group">
+                                        <label class="control-label" for="the-title" style="font-size: 16px;">Title</label>
+                                        <input id="the-title" placeholder="IKEA, GO!" class="form-control input-md" type="text" name="title">
+                                    </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-sm-6">
                                         <div class="form-group">
-                                            <label for="pickup-addr"> <i class="fa fa-truck"></i> Pickup Location</label>
+                                            <label class="control-label" for="pickup-addr" style="font-size: 16px;"> <i class="fa fa-truck"></i> Pickup Location</label>
                                             <input id="pickup-addr" name="pickupaddr" placeholder="IKEA Brooklyn" class="form-control input-md" type="text" data-toggle="modal" data-target="#place-modal">
                                         </div>
                                     </div>
                                     <div class = "col-sm-6">
                                         <div class="form-group">
-                                            <label for="deliver-addr"><i class="fa fa-street-view"></i> Delivery Location</label>
+                                            <label class="control-label" for="deliver-addr" style="font-size: 16px;"><i class="fa fa-street-view"></i> Delivery Location</label>
                                             <input id="deliver-addr" name="deliveraddr" placeholder="Columbia University" class="form-control input-md" type="text" data-toggle="modal" data-target="#place-modal">
                                         </div>
                                     </div>
@@ -106,13 +119,13 @@
                                 <div class="row">
                                     <div class="col-sm-6">
                                         <div class="form-group">
-                                            <label for="pickup-time"> <i class="fa fa-calendar"></i> Pickup Time</label>
+                                            <label class="control-label" for="pickup-time" style="font-size: 16px;"> <i class="fa fa-calendar"></i> Pickup Time</label>
                                             <input id="pickup-time" name="pickuptime" placeholder="May 12, 2015. 5:00 PM" class="form-control input-md datetime" type="text">
                                         </div>
                                     </div>
                                      <div class="col-sm-6">
                                         <div class="form-group">
-                                            <label class=" control-label" for="deliver-time"> <i class="fa fa-calendar-o"></i> Delivery Time</label>
+                                            <label class="control-label" for="deliver-time" style="font-size: 16px;"> <i class="fa fa-calendar-o"></i> Delivery Time</label>
                                             <input id="deliver-time" name="delivertime" placeholder="May 13, 2015. 10:00 AM" class="form-control input-md datetime" type="text">
                                         </div>
                                     </div>
@@ -120,25 +133,31 @@
                                 <div class="row">
                                     <div class="col-sm-6">
                                         <div class="form-group">
-                                            <label for="cargo-size"> <i class="fa fa-th"></i> Cargo Size</label>
+                                            <label class="control-label" for="cargo-size" style="font-size: 16px;"> <i class="fa fa-th"></i> Cargo Size</label>
                                             <input id="cargo-size" name="cargosize" placeholder="5 Unit" class="form-control input-md" type="text">
                                         </div>
                                     </div>
                                     <div class="col-sm-6">
                                         <div class="form-group">
-                                            <label for="max-bid"> <i class="fa fa-money"></i> Max Bid</label>
+                                            <label class="control-label" for="max-bid" style="font-size: 16px;"> <i class="fa fa-money"></i> Max Bid</label>
                                             <input id="max-bid" name="maxbid" placeholder="50" class="form-control input-md" type="text">
                                         </div>
                                     </div>
                                 </div>
-                                <div class="form-group">
-                                    <label for="comment-text">Comment</label>
-                                    <textarea class="form-control" id="comment-text" name="comment"> This shopping experience at IKEA must be awsesome. But as a poor student, I really want to save my limited budget by grouping my deliver with you!</textarea>
+                                <div class="col-sm-12">
+                                    <div class="form-group">
+                                        <label class="control-label" for="comment-text" style="font-size: 16px;">Comment</label>
+                                        <br>
+                                        <br>
+                                        <textarea class="form-control" id="comment-text" name="comment" style="border-radius: 5px;"> This shopping experience at IKEA must be awsesome. But as a poor student, I really want to save my limited budget by grouping my deliver with you!</textarea>
+                                    </div>
                                 </div>
                                 <!-- Button -->
                                 <div class="form-group">
                                     <div class="col-sm-2 col-sm-offset-5">
-                                        <button id="submit-post" class="btn btn-primary">Post</button>
+                                        <div class="form-group" style="margin-bottom: 25px;">
+                                            <button id="submit-post" class="btn btn-primary btn-search btn-post" style="background-color:#256EB8;">Post</button>
+                                        </div>
                                     </div>
                                 </div>
                             </fieldset>
