@@ -147,3 +147,46 @@ def add_new_orderRecord():
         status = 201,
         data = "orderRecord creation succeeds"
     )
+
+@app.route('/v1/shipper/<sid>', methods=['GET'])
+def get_shipper_profile(sid):
+    shipper = Shipper.query.get(sid)
+    if shipper:  # if found
+        shipper_data = shipper.serialize
+        shipper_data['shipper_total_delivers'] = get_shipper_total_delivers(sid)
+        shipper_data['shipper_total_savings'] = get_shipper_total_savings(sid)
+        shipper_data['shipper_credits'] = get_shipper_credits(sid)
+        return jsonify(
+            status = 200,
+            data = [shipper_data],
+        )
+    else:  # not found
+        return jsonify(
+            status = 404,
+            data = "shipper not found"
+        )
+
+def get_shipper_total_delivers(sid):
+    return OrderRecord.query.filter(OrderRecord.sid == sid).count()
+
+def get_shipper_total_savings(sid):
+    shipper_complete_order_records = get_shipper_complete_order_records(sid)
+    totalfees = 0
+    for orderRecord in shipper_complete_order_records:
+        shipper_order = Order.query.get(orderRecord.oid)
+        totalfees += shipper_order.totalfee
+    return totalfees-get_shipper_credits(sid)
+
+def get_shipper_credits(sid):
+    shipper_credits = 0
+    shipper_complete_order_records = get_shipper_complete_order_records(sid)
+    for orderRecord in shipper_complete_order_records:
+        shipper_credits += orderRecord.fee
+    return shipper_credits
+
+def get_shipper_complete_order_records(sid):
+    return OrderRecord.query.filter(
+        and_(
+            OrderRecord.sid == sid,
+            OrderRecord.status == "F"
+        ))

@@ -180,9 +180,23 @@ def resetdb():
     orderRecord_1.expectfee = 35.5
     orderRecord_1.fee = 33.3
     orderRecord_1.acceptedtime = datetime.strptime('2011-11-03 18:21:26', DATETIME_FORMAT)
-    orderRecord_1.status = "D"
+    orderRecord_1.status = "F"
     orderRecord_1.grade = 3.5
     orderRecord_1.comment = "This is great!"
+
+    orderRecord_2 = OrderRecord()
+    orderRecord_2.oid = 2
+    orderRecord_2.sid = 1
+    orderRecord_2.did = 1
+    orderRecord_2.stopaddress = "NYU"
+    orderRecord_2.delivertime = datetime.strptime('2011-11-03 18:21:26', DATETIME_FORMAT)
+    orderRecord_2.cargosize = 33
+    orderRecord_2.expectfee = 35.5
+    orderRecord_2.fee = 33.3
+    orderRecord_2.acceptedtime = datetime.strptime('2011-11-03 18:21:26', DATETIME_FORMAT)
+    orderRecord_2.status = "F"
+    orderRecord_2.grade = 3.5
+    orderRecord_2.comment = "This is great!"
 
     db_session.add(shipper_1)
     db_session.add(shipper_2)
@@ -195,5 +209,6 @@ def resetdb():
     db_session.add(order_5)
     db_session.add(order_6)
     db_session.add(orderRecord_1)
+    db_session.add(orderRecord_2)
 
     db_session.commit()

@@ -110,6 +110,21 @@ class Shipper(db.Model):
     def get_id(self):
         return unicode(self.sid)  # python 2
 
+    @property
+    def serialize(self):
+        """Return object data in easily serializeable format"""
+        return {
+            'sid' : self.sid,
+            'name' : self.name,
+            'passwd' : self.passwd,
+            'email' : self.email,
+            'phone' : self.phone,
+            'addr_1' : self.addr_1,
+            'addr_2' : self.addr_2,
+            'city' : self.city,
+            'state' : self.state,
+            'zip' : self.zip,
+        }
 
 class Deliverer(db.Model):
     did = db.Column(db.Integer, primary_key=True)  # auto-inc
