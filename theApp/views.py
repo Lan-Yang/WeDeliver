@@ -162,7 +162,7 @@ def oauth_callback(user_type, provider):
         flash('Authentication failed.')
         return redirect(url_for('home'))
     new_id = djb2_string_hash(social_id)  ## social_id may contain letters. use djb2 to convert to int
-    # print new_id
+    print new_id
     if user_type=="shipper":
         shipper = Shipper.query.get(new_id)
         if not shipper:
@@ -171,6 +171,7 @@ def oauth_callback(user_type, provider):
             db_session.commit()
         # print 171
         login_user(shipper)
+        re_url = url_for('home')
     else:  # deliverer
         deliverer = Deliverer.query.get(new_id)
         if not deliverer:
@@ -178,10 +179,9 @@ def oauth_callback(user_type, provider):
             db_session.add(deliverer)
             db_session.commit()
         login_user(deliverer)
+        re_url = url_for('d_home')
     # print 180
-    return jsonify(
-        status=1
-    )
+    return redirect(re_url)
 
 @app.route('/shipper/search', methods=['POST'])
 def shipper_search():
