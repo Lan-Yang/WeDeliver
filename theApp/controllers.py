@@ -97,12 +97,13 @@ def resetdb():
     order_1.did = 1
     order_1.totalcargosize = 3
     order_1.trucksize = 33
-    order_1.totalfee = 35.5
-    order_1.basefee = 10
-    order_1.closefee = 25.5
+    order_1.initialfee = 35.5
+    order_1.perstopfee = 10
     order_1.status = "D"
     order_1.drivername = "XiDaDa"
     order_1.driverphone = "821931"
+    order_1.deliverdate = datetime.strptime('2011-11-03 18:21:26', DATETIME_FORMAT)
+    order_1.finishedtime = datetime.strptime('2011-11-03 18:21:26', DATETIME_FORMAT)
 
     order_2 = Order()
     order_2.pickupaddr = "NYU"
@@ -110,12 +111,14 @@ def resetdb():
     order_2.did = 1
     order_2.totalcargosize = 3
     order_2.trucksize = 33
-    order_2.totalfee = 35.5
-    order_2.basefee = 10
-    order_2.closefee = 35.5
+    order_2.initialfee = 35.5
+    order_2.perstopfee = 10
     order_2.status = "D"
     order_2.drivername = "XiDaDa"
     order_2.driverphone = "821931"
+    order_2.deliverdate = datetime.strptime('2011-11-03 18:21:26', DATETIME_FORMAT)
+    order_2.finishedtime = datetime.strptime('2011-11-03 18:21:26', DATETIME_FORMAT)
+
 
     order_3 = Order()
     order_3.pickupaddr = "hahaha"
@@ -123,12 +126,14 @@ def resetdb():
     order_3.did = 1
     order_3.totalcargosize = 5
     order_3.trucksize = 33
-    order_3.totalfee = 35.5
-    order_3.basefee = 10
-    order_3.closefee = 55.5
+    order_3.initialfee = 35.5
+    order_3.perstopfee = 10
     order_3.status = "D"
     order_3.drivername = "XiDaDa"
     order_3.driverphone = "821931"
+    order_3.deliverdate = datetime.strptime('2011-11-03 18:21:26', DATETIME_FORMAT)
+    order_3.finishedtime = datetime.strptime('2011-11-03 18:21:26', DATETIME_FORMAT)
+
 
     order_4 = Order()
     order_4.pickupaddr = "hahaha"
@@ -136,12 +141,14 @@ def resetdb():
     order_4.did = 1
     order_4.totalcargosize = 5
     order_4.trucksize = 33
-    order_4.totalfee = 35.5
-    order_4.basefee = 10
-    order_4.closefee = 355
+    order_4.initialfee = 35.5
+    order_4.perstopfee = 10
     order_4.status = "D"
     order_4.drivername = "XiDaDa"
     order_4.driverphone = "821931"
+    order_4.deliverdate = datetime.strptime('2011-11-03 18:21:26', DATETIME_FORMAT)
+    order_4.finishedtime = datetime.strptime('2011-11-03 18:21:26', DATETIME_FORMAT)
+
 
     order_5 = Order()
     order_5.pickupaddr = "hahaha"
@@ -149,12 +156,14 @@ def resetdb():
     order_5.did = 1
     order_5.totalcargosize = 5
     order_5.trucksize = 33
-    order_5.totalfee = 35.5
-    order_5.basefee = 10
-    order_5.closefee = 35.5
+    order_5.initialfee = 35.5
+    order_5.perstopfee = 10
     order_5.status = "D"
     order_5.drivername = "XiDaDa"
     order_5.driverphone = "821931"
+    order_5.deliverdate = datetime.strptime('2011-11-03 18:21:26', DATETIME_FORMAT)
+    order_5.finishedtime = datetime.strptime('2011-11-03 18:21:26', DATETIME_FORMAT)
+
 
     order_6 = Order()
     order_6.pickupaddr = "hahaha"
@@ -162,12 +171,14 @@ def resetdb():
     order_6.did = 1
     order_6.totalcargosize = 5
     order_6.trucksize = 33
-    order_6.totalfee = 35.5
-    order_6.basefee = 10
-    order_6.closefee = 35.5
+    order_6.initialfee = 35.5
+    order_6.perstopfee = 10
     order_6.status = "D"
     order_6.drivername = "XiDaDa"
     order_6.driverphone = "821931"
+    order_6.deliverdate = datetime.strptime('2011-11-03 18:21:26', DATETIME_FORMAT)
+    order_6.finishedtime = datetime.strptime('2011-11-03 18:21:26', DATETIME_FORMAT)
+
 
 
     orderRecord_1 = OrderRecord()
@@ -175,11 +186,8 @@ def resetdb():
     orderRecord_1.sid = 1
     orderRecord_1.did = 1
     orderRecord_1.stopaddress = "NYU"
-    orderRecord_1.delivertime = datetime.strptime('2011-11-03 18:21:26', DATETIME_FORMAT)
     orderRecord_1.cargosize = 33
-    orderRecord_1.expectfee = 35.5
-    orderRecord_1.fee = 33.3
-    orderRecord_1.acceptedtime = datetime.strptime('2011-11-03 18:21:26', DATETIME_FORMAT)
+    orderRecord_1.totalfee = 33.3
     orderRecord_1.status = "F"
     orderRecord_1.grade = 3.5
     orderRecord_1.comment = "This is great!"
@@ -189,11 +197,8 @@ def resetdb():
     orderRecord_2.sid = 1
     orderRecord_2.did = 1
     orderRecord_2.stopaddress = "NYU"
-    orderRecord_2.delivertime = datetime.strptime('2011-11-03 18:21:26', DATETIME_FORMAT)
     orderRecord_2.cargosize = 33
-    orderRecord_2.expectfee = 35.5
-    orderRecord_2.fee = 33.3
-    orderRecord_2.acceptedtime = datetime.strptime('2011-11-03 18:21:26', DATETIME_FORMAT)
+    orderRecord_2.totalfee = 33.3
     orderRecord_2.status = "F"
     orderRecord_2.grade = 3.5
     orderRecord_2.comment = "This is great!"

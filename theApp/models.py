@@ -19,14 +19,13 @@ class Order(db.Model):
     did = db.Column(db.Integer)
     totalcargosize = db.Column(db.Integer)
     trucksize = db.Column(db.Integer)
-    totalfee = db.Column(db.Float)  # FIXME: Should be "initialfee"
-    basefee = db.Column(db.Float)  # FIXME: Should be "perstopfee"
-    closefee = db.Column(db.Float)  # FIXME: Should be removed
+    initialfee = db.Column(db.Float)
+    perstopfee = db.Column(db.Float)
     status = db.Column(db.String(4))
     drivername = db.Column(db.String(32))  # FIXME: Can be removed
     driverphone = db.Column(db.String(16))  # FIXME: Can be removed
-    # FIXME: Should add "deliverdate"
-    # FIXME: Should add "finishedtime"
+    deliverdate = db.Column(db.DateTime)
+    finishedtime = db.Column(db.DateTime)
 
     def __repr__(self):
         return '<Order %r>' % self.oid
@@ -41,12 +40,13 @@ class Order(db.Model):
             'did' : self.did,
             'totalcargosize' : self.totalcargosize,
             'trucksize' : self.trucksize,
-            'totalfee' : self.totalfee,
-            'basefee' : self.basefee,
-            'closefee' : self.closefee,
+            'initialfee' : self.initialfee,
+            'perstopfee' : self.perstopfee,
             'status' : self.status,
             'drivername' : self.drivername,
-            'driverphone' : self.driverphone
+            'driverphone' : self.driverphone,
+            'deliverdate' : self.deliverdate.strftime(DATETIME_FORMAT),
+            'finishedtime' : self.finishedtime.strftime(DATETIME_FORMAT),
         }
 
 
@@ -56,11 +56,8 @@ class OrderRecord(db.Model):
     sid = db.Column(db.Integer, primary_key=True)
     did = db.Column(db.Integer)
     stopaddress = db.Column(db.String(128))
-    delivertime = db.Column(db.DateTime)  # FIXME: Should be removed
     cargosize = db.Column(db.Integer)
-    expectfee = db.Column(db.Float)  # FIXME: Should be removed
-    fee = db.Column(db.Float)  # FIXME: Should be "totalfee"
-    acceptedtime = db.Column(db.DateTime)  # FIXME: Should be removed
+    totalfee = db.Column(db.Float)
     status = db.Column(db.String(4))
     grade = db.Column(db.Float)
     comment = db.Column(db.Text)
@@ -76,11 +73,8 @@ class OrderRecord(db.Model):
             'sid' : self.sid,
             'did' : self.did,
             'stopaddress' : self.stopaddress,
-            'delivertime' : self.delivertime.strftime(DATETIME_FORMAT),
             'cargosize' : self.cargosize,
-            'expectfee' : self.expectfee,
-            'fee' : self.fee,
-            'acceptedtime' : self.acceptedtime.strftime(DATETIME_FORMAT),
+            'totalfee' : self.totalfee,
             'status' : self.status,
             'grade' : self.grade,
             'comment' : self.comment
