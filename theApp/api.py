@@ -74,12 +74,13 @@ def add_new_order():
     order.did = data.get("did", "0")
     order.cargosize = data.get("cargosize", "0")
     order.trucksize = data.get("trucksize", "0")
-    order.totalfee = data.get("totalfee", "0")
-    order.basefee = data.get("basefee", "0")
-    order.closefee = data.get("closefee", "0")
+    order.initialfee = data.get("initialfee", "0")
+    order.perstopfee = data.get("perstopfee", "0")
     order.status = data.get("status", "O")
     order.drivername = data.get("drivername", "")
     order.driverphone = data.get("driverphone", "")
+    order.deliverdate = data.get("deliverdate", "")
+    order.finishedtime = data.get("finishedtime", "")
     db_session.add(order)
     db_session.commit()
     return jsonify(
@@ -132,11 +133,8 @@ def add_new_orderRecord():
     orderRecord.sid = data.get("sid", "")
     orderRecord.did = data.get("did", "0")
     orderRecord.stopaddress = data.get("stopaddress", "")
-    orderRecord.delivertime = data.get("delivertime", "2011-11-03 18:21:26")
     orderRecord.cargosize = data.get("cargosize", "5")
-    orderRecord.expectfee = data.get("expectfee", "0.0")
-    orderRecord.fee = data.get("fee", "0.0")
-    orderRecord.acceptedtime = data.get("acceptedtime", "2011-11-03 18:21:26")
+    orderRecord.totalfee = data.get("totalfee", "0.0")
     orderRecord.status = data.get("status", "")
     orderRecord.grade = data.get("grade", "0.0")
     orderRecord.comment = data.get("comment", "")
@@ -181,9 +179,9 @@ def get_shipper_credits(shipping_history):
     for sh in shipping_history:
         shipper_credits += sh["actual_pay"]
 
-def get_totalfee_from_oid(oid):
+def get_initialfee_from_oid(oid):
     shipper_order = Order.query.get(oid)
-    return shipper_order.totalfee
+    return shipper_order.initialfee
 
 def get_shipper_complete_order_records(sid):
     return OrderRecord.query.filter(
@@ -196,8 +194,8 @@ def get_shipping_history(sid):
     shipper_complete_order_records = get_shipper_complete_order_records(sid)
     shipping_history = []
     for orderRecord in shipper_complete_order_records:
-        actual_pay = orderRecord.fee
-        expected_pay = get_totalfee_from_oid(orderRecord.oid)
+        actual_pay = orderRecord.totalfee
+        expected_pay = get_initialfee_from_oid(orderRecord.oid)
         record = {
             "order_record_date": orderRecord.acceptedtime.strftime(DATETIME_FORMAT),
             "actual_pay": actual_pay,

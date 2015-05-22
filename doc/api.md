@@ -35,11 +35,12 @@ Query and Pagination
               "did": 3,
               "cargosize": 1,
               "trucksize": 800,
-              "basefee":333,
-              "closefee":333,
+              "perstopfee":333,
               "status":"D",
               "drivername":"XiDaDa",
-              "driverphone":"12893012809"
+              "driverphone":"12893012809",
+              "deliverdate":"2011-11-03 18:21:26",
+              "finishedtime":"2011-11-03 18:21:26"
             },
             {
               "oid": 1,
@@ -48,11 +49,12 @@ Query and Pagination
               "did": 3,
               "cargosize": 1,
               "trucksize": 800,
-              "basefee":333,
-              "closefee":333,
+              "perstopfee":333,
               "status":"D",
               "drivername":"XiDaDa",
-              "driverphone":"12893012809"
+              "driverphone":"12893012809",
+              "deliverdate":"2011-11-03 18:21:26",
+              "finishedtime":"2011-11-03 18:21:26"
             }
 			...
           ],
@@ -101,11 +103,12 @@ show detail of one specific order
               "did": 3,
               "cargosize": 1,
               "trucksize": 800,
-              "basefee":333,
-              "closefee":333,
+              "perstopfee":333,
               "status":"D",
               "drivername":"XiDaDa",
-              "driverphone":"12893012809"
+              "driverphone":"12893012809",
+              "deliverdate":"2011-11-03 18:21:26",
+              "finishedtime":"2011-11-03 18:21:26"
             }
           ]
 }
@@ -135,12 +138,13 @@ add a new order
 |   did |  int|33|       |      |
 |   cargosize |  int|33|       |      |
 |   trucksize |  int|333|       |      |
-|   totalfee |  float|33.33|       |      |
-|   basefee |  float|40.0|       |      |
-|   closefee |  float|3.5|       |      |
+|   initialfee |  float|33.33|       |      |
+|   perstopfee |  float|40.0|       |      |
 |   status |  String|D|       |      |
 |   drivername |  String|Obama|       |      |
 |   driverphone |  String|3284733|       |      |
+|   deliverdate |  String|2011-11-03 18:21:26|       |      |
+|   finishedtime |  String|2011-11-03 18:21:26|       |      |
 
 
 **Response**
@@ -191,10 +195,8 @@ Get all the OrderRecord of one specific user
               "sid": 3,
               "did": 33,
               "stopaddress": "Columbia",
-              "delivertime": "2011-11-03 18:21:26",
               "cargosize": 3,
-              "fee": 34.5,
-              "acceptedtime": "2011-11-03 18:21:26",
+              "totalfee": 34.5,
               "status": "D",
               "grade": 5.0,
               "commet": "WTF!"
@@ -204,10 +206,8 @@ Get all the OrderRecord of one specific user
               "sid": 23,
               "did": 33,
               "stopaddress": "Columbia",
-              "delivertime": "2011-11-03 18:21:26",
               "cargosize": 3,
-              "fee": 34.5,
-              "acceptedtime": "2011-11-03 18:21:26",
+              "totalfee": 34.5,
               "status": "D",
               "grade": 5.0,
               "commet": "WTF!"
@@ -246,10 +246,8 @@ add a new order
 |   sid|  int|23|       |      |
 |   did |  int|33|       |      |
 |   stopaddress|  String|33|       |      |
-|   delivertime|  String|2011-11-03 18:21:26|       |      |
 |   cargosize|  int|3|       |      |
-|   fee|  float|40.0|       |      |
-|   acceptedtime|  String|2011-11-03 18:21:26|       |      |
+|   totalfee|  float|40.0|       |      |
 |   status|  String|D|       |      |
 |   grade|  float|4.5|       |      |
 |   comment|  String|"This is amazing!"|       |      |
