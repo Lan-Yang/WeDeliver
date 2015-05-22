@@ -1,646 +1,405 @@
-<!DOCTYPE html>
-<!--[if lt IE 7]><html lang="en" class="no-js ie6"><![endif]-->
-<!--[if IE 7]><html lang="en" class="no-js ie7"><![endif]-->
-<!--[if IE 8]><html lang="en" class="no-js ie8"><![endif]-->
-<!--[if gt IE 8]><!-->
-<html lang="en" class="no-js">
-<!--<![endif]-->
-
-<head>
-    <meta charset="UTF-8">
-    <title>Order Info</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-
-
-    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/static/css/animate.css">
-    <link href="http://fontawesome.io/assets/font-awesome/css/font-awesome.css" rel="stylesheet" media="screen">
-    <link rel="stylesheet" href="/static/css/slick.css">
-    <link rel="stylesheet" href="/static/js/rs-plugin/css/settings.css">
-    <link rel="stylesheet" href="/static/css/freeze2.css">
+{% extends "base.html" %}
+{% block mycss %}
     <link rel="stylesheet" href="/static/css/index-login.css">
     <link rel="stylesheet" href="/static/css/d-searchlist.css">
-    <link href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.0/css/bootstrap-datepicker.min.css" rel="stylesheet">
-    <script type="text/javascript" src="/static/js/modernizr.custom.32033.js"></script>
-
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-      <![endif]-->
-
-  </head>
-
-  <body>
-
-    <div class="pre-loader">
-        <div class="load-con">
-            <img src="logo.png" class="animated fadeInDown" alt="">
-            <div class="spinner">
-                <div class="bounce1"></div>
-                <div class="bounce2"></div>
-                <div class="bounce3"></div>
-            </div>
-        </div>
-    </div>
-
-    <header>
-        <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
-            <div class="container">
-                <!-- Brand and toggle get grouped for better mobile display -->
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"> <span class="fa fa-bars fa-lg"></span> </button>
-                    <a class="navbar-brand" href="/d-home"> <img src="/static/logo.png" alt="" class="logo"> </a>
-                </div>
-                <!-- Collect the nav links, forms, and other content for toggling -->
-                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                    <ul class="nav navbar-nav navbar-right">
-                        <li><a href="/d-search">Search</a> </li>
-                        <li><a href="/d-post">Post</a> </li>
-                        <li><a href="/d-myorder">My Orders</a> </li>
-                        <li class="dropdown">
-                            <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">John</a>
-                            <ul class="dropdown-menu profileselect" role="menu">
-                                <li id="prettySurname" class="text-center">
-                                    <h5 class="text-name">Hi! John Doe</h5>
-                                </li>
-                                <li id="toProfile"><a href="/s-account" style="color: #555; font-size: 14px;">Profile</a></li>
-                                <!-- <li class="divider"></li> -->
-                                <li id="toHelp"><a href="/logout" style="color: #555; font-size: 14px;">Help</a></li>
-                                <li id="logOutButton" class="text-center">
-                                    <button class="btn btn-block btn-logout" href="" type="submit">Log out</button>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
-                </div>
-                <!-- /.navbar-collapse -->
-            </div>
-            <!-- /.container-->
-        </nav>
-    </header>
-
+{% endblock %}
+{% block body %}
+{% include "s-header.html" %}
     <div class="wrapper">
         <div class="box">
             <div class="row">
-
-
                 <!--search box-->
                 <div class="container auth col-sm-8 col-sm-offset-2" style = "padding-top: 150px; padding-left: 50px; padding-right: 20px;">
                     <div id="big-form" class="well auth-box">
-                        <form>
+                        <form id="inactive">
                             <fieldset>
-
                                 <div class="form-group">
-                                    <div class="">
-                                        <h1>IKEA GO!</h1>
-                                    </div>
+                                    <h1 id="order-title">IKEA GO!</h1>
                                 </div>
-
-
                                 <div class="col-sm-12">
                                     <div class="page-header text-muted divider">
-                                      <i class="fa fa-info-circle"></i> Order Info
-                                  </div>
-                              </div>
+                                        <i class="fa fa-info-circle"></i> Order Info
+                                    </div>
+                                </div>
 
+                                <div class="row">
+                                    <div class="col-sml-1 col-sm-offset-1">
+                                        <div class="row">
+                                            <div class="col-sm-5 col-sm-offset-1">
+                                                <div class="form-group">
+                                                    <label> <i class="fa fa-truck"></i> Pickup Location</label>
+                                                    <h4 id="pickupaddr">IKEA Brooklyn</h4>
+                                                </div>
+                                            </div>
 
-                              <div class = "row">
-                                <div class = "col-sml-1 col-sm-offset-1">
-                                    <div class = "row">
-                                        <div class = "col-sm-5 col-sm-offset-1">
-                                            <div class="form-group">
-                                                <label class="control-label" for="pickup_location"> <i class="fa fa-truck"></i> Pickup Location</label>
-                                                <h4>IKEA Brooklyn</h4>
+                                            <div class="col-sm-5">
+                                                <div class="form-group">
+                                                    <label><i class="fa fa-street-view"></i> Delivery Location</label>
+                                                    <h4 id="deliveryaddr">Columbia University</h4>
+                                                </div>
                                             </div>
                                         </div>
+                                    </div>
+                                </div>
 
-                                        <div class = "col-sm-5">
-                                            <div class="form-group">
-                                                <label class=" control-label" for="deliver_location"><i class="fa fa-street-view"></i> Delivery Location</label>
-                                                <h4>Columbia University</h4>
+                                <div class="row">
+                                    <div class="col-sml-1 col-sm-offset-1">
+                                        <div class="row">
+                                            <div class="col-sm-5 col-sm-offset-1">
+                                                <div class="form-group">
+                                                    <label><i class="fa fa-calendar"></i>Pickup Time</label>
+                                                    <h4 id="pickuptime"> May 12, 2015. 5:00 PM </h4>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-5">
+                                                <div class="form-group">
+                                                    <label> <i class="fa fa-calendar-o"></i> Delivery Time</label>
+                                                    <h4 id="deliverytime"> May 13, 2015</h4>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </fieldset>
+                        </form>
 
-                            <div class = "row">
-                                <div class = "col-sml-1 col-sm-offset-1">
-                                    <div class = "row">
-
-                                      <div class = "col-sm-5 col-sm-offset-1">
+                        <form id="accept-form">
+                            <fieldset>
+                                <div class="col-sm-12">
+                                    <div class="page-header text-muted">
+                                        <i class="fa fa-cog"></i> Accept This Order
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-4 col-sm-4 col-md-4 col-sm-offset-2">
                                         <div class="form-group">
-                                            <label class=" control-label" for="pickup_time"> <i class="fa fa-calendar"></i> Pickup Time</label>
-                                            <h4> May 12, 2015. 5:00 PM </h4>
+                                            <label class="control-label" for="truck-size"> <i class="fa fa-truck"></i> Truck Size (in Unit)</label>
+                                            <input id="truck-size" name="trucksize" placeholder="50" class="form-control input-md" type="text">
                                         </div>
                                     </div>
-
-
-                                    <div class = "col-sm-5">
+                                    <div class="col-xs-4 col-sm-4 col-md-4">
                                         <div class="form-group">
-                                            <label class=" control-label" for="delvier_time"> <i class="fa fa-calendar-o"></i> Delivery Time</label>
-                                            <h4> May 13, 2015</h4>
+                                            <label class="control-label" for="initial-fee"><i class="fa fa-money"></i>  Initial Fee </label>
+                                            <input id="initial-fee" name="initialfee" placeholder="120" class="form-control input-md" type="text">
                                         </div>
                                     </div>
-
                                 </div>
-                            </div>
-                        </div>
 
-                        <div class="col-sm-12" id="orderlist">
-                            <div class="page-header text-muted">
-                                <i class="fa fa-cog"></i> Accept This Order
-                            </div>
-                        </div>
-
-
-                        <div class = "row">
-                            <div class="col-xs-4 col-sm-4 col-md-4 col-sm-offset-2">
+                                <!-- Button -->
                                 <div class="form-group">
-                                    <label class="control-label" for="textinput"> <i class="fa fa-truck"></i> Truck Size (in Unit)</label>
-                                    <input id="textinput" name="textinput" placeholder="50" class="form-control input-md" type="text">
+                                    <div class="col-sm-offset-5">
+                                        <button id="accept-submit" class="btn btn-primary">Accept This Order</button>
+                                    </div>
                                 </div>
-                            </div>
+                            </fieldset>
+                        </form>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
 
-                            <div class="col-xs-4 col-sm-4 col-md-4">
-                                <div class="form-group">
-                                    <label class="control-label" for="textinput"><i class="fa fa-money"></i>  Initial Fee </label>
-                                    <input id="textinput" name="textinput" placeholder="120" class="form-control input-md" type="text">
-                                </div>
-                            </div>
-                        </div>
-
-
-                        <div class = "row">
-
-                            <div class="col-xs-2 col-sm-2 col-md-2"> </div>
-
-                            <div class="form-group col-xs-8 col-sm-8 col-md-8">
-                                <label class=" control-label" for="textarea">Your Comment</label>
-                                <div class="">
-                                    <textarea class="form-control" id="textarea" name="textarea"> </textarea>
-                                </div>
-                            </div>
-
-                            <div class="col-xs-2 col-sm-2 col-md-2"> </div>
-
-                        </div>
-
-
-                        <!-- Button -->
-                        <div class="form-group">
-                            <div class="col-sm-offset-5">
-                                <button id="singlebutton" name="singlebutton" class="btn btn-primary">Accept This Order</button>
-                            </div>
-                        </div>
-
-
-                    </fieldset>
-                </form>
             </div>
-            <div class="clearfix"></div>
         </div>
-
     </div>
-</div>
-</div>
 
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+    <script src="/static/js/bootstrap.min.js"></script>
+    <script src="//maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true&libraries=places"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.0/js/bootstrap-datepicker.min.js"></script>
+    <script src="/static/js/slick.min.js"></script>
+    <script src="/static/js/floatlabels.min.js"></script>
+    <script src="/static/js/placeholdem.min.js"></script>
+    <script src="/static/js/jsrender.js"></script>
+    <script src="/static/js/rs-plugin/js/jquery.themepunch.plugins.min.js"></script>
+    <script src="/static/js/rs-plugin/js/jquery.themepunch.revolution.min.js"></script>
+    <script src="/static/js/waypoints.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/js-url/1.8.4/url.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery.nicescroll/3.6.0/jquery.nicescroll.min.js"></script>
+    <script src="/static/js/scripts.js"></script>
 
+    <!--This part is for overlaying text-muted css, to make some headline as white color-->
+    <style>
+    .text-muted {
+        color: #FFF;
+    }
+    </style>
 
-<script src="http://code.jquery.com/jquery-latest.js"></script>
-<script src="/static/js/bootstrap.min.js"></script>
-<script src="//maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true&libraries=places"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.0/js/bootstrap-datepicker.min.js"></script>
-<script src="/static/js/slick.min.js"></script>
-<script src="/static/js/floatlabels.min.js"></script>
-<script src="/static/js/placeholdem.min.js"></script>
-<script src="/static/js/jsrender.js"></script>
-<script src="/static/js/rs-plugin/js/jquery.themepunch.plugins.min.js"></script>
-<script src="/static/js/rs-plugin/js/jquery.themepunch.revolution.min.js"></script>
-<script src="/static/js/waypoints.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/js-url/1.8.4/url.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery.nicescroll/3.6.0/jquery.nicescroll.min.js"></script>
-<script src="/static/js/scripts.js"></script>
+    <!--center column's div vertically-->
+    <style>
+    .vertical-align {
+        display: flex;
+        align-items: center;
+    }
+    </style>
 
+    <!-- This script and style part is for search form-->
+    <style>
+    .margin-top-20 {
+        margin-top: 20px;
+    }
 
+    body {
+        background: url('/static/img/freeze/bk-freeze2.jpg');
+        background-size: 100% 100%;
+        background-attachment: fixed;
+        background-repeat: no-repeat;
+        font-family: 'Open Sans', sans-serif;
+        padding-bottom: 40px;
+    }
 
+    .auth h1 {
+        color: #fff!important;
+        font-weight: 300;
+        font-family: 'Open Sans', sans-serif;
+    }
 
-<!--This part is for overlaying text-muted css, to make some headline as white color-->
-<style>
-.text-muted {
-    color: #FFF;
-}
-</style>
+    .auth h1 span {
+        font-size: 21px;
+        display: block;
+        padding-top: 20px;
+    }
 
+    .auth .auth-box legend {
+        color: #fff;
+        border: none;
+        font-weight: 300;
+        font-size: 24px;
+    }
 
-
-<!--center column's div vertically-->
-<style>
-.vertical-align {
-    display: flex;
-    align-items: center;
-}   
-
-</style>
-
-
-
-
-
-
-
-<!-- This script and style part is for search form-->
-<style>
-.margin-top-20 {
-    margin-top: 20px;
-}
-
-body {
-    background: url('/static/img/freeze/bk-freeze2.jpg');
-    background-size: 100% 100%;
-    background-attachment: fixed;
-    background-repeat: no-repeat;
-    font-family: 'Open Sans', sans-serif;
-    padding-bottom: 40px;
-}
-
-.auth h1 {
-    color: #fff!important;
-    font-weight: 300;
-    font-family: 'Open Sans', sans-serif;
-}
-
-.auth h1 span {
-    font-size: 21px;
-    display: block;
-    padding-top: 20px;
-}
-
-.auth .auth-box legend {
-    color: #fff;
-    border: none;
-    font-weight: 300;
-    font-size: 24px;
-}
-
-.auth .auth-box {
-    background-color: #fff;
-    margin: 0 auto;
-    border: 1px solid rgba(255, 255, 255, 0.4);
-    ;
-    background-color: rgba(255, 255, 255, 0.2);
-    margin-top: 40px;
-    -webkit-box-shadow: 0px 0px 30px 0px rgba(50, 50, 50, 0.32);
-    -moz-box-shadow: 0px 0px 30px 0px rgba(50, 50, 50, 0.32);
-    box-shadow: 0px 0px 30px 0px rgba(50, 50, 50, 0.32);
-    -webkit-border-radius: 3px;
-    -moz-border-radius: 3px;
-    border-radius: 3px;
-    -webkit-transition: background 1s ease-in-out;
-    -moz-transition: background 1s ease-in-out;
-    -ms-transition: background 1s ease-in-out;
-    -o-transition: background 1s ease-in-out;
-    transition: background 1s ease-in-out;
-}
-
-@media(max-width:460px) {
     .auth .auth-box {
-        margin: 0 10px;
+        background-color: #fff;
+        margin: 0 auto;
+        border: 1px solid rgba(255, 255, 255, 0.4);
+        ;
+        background-color: rgba(255, 255, 255, 0.2);
+        margin-top: 40px;
+        -webkit-box-shadow: 0px 0px 30px 0px rgba(50, 50, 50, 0.32);
+        -moz-box-shadow: 0px 0px 30px 0px rgba(50, 50, 50, 0.32);
+        box-shadow: 0px 0px 30px 0px rgba(50, 50, 50, 0.32);
+        -webkit-border-radius: 3px;
+        -moz-border-radius: 3px;
+        border-radius: 3px;
+        -webkit-transition: background 1s ease-in-out;
+        -moz-transition: background 1s ease-in-out;
+        -ms-transition: background 1s ease-in-out;
+        -o-transition: background 1s ease-in-out;
+        transition: background 1s ease-in-out;
     }
-}
 
-.auth .auth-box input::-webkit-input-placeholder {
-    /* WebKit browsers */
-
-    color: #fff;
-    font-weight: 300;
-}
-
-.auth .auth-box input:-moz-placeholder {
-    /* Mozilla Firefox 4 to 18 */
-
-    color: #fff;
-    font-weight: 300;
-}
-
-.auth .auth-box input::-moz-placeholder {
-    /* Mozilla Firefox 19+ */
-
-    color: #fff;
-    font-weight: 300;
-}
-
-.auth .auth-box input:-ms-input-placeholder {
-    /* Internet Explorer 10+ */
-
-    color: #fff;
-    font-weight: 300;
-}
-
-.auth span.input-group-addon,
-.input-group-btn button {
-    border: none;
-    background: #fff!important;
-    color: #000!important;
-}
-
-.auth form {
-    font-weight: 300!important;
-}
-
-.auth form input[type="text"],
-.auth form input[type="password"],
-.auth form input[type="email"],
-.auth form input[type="search"] {
-    border: none;
-    padding: 10px 0 10px 0;
-    background-color: rgba(255, 255, 255, 0)!important;
-    background: rgba(255, 255, 255, 0);
-    color: #fff;
-    font-size: 16px;
-    border-bottom: 1px dotted #fff;
-    border-radius: 0;
-    box-shadow: none!important;
-    height: auto;
-}
-
-.auth textarea {
-    background-color: rgba(255, 255, 255, 0)!important;
-    color: #fff!important;
-}
-
-.auth input[type="file"] {
-    color: #fff;
-}
-
-.auth form label {
-    color: #fff;
-    font-size: 15px;
-    font-weight: 300;
-}
-/*for radios & checkbox labels*/
-
-.auth .radio label,
-.auth label.radio-inline,
-.auth .checkbox label,
-.auth label.checkbox-inline {
-    font-size: 14px;
-}
-
-.auth form .help-block {
-    color: #fff;
-}
-
-.auth form select {
-    background-color: rgba(255, 255, 255, 0)!important;
-    background: rgba(255, 255, 255, 0);
-    color: #fff!important;
-    border-bottom: 1px solid #fff!important;
-    border-radius: 0;
-    box-shadow: none;
-}
-
-.auth form select option {
-    color: #000;
-}
-/*multiple select*/
-
-.auth select[multiple] option,
-.auth select[size] {
-    color: #fff!important;
-}
-/*Form buttons*/
-
-.auth form .btn {
-    background: none;
-    -webkit-transition: background 0.2s ease-in-out;
-    -moz-transition: background 0.2s ease-in-out;
-    -ms-transition: background 0.2s ease-in-out;
-    -o-transition: background 0.2s ease-in-out;
-    transition: background 0.2s ease-in-out;
-}
-
-.auth form .btn-default {
-    color: #fff;
-    border-color: #fff;
-}
-
-.auth form .btn-default:hover {
-    background: rgba(225, 225, 225, 0.3);
-    color: #fff;
-    border-color: #fff;
-}
-
-.auth form .btn-primary:hover {
-    background: rgba(66, 139, 202, 0.3);
-}
-
-.auth form .btn-success:hover {
-    background: rgba(92, 184, 92, 0.3);
-}
-
-.auth form .btn-info:hover {
-    background: rgba(91, 192, 222, 0.3);
-}
-
-.auth form .btn-warning:hover {
-    background: rgba(240, 173, 78, 0.3);
-}
-
-.auth form .btn-danger:hover {
-    background: rgba(217, 83, 79, 0.3);
-}
-
-.auth form .btn-link {
-    border: none;
-    color: #fff;
-    padding-left: 0;
-}
-
-.auth form .btn-link:hover {
-    background: none;
-}
-
-.auth label.label-floatlabel {
-    font-weight: 300;
-    font-size: 11px;
-    color: #fff;
-    left: 0!important;
-    top: 1px!important;
-}
-</style>
-
-
-<script>
-(function(e, t, n, r) {
-    function o(t, n) {
-        this.$element = e(t);
-        this.settings = e.extend({}, s, n);
-        this.init()
-    }
-    var i = "floatlabel",
-    s = {
-        slideInput: true,
-        labelStartTop: "20px",
-        labelEndTop: "10px",
-        transitionDuration: .3,
-        transitionEasing: "ease-in-out",
-        labelClass: "",
-        typeMatches: /text|password|email|number|search|url/
-    };
-    o.prototype = {
-        init: function() {
-            var e = this;
-            var n = {
-                "-webkit-transition": "all " + this.settings.transitionDuration + "s " + this.settings.transitionEasing,
-                "-moz-transition": "all " + this.settings.transitionDuration + "s " + this.settings.transitionEasing,
-                "-o-transition": "all " + this.settings.transitionDuration + "s " + this.settings.transitionEasing,
-                "-ms-transition": "all " + this.settings.transitionDuration + "s " + this.settings.transitionEasing,
-                transition: "all " + this.settings.transitionDuration + "s " + this.settings.transitionEasing
-            };
-            if (this.$element.prop("tagName").toUpperCase() !== "INPUT") {
-                return
-            }
-            if (!this.settings.typeMatches.test(this.$element.attr("type"))) {
-                return
-            }
-            var r = this.$element.attr("id");
-            if (!r) {
-                r = Math.floor(Math.random() * 100) + 1;
-                this.$element.attr("id", r)
-            }
-            var i = this.$element.attr("placeholder");
-            var s = this.$element.data("label");
-            var o = this.$element.data("class");
-            if (!o) {
-                o = ""
-            }
-
-            if (!i || i === "") {
-                i = "You forgot to add placeholder attribute!"
-            }
-
-            if (!s || s === "") {
-                s = i
-            }
-            this.inputPaddingTop = parseFloat(this.$element.css("padding-top")) + 10;
-            this.$element.wrap('<div class="floatlabel-wrapper" style="position:relative"></div>');
-            this.$element.before('<label for="' + r + '" class="label-floatlabel ' + this.settings.labelClass + " " + o + '">' + s + "</label>");
-            this.$label = this.$element.prev("label");
-            this.$label.css({
-                position: "absolute",
-                top: this.settings.labelStartTop,
-                left: this.$element.css("padding-left"),
-                display: "none",
-                "-moz-opacity": "0",
-                "-khtml-opacity": "0",
-                "-webkit-opacity": "0",
-                opacity: "0"
-            });
-            if (!this.settings.slideInput) {
-                this.$element.css({
-                    "padding-top": this.inputPaddingTop
-                })
-            }
-            this.$element.on("keyup blur change", function(t) {
-                e.checkValue(t)
-            });
-            t.setTimeout(function() {
-                e.$label.css(n);
-                e.$element.css(n)
-            }, 100);
-            this.checkValue()
-        },
-        checkValue: function(e) {
-            if (e) {
-                var t = e.keyCode || e.which;
-                if (t === 9) {
-                    return
-                }
-            }
-            var n = this.$element.data("flout");
-            if (this.$element.val() !== "") {
-                this.$element.data("flout", "1")
-            }
-            if (this.$element.val() === "") {
-                this.$element.data("flout", "0")
-            }
-            if (this.$element.data("flout") === "1" && n !== "1") {
-                this.showLabel()
-            }
-            if (this.$element.data("flout") === "0" && n !== "0") {
-                this.hideLabel()
-            }
-        },
-        showLabel: function() {
-            var e = this;
-            e.$label.css({
-                display: "block"
-            });
-            t.setTimeout(function() {
-                e.$label.css({
-                    top: e.settings.labelEndTop,
-                    "-moz-opacity": "1",
-                    "-khtml-opacity": "1",
-                    "-webkit-opacity": "1",
-                    opacity: "1"
-                });
-                if (e.settings.slideInput) {
-                    e.$element.css({
-                        "padding-top": e.inputPaddingTop
-                    })
-                }
-            }, 50)
-        },
-        hideLabel: function() {
-            var e = this;
-            e.$label.css({
-                top: e.settings.labelStartTop,
-                "-moz-opacity": "0",
-                "-khtml-opacity": "0",
-                "-webkit-opacity": "0",
-                opacity: "0"
-            });
-            if (e.settings.slideInput) {
-                e.$element.css({
-                    "padding-top": parseFloat(e.inputPaddingTop) - 10
-                })
-            }
-            t.setTimeout(function() {
-                e.$label.css({
-                    display: "none"
-                })
-            }, e.settings.transitionDuration * 1e3)
+    @media(max-width:460px) {
+        .auth .auth-box {
+            margin: 0 10px;
         }
-    };
-    e.fn[i] = function(t) {
-        return this.each(function() {
-            if (!e.data(this, "plugin_" + i)) {
-                e.data(this, "plugin_" + i, new o(this, t))
-            }
-        })
     }
-})(jQuery, window, document)
 
-$(document).ready(function() {
-            //Floatlabel
-            $('input').floatlabel();
-            $('a, button').click(function(e) {
-                e.preventDefault();
-            });
+    .auth .auth-box input::-webkit-input-placeholder {
+        /* WebKit browsers */
+
+        color: #fff;
+        font-weight: 300;
+    }
+
+    .auth .auth-box input:-moz-placeholder {
+        /* Mozilla Firefox 4 to 18 */
+
+        color: #fff;
+        font-weight: 300;
+    }
+
+    .auth .auth-box input::-moz-placeholder {
+        /* Mozilla Firefox 19+ */
+
+        color: #fff;
+        font-weight: 300;
+    }
+
+    .auth .auth-box input:-ms-input-placeholder {
+        /* Internet Explorer 10+ */
+
+        color: #fff;
+        font-weight: 300;
+    }
+
+    .auth span.input-group-addon,
+    .input-group-btn button {
+        border: none;
+        background: #fff!important;
+        color: #000!important;
+    }
+
+    .auth form {
+        font-weight: 300!important;
+    }
+
+    .auth form input[type="text"],
+    .auth form input[type="password"],
+    .auth form input[type="email"],
+    .auth form input[type="search"] {
+        border: none;
+        padding: 10px 0 10px 0;
+        background-color: rgba(255, 255, 255, 0)!important;
+        background: rgba(255, 255, 255, 0);
+        color: #fff;
+        font-size: 16px;
+        border-bottom: 1px dotted #fff;
+        border-radius: 0;
+        box-shadow: none!important;
+        height: auto;
+    }
+
+    .auth textarea {
+        background-color: rgba(255, 255, 255, 0)!important;
+        color: #fff!important;
+    }
+
+    .auth input[type="file"] {
+        color: #fff;
+    }
+
+    .auth form label {
+        color: #fff;
+        font-size: 15px;
+        font-weight: 300;
+    }
+    /*for radios & checkbox labels*/
+
+    .auth .radio label,
+    .auth label.radio-inline,
+    .auth .checkbox label,
+    .auth label.checkbox-inline {
+        font-size: 14px;
+    }
+
+    .auth form .help-block {
+        color: #fff;
+    }
+
+    .auth form select {
+        background-color: rgba(255, 255, 255, 0)!important;
+        background: rgba(255, 255, 255, 0);
+        color: #fff!important;
+        border-bottom: 1px solid #fff!important;
+        border-radius: 0;
+        box-shadow: none;
+    }
+
+    .auth form select option {
+        color: #000;
+    }
+    /*multiple select*/
+
+    .auth select[multiple] option,
+    .auth select[size] {
+        color: #fff!important;
+    }
+    /*Form buttons*/
+
+    .auth form .btn {
+        background: none;
+        -webkit-transition: background 0.2s ease-in-out;
+        -moz-transition: background 0.2s ease-in-out;
+        -ms-transition: background 0.2s ease-in-out;
+        -o-transition: background 0.2s ease-in-out;
+        transition: background 0.2s ease-in-out;
+    }
+
+    .auth form .btn-default {
+        color: #fff;
+        border-color: #fff;
+    }
+
+    .auth form .btn-default:hover {
+        background: rgba(225, 225, 225, 0.3);
+        color: #fff;
+        border-color: #fff;
+    }
+
+    .auth form .btn-primary:hover {
+        background: rgba(66, 139, 202, 0.3);
+    }
+
+    .auth form .btn-success:hover {
+        background: rgba(92, 184, 92, 0.3);
+    }
+
+    .auth form .btn-info:hover {
+        background: rgba(91, 192, 222, 0.3);
+    }
+
+    .auth form .btn-warning:hover {
+        background: rgba(240, 173, 78, 0.3);
+    }
+
+    .auth form .btn-danger:hover {
+        background: rgba(217, 83, 79, 0.3);
+    }
+
+    .auth form .btn-link {
+        border: none;
+        color: #fff;
+        padding-left: 0;
+    }
+
+    .auth form .btn-link:hover {
+        background: none;
+    }
+
+    .auth label.label-floatlabel {
+        font-weight: 300;
+        font-size: 11px;
+        color: #fff;
+        left: 0!important;
+        top: 1px!important;
+    }
+    </style>
+
+    <script>
+    $(function() {
+        var oid = $.url('?oid');
+        $.getJSON('v1/order/' + oid, function(data){
+            if (Math.floor(data.status/100) == 2) {
+                console.log(data.data[0]);
+                fillOrderHTML(data.data[0]);
+            } else {
+                console.log('Fetch order failed');
+            }
         });
-</script>
+        $('#accept-form').submit(function(e){
+            $.post('/v1/order', {
+                oid: oid,
+                did: {[current_user.did]},
+                trucksize: $('input[name="trucksize"]').val(),
+                initialfee: $('input[name="initialfee"]').val(),
+            }, function(data) {
+                if (Math.floor(data.status/100) == 2) {
+                    alert('Success!');
+                    location.href = '/myorder';
+                } else {
+                    console.log('Join order failed. Change sid and try again');
+                }
+            });
+            e.preventDefault();
+        });
+        $('#accept-submit').click(function(e){
+            $('#accept-form').submit();
+            e.preventDefault();
+        });
+    });
+    function fillOrderHTML(data) {
+        $('#order-title').html(data.title);
+        $('#pickupaddr').html(data.pickupaddr);
+        $('#pickuptime').html(data.pickuptime);
+        $('#perstopfee').html('$' + data.perstopfee);
+        $('#deliveryaddr').html(data.deliveryaddr);
+        $('#deliverytime').html(data.deliverytime);
+        $('#unitfee').html('$' + data.unitfee);
+        $('#membernum').html('$' + data.membernum);
+    }
+    </script>
 
+    <script>
+    $(document).ready(function() {
+        appMaster.preLoader();
+    });
+    </script>
 
-<script>
-$(document).ready(function() {
-    appMaster.preLoader();
-});
-</script>
-
-
-</body>
-
-</html>
-
+{% endblock %}
