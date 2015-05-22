@@ -56,11 +56,8 @@ class OrderRecord(db.Model):
     sid = db.Column(db.Integer, primary_key=True)
     did = db.Column(db.Integer)
     stopaddress = db.Column(db.String(128))
-    delivertime = db.Column(db.DateTime)  # FIXME: Should be removed
     cargosize = db.Column(db.Integer)
-    expectfee = db.Column(db.Float)  # FIXME: Should be removed
-    totalfee = db.Column(db.Float)  # FIXME: Should be "totalfee"
-    acceptedtime = db.Column(db.DateTime)  # FIXME: Should be removed
+    totalfee = db.Column(db.Float)
     status = db.Column(db.String(4))
     grade = db.Column(db.Float)
     comment = db.Column(db.Text)
@@ -76,11 +73,8 @@ class OrderRecord(db.Model):
             'sid' : self.sid,
             'did' : self.did,
             'stopaddress' : self.stopaddress,
-            'delivertime' : self.delivertime.strftime(DATETIME_FORMAT),
             'cargosize' : self.cargosize,
-            'expectfee' : self.expectfee,
             'totalfee' : self.totalfee,
-            'acceptedtime' : self.acceptedtime.strftime(DATETIME_FORMAT),
             'status' : self.status,
             'grade' : self.grade,
             'comment' : self.comment
