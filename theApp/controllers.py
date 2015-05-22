@@ -54,7 +54,6 @@ def resetdb():
     shipper_1.state = "NY"
     shipper_1.zip = "10027"
 
-
     shipper_2 = Shipper()
     shipper_2.name = "Tom Li"
     shipper_2.passwd = generate_password_hash("123123")
@@ -79,7 +78,6 @@ def resetdb():
     deliverer_1.zip = "10022"
     deliverer_1.grade = 4.3
 
-
     deliverer_2 = Deliverer()
     deliverer_2.name = "Paul Aho"
     deliverer_2.passwd = generate_password_hash("123123")
@@ -92,6 +90,7 @@ def resetdb():
     deliverer_2.zip = "10010"
     deliverer_2.grade = 3.9
 
+
     order_1 = Order()
     order_1.pickupaddr = "Columbia"
     order_1.pickuptime = datetime.strptime('2011-11-03 18:21:26', DATETIME_FORMAT)
@@ -99,7 +98,7 @@ def resetdb():
     order_1.totalcargosize = 3
     order_1.trucksize = 33
     order_1.totalfee = 35.5
-    order_1.basefee = 35.5
+    order_1.basefee = 10
     order_1.closefee = 25.5
     order_1.status = "D"
     order_1.drivername = "XiDaDa"
@@ -112,7 +111,7 @@ def resetdb():
     order_2.totalcargosize = 3
     order_2.trucksize = 33
     order_2.totalfee = 35.5
-    order_2.basefee = 35.5
+    order_2.basefee = 10
     order_2.closefee = 35.5
     order_2.status = "D"
     order_2.drivername = "XiDaDa"
@@ -125,7 +124,7 @@ def resetdb():
     order_3.totalcargosize = 5
     order_3.trucksize = 33
     order_3.totalfee = 35.5
-    order_3.basefee = 35.5
+    order_3.basefee = 10
     order_3.closefee = 55.5
     order_3.status = "D"
     order_3.drivername = "XiDaDa"
@@ -138,7 +137,7 @@ def resetdb():
     order_4.totalcargosize = 5
     order_4.trucksize = 33
     order_4.totalfee = 35.5
-    order_4.basefee = 35.5
+    order_4.basefee = 10
     order_4.closefee = 355
     order_4.status = "D"
     order_4.drivername = "XiDaDa"
@@ -151,7 +150,7 @@ def resetdb():
     order_5.totalcargosize = 5
     order_5.trucksize = 33
     order_5.totalfee = 35.5
-    order_5.basefee = 35.5
+    order_5.basefee = 10
     order_5.closefee = 35.5
     order_5.status = "D"
     order_5.drivername = "XiDaDa"
@@ -164,11 +163,12 @@ def resetdb():
     order_6.totalcargosize = 5
     order_6.trucksize = 33
     order_6.totalfee = 35.5
-    order_6.basefee = 35.5
+    order_6.basefee = 10
     order_6.closefee = 35.5
     order_6.status = "D"
     order_6.drivername = "XiDaDa"
     order_6.driverphone = "821931"
+
 
     orderRecord_1 = OrderRecord()
     orderRecord_1.oid = 1
