@@ -5,10 +5,13 @@ Routes and views for the flask application.
 from datetime import datetime
 from flask import render_template, request, flash, redirect, url_for, jsonify
 from theApp import app, db, lm, controllers
-from flask.ext.login import login_required, login_user, logout_user
+from flask.ext.login import login_required, login_user, logout_user, current_user
 from werkzeug.security import generate_password_hash, check_password_hash
 from jinja2 import Environment, Undefined
 from .forms import *
+from .oauth import OAuthSignIn
+from .models import *
+from .util import *
 
 
 @app.before_first_request
@@ -135,6 +138,47 @@ def user_login():
         )
     # Login valid form
     login_user(form.user, remember=form.rememberme)
+    return jsonify(
+        status=1
+    )
+
+@app.route('/<user_type>/authorize/<provider>')
+def oauth_authorize(user_type, provider):
+    if user_type!="shipper" and user_type!="deliverer":
+        return jsonify("invalid user type!")
+    if not current_user.is_anonymous():
+        return redirect(url_for('home'))
+    oauth = OAuthSignIn.get_provider(provider)
+    return oauth.authorize(user_type)
+
+@app.route('/<user_type>/callback/<provider>')
+def oauth_callback(user_type, provider):
+    if not current_user.is_anonymous():
+        return redirect(url_for('home'))
+    oauth = OAuthSignIn.get_provider(provider)
+    social_id, username, email = oauth.callback(user_type)
+    print social_id, username, email
+    if social_id is None:
+        flash('Authentication failed.')
+        return redirect(url_for('home'))
+    new_id = djb2_string_hash(social_id)  ## social_id may contain letters. use djb2 to convert to int
+    print new_id
+    if user_type=="shipper":
+        shipper = Shipper.query.get(new_id)
+        if not shipper:
+            shipper = Shipper(sid=new_id, name=username, email=email)
+            db_session.add(shipper)
+            db_session.commit()
+        print 171
+        login_user(shipper)
+    else:  # deliverer
+        deliverer = Deliverer.query.get(new_id)
+        if not deliverer:
+            deliverer = Deliverer(did=new_id, name=username, email=email)
+            db_session.add(deliverer)
+            db_session.commit()
+        login_user(deliverer)
+    print 180
     return jsonify(
         status=1
     )

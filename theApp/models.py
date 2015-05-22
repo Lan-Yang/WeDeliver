@@ -6,6 +6,7 @@ Models for database of the flask application.
 from theApp import app, db
 from werkzeug.security import generate_password_hash
 from .util import *
+from flask.ext.login import UserMixin
 
 # db.session
 db_session = db.session
@@ -83,7 +84,7 @@ class OrderRecord(db.Model):
             'comment' : self.comment
         }
 
-class Shipper(db.Model):
+class Shipper(UserMixin, db.Model):
     sid = db.Column(db.Integer, primary_key=True)  # auto-inc
     name = db.Column(db.String(32))
     passwd = db.Column(db.String(128))
