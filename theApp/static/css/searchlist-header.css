@@ -95,8 +95,13 @@
 }
 
 .curprice {
-	font-size: 38px;
+	font-size: 50px;
 }
+
+.occupancy_style {
+	font-size: 25px;
+}
+
 
 .othertext {
 	font-size: 16px;
