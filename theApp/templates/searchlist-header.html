@@ -37,7 +37,7 @@
 
                                 <!-- Button -->
                                 <div class="form-group" style="margin-bottom: 25px;">
-                                    <button id="submit-search" class="btn btn-primary btn-search" style="background-color:#254A6E;">Search</button>
+                                    <button id="submit-search" class="btn btn-primary btn-search" style="background-color:#256EB8;">Search</button>
                                 </div>
 
                             </fieldset>
@@ -52,14 +52,17 @@
                         <div class="full col-sm-11" style="padding-right: 0; padding-left: 5px;">
 
                             <!-- content -->
-                            <div class="row" style="font-size: 13px; font-family: 'Source Sans Pro', sans-serif;">
+                            <div class="row" style="font-size: 13px; font-family: 'Lucida Grande', sans-serif;">
                                 <div class="col-sm-2 page-header text-muted text-left col-header-list" >
                                     Current Unit Price
                                 </div>
                                 <div class="col-sm-3 page-header text-muted text-center col-header-list">
-                                    Shipping Company
+                                    Deliverer
                                 </div>
-                                <div class="col-sm-5 page-header text-muted text-center col-header-list">
+                                <div class = "col-sm-1 page-header text-muted text-center col-header-list">
+                                    .
+                                </div>
+                                <div class="col-sm-4 page-header text-muted text-center col-header-list">
                                     Pick Up  |  Delivery
                                 </div>
                                 <div class="col-sm-2 page-header text-muted text-right col-header-list">
@@ -71,43 +74,44 @@
 
                             <div class="col-sm-12">
                                 <div class="page-header text-muted divider">
-                                    <span id="prev-page"> <font size="3" color="black"> <i class="fa fa-angle-up"></i> Prev </font></span>
-                                    <span id="next-page"> <font size="3" color="black"> <i class="fa fa-angle-down"></i> Next </font></span>
+                                    <a onclick="showPrePage()"> <font size="3" color="white"> <i class="fa fa-angle-up"></i> Up </font></a>
+                                    <a onclick="showNextPage()"> <font size="3" color="white"> <i class="fa fa-angle-down"></i> Next </font></a>
                                 </div>
                             </div>
 
-                            <!--This part is for showing favoriate deliver's logo-->å
+
+
+                            <!--This part is for showing favoriate deliver's logo-->
+
                         <div class ="row">
                             <div class="col-sm-4 text-center">
-                                <div class="view">
-                                     <h4>Tom Delivery</h4>
-                                     <img src="http://24.media.tumblr.com/273167b30c7af4437dcf14ed894b0768/tumblr_n5waxesawa1st5lhmo1_1280.jpg" class="img-responsive">
+                                <div class="view" style="font-family: 'Arial', sans-serif;" >
+                                     <h4>Shunfeng Student Express</h4>
+                                     <img src="/static/img/shungfeng_logo.png" class="img-responsive"> 
                                  </div>
                             </div>
+                            <div class = "col-sm-1">
+                            </div>
+                            <div class="col-sm-3 text-center">
+                                <div class="view" style="font-family: 'Arial', sans-serif;">
+                                     <h4>Planet Express</h4>
+                                     <img src="/static/img/Planet-Express-Logo.png" class="img-responsive"> 
+                                 </div>
+                            </div>
+                            <div class = "col-sm-1">
+                            </div>
+                            <div class="col-sm-2 text-center">
+                                <div class="view" style="font-family: 'Arial', sans-serif;">
+                                     <h4>Panda Express</h4>
+                                     <img src="/static/img/Panda_Express_Logo.png" class="img-responsive"> 
+                                 </div>
+                            </div>
+                        </div>
 
-                            <div class="col-sm-4 text-center">
-                                <div class="view">
-                                     <h4>Lighting Delivery</h4>
-                                     <img src="http://24.media.tumblr.com/273167b30c7af4437dcf14ed894b0768/tumblr_n5waxesawa1st5lhmo1_1280.jpg" class="img-responsive">
-                                 </div>
-                            </div>
 
-                            <div class="col-sm-4 text-center">
-                                <div class="view">
-                                     <h4>Sweet Delivery</h4>
-                                     <img src="http://24.media.tumblr.com/273167b30c7af4437dcf14ed894b0768/tumblr_n5waxesawa1st5lhmo1_1280.jpg" class="img-responsive">
-                                 </div>
-                            </div>
 
                             <div class="col-sm-12 col-header-list"  style="font-size: 13px; font-family: 'Source Sans Pro', sans-serif;">
                                 <div class="page-header text-muted divider">
-                                    Connect with Us
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-sm-6">
-                                    <a href="#" style="color:white;"><i class="fa fa-twitter"></i> Twitter</a> <small class="text-muted">|</small> <a href="#" style="color:white;"><i class="fa fa-facebook"></i> Facebook</a> <small class="text-muted">|</small> <a href="#" style="color:white;"><i class="fa fa-foursquare"></i> Foursquare</a>
                                 </div>
                             </div>
 
@@ -124,9 +128,12 @@
                                 </div>
                             </div>
 
-                        </div> <!-- /col-9 -->
-                    </div> <!-- /padding -->
-                </div> <!-- /main -->
+                        </div>
+                        <!-- /col-9 -->
+                    </div>
+                    <!-- /padding -->
+                </div>
+                <!-- /main -->
             </div>
         </div>
     </div>
@@ -143,9 +150,11 @@
                     <div class="col-sm-3 text-center">
                         <h5 class="white othertext">{{:title}}Shunfeng Company</h5>
                     </div>
-                    <div class="col-sm-6 text-center">
+                    <div class = "col-sm-3">
+                    </div>
+                    <div class="col-sm-3">
                         <h5 class="white othertext">
-                            <span> {{:pickuptime}} - 2011-11-03 18:21:26{{:delivertime}}</span>
+                            <span>2015-05-27 18:00</span>
                         </h5>
                     </div>
                     <div class="col-sm-3 text-right">
@@ -157,14 +166,24 @@
                 </div>
                 <div class="row">
                     <div class="col-sm-3 text-center">
-                        <small class="text-muted">
-                            {{:#index}} hours ago • <a href="#" class="text-muted">Read More</a>
-                        </small>
+                        <span>
+                            <i class="fa fa-star fa-lg"></i>
+                            <i class="fa fa-star fa-lg"></i>
+                            <i class="fa fa-star fa-lg"></i>
+                            <i class="fa fa-star-half-o fa-lg"></i>
+                            <i class="fa fa-star-o fa-lg"></i>
+                        </span>
                     </div>
-                    <div class="col-sm-6">
+                    <div class = "col-sm-3">
                     </div>
+                    <div class="col-sm-3">
+                        <h5 class="white othertext">
+                            <span> 2015-05-28 </span>
+                        </h5>
+                    </div>
+
                     <div class="col-sm-3 text-right">
-                        <button class="btn btn-block btn-select" href="/order?oid={{:oid}}">Select</button>
+                        <a class="btn btn-block btn-select" href="/order?oid={{:oid}}">Select</a>
                     </div>
                 </div>
             </div>
@@ -429,10 +448,27 @@
     }
     </style>
 
+
+
+    <!--show the script for show pre page and next page-->
+    <script>
+        function showPrePage() {
+            alert("want to show previous page?");
+        }
+
+        function showNextPage() {
+            alert("want to show next page?");
+        }
+    </script>
+
+
     <script>
     $(document).ready(function() {
         //Floatlabel
         // $('input').floatlabel();
+        // $('a, button').click(function(e) {
+        //     e.preventDefault();
+        // });
         /* Date Picker */
         $('.date').datepicker({
             format: "mm/dd/yyyy"
@@ -455,8 +491,12 @@
                 cargosize: 0, // FIXME
                 none_key: $('input[name="deliverdate"]').val(),
                 debug: 1,  // testing backdoor
-            }, updateHTML
-            );
+            }, function(data) { // success
+                console.log(data);
+                $('#orderlist').html(
+                    $("#list-template").render(data)
+                );
+            });
             e.preventDefault();
         });
         /* load modals */
@@ -476,22 +516,6 @@
         });
         //
         $('#search-form').submit();
-        function updateHTML(data) {
-            console.log(data);
-            $('#orderlist').html(
-                $('#list-template').render(data)
-            );
-            $('#prev-page').data('href', data.links[0].href);
-            $('#next-page').data('href', data.links[1].href);
-        }
-        $('#prev-page').click(function(e){
-            $.getJSON($(this).data('href'), updateHTML);
-            e.preventDefault();
-        });
-        $('#next-page').click(function(e){
-            $.getJSON($(this).data('href'), updateHTML);
-            e.preventDefault();
-        });
     });
     </script>
 
