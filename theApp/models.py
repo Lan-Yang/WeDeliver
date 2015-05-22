@@ -48,7 +48,7 @@ class Order(db.Model):
             'drivername' : self.drivername,
             'driverphone' : self.driverphone,
             'deliverdate' : self.deliverdate.strftime(DATETIME_FORMAT),
-            'finishedtime' : self.finishedtime.strftime(DATETIME_FORMAT),
+            'finishedtime' : self.finishedtime.strftime(DATETIME_FORMAT) if self.finishedtime else '',
         }
 
 
