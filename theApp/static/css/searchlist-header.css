@@ -13,7 +13,7 @@
 
 .btn-logout {
 	border-radius: 0.3em;
-	background-color: #256EB8;
+	background-color: #254A6E;
 	font-size: 14px;
 	font-family: 'Lato';
 	color: white;
@@ -33,7 +33,7 @@
 
 .btn-select {
 	border-radius: 0.3em;
-	background-color: #256EB8;
+	background-color: #254A6E;
 	font-size: 14px;
 	font-family: 'Lato';
 	color: white;
@@ -50,13 +50,13 @@
 
 .btn.btn-primary:hover {
     color: black;
-    background: #256EB8 none repeat scroll 0% 0%;
-    border-color: #256EB8;
+    background: #254A6E none repeat scroll 0% 0%;
+    border-color: #254A6E;
 }
 
 .btn.btn-primary {
     color: white;
-    border-color: #256EB8;
+    border-color: #254A6E;
 }
 
 .centered {
