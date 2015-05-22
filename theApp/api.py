@@ -73,7 +73,7 @@ def add_new_order():
     order.pickupaddr = data.get("pickupaddr", "")
     order.pickuptime = data.get("pickuptime", "")
     order.did = data.get("did", "0")
-    order.cargosize = data.get("cargosize", "0")
+    order.totalcargosize = data.get("cargosize", "0")
     order.trucksize = data.get("trucksize", "0")
     order.initialfee = data.get("initialfee", "0")
     order.perstopfee = data.get("perstopfee", "0")
@@ -81,12 +81,13 @@ def add_new_order():
     order.drivername = data.get("drivername", "")
     order.driverphone = data.get("driverphone", "")
     order.deliverdate = data.get("deliverdate", "")
-    order.finishedtime = data.get("finishedtime", "")
+    # order.finishedtime = data.get("finishedtime", "")
     db_session.add(order)
     db_session.commit()
     return jsonify(
         status = 201,
-        data = "order creation succeeds"
+        data = "order creation succeeds",
+        oid = order.oid,  # NEW
     )
 
 @app.route('/v1/orderRecord', methods=['GET'])
@@ -136,7 +137,7 @@ def add_new_orderRecord():
     orderRecord.stopaddress = data.get("stopaddress", "")
     orderRecord.cargosize = data.get("cargosize", "5")
     orderRecord.totalfee = data.get("totalfee", "0.0")
-    orderRecord.status = data.get("status", "")
+    # orderRecord.status = data.get("status", "")
     orderRecord.grade = data.get("grade", "0.0")
     orderRecord.comment = data.get("comment", "")
     db_session.add(orderRecord)

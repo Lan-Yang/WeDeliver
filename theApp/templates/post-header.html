@@ -5,44 +5,7 @@
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.7.14/css/bootstrap-datetimepicker.min.css">
 {% endblock %}
 {% block body %}
-    <header>
-        <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
-            <div class="container">
-                <!-- Brand and toggle get grouped for better mobile display -->
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                        <span class="fa fa-bars fa-lg"></span>
-                    </button>
-                    <a class="navbar-brand" href="/">
-                        <img src="/static/logo.png" alt="logo" class="logo">
-                    </a>
-                </div>
-                <!-- Collect the nav links, forms, and other content for toggling -->
-                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                    <ul class="nav navbar-nav navbar-right">
-                        <li><a href="/s-search">Search</a></li>
-                        <li><a href="/s-post">Post</a></li>
-                        <li><a href="/myorder">My Orders</a></li>
-                        <li class="dropdown">
-                            <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">John</a>
-                            <ul class="dropdown-menu profileselect" role="menu">
-                                <li id="prettySurname" class="text-center">
-                                    <h5 class="text-name">Hi! John Doe</h5>
-                                </li>
-                                <li id="toProfile"><a href="/s-account" style="color: #555; font-size: 14px;">Profile</a></li>
-                                <!-- <li class="divider"></li> -->
-                                <li id="toHelp"><a href="/logout" style="color: #555; font-size: 14px;">Help</a></li>
-                                <li id="logOutButton" class="text-center">
-                                    <button class="btn btn-block btn-logout" href="" type="submit">Log out</button>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
-                </div> <!-- /.navbar-collapse -->
-            </div> <!-- /.container-->
-        </nav>
-    </header>
-
+    {% include "s-header.html" %}
     <div class="wrapper">
         <div class="box">
             <div class="row">
@@ -50,7 +13,7 @@
                 <!--search box-->
                 <div class="container auth col-sm-8 col-sm-offset-2" style="padding-top: 150px; padding-left: 50px; padding-right: 50px;">
                     <div id="big-form" class="well auth-box">
-                        <form id="post-form" action="/v1/order" method="POST">
+                        <form id="post-form" action="#" method="POST">
                             <fieldset>
                                 <div class="col-sm-12">
                                     <div class="form-group">
@@ -76,13 +39,13 @@
                                     <div class="col-sm-6">
                                         <div class="form-group">
                                             <label class="control-label" for="pickup-time" style="font-size: 16px;"> <i class="fa fa-calendar"></i> Pickup Time</label>
-                                            <input id="pickup-time" name="pickuptime" placeholder="05/26/2015 12:31 PM" class="form-control input-md datetime" type="text">
+                                            <input id="pickup-time" name="pickuptime" placeholder="2015-05-22 18:28:53" class="form-control input-md datetime" type="text">
                                         </div>
                                     </div>
                                      <div class="col-sm-6">
                                         <div class="form-group">
                                             <label class="control-label" for="deliver-time" style="font-size: 16px;"> <i class="fa fa-calendar-o"></i> Delivery Time</label>
-                                            <input id="deliver-time" name="delivertime" placeholder="05/27/2015 12:31 PM" class="form-control input-md datetime" type="text">
+                                            <input id="deliver-time" name="deliverdate" placeholder="2015-05-22 18:28:53" class="form-control input-md datetime" type="text">
                                         </div>
                                     </div>
                                 </div>
@@ -90,7 +53,7 @@
                                     <div class="col-sm-6">
                                         <div class="form-group">
                                             <label class="control-label" for="cargo-size" style="font-size: 16px;"> <i class="fa fa-th"></i> Cargo Size</label>
-                                            <input id="cargo-size" name="cargosize" placeholder="5 Unit" class="form-control input-md" type="text">
+                                            <input id="cargo-size" name="cargosize" placeholder="5" class="form-control input-md" type="text">
                                         </div>
                                     </div>
                                     <div class="col-sm-6">
@@ -384,7 +347,9 @@
 
     <script>
     $(function() {
-        $('.datetime').datetimepicker();
+        $('.datetime').datetimepicker({
+            format: "YYYY-MM-DD HH:mm:ss",
+        });
         /* load modals */
         $('#place-modal').on('show.bs.modal', function(e) {
             $(this).find('.modal-content').load('/placemodal');
@@ -402,15 +367,22 @@
         });
         /* submit */
         $('#post-form').submit(function(e){
-            var uri = $(this).attr('action');
             var data = $(this).serialize();
-            $.post(uri, data, function(result){
-                if (result.status == 201) {
+            $.post('/v1/order', data, function(result){
+                if (Math.floor(result.status / 100) != 2)
+                    return;
+                var oid = result.oid;
+                $.post('/v1/orderRecord', {
+                    oid: oid,
+                    sid: {[current_user.sid]},
+                    stopaddress: $('input[name="deliveraddr"]').val(),
+                    cargosize: $('input[name="cargosize"]').val(),
+                }, function(res){
+                    if (Math.floor(res.status / 100) != 2)
+                        return;
                     alert("Post success!");
                     location.href = '/myorder';
-                } else {
-                    alert('Server error :(');
-                }
+                });
             });
             e.preventDefault();
         });
