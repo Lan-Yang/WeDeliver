@@ -66,7 +66,7 @@ def resetdb():
     shipper_2.zip = "10027"
 
 
-    deliverer_1 = Deliverer()
+    deliverer_1 = Deliverer(did=1590134365)
     deliverer_1.name = "Jingwei Yang"
     deliverer_1.passwd = generate_password_hash("123123")
     deliverer_1.email = "jingwei@kuaihua.com"
