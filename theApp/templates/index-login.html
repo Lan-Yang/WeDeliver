@@ -519,6 +519,11 @@
         $('#login-submit').click(function(e){
             $('#login-form').submit();
         });
+        /*  */
+        $('#login-facebook').click(function(e){
+            '/shipper/authorize/facebook';
+            e.preventDefault();
+        });
         /* Date Picker */
         $('.date').datepicker({
             format: "mm/dd/yyyy"
