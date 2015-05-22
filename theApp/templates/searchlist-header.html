@@ -37,7 +37,7 @@
 
                                 <!-- Button -->
                                 <div class="form-group" style="margin-bottom: 25px;">
-                                    <button id="submit-search" class="btn btn-primary btn-search" style="background-color:#256EB8;">Search</button>
+                                    <button id="submit-search" class="btn btn-primary btn-search" style="background-color:#254A6E;">Search</button>
                                 </div>
 
                             </fieldset>
@@ -71,39 +71,33 @@
 
                             <div class="col-sm-12">
                                 <div class="page-header text-muted divider">
-                                    <a onclick="showPrePage()"> <font size="3" color="black"> <i class="fa fa-angle-up"></i> Up </font></a>
-                                    <a onclick="showNextPage()"> <font size="3" color="black"> <i class="fa fa-angle-down"></i> Next </font></a>
+                                    <span id="prev-page"> <font size="3" color="black"> <i class="fa fa-angle-up"></i> Prev </font></span>
+                                    <span id="next-page"> <font size="3" color="black"> <i class="fa fa-angle-down"></i> Next </font></span>
                                 </div>
                             </div>
 
-
-
-                            <!--This part is for showing favoriate deliver's logo-->
-
+                            <!--This part is for showing favoriate deliver's logo-->å
                         <div class ="row">
                             <div class="col-sm-4 text-center">
                                 <div class="view">
                                      <h4>Tom Delivery</h4>
-                                     <img src="http://24.media.tumblr.com/273167b30c7af4437dcf14ed894b0768/tumblr_n5waxesawa1st5lhmo1_1280.jpg" class="img-responsive"> 
+                                     <img src="http://24.media.tumblr.com/273167b30c7af4437dcf14ed894b0768/tumblr_n5waxesawa1st5lhmo1_1280.jpg" class="img-responsive">
                                  </div>
                             </div>
 
                             <div class="col-sm-4 text-center">
                                 <div class="view">
                                      <h4>Lighting Delivery</h4>
-                                     <img src="http://24.media.tumblr.com/273167b30c7af4437dcf14ed894b0768/tumblr_n5waxesawa1st5lhmo1_1280.jpg" class="img-responsive"> 
+                                     <img src="http://24.media.tumblr.com/273167b30c7af4437dcf14ed894b0768/tumblr_n5waxesawa1st5lhmo1_1280.jpg" class="img-responsive">
                                  </div>
                             </div>
 
                             <div class="col-sm-4 text-center">
                                 <div class="view">
                                      <h4>Sweet Delivery</h4>
-                                     <img src="http://24.media.tumblr.com/273167b30c7af4437dcf14ed894b0768/tumblr_n5waxesawa1st5lhmo1_1280.jpg" class="img-responsive"> 
+                                     <img src="http://24.media.tumblr.com/273167b30c7af4437dcf14ed894b0768/tumblr_n5waxesawa1st5lhmo1_1280.jpg" class="img-responsive">
                                  </div>
                             </div>
-                        </div>
-
-
 
                             <div class="col-sm-12 col-header-list"  style="font-size: 13px; font-family: 'Source Sans Pro', sans-serif;">
                                 <div class="page-header text-muted divider">
@@ -130,12 +124,9 @@
                                 </div>
                             </div>
 
-                        </div>
-                        <!-- /col-9 -->
-                    </div>
-                    <!-- /padding -->
-                </div>
-                <!-- /main -->
+                        </div> <!-- /col-9 -->
+                    </div> <!-- /padding -->
+                </div> <!-- /main -->
             </div>
         </div>
     </div>
@@ -173,7 +164,7 @@
                     <div class="col-sm-6">
                     </div>
                     <div class="col-sm-3 text-right">
-                        <a class="btn btn-block btn-select" href="/order?oid={{:oid}}">Select</a>
+                        <button class="btn btn-block btn-select" href="/order?oid={{:oid}}">Select</button>
                     </div>
                 </div>
             </div>
@@ -438,27 +429,10 @@
     }
     </style>
 
-
-
-    <!--show the script for show pre page and next page-->
-    <script>
-        function showPrePage() {
-            alert("want to show previous page?");
-        }
-
-        function showNextPage() {
-            alert("want to show next page?");
-        }
-    </script>
-
-
     <script>
     $(document).ready(function() {
         //Floatlabel
         // $('input').floatlabel();
-        // $('a, button').click(function(e) {
-        //     e.preventDefault();
-        // });
         /* Date Picker */
         $('.date').datepicker({
             format: "mm/dd/yyyy"
@@ -481,12 +455,8 @@
                 cargosize: 0, // FIXME
                 none_key: $('input[name="deliverdate"]').val(),
                 debug: 1,  // testing backdoor
-            }, function(data) { // success
-                console.log(data);
-                $('#orderlist').html(
-                    $("#list-template").render(data)
-                );
-            });
+            }, updateHTML
+            );
             e.preventDefault();
         });
         /* load modals */
@@ -506,6 +476,22 @@
         });
         //
         $('#search-form').submit();
+        function updateHTML(data) {
+            console.log(data);
+            $('#orderlist').html(
+                $('#list-template').render(data)
+            );
+            $('#prev-page').data('href', data.links[0].href);
+            $('#next-page').data('href', data.links[1].href);
+        }
+        $('#prev-page').click(function(e){
+            $.getJSON($(this).data('href'), updateHTML);
+            e.preventDefault();
+        });
+        $('#next-page').click(function(e){
+            $.getJSON($(this).data('href'), updateHTML);
+            e.preventDefault();
+        });
     });
     </script>
 
