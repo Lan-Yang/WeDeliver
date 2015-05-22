@@ -16,7 +16,7 @@
             </div>
 
             <div class="col-sm-3 text-center">
-                <h5 class="white othertext">{{:title}}Shunfeng Company</h5>
+                <h5 class="white othertext">{{:delivername}}Shunfeng Company</h5>
                 <span>
                     <i class="fa fa-star fa-lg"></i>
                     <i class="fa fa-star fa-lg"></i>
@@ -32,30 +32,28 @@
                     </div>
                     <div class="col-sm-8" >
                         <h5 class="white othertext">
-                            <span>2015-05-27 6:00 PM</span>
+                            <span>{{:pickuptime}}</span>
                         </h5>
                         <h5 class="white othertext">
-                            <span> 2015-05-28 </span>
+                            <span>{{:delivertime}}2015-05-28 </span>
                         </h5>
                     </div>
                 </div>
             </div>
 
             <div class="col-sm-2 text-center" style= "padding-left: 1px; padding-right: 0px;">
-                <h5 class="white curprice"><span> 10/50</span></h5>
+                <h5 class="white curprice"><span>{{:totalcargosize}}/{{:trucksize}}</span></h5>
             </div>
 
             <div class="col-sm-2">
                 <a class="btn btn-block btn-select" href="/order?oid={{:oid}}">Select</a>
             </div>
-        </div>
-
-
+        </div> <!-- /.row -->
 
         {{if #index < #parent.data.length - 1}}
-            <div class="row">
-                <div class="page-header text-muted"></div>
-            </div>
+        <div class="row">
+            <div class="page-header text-muted"></div>
+        </div>
         {{/if}}
     {{/for}}
     </script>
@@ -361,6 +359,18 @@
                 );
             });
             e.preventDefault();
+        });
+        /* login modals */
+        $('#login-modal').on('show.bs.modal', function(e) {
+            console.log(123);
+            $(this).find('.modal-dialog').load('/loginmodal');
+        });
+        $('#login-modal').on('shown.bs.modal', function(e) {
+            /* Connect with Facebook */
+            $(this).find('#login-facebook').click(function(e){
+                location.href = '/shipper/authorize/facebook';
+                e.preventDefault();
+            });
         });
         /* load modals */
         $('#place-modal').on('show.bs.modal', function(e) {
