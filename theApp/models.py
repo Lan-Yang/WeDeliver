@@ -6,6 +6,7 @@ Models for database of the flask application.
 from theApp import app, db
 from werkzeug.security import generate_password_hash
 from .util import *
+from flask.ext.login import UserMixin
 
 # db.session
 db_session = db.session
@@ -18,12 +19,14 @@ class Order(db.Model):
     did = db.Column(db.Integer)
     totalcargosize = db.Column(db.Integer)
     trucksize = db.Column(db.Integer)
-    totalfee = db.Column(db.Float)
-    basefee = db.Column(db.Float)
-    closefee = db.Column(db.Float)
+    totalfee = db.Column(db.Float)  # FIXME: Should be "initialfee"
+    basefee = db.Column(db.Float)  # FIXME: Should be "perstopfee"
+    closefee = db.Column(db.Float)  # FIXME: Should be removed
     status = db.Column(db.String(4))
-    drivername = db.Column(db.String(32))
-    driverphone = db.Column(db.String(16))
+    drivername = db.Column(db.String(32))  # FIXME: Can be removed
+    driverphone = db.Column(db.String(16))  # FIXME: Can be removed
+    # FIXME: Should add "deliverdate"
+    # FIXME: Should add "finishedtime"
 
     def __repr__(self):
         return '<Order %r>' % self.oid
@@ -53,11 +56,11 @@ class OrderRecord(db.Model):
     sid = db.Column(db.Integer, primary_key=True)
     did = db.Column(db.Integer)
     stopaddress = db.Column(db.String(128))
-    delivertime = db.Column(db.DateTime)
+    delivertime = db.Column(db.DateTime)  # FIXME: Should be removed
     cargosize = db.Column(db.Integer)
-    expectfee = db.Column(db.Float)
-    fee = db.Column(db.Float)
-    acceptedtime = db.Column(db.DateTime) 
+    expectfee = db.Column(db.Float)  # FIXME: Should be removed
+    fee = db.Column(db.Float)  # FIXME: Should be "totalfee"
+    acceptedtime = db.Column(db.DateTime)  # FIXME: Should be removed
     status = db.Column(db.String(4))
     grade = db.Column(db.Float)
     comment = db.Column(db.Text)
@@ -83,7 +86,7 @@ class OrderRecord(db.Model):
             'comment' : self.comment
         }
 
-class Shipper(db.Model):
+class Shipper(UserMixin, db.Model):
     sid = db.Column(db.Integer, primary_key=True)  # auto-inc
     name = db.Column(db.String(32))
     passwd = db.Column(db.String(128))
