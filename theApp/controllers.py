@@ -43,10 +43,10 @@ def resetdb():
     db.drop_all()
     db.create_all()
 
-    shipper_1 = Shipper()
-    shipper_1.name = "Jack Ma"
+    shipper_1 = Shipper(sid=785648240)
+    shipper_1.name = "Meng Wang"
     shipper_1.passwd = generate_password_hash("123123")
-    shipper_1.email = "jackma@hotmail.com"
+    shipper_1.email = "mw2972@columbia.edu"
     shipper_1.phone = "9179112008"
     shipper_1.addr_1 = "181 Claremont Avenue, Apt 2B"
     shipper_1.addr_2 = ""
@@ -54,10 +54,10 @@ def resetdb():
     shipper_1.state = "NY"
     shipper_1.zip = "10027"
 
-    shipper_2 = Shipper()
-    shipper_2.name = "Tom Li"
+    shipper_2 = Shipper(sid=1047413846)
+    shipper_2.name = "Lan Yang"
     shipper_2.passwd = generate_password_hash("123123")
-    shipper_2.email = "tl2929@columbia.edu"
+    shipper_2.email = "ly2331@columbia.edu"
     shipper_2.phone = "9179112000"
     shipper_2.addr_1 = "i-house Claremont Avenue"
     shipper_2.addr_2 = "Apt 5B"
@@ -67,9 +67,9 @@ def resetdb():
 
 
     deliverer_1 = Deliverer()
-    deliverer_1.name = "Kuaidi wang"
+    deliverer_1.name = "Jingwei Yang"
     deliverer_1.passwd = generate_password_hash("123123")
-    deliverer_1.email = "kuaidiw@kuaihua.com"
+    deliverer_1.email = "jingwei@kuaihua.com"
     deliverer_1.phone = "9179133308"
     deliverer_1.addr_1 = "Flusing Shildern Garden"
     deliverer_1.addr_2 = "Apt 5B"

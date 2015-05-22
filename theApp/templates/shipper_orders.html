@@ -510,19 +510,19 @@ $(document).ready(function() {
 <script>
 $(function() {
     $.getJSON('/v1/order', { // data
-        userid: 0, // {{current_user.uid}}
+        userid: {[current_user.sid]}, //
         state: 'O',
         debug: 1, // testing backdoor
     }, getHtmlFiller('pending-panel'));
 
     $.getJSON('/v1/order', { // data
-        userid: 0, // {{current_user.uid}}
+        userid: {[current_user.sid]},
         state: 'D, C',
         debug: 1, // testing backdoor
     }, getHtmlFiller('ongoing-panel'));
 
     $.getJSON('/v1/order', { // data
-        userid: 0, // {{current_user.uid}}
+        userid: {[current_user.sid]},
         state: 'F',
         debug: 1, // testing backdoor
     }, getHtmlFiller('finished-panel'));
@@ -533,7 +533,6 @@ $(function() {
         $.getJSON(uri, getHtmlFiller(containerID));
         e.preventDefault();
     });
-    console.log($('a.prev-page'));
 
     $('a.next-page').click(function(e){
         var containerID = $(this).data('panel');
