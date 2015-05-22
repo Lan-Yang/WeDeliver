@@ -519,11 +519,6 @@
         $('#login-submit').click(function(e){
             $('#login-form').submit();
         });
-        /*  */
-        $('#login-facebook').click(function(e){
-            '/shipper/authorize/facebook';
-            e.preventDefault();
-        });
         /* Date Picker */
         $('.date').datepicker({
             format: "mm/dd/yyyy"
@@ -531,6 +526,13 @@
         /* load modals */
         $('#login-modal').on('show.bs.modal', function(e) {
             $(this).find('.modal-dialog').load('/loginmodal');
+        });
+        $('#login-modal').on('shown.bs.modal', function(e) {
+            /* Connect with Facebook */
+            $(this).find('#login-facebook').click(function(e){
+                location.href = '/shipper/authorize/facebook';
+                e.preventDefault();
+            });
         });
         $('#place-modal').on('show.bs.modal', function(e) {
             $(this).find('.modal-content').load('/placemodal');
