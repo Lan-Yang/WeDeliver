@@ -53,17 +53,17 @@
 
                             <!-- content -->
                             <div class="row" style="font-size: 13px; font-family: 'Lucida Grande', sans-serif;">
-                                <div class="col-sm-2 page-header text-muted text-left col-header-list" >
+                                <div class = "col-sm-2 page-header text-muted text-center col-header-list">
                                     Current Unit Price
                                 </div>
                                 <div class="col-sm-3 page-header text-muted text-center col-header-list">
                                     Deliverer
                                 </div>
-                                <div class = "col-sm-1 page-header text-muted text-center col-header-list">
-                                    .
-                                </div>
-                                <div class="col-sm-4 page-header text-muted text-center col-header-list">
+                                <div class="col-sm-3 page-header text-muted text-center col-header-list">
                                     Pick Up  |  Delivery
+                                </div>
+                                <div class="col-sm-2 page-header text-muted text-center col-header-list">
+                                    Occupancy
                                 </div>
                                 <div class="col-sm-2 page-header text-muted text-right col-header-list">
                                     Base Unit Price
@@ -137,53 +137,47 @@
     <script id="list-template" type="text/x-jsrender">
     {{for data}}
         <div class="row">
-            <div class="col-sm-2 text-left" style="padding-left: 1px; padding-right: 0px;">
-                    <h5 class="white curprice"><i class="fa fa-usd"></i>
-                    <span> 32{{:unitprice}} </span></h5>
+            <div class="col-sm-2 text-center" style="padding-left: 1px; padding-right: 0px;">
+                <h5 class="white curprice"><i class="fa fa-usd"></i>
+                <span> 32{{:unitprice}} </span></h5>
             </div>
-            <div class="col-sm-10">
+
+            <div class="col-sm-3 text-center">
+                <h5 class="white othertext">{{:title}}Shunfeng Company</h5>
+                <span>
+                    <i class="fa fa-star fa-lg"></i>
+                    <i class="fa fa-star fa-lg"></i>
+                    <i class="fa fa-star fa-lg"></i>
+                    <i class="fa fa-star-half-o fa-lg"></i>
+                    <i class="fa fa-star-o fa-lg"></i>
+                </span>
+            </div>
+
+            <div class="col-sm-3 text-left">
                 <div class="row">
-                    <div class="col-sm-3 text-center">
-                        <h5 class="white othertext">{{:title}}Shunfeng Company</h5>
+                    <div class="col-sm-2">
                     </div>
-                    <div class = "col-sm-3">
-                    </div>
-                    <div class="col-sm-3">
+                    <div class="col-sm-8" >
                         <h5 class="white othertext">
-                            <span>2015-05-27 18:00</span>
+                            <span>2015-05-27 6:00 PM</span>
                         </h5>
-                    </div>
-                    <div class="col-sm-3 text-right">
-                        <h5 class="white othertext">
-                            <i class="fa fa-usd"></i>
-                            <span> {{:basefee}} </span>
-                        </h5>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-3 text-center">
-                        <span>
-                            <i class="fa fa-star fa-lg"></i>
-                            <i class="fa fa-star fa-lg"></i>
-                            <i class="fa fa-star fa-lg"></i>
-                            <i class="fa fa-star-half-o fa-lg"></i>
-                            <i class="fa fa-star-o fa-lg"></i>
-                        </span>
-                    </div>
-                    <div class = "col-sm-3">
-                    </div>
-                    <div class="col-sm-3">
                         <h5 class="white othertext">
                             <span> 2015-05-28 </span>
                         </h5>
                     </div>
-
-                    <div class="col-sm-3 text-right">
-                        <a class="btn btn-block btn-select" href="/order?oid={{:oid}}">Select</a>
-                    </div>
                 </div>
             </div>
+                
+            <div class="col-sm-2 text-center" style= "padding-left: 1px; padding-right: 0px;">
+                <h5 class="white curprice"><span> 10/50</span></h5>
+            </div>
+
+            <div class="col-sm-2 text-center">
+                <a class="btn btn-block btn-select" href="/order?oid={{:oid}}">Select</a>
+            </div>
         </div>
+
+
 
         {{if #index < #parent.data.length - 1}}
             <div class="row">
