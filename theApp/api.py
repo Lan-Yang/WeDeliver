@@ -18,6 +18,7 @@ def search_for_orders():
     stopaddress = request_args.get('stopaddress', '')
     pickuptime = request_args.get('pickuptime', '')
     cargosize = request_args.get('cargosize', '')
+    status = request_args.get('status', '')  # NEW, single status query
     page_number = request_args.get('page_number', '1')
     per_page = request_args.get('per_page', DEFAULE_PER_PAGE)
     debug = request_args.get('debug', '0')  # for testing, return all records
@@ -25,7 +26,7 @@ def search_for_orders():
     results = None
 
     if debug != '0':
-        results = Order.query.order_by(desc(Order.oid))
+        results = Order.query.filter(Order.status==status).order_by(desc(Order.oid))
     else:
         results = Order.query.filter(
             and_(
