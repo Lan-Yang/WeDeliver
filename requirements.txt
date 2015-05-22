@@ -5,3 +5,7 @@ Flask-SQLAlchemy
 Flask-Login
 blinker
 boto
+argparse
+rauth
+requests
+SQLAlchemy
