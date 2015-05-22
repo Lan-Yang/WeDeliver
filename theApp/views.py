@@ -44,7 +44,7 @@ def placemodal():
 @app.route('/s-search')
 def ssearch():
     return render_template(
-        'searchlist-header.html',
+        's-searchlist.html',
         title="ShipperSearch"
         )
 
@@ -250,3 +250,5 @@ def d_post():
         'd-post-header.html',
         title="DelivererPost"
         )
+
+

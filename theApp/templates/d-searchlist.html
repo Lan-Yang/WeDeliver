@@ -1,257 +1,56 @@
-<!DOCTYPE html>
-<!--[if lt IE 7]><html lang="en" class="no-js ie6"><![endif]-->
-<!--[if IE 7]><html lang="en" class="no-js ie7"><![endif]-->
-<!--[if IE 8]><html lang="en" class="no-js ie8"><![endif]-->
-<!--[if gt IE 8]><!-->
-<html lang="en" class="no-js">
-<!--<![endif]-->
-
-<head>
-    <meta charset="UTF-8">
-    <title>We deliver index page</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    <link rel="shortcut icon" href="/static/favicon.png">
-
-    <!-- <link rel="stylesheet" href="css/bootstrap.css"> -->
-    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/static/css/animate.css">
-    <link href="http://fontawesome.io/assets/font-awesome/css/font-awesome.css" rel="stylesheet" media="screen">
-    <link rel="stylesheet" href="/static/css/slick.css">
-    <link rel="stylesheet" href="/static/js/rs-plugin/css/settings.css">
-    <link rel="stylesheet" href="/static/css/freeze2.css">
+{% extends "base.html" %}
+{% block mycss %}
     <link rel="stylesheet" href="/static/css/index-login.css">
     <link rel="stylesheet" href="/static/css/d-searchlist.css">
-    <link href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.0/css/bootstrap-datepicker.min.css" rel="stylesheet">
-    <script type="text/javascript" src="/static/js/modernizr.custom.32033.js"></script>
-    <link href='http://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
-    <link href='http://fonts.googleapis.com/css?family=Raleway:500' rel='stylesheet' type='text/css'>
-    <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css'>
-    <link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-
-</head>
-
-<body>
-
-    <div class="pre-loader">
-        <div class="load-con">
-            <img src="/static/logo.png" class="animated fadeInDown" alt="logo">
-            <div class="spinner">
-                <div class="bounce1"></div>
-                <div class="bounce2"></div>
-                <div class="bounce3"></div>
-            </div>
-        </div>
-    </div>
-
-    <header>
-
-        <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
-            <div class="container">
-                <!-- Brand and toggle get grouped for better mobile display -->
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                        <span class="fa fa-bars fa-lg"></span>
-                    </button>
-                    <a class="navbar-brand" href="/d-home">
-                        <img src="/static/logo.png" alt="" class="logo">
-                    </a>
-                </div>
-
-                <!-- Collect the nav links, forms, and other content for toggling -->
-                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-
-                    <ul class="nav navbar-nav navbar-right">
-                        <li><a href="/d-search">Search</a></li>
-                        <li><a href="/d-post">Post</a></li>
-                        <li><a href="/d-myorder">My Orders</a></li>
-                        <li class="dropdown">
-                            <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">John</a>
-                            <ul class="dropdown-menu profileselect" role="menu">
-                                <li id="prettySurname" class="text-center">
-                                    <h5 class="text-name">Hi! John Doe</h5>
-                                </li>
-                                <li id="toProfile"><a href="/s-account" style="color: #555; font-size: 14px;">Profile</a></li>
-                                <!-- <li class="divider"></li> -->
-                                <li id="toHelp"><a href="/logout" style="color: #555; font-size: 14px;">Help</a></li>
-                                <li id="logOutButton" class="text-center">
-                                    <button class="btn btn-block btn-logout" href="" type="submit">Log out</button>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
-                </div>
-                <!-- /.navbar-collapse -->
-            </div>
-            <!-- /.container-->
-        </nav>
-    </header>
-
-    <div class="wrapper">
-        <div class="box">
-            <div class="row">
-                <!--search box-->
-                <div class="container auth col-sm-3" style = "padding-top: 170px; padding-left: 70px; padding-right: 30px;">
-                    <div id="big-form" class="well auth-box">
-                        <form id="search-form" action="" method="GET">
-                            <fieldset>
-                                <!-- Text input-->
-                                <div class="form-group">
-                                    <label class="control-label" for="pickup-loc" style="font-size: 16px;"> <i class="fa fa-truck"></i> Pickup Location</label>
-                                    <input id="pickup-loc" name="pickuploc" placeholder="IKEA Brooklyn" class="form-control input-md" type="text" data-toggle="modal" data-target="#place-modal" style="padding: 0 0;">
-                                </div>
-
-                                <!-- Text input-->
-                                <div class="form-group">
-                                    <label class="control-label" for="deliver-loc" style="font-size: 16px;"><i class="fa fa-street-view"></i> Delivery Location</label>
-                                    <input id="deliver-loc" name="deliverloc" placeholder="Columbia University" class="form-control input-md" type="text" data-toggle="modal" data-target="#place-modal" style="padding: 0 0;">
-                                </div>
-
-                                <div class="form-group">
-                                    <label class="control-label" for="pickup-date" style="font-size: 16px;"> <i class="fa fa-calendar"></i> Pickup Time</label>
-                                    <input id="pickup-date" name="pickupdate" placeholder="04/29/2015" class="form-control input-md date" type="text" readonly="readonly" style="padding: 0 0;">
-                                </div>
-
-                                <div class="form-group">
-                                    <label class="control-label" for="deliver-date" style="font-size: 16px;"> <i class="fa fa-calendar-o"></i> Delivery Time</label>
-                                    <input id="deliver-date" name="deliverdate" placeholder="04/30/2015" class="form-control input-md date" type="text" readonly="readonly" style="padding: 0 0;">
-                                </div>
-
-                                <!-- Button -->
-                                <div class="form-group" style="margin-bottom: 25px;">
-                                    <button id="submit-search" class="btn btn-primary btn-search" style="background-color:#006262;">Search</button>
-                                </div>
-
-                            </fieldset>
-                        </form>
-                    </div>
-                    <div class="clearfix"></div>
-                </div>
-
-                <!-- main -->
-                <div class="column col-sm-9" id="main" style="padding-top: 200px; padding-right: 0; padding-left: 5px;">
-                    <div class="padding">
-                        <div class="full col-sm-11" style="padding-right: 0; padding-left: 5px;">
-
-                            <!-- content -->
-                            <div class="row" style="font-size: 13px; font-family: 'Source Sans Pro', sans-serif;">
-                                <div class="col-sm-2 page-header text-muted text-left col-header-list" >
-                                    Current Unit Price
-                                </div>
-                                <div class="col-sm-3 page-header text-muted text-center col-header-list">
-                                    Shipping Company
-                                </div>
-                                <div class="col-sm-5 page-header text-muted text-center col-header-list">
-                                    Pick Up  |  Delivery
-                                </div>
-                                <div class="col-sm-2 page-header text-muted text-right col-header-list">
-                                    Base Unit Price
-                                </div>
-                            </div>
-
-                            <div id="orderlist"></div> <!-- /#orderlist -->
-
-                            <div class="row">
-                                <div class="page-header text-muted divider">
-                                    <i class="fa fa-angle-up"></i> Up <i class="fa fa-angle-down"></i>Next
-                                </div>
-                            </div>
-
-
-                            <!--This part is for log-->
-
-                            <div class="row">
-                                <div class="col-sm-4 text-center">
-                                    <h4>Tom Delivery</h4>
-                                    <a href="#"><img src="" class="img-respsonsive img-circle"></a>
-                                </div>
-                                <div class="col-sm-4 text-center">
-                                    <h4>Lighting Delivery</h4>
-                                    <a href="#"><img src="" class="img-respsonsive img-circle"></a>
-                                </div>
-                                <div class="col-sm-4 text-center">
-                                    <h4>Sweet Delivery</h4>
-                                    <a href="#"><img src="" class="img-respsonsive img-circle"></a>
-                                </div>
-                            </div>
-
-                            <div class="col-sm-12 col-header-list"  style="font-size: 13px; font-family: 'Source Sans Pro', sans-serif;">
-                                <div class="page-header text-muted divider">
-                                    Connect with Us
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-sm-6">
-                                    <a href="#" style="color:white;"><i class="fa fa-twitter"></i> Twitter</a> <small class="text-muted">|</small> <a href="#" style="color:white;"><i class="fa fa-facebook"></i> Facebook</a> <small class="text-muted">|</small> <a href="#" style="color:white;"><i class="fa fa-foursquare"></i> Foursquare</a>
-                                </div>
-                            </div>
-
-                            <hr>
-
-                            <div class="row" id="footer">
-                                <div class="col-sm-6">
-
-                                </div>
-                                <div class="col-sm-6">
-                                    <p>
-                                        <a href="#" class="pull-right" style="color:white;">©Copyright Inc.</a>
-                                    </p>
-                                </div>
-                            </div>
-
-                        </div>
-                        <!-- /col-9 -->
-                    </div>
-                    <!-- /padding -->
-                </div>
-                <!-- /main -->
-            </div>
-        </div>
-    </div>
+{% endblock %}
+{% block body %}
+    {% include "d-header.html" %}
+    {% include "searchlist-body.html" %}
 
     <script id="list-template" type="text/x-jsrender">
     {{for data}}
         <div class="row">
-            <div class="col-sm-2 text-left" style="padding-left: 1px; padding-right: 0px;">
-                    <h5 class="white curprice"><i class="fa fa-usd"></i>
-                    <span> 32{{:unitprice}} </span></h5>
+            <div class="col-sm-2 text-center" style="padding-left: 1px; padding-right: 0px;">
+                <h5 class="white curprice"><i class="fa fa-usd"></i>
+                <span> 32{{:unitprice}} </span></h5>
             </div>
-            <div class="col-sm-10">
+
+            <div class="col-sm-3 text-center">
+                <h5 class="white othertext">{{:title}}Shunfeng Company</h5>
+                <span>
+                    <i class="fa fa-star fa-lg"></i>
+                    <i class="fa fa-star fa-lg"></i>
+                    <i class="fa fa-star fa-lg"></i>
+                    <i class="fa fa-star-half-o fa-lg"></i>
+                    <i class="fa fa-star-o fa-lg"></i>
+                </span>
+            </div>
+
+            <div class="col-sm-3 text-left">
                 <div class="row">
-                    <div class="col-sm-3 text-center">
-                        <h5 class="white othertext">{{:title}}Shunfeng Company</h5>
+                    <div class="col-sm-2">
                     </div>
-                    <div class="col-sm-6 text-center">
+                    <div class="col-sm-8" >
                         <h5 class="white othertext">
-                            <span> {{:pickuptime}} - 2011-11-03 18:21:26{{:delivertime}}</span>
+                            <span>2015-05-27 6:00 PM</span>
                         </h5>
-                    </div>
-                    <div class="col-sm-3 text-right">
                         <h5 class="white othertext">
-                            <i class="fa fa-usd"></i>
-                            <span> {{:perstopfee}} </span>
+                            <span> 2015-05-28 </span>
                         </h5>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-sm-3 text-center">
-                        <small class="text-muted">
-                            {{:#index}} hours ago • <a href="#" class="text-muted">Read More</a>
-                        </small>
-                    </div>
-                    <div class="col-sm-6">
-                    </div>
-                    <div class="col-sm-3 text-right">
-                        <button class="btn btn-block btn-select" href="/orderdetail?oid={{:oid}}">Select</button>
-                    </div>
-                </div>
+            </div>
+
+            <div class="col-sm-2 text-center" style= "padding-left: 1px; padding-right: 0px;">
+                <h5 class="white curprice"><span> 10/50</span></h5>
+            </div>
+
+            <div class="col-sm-2">
+                <a class="btn btn-block btn-select" href="/d-accept-order?oid={{:oid}}">Accept</a>
             </div>
         </div>
+
+
 
         {{if #index < #parent.data.length - 1}}
             <div class="row">
@@ -512,6 +311,20 @@
     }
     </style>
 
+
+
+    <!--show the script for show pre page and next page-->
+    <script>
+        function showPrePage() {
+            alert("want to show previous page?");
+        }
+
+        function showNextPage() {
+            alert("want to show next page?");
+        }
+    </script>
+
+
     <script>
     $(document).ready(function() {
         //Floatlabel
@@ -575,6 +388,4 @@
         $("html").niceScroll();
     });
     </script>
-
-</body>
-</html>
+{% endblock %}
