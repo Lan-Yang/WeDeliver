@@ -186,6 +186,14 @@ def d_search():
         title="DelivererSearch"
         )
 
+
+@app.route('/d-accept-order')
+def d_accept():
+    return render_template(
+        'accept-order.html',
+        title="Accpet Order"
+        )
+
 @app.route('/d-myorder')
 def d_list_orders():
     return render_template(
