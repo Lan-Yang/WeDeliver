@@ -14,6 +14,7 @@ db_session = db.session
 
 class Order(db.Model):
     oid = db.Column(db.Integer, primary_key=True)  # auto-inc
+    title = db.Column(db.String(128))
     pickupaddr = db.Column(db.String(128))
     pickuptime = db.Column(db.DateTime)
     did = db.Column(db.Integer)
@@ -35,6 +36,7 @@ class Order(db.Model):
         """Return object data in easily serializeable format"""
         return {
             'oid' : self.oid,
+            'title' : self.title,
             'pickupaddr' : self.pickupaddr,
             'pickuptime' : self.pickuptime.strftime(DATETIME_FORMAT),
             'did' : self.did,

@@ -92,6 +92,7 @@ def resetdb():
 
 
     order_1 = Order()
+    order_1.title = "Go for IKEA!"
     order_1.pickupaddr = "Columbia"
     order_1.pickuptime = datetime.strptime('2011-11-03 18:21:26', DATETIME_FORMAT)
     order_1.did = 1
@@ -106,6 +107,7 @@ def resetdb():
     order_1.finishedtime = datetime.strptime('2011-11-03 18:21:26', DATETIME_FORMAT)
 
     order_2 = Order()
+    order_2.title = "Moving to Brooklyn"
     order_2.pickupaddr = "NYU"
     order_2.pickuptime = datetime.strptime('2011-11-03 18:21:26', DATETIME_FORMAT)
     order_2.did = 1
@@ -121,6 +123,7 @@ def resetdb():
 
 
     order_3 = Order()
+    order_3.title = "Moving together"
     order_3.pickupaddr = "hahaha"
     order_3.pickuptime = datetime.strptime('2011-11-03 18:21:26', DATETIME_FORMAT)
     order_3.did = 1
@@ -136,6 +139,7 @@ def resetdb():
 
 
     order_4 = Order()
+    order_4.title = "Woodbury Shopping"
     order_4.pickupaddr = "hahaha"
     order_4.pickuptime = datetime.strptime('2011-11-03 18:21:26', DATETIME_FORMAT)
     order_4.did = 1
@@ -151,6 +155,7 @@ def resetdb():
 
 
     order_5 = Order()
+    order_5.title = "Woodbury Shopping"
     order_5.pickupaddr = "hahaha"
     order_5.pickuptime = datetime.strptime('2011-11-03 18:21:26', DATETIME_FORMAT)
     order_5.did = 1
@@ -166,6 +171,7 @@ def resetdb():
 
 
     order_6 = Order()
+    order_6.title = "Woodbury Shopping"
     order_6.pickupaddr = "hahaha"
     order_6.pickuptime = datetime.strptime('2011-11-03 18:21:26', DATETIME_FORMAT)
     order_6.did = 1
@@ -180,10 +186,9 @@ def resetdb():
     order_6.finishedtime = datetime.strptime('2011-11-03 18:21:26', DATETIME_FORMAT)
 
 
-
     orderRecord_1 = OrderRecord()
     orderRecord_1.oid = 1
-    orderRecord_1.sid = 1
+    orderRecord_1.sid = 785648240
     orderRecord_1.did = 1
     orderRecord_1.stopaddress = "NYU"
     orderRecord_1.cargosize = 33
@@ -193,8 +198,8 @@ def resetdb():
     orderRecord_1.comment = "This is great!"
 
     orderRecord_2 = OrderRecord()
-    orderRecord_2.oid = 2
-    orderRecord_2.sid = 1
+    orderRecord_2.oid = 1
+    orderRecord_2.sid = 1047413846
     orderRecord_2.did = 1
     orderRecord_2.stopaddress = "NYU"
     orderRecord_2.cargosize = 33
@@ -202,6 +207,17 @@ def resetdb():
     orderRecord_2.status = "F"
     orderRecord_2.grade = 3.5
     orderRecord_2.comment = "This is great!"
+
+    orderRecord_3 = OrderRecord()
+    orderRecord_3.oid = 2
+    orderRecord_3.sid = 785648240
+    orderRecord_3.did = 1
+    orderRecord_3.stopaddress = "NYU"
+    orderRecord_3.cargosize = 33
+    orderRecord_3.totalfee = 33.3
+    orderRecord_3.status = "F"
+    orderRecord_3.grade = 3.5
+    orderRecord_3.comment = "This is great!"
 
     db_session.add(shipper_1)
     db_session.add(shipper_2)
