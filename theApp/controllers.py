@@ -147,7 +147,7 @@ def resetdb():
     order_4.drivername = "XiDaDa"
     order_4.driverphone = "821931"
     order_4.deliverdate = datetime.strptime('2011-11-03 18:21:26', DATETIME_FORMAT)
-    order_5.finishedtime = datetime.strptime('2011-11-03 18:21:26', DATETIME_FORMAT)
+    order_4.finishedtime = datetime.strptime('2011-11-03 18:21:26', DATETIME_FORMAT)
 
 
     order_5 = Order()
