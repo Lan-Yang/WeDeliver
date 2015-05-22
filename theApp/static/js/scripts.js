@@ -204,3 +204,8 @@ function initGmapSearch() {
         searchBox.setBounds(bounds);
     });
 }
+
+/* logout */
+function logout() {
+    location.href = '/logout';
+}

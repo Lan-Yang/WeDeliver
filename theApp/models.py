@@ -150,3 +150,20 @@ class Deliverer(db.Model):
 
     def get_id(self):
         return unicode(self.did)  # python 2
+
+    @property
+    def serialize(self):
+        """Return object data in easily serializeable format"""
+        return {
+            'did' : self.did,
+            'name' : self.name,
+            'passwd' : self.passwd,
+            'email' : self.email,
+            'phone' : self.phone,
+            'addr_1' : self.addr_1,
+            'addr_2' : self.addr_2,
+            'city' : self.city,
+            'state' : self.state,
+            'zip' : self.zip,
+            'grade' : self.grade,
+        }
