@@ -157,19 +157,19 @@ def oauth_callback(user_type, provider):
         return redirect(url_for('home'))
     oauth = OAuthSignIn.get_provider(provider)
     social_id, username, email = oauth.callback(user_type)
-    print social_id, username, email
+    # print social_id, username, email
     if social_id is None:
         flash('Authentication failed.')
         return redirect(url_for('home'))
     new_id = djb2_string_hash(social_id)  ## social_id may contain letters. use djb2 to convert to int
-    print new_id
+    # print new_id
     if user_type=="shipper":
         shipper = Shipper.query.get(new_id)
         if not shipper:
             shipper = Shipper(sid=new_id, name=username, email=email)
             db_session.add(shipper)
             db_session.commit()
-        print 171
+        # print 171
         login_user(shipper)
     else:  # deliverer
         deliverer = Deliverer.query.get(new_id)
@@ -178,7 +178,7 @@ def oauth_callback(user_type, provider):
             db_session.add(deliverer)
             db_session.commit()
         login_user(deliverer)
-    print 180
+    # print 180
     return jsonify(
         status=1
     )
