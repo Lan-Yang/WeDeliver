@@ -69,15 +69,30 @@
                                         <div class="form-group">
                                             <label> <i class="fa fa-users"></i> Participants</label>
                                             <h1 id="membernum"> 5 </h1>
+                                            <button onclick = "draw_occupancy(115, 39, 10)">draw the occupancy</button>
+                                            <div class="col-sm-9">
+                                                <div id = "occupancy_graph"> </div>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="col-sm-4">
+                                    <!-- <div class="col-sm-4">
                                         <div class="form-group">
                                             <label class="text-center"> <i class="fa fa-level-up"></i> Prices trend</label>
                                             <div id="chart_div" style="width: 700px; height: 400px"></div>
                                         </div>
+                                    </div> -->
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <button onclick = "draw_occupancy(115, 39, 10)">draw the occupancy</button>
+                                    </div>
+
+                                    <div class="col-sm-9">
+                                            <div id = "occupancy_graph"> </div>
                                     </div>
                                 </div>
+
                                 <div class="row">
                                     <div class="col-sm-12" id="orderlist">
                                         <div class="page-header text-muted"> <i class="fa fa-user-plus"></i>Want Join </div>
@@ -366,6 +381,54 @@
         top: 1px!important;
     }
     </style>
+
+    <!--the script for drawing the occupancy picture-->
+    <script>
+    function draw_occupancy(trucksize, cargosize, row_size) {
+
+        var undraw_cargo_count = cargosize;
+        var box_count = 0;
+        var table_str = "   <table id=\"colorchart\" style = \" border-spacing : 2px !important; border-collapse: separate;\"> <tbody>";
+
+        while (box_count < trucksize) {
+            if (box_count % row_size == 0) {
+                table_str += "<tr>";
+            }
+            if (undraw_cargo_count > 0) {
+                table_str += "<td bgcolor=\"#170B3B\" width=\"20\" height = \"20\" ><\/td>";
+                undraw_cargo_count--;
+                box_count ++;
+            } else {
+                table_str += "<td bgcolor=\"#F7F2E0\" width=\"20\" height = \"20\"><\/td>";
+                box_count ++;
+            }
+            if (box_count % row_size == 0) {
+                table_str += "<\/tr>";
+            }
+        }
+        if (trucksize % row_size != 0) {
+            table_str += "<\/tr>";
+        }
+        table_str += "<\/tbody><\/table>";
+
+        $('#occupancy_graph').append(table_str);
+    }
+    </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     <script>
     $(document).ready(function() {
         //Floatlabel
