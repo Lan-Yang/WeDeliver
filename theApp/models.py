@@ -27,6 +27,10 @@ class Order(db.Model):
     driverphone = db.Column(db.String(16))  # FIXME: Can be removed
     deliverdate = db.Column(db.DateTime)
     finishedtime = db.Column(db.DateTime)
+    pickupaddr_lat = db.Column(db.Float)
+    pickupaddr_lng = db.Column(db.Float)
+    participants = db.Column(db.Integer)
+
 
     def __repr__(self):
         return '<Order %r>' % self.oid
@@ -49,6 +53,9 @@ class Order(db.Model):
             'driverphone' : self.driverphone,
             'deliverdate' : self.deliverdate.strftime(DATETIME_FORMAT),
             'finishedtime' : self.finishedtime.strftime(DATETIME_FORMAT) if self.finishedtime else '',
+            'pickupaddr_lat': self.pickupaddr_lat,
+            'pickupaddr_lng': self.pickupaddr_lng,
+            'participants': self.participants
         }
 
 
@@ -63,6 +70,8 @@ class OrderRecord(db.Model):
     status = db.Column(db.String(4))
     grade = db.Column(db.Float)
     comment = db.Column(db.Text)
+    stopaddr_lat = db.Column(db.Float)
+    stopaddr_lng = db.Column(db.Float)
 
     def __repr__(self):
         return '<OrderRecord %s, %s>' % (self.oid, self.sid)
@@ -79,7 +88,9 @@ class OrderRecord(db.Model):
             'totalfee' : self.totalfee,
             'status' : self.status,
             'grade' : self.grade,
-            'comment' : self.comment
+            'comment' : self.comment,
+            'stopaddr_lat' : self.stopaddr_lat,
+            'stopaddr_lng' : self.stopaddr_lng
         }
 
 class Shipper(UserMixin, db.Model):

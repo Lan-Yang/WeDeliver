@@ -5,7 +5,7 @@ data API
 from theApp import app
 from flask import render_template, request, flash, redirect, url_for, jsonify
 from .models import *
-from sqlalchemy import and_, desc
+from sqlalchemy import and_, desc, update
 from .util import *
 from datetime import date, datetime
 import math
@@ -91,6 +91,8 @@ def add_new_order():
     order.driverphone = data.get("driverphone", "")
     order.deliverdate = data.get("deliverdate", "")
     # order.finishedtime = data.get("finishedtime", "")  # KEEP NULL
+    order.pickupaddr_lat = data.get("pickupaddr_lat", "")
+    order.pickupaddr_lng = data.get("pickupaddr_lng", "")
     db_session.add(order)
     db_session.commit()
     oid = order.oid
@@ -150,8 +152,12 @@ def add_new_orderRecord():
     # orderRecord.status = data.get("status", "")
     orderRecord.grade = data.get("grade", "0.0")
     orderRecord.comment = data.get("comment", "")
+    orderRecord.stopaddr_lat = data.get("stopaddr_lat", "0.0")
+    orderRecord.stopaddr_lng = data.get("stopaddr_lng", "0.0")
     db_session.add(orderRecord)
     db_session.commit()
+    this_order = Order.query.get(orderRecord.oid)
+    this_order.update({"participants": this_order.participants+1})  # update order participants
     return jsonify(
         status = 201,
         data = "orderRecord creation succeeds"
