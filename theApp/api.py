@@ -122,10 +122,29 @@ def add_new_order():
         oid = oid,  # NEW
     )
 
+@app.route('/v1/order/<oid>', methods=['PUT'])
+def update_order(oid):
+    request_args = request.form
+    this_order = Order.query.get(oid)
+    for key in request_args:
+        print key
+        setattr(this_order, key, request_args[key])
+    db_session.commit()
+    return jsonify(
+        status = 200,
+        data = "update succeeds",
+        oid = oid
+    )
+
 @app.route('/v1/orderRecord', methods=['GET'])
-def search_for_orderRecords_from_sid():
+def search_for_orderRecords_from_sid_and_status():
     request_args = request.args
     sid = request_args.get('sid', '')
+    if not sid:
+        return jsonify(
+                status = 400,
+                data = "no sid provided"
+            )
     status = request_args.get('status', '')
     page_number = request_args.get('page_number', '1')
     per_page = request_args.get('per_page', DEFAULE_PER_PAGE)
@@ -172,12 +191,21 @@ def search_for_orderRecords_from_sid():
         #     ]
     )
 
+@app.route('/v1/orderRecord/<oid>/<sid>', methods=['GET'])
 @app.route('/v1/orderRecord/all', methods=['GET'])  # used for test
-def get_orderRecords():
-    orders = OrderRecord.query.all()
+def get_orderRecords(oid=None, sid=None):
+    if not oid and not sid:
+        orderRecords = OrderRecord.query.all()
+    else:
+        orderRecords = OrderRecord.query.filter(
+        and_(
+            OrderRecord.oid == oid,
+            OrderRecord.sid == sid
+            )
+        )
     return jsonify(
         status = 200,
-        data = [i.serialize for i in orders],
+        data = [i.serialize for i in orderRecords],
     )
 
 @app.route('/v1/orderRecord', methods=['POST'])
@@ -202,6 +230,26 @@ def add_new_orderRecord():
     return jsonify(
         status = 201,
         data = "orderRecord creation succeeds"
+    )
+
+@app.route('/v1/orderRecord/<oid>/<sid>', methods=['PUT'])
+def update_orderRecord(oid, sid):
+    request_args = request.form
+    this_OrderRecord = OrderRecord.query.filter(
+        and_(
+            OrderRecord.oid == oid,
+            OrderRecord.sid == sid
+            )
+        ).first()
+    for key in request_args:
+        print key
+        setattr(this_OrderRecord, key, request_args[key])
+    db_session.commit()
+    return jsonify(
+        status = 200,
+        data = "update succeeds",
+        oid = oid,
+        sid = sid
     )
 
 @app.route('/v1/shipper/<sid>', methods=['GET'])
