@@ -518,19 +518,23 @@
     $(function(){
         // accept order form
         $('#accept-form').submit(function(e){
-            $.post('/v1/order', {
-                oid: oid,
-                did: {[current_user.did]}, // FIXME: Real SID !
-                trucksize: $('input[name="trucksize"]').val(),
-                initialfee: $('input[name="initialfee"]').val(),
-                perstopfee: 10.0,
-                status: 'D',
-            }, function(data){
-                if (Math.floor(data.status/100) == 2) {
-                    alert('Success!');
-                    location.href = '/d-myorder';
-                } else {
-                    console.log('Accept order failed');
+            $.ajax({
+                url: '/v1/order/' + oid,
+                type: 'PUT',
+                data: {
+                    did: {[current_user.did]}, // FIXME: Real SID !
+                    trucksize: $('input[name="trucksize"]').val(),
+                    initialfee: $('input[name="initialfee"]').val(),
+                    perstopfee: 10.0,
+                    status: 'D',
+                },
+                success: function(data) {
+                    if (Math.floor(data.status/100) == 2) {
+                        alert('Success!');
+                        location.href = '/d-myorder';
+                    } else {
+                        console.log('Accept order failed');
+                    }
                 }
             });
             e.preventDefault();
@@ -541,16 +545,19 @@
         });
         // close order form
         $('#close-form').submit(function(e){
-            $.post('/v1/order', {
-                oid: oid,
-                did: {[current_user.did]}, // FIXME: Real SID !
-                status: 'C',
-            }, function(data){
-                if (Math.floor(data.status/100) == 2) {
-                    alert('Success!');
-                    location.href = '/d-myorder';
-                } else {
-                    console.log('Join order failed. Change sid and try again');
+            $.ajax({
+                url: '/v1/order/' + oid,
+                type: 'PUT',
+                data: {
+                    status: 'C',
+                },
+                success: function(data) {
+                    if (Math.floor(data.status/100) == 2) {
+                        alert('Success!');
+                        location.href = '/d-myorder';
+                    } else {
+                        console.log('Close order failed');
+                    }
                 }
             });
             e.preventDefault();
@@ -561,16 +568,19 @@
         });
         // finish order form
         $('#finish-form').submit(function(e){
-            $.post('/v1/order', {
-                oid: oid,
-                did: {[current_user.did]}, // FIXME: Real SID !
-                status: 'F',
-            }, function(data){
-                if (Math.floor(data.status/100) == 2) {
-                    alert('Success!');
-                    location.href = '/d-myorder';
-                } else {
-                    console.log('Join order failed. Change sid and try again');
+            $.ajax({
+                url: '/v1/order/' + oid,
+                type: 'PUT',
+                data: {
+                    status: 'F',
+                },
+                success: function(data) {
+                    if (Math.floor(data.status/100) == 2) {
+                        alert('Success!');
+                        location.href = '/d-myorder';
+                    } else {
+                        console.log('Finish order failed');
+                    }
                 }
             });
             e.preventDefault();
