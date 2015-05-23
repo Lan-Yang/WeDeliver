@@ -189,7 +189,6 @@ def resetdb():
     orderRecord_1 = OrderRecord()
     orderRecord_1.oid = 1
     orderRecord_1.sid = 785648240
-    orderRecord_1.did = 1
     orderRecord_1.stopaddress = "NYU"
     orderRecord_1.cargosize = 33
     orderRecord_1.totalfee = 33.3
@@ -200,7 +199,6 @@ def resetdb():
     orderRecord_2 = OrderRecord()
     orderRecord_2.oid = 1
     orderRecord_2.sid = 1047413846
-    orderRecord_2.did = 1
     orderRecord_2.stopaddress = "NYU"
     orderRecord_2.cargosize = 33
     orderRecord_2.totalfee = 33.3
@@ -211,7 +209,6 @@ def resetdb():
     orderRecord_3 = OrderRecord()
     orderRecord_3.oid = 2
     orderRecord_3.sid = 785648240
-    orderRecord_3.did = 1
     orderRecord_3.stopaddress = "NYU"
     orderRecord_3.cargosize = 33
     orderRecord_3.totalfee = 33.3

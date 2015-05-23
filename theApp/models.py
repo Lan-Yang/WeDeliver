@@ -63,7 +63,6 @@ class OrderRecord(db.Model):
     # orid = db.Column(db.Integer, primary_key=True)
     oid = db.Column(db.Integer, primary_key=True)
     sid = db.Column(db.Integer, primary_key=True)
-    did = db.Column(db.Integer)
     stopaddress = db.Column(db.String(128))
     cargosize = db.Column(db.Integer)
     totalfee = db.Column(db.Float)
@@ -82,7 +81,6 @@ class OrderRecord(db.Model):
         return {
             'oid' : self.oid,
             'sid' : self.sid,
-            'did' : self.did,
             'stopaddress' : self.stopaddress,
             'cargosize' : self.cargosize,
             'totalfee' : self.totalfee,
