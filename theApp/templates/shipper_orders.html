@@ -433,37 +433,37 @@ body {
 
 <script>
 $(function() {
-    $.getJSON('/v1/order', { // data
+    $.getJSON('/v1/orderRecord', { // data
         sid: {[current_user.sid]}, //
         status: 'O',
-        debug: 1, // testing backdoor
+        // debug: 1, // testing backdoor
     }, getHtmlFiller('pending-panel', '/s-view-order'));
 
-    $.getJSON('/v1/order', { // data
+    $.getJSON('/v1/orderRecord', { // data
         sid: {[current_user.sid]},
-        status: 'D',
-        debug: 1, // testing backdoor
+        status: 'D, C',
+        // debug: 1, // testing backdoor
     }, getHtmlFiller('ongoing-panel', '/s-view-order'));
 
-    $.getJSON('/v1/order', { // data
+    $.getJSON('/v1/orderRecord', { // data
         sid: {[current_user.sid]},
         status: 'F',
-        debug: 1, // testing backdoor
+        // debug: 1, // testing backdoor
     }, getHtmlFiller('finished-panel', '/s-rate-order'));
 
-    $('a.prev-page').click(function(e){
-        var containerID = $(this).data('panel');
-        var uri = $(this).data('href');
-        $.getJSON(uri, getHtmlFiller(containerID));
-        e.preventDefault();
-    });
+    // $('a.prev-page').click(function(e){
+    //     var containerID = $(this).data('panel');
+    //     var uri = $(this).data('href');
+    //     $.getJSON(uri, getHtmlFiller(containerID));
+    //     e.preventDefault();
+    // });
 
-    $('a.next-page').click(function(e){
-        var containerID = $(this).data('panel');
-        var uri = $(this).data('href');
-        $.getJSON(uri, getHtmlFiller(containerID));
-        e.preventDefault();
-    });
+    // $('a.next-page').click(function(e){
+    //     var containerID = $(this).data('panel');
+    //     var uri = $(this).data('href');
+    //     $.getJSON(uri, getHtmlFiller(containerID));
+    //     e.preventDefault();
+    // });
 
     function value2label(x) {
         if (x < 30) return "offer-danger";
@@ -486,10 +486,10 @@ $(function() {
                 $("#list-template").render(data)
             );
             // pre/next page
-            $container.next().find('a.prev-page')
-                .data('href', data.links[0].href);
-            $container.next().find('a.next-page')
-                .data('href', data.links[1].href);
+            // $container.next().find('a.prev-page')
+            //     .data('href', data.links[0].href);
+            // $container.next().find('a.next-page')
+            //     .data('href', data.links[1].href);
         };
     }
 });
