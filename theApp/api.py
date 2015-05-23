@@ -85,10 +85,11 @@ def add_new_order():
     # order.finishedtime = data.get("finishedtime", "")  # KEEP NULL
     db_session.add(order)
     db_session.commit()
+    oid = order.oid
     return jsonify(
         status = 201,
         data = "order creation succeeds",
-        oid = order.oid,  # NEW
+        oid = oid,  # NEW
     )
 
 @app.route('/v1/orderRecord', methods=['GET'])
