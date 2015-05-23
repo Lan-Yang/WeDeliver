@@ -61,9 +61,17 @@ def get_order_from_oid(oid):
             data = [i.serialize for i in orders],
         )
     order = Order.query.get(oid)
+    result = order.serialize
+    odrds = OrderRecord.query.filter(
+            OrderRecord.oid == oid
+        )
+    shipper_info = []
+    for odrd in odrds:
+        shipper_info.append({"sid":odrd.sid, "cargosize":odrd.cargosize})
+    result["shipper_info"] = shipper_info
     return jsonify(
         status = 200,
-        data = [order.serialize],
+        data = [result],
     )
 
 @app.route('/v1/order', methods=['POST'])
