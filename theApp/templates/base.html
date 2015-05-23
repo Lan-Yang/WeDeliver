@@ -47,5 +47,12 @@
     </div>
     {% block body %}
     {% endblock %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.nicescroll/3.6.0/jquery.nicescroll.min.js"></script>
+    <script type="text/javascript">
+    $(function(){
+        appMaster.preLoader();
+        $('html').niceScroll();
+    });
+    </script>
 </body>
 </html>
