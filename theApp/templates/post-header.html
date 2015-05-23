@@ -345,6 +345,7 @@
                 pickupaddr_lat: $('input[name="pickupaddr_lat"]').val(),
                 pickupaddr_lng: $('input[name="pickupaddr_lng"]').val(),
                 totalcargosize: $('input[name="cargosize"]').val(),
+                deliverdate: $('input[name="deliverdate"]').val(),
             }, function(result){
                 if (Math.floor(result.status / 100) != 2) {
                     alert(result.data);
