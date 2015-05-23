@@ -188,8 +188,6 @@
         </div> <!-- /.modal-dialog -->
     </div> <!-- /.modal -->
 
-
-
     {% include 'common-js-libs.html' %}
     <script src="/static/js/scripts.js"></script>
     <!--This part is for overlaying text-muted css, to make some headline as white color-->
@@ -477,10 +475,8 @@
 
 
     <script>
+    var oid = $.url('?oid');
     $(document).ready(function() {
-        //Floatlabel
-        // $('input').floatlabel();
-        var oid = $.url('?oid');
         $.getJSON('v1/order/' + oid, function(data){
             if (Math.floor(data.status/100) == 2) {
                 console.log(data.data[0]);
@@ -512,14 +508,15 @@
 
     <script text="text/javascript">
     $(function(){
-        // join order form
-        $('#join-form').submit(function(e){
-            $.post('/v1/orderRecord', {
+        // accept order form
+        $('#accept-form').submit(function(e){
+            $.post('/v1/order', {
                 oid: oid,
-                sid: 101, // FIXME: Real SID !
+                did: {[current_user.did]}, // FIXME: Real SID !
                 stopaddress: $('input[name="deliveraddr"]').val(),
                 cargosize: $('input[name="cargosize"]').val(),
                 comment: $('input[name="comment"]').val(),
+                status: 'D',
             }, function(data){
                 if (Math.floor(data.status/100) == 2) {
                     alert('Success!');
@@ -530,8 +527,48 @@
             });
             e.preventDefault();
         });
-        $('#join-submit').click(function(e){
-            $('#join-form').submit();
+        $('#accept-submit').click(function(e){
+            $('#accept-form').submit();
+            e.preventDefault();
+        });
+        // close order form
+        $('#close-form').submit(function(e){
+            $.post('/v1/order', {
+                oid: oid,
+                did: {[current_user.did]}, // FIXME: Real SID !
+                status: 'C',
+            }, function(data){
+                if (Math.floor(data.status/100) == 2) {
+                    alert('Success!');
+                    location.href = '/myorder';
+                } else {
+                    console.log('Join order failed. Change sid and try again');
+                }
+            });
+            e.preventDefault();
+        });
+        $('#close-submit').click(function(e){
+            $('#close-form').submit();
+            e.preventDefault();
+        });
+        // finish order form
+        $('#finish-form').submit(function(e){
+            $.post('/v1/order', {
+                oid: oid,
+                did: {[current_user.did]}, // FIXME: Real SID !
+                status: 'F',
+            }, function(data){
+                if (Math.floor(data.status/100) == 2) {
+                    alert('Success!');
+                    location.href = '/myorder';
+                } else {
+                    console.log('Join order failed. Change sid and try again');
+                }
+            });
+            e.preventDefault();
+        });
+        $('#finish-submit').click(function(e){
+            $('#finish-form').submit();
             e.preventDefault();
         });
     });
