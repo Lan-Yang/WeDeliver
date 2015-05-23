@@ -1,7 +1,8 @@
 {% extends "base.html" %}
 {% block mycss %}
+    <link rel="stylesheet" href="/static/css/freeze2.css">
     <link rel="stylesheet" href="/static/css/index-login.css">
-    <link rel="stylesheet" href="/static/css/d-index.css">
+    <link rel="stylesheet" href="/static/css/searchlist-header.css">
 {% endblock %}
 {% block body %}
     {% include "s-header.html" %}
@@ -28,14 +29,14 @@
                         <div class="col-xs-3 col-sm-3 col-md-3">
                             <div class="form-group">
                                 <label class="control-label" for="pickup-date"> <i class="fa fa-calendar"></i> Pickup </label>
-                                <input id="pickup-date" placeholder="May 12, 2015. 5:00 PM" name="pickupdate"  class="form-control input-md date" type="text" readonly="readonly">
+                                <input id="pickup-date" placeholder="04/29/2015" name="pickupdate"  class="form-control input-md date" type="text" readonly="readonly">
                             </div>
                         </div>
 
                         <div class="col-xs-3 col-sm-3 col-md-3">
                             <div class="form-group">
                                 <label class="control-label" for="deliver-date"> <i class="fa fa-calendar-o"></i> Deliver </label>
-                                <input id="deliver-date" name="deliverdate" placeholder="May 13, 2015. 10:00 AM" class="form-control input-md date" type="text" readonly="readonly">
+                                <input id="deliver-date" name="deliverdate" placeholder="04/30/2015" class="form-control input-md date" type="text" readonly="readonly">
                             </div>
                         </div>
 
@@ -526,7 +527,7 @@
         });
         /* load modals */
         $('#login-modal').on('show.bs.modal', function(e) {
-            $(this).find('.modal-dialog').load('/loginmodal');
+            $(this).find('.modal-dialog').load('/d-loginmodal');
         });
         $('#login-modal').on('shown.bs.modal', function(e) {
             /* Connect with Facebook */
