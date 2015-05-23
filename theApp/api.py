@@ -85,7 +85,10 @@ def get_order_from_oid(oid):
     orderRecords = []
     for odrd in odrds:
         orderRecords.append(odrd.serialize)
-    deliverer_name = Deliverer.query.get(order.did).name
+    try:
+        deliverer_name = Deliverer.query.get(order.did).name
+    except:
+        deliverer_name = None
     result["orderRecords"] = orderRecords
     result["deliverer_name"] = deliverer_name
     return jsonify(

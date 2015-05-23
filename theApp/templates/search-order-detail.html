@@ -511,7 +511,7 @@
         $('#pickupaddr').html(data.pickupaddr);
         $('#pickuptime').html(data.pickuptime);
         $('#perstopfee').html('$' + data.perstopfee);
-        $('#deliveryaddr').html(data.deliveryaddr);
+        $('#deliveryaddr').html(data.orderRecords[0].stopaddress);
         $('#deliverytime').html(data.deliverdate);
         $('#unitfee').html('$' + data.unitfee);
         $('#membernum').html('$' + data.membernum);
