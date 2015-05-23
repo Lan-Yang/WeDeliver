@@ -136,7 +136,7 @@
             </div>
 
             <div class="col-sm-3 text-center">
-                <h5 class="white othertext">{{:delivername}}Shunfeng Company</h5>
+                <h5 class="white othertext">{{:deliverer_name}}</h5>
                 <div class="orderRating" data-stars="3"></div>
             </div>
 
@@ -464,7 +464,7 @@
             $.getJSON($(this).data('href'), updateHTML);
             e.preventDefault();
         });
-        $('#next-page').click(function(){
+        $('#next-page').click(function(e){
             $.getJSON($(this).data('href'), updateHTML);
             e.preventDefault();
         });

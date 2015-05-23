@@ -403,8 +403,6 @@
 
     <script>
     $(document).ready(function() {
-        //Floatlabel
-        // $('input').floatlabel();
         /* Date Picker */
         $('.date').datepicker({
             format: "mm/dd/yyyy"
@@ -443,11 +441,12 @@
             $.getJSON($(this).data('href'), updateHTML);
             e.preventDefault();
         });
-        $('#next-page').click(function(){
+        $('#next-page').click(function(e){
             $.getJSON($(this).data('href'), updateHTML);
             e.preventDefault();
         });
         //
+        console.log(123);
         $('#search-form').submit();
     });
     </script>
