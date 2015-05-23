@@ -5,7 +5,7 @@
     <link rel="stylesheet" href="/static/css/searchlist-header.css">
 {% endblock %}
 {% block body %}
-    {% include "s-header.html" %}
+    {% include "d-header.html" %}
     <div class="container auth" style="padding: 250px 110px;">
         <div id="big-form" class="well auth-box">
             <form id="search-form" action="/d-search" method="GET">
@@ -488,9 +488,9 @@
     <script>
     $(function() {
         // $('input').floatlabel();
-        $('a, button').click(function(e) {
-            e.preventDefault();
-        });
+        // $('a, button').click(function(e) {
+        //     e.preventDefault();
+        // });
         // submit search buttton
         $('#submit-search').click(function(e){
             $('#search-form').submit();
