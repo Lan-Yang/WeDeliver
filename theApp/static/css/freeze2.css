@@ -1027,8 +1027,8 @@ footer .rights a {
   border: 1px solid rgba(0, 0, 0, 0);
 }
 .btn.btn-primary {
-  color: #256EB8;
-  border-color: #256EB8;
+  color: #3E00A8;
+  border-color: rgba(62, 0, 168, 0.63);
 }
 .btn.btn-primary:hover {
   color: #ffffff;
