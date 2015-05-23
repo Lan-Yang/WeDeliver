@@ -130,7 +130,7 @@ def update_order(oid):
     request_args = request.form
     this_order = Order.query.get(oid)
     for key in request_args:
-        print key
+        # print key
         setattr(this_order, key, request_args[key])
     db_session.commit()
     return jsonify(
@@ -246,7 +246,7 @@ def update_orderRecord(oid, sid):
             )
         ).first()
     for key in request_args:
-        print key
+        # print key
         setattr(this_OrderRecord, key, request_args[key])
     db_session.commit()
     return jsonify(
