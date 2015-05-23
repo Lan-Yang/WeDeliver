@@ -100,22 +100,21 @@ def list_orders():
         )
 
 
-@app.route('/search_order_detail')
+@app.route('/s-join-order')
 def list_search_order_detail():
     return render_template(
         'search-order-detail.html',
         title="Order Detail",
+        case="join-order",
         )
 
-
-@app.route('/rate_order')
+@app.route('/s-rate-order')
 def rate_order():
     return render_template(
-        'rate_order.html',
+        'search-order-detail.html',
         title="Rate My Order",
+        case="rate-order",
         )
-
-
 
 
 
@@ -236,7 +235,32 @@ def d_search():
 def d_accept():
     return render_template(
         'accept-order.html',
-        title="Accpet Order"
+        title="Accpet Order",
+        case="accept-order"
+        )
+
+@app.route('/d-close-order')
+def d_close():
+    return render_template(
+        'accept-order.html',
+        title="Close Order",
+        case="close-order"
+        )
+
+@app.route('/d-finish-order')
+def d_finish():
+    return render_template(
+        'accept-order.html',
+        title="Finish Order",
+        case="finish-order"
+        )
+
+@app.route('/d-view-order')
+def d_view_blank():
+    return render_template(
+        'accept-order.html',
+        title="View Order",
+        case="view-order"
         )
 
 @app.route('/d-myorder')

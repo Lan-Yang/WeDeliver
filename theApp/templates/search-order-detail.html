@@ -29,7 +29,8 @@
                                         <div class="col-sm-6">
                                             <div class="form-group">
                                                 <label class="control-label" for="pickup_time"> <i class="fa fa-calendar"></i> Pickup Time</label>
-                                                <h4 id="pickuptime"> May 12, 2015. 5:00 PM </h4> </div>
+                                                <h4 id="pickuptime"> May 12, 2015. 5:00 PM </h4>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -66,13 +67,14 @@
                             </div>
                         </form> <!-- order_basic_container -->
 
-
                         <div class="col-sm-12">
                             <div class="page-header text-muted divider"> <i class="fa fa-bar-chart"></i>Occupancy Info</div>
                         </div>
 
+
                         <form id="order_detail_container">
-                            <div class="row">
+                            <div class = "row">
+
                                 <div class="col-sm-5 col-sm-offset-1">
                                     <!--  <button onclick = "draw_occupancy(30, 17, 10)">draw the occupancy</button> -->
                                     <div id="occupancy-graph"> </div>
@@ -95,13 +97,12 @@
 
                             <div class="row">
                                 <div class="col-sm-7 col-sm-offset-1">
-                                    <div class="form-group">
-                                        <div id="chart_div" style="width: 500px; height: 300px;"></div>
+                                    <div class="form-group text-left">
+                                        <div id="chart_div" style="width: 470px; height: 300px;"></div>
                                     </div>
                                 </div>
 
                                 <div class="col-sm-4">
-                                    <br>
                                     <br>
                                     <div class="row">
                                         <label class="control-label" for="base_price"> <i class="fa fa-money"></i> Base Price</label>
@@ -116,41 +117,72 @@
                             </div>
                         </form>
 
-
-                        <form id="active-form" action="#" method="POST">
-                                <div class="row">
-                                    <div class="col-sm-12" id="orderlist">
-                                        <div class="page-header text-muted"> <i class="fa fa-user-plus"></i>Want Join </div>
+                        {% if case == "join-order" %}
+                        <form id="join-form" action="#" method="POST">
+                            <div class="row">
+                                <div class="col-sm-12" id="orderlist">
+                                    <div class="page-header text-muted"> <i class="fa fa-user-plus"></i>Want Join </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-4 col-sm-4 col-md-4 col-sm-offset-2">
+                                    <div class="form-group">
+                                        <label class="control-label" for="deliver-addr"> <i class="fa fa-truck"></i> Delivery Location </label>
+                                        <input id="deliver-addr" name="deliveraddr" placeholder="" class="form-control input-md" type="text" data-toggle="modal" data-target="#place-modal">
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <div class="col-xs-4 col-sm-4 col-md-4 col-sm-offset-2">
-                                        <div class="form-group">
-                                            <label class="control-label" for="deliver-addr"> <i class="fa fa-truck"></i> Delivery Location </label>
-                                            <input id="deliver-addr" name="deliveraddr" placeholder="" class="form-control input-md" type="text" data-toggle="modal" data-target="#place-modal">
-                                        </div>
-                                    </div>
-                                    <div class="col-xs-4 col-sm-4 col-md-4">
-                                        <div class="form-group">
-                                            <label class="control-label" for="cargo-size"><i class="fa fa-street-view"></i> Cargo Size (unit)</label>
-                                            <input id="cargo-size" name="cargosize" placeholder="" class="form-control input-md" type="text">
-                                        </div>
+                                <div class="col-xs-4 col-sm-4 col-md-4">
+                                    <div class="form-group">
+                                        <label class="control-label" for="cargo-size"><i class="fa fa-street-view"></i> Cargo Size (unit)</label>
+                                        <input id="cargo-size" name="cargosize" placeholder="" class="form-control input-md" type="text">
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <div class="form-group col-sm-8 col-sm-offset-2">
-                                        <label class="control-label" for="order-comment">Your Comment</label>
-                                        <textarea class="form-control" id="order-comment" name="comment" style="border-radius: 5px; font-size: 18px;"></textarea>
-                                    </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-sm-8 col-sm-offset-2">
+                                    <label class="control-label" for="order-comment">Your Comment</label>
+                                    <textarea class="form-control" id="order-comment" name="comment" style="border-radius: 5px; font-size: 18px;"></textarea>
                                 </div>
-                                <!-- Button -->
-                                <div class="form-group">
-                                    <div class="col-sm-offset-5">
-                                        <button id="join-submit" class="btn btn-primary">Join The Order</button>
-                                    </div>
+                            </div>
+                            <!-- Button -->
+                            <div class="form-group">
+                                <div class="col-sm-offset-5">
+                                    <button id="join-submit" class="btn btn-primary">Join The Order</button>
                                 </div>
+                            </div>
                         </form>
-
+                        {% elif case == "rate-order" %}
+                        <form id="raty-form" method="post" action="#" class="form-horizontal">
+                            <div class="form-group">
+                                <label class="col-xs-3 control-label">Rating</label>
+                                <div class="col-xs-5">
+                                    <div id="orderRating"></div>
+                                </div>
+                                <input type="hidden" name="rate" value="" />
+                            </div>
+                            <div class="form-group">
+                                <label class="col-xs-3 control-label">Review title</label>
+                                <div class="col-xs-6">
+                                    <input type="text" class="form-control" name="title" /> </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-xs-3 control-label">Your review</label>
+                                <div class="col-xs-6">
+                                    <textarea rows="5" class="form-control" name="content"></textarea>
+                                </div>
+                            </div>
+                            <!-- Button -->
+                            <div class="form-group">
+                                <div class="col-sm-offset-5">
+                                    <button id="submit-rate" class="btn btn-primary">Post the rating</button>
+                                </div>
+                            </div>
+                        </form>
+                        {% elif case == "view-order" %}
+                        <!-- BLANK -->
+                        {% else %}
+                        <h1> Error </h1>
+                        {% endif %}
                     </div>
                     <div class="clearfix"></div>
                 </div>
@@ -482,7 +514,7 @@
     }
     </script>
 
-    <script src="text/javascript">
+    <script type="text/javascript">
     $(function(){
         // join order form
         $('#join-form').submit(function(e){
@@ -504,6 +536,45 @@
         });
         $('#join-submit').click(function(e){
             $('#join-form').submit();
+            e.preventDefault();
+        });
+    });
+    </script>
+
+    <script>
+    $(function(){
+        $('#orderRating').raty({
+            path: '/static/img',
+            size: 24,
+            //The name of hidden field generated by Raty
+            scoreName: 'star',
+            score: function() {
+                return $(this).data('score');
+            },
+            click: function(score, evt) {
+                // alert('ID: ' + this.id + "\nscore: " + score + "\nevent: " + evt);
+                $('input[name="rate"]').val(score);
+            }
+        });
+        $('#raty-form').submit(function(e){
+            $.post('/v1/orderRecord', {
+                oid: oid,
+                sid: 101, // FIXME: Real SID !
+                stopaddress: $('input[name="deliveraddr"]').val(),
+                cargosize: $('input[name="cargosize"]').val(),
+                comment: $('input[name="comment"]').val(),
+            }, function(data) {
+                if (Math.floor(data.status/100) == 2) {
+                    alert('Success!');
+                    location.href = '/myorder';
+                } else {
+                    console.log('Join order failed. Change sid and try again');
+                }
+            });
+            e.preventDefault();
+        });
+        $('#submit-rate').click(function(e){
+            $('#raty-form').submit();
             e.preventDefault();
         });
     });

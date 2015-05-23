@@ -118,7 +118,7 @@
                             </div>
                         </form>
 
-
+                        {% if case == "accept-order" %}
                         <form id="accept-form">
                             <fieldset>
                                 <div class="col-sm-12">
@@ -149,6 +149,29 @@
                                 </div>
                             </fieldset>
                         </form>
+                        {% elif case == "close-order" %}
+                        <form id="close-form">
+                            <!-- Button -->
+                            <div class="form-group">
+                                <div class="col-sm-offset-5">
+                                    <button id="close-submit" class="btn btn-primary">Ship This Order</button>
+                                </div>
+                            </div>
+                        </form>
+                        {% elif case == "finish-order" %}
+                        <form id="finish-form">
+                            <!-- Button -->
+                            <div class="form-group">
+                                <div class="col-sm-offset-5">
+                                    <button id="finish-submit" class="btn btn-primary">This Order is Finished</button>
+                                </div>
+                            </div>
+                        </form>
+                        {% elif case == "view-order" %}
+                        <!-- Blank -->
+                        {% else %}
+                        <h1> Error </h1>
+                        {% endif %}
 
                     </div>
                     <div class="clearfix"></div>

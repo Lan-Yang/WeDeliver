@@ -1,91 +1,11 @@
-<!DOCTYPE html>
-<!--[if lt IE 7]><html lang="en" class="no-js ie6"><![endif]-->
-<!--[if IE 7]><html lang="en" class="no-js ie7"><![endif]-->
-<!--[if IE 8]><html lang="en" class="no-js ie8"><![endif]-->
-<!--[if gt IE 8]><!-->
-<html lang="en" class="no-js">
-<!--<![endif]-->
-
-<head>
-    <meta charset="UTF-8">
-    <title>We deliver index page</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    <link rel="shortcut icon" href="/static/favicon.png">
-
-    <!-- <link rel="stylesheet" href="css/bootstrap.css"> -->
-    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/static/css/animate.css">
-    <link href="http://fontawesome.io/assets/font-awesome/css/font-awesome.css" rel="stylesheet" media="screen">
-    <link rel="stylesheet" href="/static/css/slick.css">
-    <link rel="stylesheet" href="/static/js/rs-plugin/css/settings.css">
+{% extends "base.html" %}
+{% block mycss %}
     <link rel="stylesheet" href="/static/css/freeze2.css">
-    <link rel="stylesheet" href="/static/css/index-login.css">
     <link rel="stylesheet" href="/static/css/d-searchlist.css">
-    <link href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.7.14/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
-    <script type="text/javascript" src="/static/js/modernizr.custom.32033.js"></script>
-    <link href='http://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
-    <link href='http://fonts.googleapis.com/css?family=Raleway:500' rel='stylesheet' type='text/css'>
-    <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css'>
-    <link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
-
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-
-</head>
-
-<body>
-
-    <div class="pre-loader">
-        <div class="load-con">
-            <img src="/static/logo.png" class="animated fadeInDown" alt="logo">
-            <div class="spinner">
-                <div class="bounce1"></div>
-                <div class="bounce2"></div>
-                <div class="bounce3"></div>
-            </div>
-        </div>
-    </div>
-
-    <header>
-        <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
-            <div class="container">
-                <!-- Brand and toggle get grouped for better mobile display -->
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                        <span class="fa fa-bars fa-lg"></span>
-                    </button>
-                    <a class="navbar-brand" href="/d-home">
-                        <img src="/static/logo.png" alt="logo" class="logo">
-                    </a>
-                </div>
-                <!-- Collect the nav links, forms, and other content for toggling -->
-                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                    <ul class="nav navbar-nav navbar-right">
-                        <li><a href="/d-search">Search</a></li>
-                        <li><a href="/d-post">Post</a></li>
-                        <li><a href="/d-myorder">My Orders</a></li>
-                        <li class="dropdown">
-                            <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">John</a>
-                            <ul class="dropdown-menu profileselect" role="menu">
-                                <li id="prettySurname" class="text-center">
-                                    <h5 class="text-name">Hi! John Doe</h5>
-                                </li>
-                                <li id="toProfile"><a href="/s-account" style="color: #555; font-size: 14px;">Profile</a></li>
-                                <!-- <li class="divider"></li> -->
-                                <li id="toHelp"><a href="/logout" style="color: #555; font-size: 14px;">Help</a></li>
-                                <li id="logOutButton" class="text-center">
-                                    <button class="btn btn-block btn-logout" href="" type="submit">Log out</button>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
-                </div> <!-- /.navbar-collapse -->
-            </div> <!-- /.container-->
-        </nav>
-    </header>
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.7.14/css/bootstrap-datetimepicker.min.css">
+{% endblock %}
+{% block body %}
+    {% include "d-header.html" %}
 
     <div class="wrapper">
         <div class="box">
@@ -99,20 +19,20 @@
                                 <div class="col-sm-12">
                                     <div class="form-group">
                                         <label class="control-label" for="the-title" style="font-size: 16px;">Title</label>
-                                        <input id="the-title" placeholder="IKEA, GO!" class="form-control input-md" type="text" name="title">
+                                        <input id="the-title" class="form-control input-md" type="text" name="title">
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-sm-6">
                                         <div class="form-group">
                                             <label class="control-label" for="pickup-addr" style="font-size: 16px;"> <i class="fa fa-truck"></i> Pickup Location</label>
-                                            <input id="pickup-addr" name="pickupaddr" placeholder="IKEA Brooklyn" class="form-control input-md" type="text" data-toggle="modal" data-target="#place-modal">
+                                            <input id="pickup-addr" name="pickupaddr" class="form-control input-md" type="text" data-toggle="modal" data-target="#place-modal">
                                         </div>
                                     </div>
                                     <div class = "col-sm-6">
                                         <div class="form-group">
                                             <label class="control-label" for="deliver-addr" style="font-size: 16px;"><i class="fa fa-street-view"></i> Delivery Location</label>
-                                            <input id="deliver-addr" name="deliveraddr" placeholder="Columbia University" class="form-control input-md" type="text" data-toggle="modal" data-target="#place-modal">
+                                            <input id="deliver-addr" name="deliveraddr" class="form-control input-md" type="text" data-toggle="modal" data-target="#place-modal">
                                         </div>
                                     </div>
                                 </div>
@@ -120,28 +40,28 @@
                                     <div class="col-sm-6">
                                         <div class="form-group">
                                             <label class="control-label" for="pickup-time" style="font-size: 16px;"> <i class="fa fa-calendar"></i> Pickup Time</label>
-                                            <input id="pickup-time" name="pickuptime" placeholder="May 12, 2015. 5:00 PM" class="form-control input-md datetime" type="text">
+                                            <input id="pickup-time" name="pickuptime" class="form-control input-md datetime" type="text">
                                         </div>
                                     </div>
                                      <div class="col-sm-6">
                                         <div class="form-group">
                                             <label class="control-label" for="deliver-time" style="font-size: 16px;"> <i class="fa fa-calendar-o"></i> Delivery Time</label>
-                                            <input id="deliver-time" name="delivertime" placeholder="May 13, 2015. 10:00 AM" class="form-control input-md datetime" type="text">
+                                            <input id="deliver-time" name="delivertime" class="form-control input-md datetime" type="text">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-sm-6">
                                         <div class="form-group">
-                                            <label class="control-label" for="cargo-size" style="font-size: 16px;"> <i class="fa fa-th"></i> Cargo Size</label>
-                                            <input id="cargo-size" name="cargosize" placeholder="5 Unit" class="form-control input-md" type="text">
+                                            <label class="control-label" for="cargo-size" style="font-size: 16px;"> <i class="fa fa-th"></i> Max Size</label>
+                                            <input id="cargo-size" name="cargosize" class="form-control input-md" type="text">
                                         </div>
                                     </div>
                                     <div class="col-sm-6">
-                                        <div class="form-group">
+                                        <!-- <div class="form-group">
                                             <label class="control-label" for="max-bid" style="font-size: 16px;"> <i class="fa fa-money"></i> Max Bid</label>
                                             <input id="max-bid" name="maxbid" placeholder="50" class="form-control input-md" type="text">
-                                        </div>
+                                        </div> -->
                                     </div>
                                 </div>
                                 <div class="col-sm-12">
@@ -149,7 +69,7 @@
                                         <label class="control-label" for="comment-text" style="font-size: 16px;">Comment</label>
                                         <br>
                                         <br>
-                                        <textarea class="form-control" id="comment-text" name="comment" style="border-radius: 5px;"> This shopping experience at IKEA must be awsesome. But as a poor student, I really want to save my limited budget by grouping my deliver with you!</textarea>
+                                        <textarea class="form-control" id="comment-text" name="comment" style="border-radius: 5px;"></textarea>
                                     </div>
                                 </div>
                                 <!-- Button -->
@@ -465,5 +385,4 @@
     });
     </script>
 
-</body>
-</html>
+{% endblock %}
