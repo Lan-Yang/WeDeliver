@@ -99,6 +99,13 @@ def list_orders():
         title="My orders",
         )
 
+@app.route('/s-view-order')
+def view_order_detail():
+    return render_template(
+        'search-order-detail.html',
+        title="Order Detail",
+        case="view-order",
+        )
 
 @app.route('/s-join-order')
 def list_search_order_detail():

@@ -167,7 +167,8 @@
                             <div class="form-group">
                                 <label class="col-xs-3 control-label">Review title</label>
                                 <div class="col-xs-6">
-                                    <input type="text" class="form-control" name="title" /> </div>
+                                    <input type="text" class="form-control" name="title" />
+                                </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-xs-3 control-label">Your review</label>
@@ -489,12 +490,9 @@
     }
     </script>
 
-
     <script>
+    var oid = $.url('?oid');
     $(document).ready(function() {
-        //Floatlabel
-        // $('input').floatlabel();
-        var oid = $.url('?oid');
         $.getJSON('v1/order/' + oid, function(data){
             if (Math.floor(data.status/100) == 2) {
                 console.log(data.data[0]);
@@ -524,7 +522,7 @@
         $('#join-form').submit(function(e){
             $.post('/v1/orderRecord', {
                 oid: oid,
-                sid: 101, // FIXME: Real SID !
+                sid: {[current_user.sid]},
                 stopaddress: $('input[name="deliveraddr"]').val(),
                 cargosize: $('input[name="cargosize"]').val(),
                 comment: $('input[name="comment"]').val(),
@@ -563,10 +561,8 @@
         $('#raty-form').submit(function(e){
             $.post('/v1/orderRecord', {
                 oid: oid,
-                sid: 101, // FIXME: Real SID !
-                stopaddress: $('input[name="deliveraddr"]').val(),
-                cargosize: $('input[name="cargosize"]').val(),
-                comment: $('input[name="comment"]').val(),
+                sid: {[current_user.sid]}, // FIXME: Real SID !
+                grade: $('input[name="rate"]').val(),
             }, function(data) {
                 if (Math.floor(data.status/100) == 2) {
                     alert('Success!');

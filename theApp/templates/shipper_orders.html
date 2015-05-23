@@ -8,7 +8,7 @@
 {% include "myorders-body.html" %}
 
 <script id="list-template" type="text/x-jsrender">
-{{for data}}
+{{for data ~uri=uri}}
 <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
     <div class="offer {{:label}}">
         <div class="shape">
@@ -19,7 +19,7 @@
             <!-- May 25, 2015 8:00PM -->
             <p> {{:pickupaddr}} </p>
             <p> {{:stopaddr}} </p>
-            <a class="btn btn-info btn-sm" href="#">Detail</a>
+            <a class="btn btn-info btn-sm" href="{{:~uri}}?oid={{:oid}}">Detail</a>
         </div>
     </div>
 </div>
@@ -437,19 +437,19 @@ $(function() {
         sid: {[current_user.sid]}, //
         status: 'O',
         debug: 1, // testing backdoor
-    }, getHtmlFiller('pending-panel'));
+    }, getHtmlFiller('pending-panel', '/s-view-order'));
 
     $.getJSON('/v1/order', { // data
         sid: {[current_user.sid]},
         status: 'D',
         debug: 1, // testing backdoor
-    }, getHtmlFiller('ongoing-panel'));
+    }, getHtmlFiller('ongoing-panel', '/s-view-order'));
 
     $.getJSON('/v1/order', { // data
         sid: {[current_user.sid]},
         status: 'F',
         debug: 1, // testing backdoor
-    }, getHtmlFiller('finished-panel'));
+    }, getHtmlFiller('finished-panel', '/s-rate-order'));
 
     $('a.prev-page').click(function(e){
         var containerID = $(this).data('panel');
@@ -472,7 +472,7 @@ $(function() {
         return "offer-default";
     }
 
-    function getHtmlFiller(containerID) {
+    function getHtmlFiller(containerID, uri) {
         return function(data) {
             console.log(data);
             // add color, for html
@@ -480,6 +480,7 @@ $(function() {
                 o.label = value2label(o.closefee);
             });
             // render
+            data.uri = uri;
             var $container = $('#' + containerID);
             $container.html(
                 $("#list-template").render(data)
