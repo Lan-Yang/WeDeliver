@@ -41,9 +41,32 @@ def search_for_orders1():
     pre_page_num = int(page_number)-1 if int(page_number)>1 else first_page_num
     next_page_num = int(page_number)+1 if int(page_number)<last_page_num else last_page_num
 
+    result = [i.serialize for i in results_pagination]
+    # Join deliverer table
+    for order in result:
+        try:
+            deliverer = Deliverer.query.get(order['did'])
+        except:
+            deliverer = None
+        if deliverer:
+            order.update({
+                'deliverer_name': deliverer.name,
+                'deliverer_grade': deliverer.grade
+            });
+    # Join OrderRecord table
+    for order in result:
+        try:
+            record = OrderRecord.query.filter(OrderRecord.oid == order['oid']).first()
+        except:
+            record = None
+        if record:
+            order.update({
+                'deliverloc': record.stopaddress,
+            });
+
     return jsonify(
         status = 200,
-        data = [i.serialize for i in results_pagination],
+        data = result,
         links = [
             {"ref":"pre", "href":"/v1/order?"+"pickupaddress="+pickupaddress+"&stopaddress="+stopaddress+"&pickuptime="+pickuptime+"&cargosize="+cargosize+"&page_number="+str(pre_page_num)+"&per_page="+str(per_page)+"&debug="+debug},
             {"ref":"next","href":"/v1/order?"+"pickupaddress="+pickupaddress+"&stopaddress="+stopaddress+"&pickuptime="+pickuptime+"&cargosize="+cargosize+"&page_number="+str(next_page_num)+"&per_page="+str(per_page)+"&debug="+debug},
@@ -86,11 +109,12 @@ def get_order_from_oid(oid):
     for odrd in odrds:
         orderRecords.append(odrd.serialize)
     try:
-        deliverer_name = Deliverer.query.get(order.did).name
+        deliverer = Deliverer.query.get(order.did)
     except:
-        deliverer_name = None
+        deliverer = None
     result["orderRecords"] = orderRecords
-    result["deliverer_name"] = deliverer_name
+    result["deliverer_name"] = deliverer and deliverer.name
+    result["deliverer_grade"] = deliverer and deliverer.grade
     return jsonify(
         status = 200,
         data = [result],
