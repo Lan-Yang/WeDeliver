@@ -6,7 +6,6 @@
 {% block body %}
     {% include "d-header.html" %}
     {% include "searchlist-body.html" %}
-
     <script id="list-template" type="text/x-jsrender">
     {{for data}}
         <div class="row">
@@ -32,17 +31,17 @@
                     </div>
                     <div class="col-sm-8" >
                         <h5 class="white othertext">
-                            <span>2015-05-27 6:00 PM</span>
+                            <span>{{:pickuptime}}</span>
                         </h5>
                         <h5 class="white othertext">
-                            <span> 2015-05-28 </span>
+                            <span>{{:deliverdate}}</span>
                         </h5>
                     </div>
                 </div>
             </div>
 
             <div class="col-sm-2 text-center" style= "padding-left: 1px; padding-right: 0px;">
-                <h5 class="white curprice"><span> 10/50</span></h5>
+                <h5 class="white curprice"><span>{{:totalcargosize}}/{{:trucksize}}</span></h5>
             </div>
 
             <div class="col-sm-2">
@@ -50,12 +49,10 @@
             </div>
         </div>
 
-
-
         {{if #index < #parent.data.length - 1}}
-            <div class="row">
-                <div class="page-header text-muted"></div>
-            </div>
+        <div class="row">
+            <div class="page-header text-muted"></div>
+        </div>
         {{/if}}
     {{/for}}
     </script>
@@ -329,9 +326,6 @@
     $(document).ready(function() {
         //Floatlabel
         // $('input').floatlabel();
-        // $('a, button').click(function(e) {
-        //     e.preventDefault();
-        // });
         /* Date Picker */
         $('.date').datepicker({
             format: "mm/dd/yyyy"
@@ -353,6 +347,7 @@
                 pickupdate: $('input[name="pickuptime"]').val(),
                 cargosize: 0, // FIXME
                 none_key: $('input[name="deliverdate"]').val(),
+                status: 'O',
                 debug: 1,  // testing backdoor
             }, function(data) { // success
                 console.log(data);

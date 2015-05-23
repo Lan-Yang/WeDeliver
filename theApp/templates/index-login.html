@@ -1,6 +1,8 @@
 {% extends "base.html" %}
 {% block mycss %}
     <link rel="stylesheet" href="/static/css/index-login.css">
+    <link rel="stylesheet" href="/static/css/searchlist-header.css">
+
 {% endblock %}
 {% block body %}
     {% include "s-header.html" %}
@@ -111,6 +113,7 @@
             <div class="row">
                 <div class="col-md-8 col-md-offset-2 scrollpoint sp-effect2">
                     <div class="video-container" >
+                        <!-- <iframe width="640" height="390" src="https://www.youtube.com/embed/RuhMikmfAI8?list=PLcc-2gkGMnKS2lLJUuOF1Sn99sq0pmnC5" frameborder="0" allowfullscreen></iframe> -->
                         <iframe src="http://player.vimeo.com/video/70984663"></iframe>
                     </div>
                 </div>
@@ -490,9 +493,6 @@
     <script>
     $(function() {
         // $('input').floatlabel();
-        $('a, button').click(function(e) {
-            e.preventDefault();
-        });
         // submit search buttton
         $('#submit-search').click(function(e){
             $('#search-form').submit();
