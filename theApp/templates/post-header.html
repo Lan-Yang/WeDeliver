@@ -18,14 +18,14 @@
                                 <div class="col-sm-12">
                                     <div class="form-group">
                                         <label class="control-label" for="the-title" style="font-size: 16px;">Title</label>
-                                        <input id="the-title" placeholder="IKEA, GO!" class="form-control input-md" type="text" name="title">
+                                        <input id="the-title" class="form-control input-md" type="text" name="title">
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-sm-6">
                                         <div class="form-group">
                                             <label class="control-label" for="pickup-addr" style="font-size: 16px;"> <i class="fa fa-truck"></i> Pickup Location</label>
-                                            <input id="pickup-addr" name="pickupaddr" placeholder="IKEA Brooklyn" class="form-control input-md" type="text" data-toggle="modal" data-target="#place-modal">
+                                            <input id="pickup-addr" name="pickupaddr" class="form-control input-md" type="text" data-toggle="modal" data-target="#place-modal">
                                             <input type="hidden" name="pickaddr_lat" value="0.0" class="addr_lat">
                                             <input type="hidden" name="pickaddr_lng" value="0.0" class="addr_lng">
                                         </div>
@@ -33,7 +33,7 @@
                                     <div class = "col-sm-6">
                                         <div class="form-group">
                                             <label class="control-label" for="deliver-addr" style="font-size: 16px;"><i class="fa fa-street-view"></i> Delivery Location</label>
-                                            <input id="deliver-addr" name="deliveraddr" placeholder="Columbia University" class="form-control input-md" type="text" data-toggle="modal" data-target="#place-modal">
+                                            <input id="deliver-addr" name="deliveraddr" class="form-control input-md" type="text" data-toggle="modal" data-target="#place-modal">
                                             <input type="hidden" name="deliveraddr_lat" value="0.0" class="addr_lat">
                                             <input type="hidden" name="deliveraddr_lng" value="0.0" class="addr_lng">
                                         </div>
@@ -43,13 +43,13 @@
                                     <div class="col-sm-6">
                                         <div class="form-group">
                                             <label class="control-label" for="pickup-time" style="font-size: 16px;"> <i class="fa fa-calendar"></i> Pickup Time</label>
-                                            <input id="pickup-time" name="pickuptime" placeholder="2015-05-22 18:28:53" class="form-control input-md datetime" type="text">
+                                            <input id="pickup-time" name="pickuptime" class="form-control input-md datetime" type="text">
                                         </div>
                                     </div>
                                      <div class="col-sm-6">
                                         <div class="form-group">
                                             <label class="control-label" for="deliver-time" style="font-size: 16px;"> <i class="fa fa-calendar-o"></i> Delivery Time</label>
-                                            <input id="deliver-time" name="deliverdate" placeholder="2015-05-22 18:28:53" class="form-control input-md datetime" type="text">
+                                            <input id="deliver-time" name="deliverdate" class="form-control input-md datetime" type="text">
                                         </div>
                                     </div>
                                 </div>
@@ -57,13 +57,13 @@
                                     <div class="col-sm-6">
                                         <div class="form-group">
                                             <label class="control-label" for="cargo-size" style="font-size: 16px;"> <i class="fa fa-th"></i> Cargo Size</label>
-                                            <input id="cargo-size" name="cargosize" placeholder="5" class="form-control input-md" type="text">
+                                            <input id="cargo-size" name="cargosize" class="form-control input-md" type="text">
                                         </div>
                                     </div>
                                     <div class="col-sm-6">
                                         <div class="form-group">
                                             <label class="control-label" for="max-bid" style="font-size: 16px;"> <i class="fa fa-money"></i> Max Bid</label>
-                                            <input id="max-bid" name="maxbid" placeholder="50" class="form-control input-md" type="text">
+                                            <input id="max-bid" name="maxbid" class="form-control input-md" type="text">
                                         </div>
                                     </div>
                                 </div>
@@ -100,18 +100,7 @@
         </div> <!-- /.modal-dialog -->
     </div> <!-- /.modal -->
 
-    <script src="/static/js/jquery-1.11.1.min.js"></script>
-    <script src="/static/js/bootstrap.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.2/moment.min.js"></script>
-    <script src="//maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true&libraries=places"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.7.14/js/bootstrap-datetimepicker.min.js"></script>
-    <script src="/static/js/slick.min.js"></script>
-    <script src="/static/js/floatlabels.min.js"></script>
-    <script src="/static/js/placeholdem.min.js"></script>
-    <script src="/static/js/rs-plugin/js/jquery.themepunch.plugins.min.js"></script>
-    <script src="/static/js/rs-plugin/js/jquery.themepunch.revolution.min.js"></script>
-    <script src="/static/js/waypoints.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery.nicescroll/3.6.0/jquery.nicescroll.min.js"></script>
+    {% include 'common-js-libs.html' %}
     <script src="/static/js/scripts.js"></script>
 
     <!--This part is for overlaying text-muted css, to make some headline as white color-->
@@ -341,13 +330,6 @@
         top: 1px!important;
     }
     </style>
-
-    <script>
-    $(document).ready(function() {
-        appMaster.preLoader();
-        $("html").niceScroll();
-    });
-    </script>
 
     <script>
     $(function() {

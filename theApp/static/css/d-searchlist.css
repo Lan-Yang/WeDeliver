@@ -101,3 +101,6 @@
 	font-size: 16px;
 }
 
+input[readonly].default-cursor {
+    cursor: text;
+}

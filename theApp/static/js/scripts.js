@@ -173,6 +173,7 @@ $(function() {
         }
     });
 });
+
 /*
  * Initialize google map with address search modal-dialog
  * Make sure the there are div#map-canvas and input#pac-input
