@@ -10,8 +10,8 @@
                 <!--search box-->
                 <div class="container auth col-sm-10 col-sm-offset-1" style="padding-top: 150px; padding-left: 50px; padding-right: 20px;">
                     <div id="big-form" class="well auth-box">
-                        <form id="join-form" action="#" method="POST">
-                            <fieldset>
+
+                        <form id="order_basic_container"> 
                                 <div class="form-group">
                                     <h1 id="order-title">IKEA GO!</h1>
                                 </div>
@@ -19,44 +19,35 @@
                                     <div class="page-header text-muted divider"> <i class="fa fa-info-circle"></i> Order Info </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-sml-1 col-sm-offset-1">
+                                    <div class="col-sml-8 col-sm-offset-2">
                                         <div class="row">
-                                            <div class="col-sm-4">
+                                            <div class="col-sm-6">
                                                 <div class="form-group">
                                                     <label class="control-label" for="pickup_location"> <i class="fa fa-truck"></i> Pickup Location</label>
                                                     <h4 id="pickupaddr">IKEA Brooklyn</h4> </div>
                                             </div>
-                                            <div class="col-sm-4">
+                                            <div class="col-sm-6">
                                                 <div class="form-group">
                                                     <label class="control-label" for="pickup_time"> <i class="fa fa-calendar"></i> Pickup Time</label>
                                                     <h4 id="pickuptime"> May 12, 2015. 5:00 PM </h4> </div>
                                             </div>
-                                            <div class="col-sm-4">
-                                                <div class="form-group">
-                                                    <label class="control-label" for="base_price"> <i class="fa fa-money"></i> Base Price</label>
-                                                    <h4 id="perstopfee"> $5.00 </h4> </div>
-                                            </div>
                                         </div>
                                     </div>
                                 </div>
+
                                 <div class="row">
-                                    <div class="col-sml-1 col-sm-offset-1">
+                                    <div class="col-sml-8 col-sm-offset-2">
                                         <div class="row">
-                                            <div class="col-sm-4">
+                                            <div class="col-sm-6">
                                                 <div class="form-group">
                                                     <label><i class="fa fa-street-view"></i> Delivery Location</label>
                                                     <h4 id="deliveryaddr">Columbia University</h4> </div>
                                             </div>
-                                            <div class="col-sm-4">
+                                            <div class="col-sm-6">
                                                 <div class="form-group">
                                                     <label> <i class="fa fa-calendar-o"></i> Delivery Time</label>
                                                     <h4 id="deliverytime"> May 13, 2015. 10:00 AM </h4>
                                                 </div>
-                                            </div>
-                                            <div class="col-sm-4">
-                                                <div class="form-group">
-                                                    <label class="control-label" for="unit_price"> <i class="fa fa-money"></i></i> Current Unit Price</label>
-                                                    <h4 id="unitfee"> $10 </h4> </div>
                                             </div>
                                         </div>
                                     </div>
@@ -71,44 +62,92 @@
                                 <div class = "row">
                                     <div class="col-sm-8 col-sm-offset-2">
                                         <div id="map" style = "width: 600px; height: 400px;"></div>
-                                        <button id="draw_route" onclick ="draw_route(40.679308, -74.012910, 40.805986, -73.959352)"> Draw a route</button>
                                     </div>
                                 </div>
+                        </form>
 
-                                <div class="col-sm-12">
-                                    <div class="page-header text-muted divider"> <i class="fa fa-bar-chart"></i>Prices Trend </div>
+
+
+
+
+
+
+
+
+                        <div class="col-sm-12">
+                            <div class="page-header text-muted divider"> <i class="fa fa-bar-chart"></i>Occupancy Info</div>
+                        </div>
+
+
+                        <form id="order_detail_container"> 
+                            <div class = "row">
+                                <div class="col-sm-5 col-sm-offset-1">
+                                    <!--  <button onclick = "draw_occupancy(30, 17, 10)">draw the occupancy</button> -->
+                                    <div id = "occupancy_graph"> </div>
+                                </div>
+                                <br>
+                                <div class="col-sm-3">
+                                    <label class="control-label" for="textinput"> <i class="fa fa-th"></i> Current Occpancy</label>
+                                    <h1> 17/25 </h1>
+                                </div>
+                                <br>
+                                <div class="col-sm-3">
+                                    <label class="control-label" for="textinput"> <i class="fa fa-users"></i> Participants</label>    
+                                    <h1> 5 </h1>        
+                                </div>
+                            </div>
+
+
+
+                            <div class="col-sm-12">
+                                <div class="page-header text-muted divider"> <i class="fa fa-bar-chart"></i>Prices Trend </div>
+                            </div>
+
+                            <div class = "row">
+                                <div class="col-sm-7 col-sm-offset-1">
+                                    <div class="form-group">
+                                        <div id="chart_div" style="width: 500px; height: 300px;"></div>
+                                    </div> 
                                 </div>
 
-
-                                <div class="row">
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <div id="chart_div" style="width: 400px; height: 250px"></div>
-                                        </div>
+                                <div class="col-sm-4">
+                                    <br>
+                                    <br>
+                                    <div class="row"> 
+                                        <label class="control-label" for="base_price"> <i class="fa fa-money"></i> Base Price</label>
+                                        <h2 id="perstopfee"> $5.00 </h2> 
                                     </div>
-
-                                    <div class="col-sm-3">
-                                        <!--  <button onclick = "draw_occupancy(30, 17, 10)">draw the occupancy</button> -->
-                                         <div id = "occupancy_graph"> </div>
-                                    </div>
-
-                                    <div class="col-sm-3">
-                                        <row>
-                                            <label class="control-label" for="textinput"> <i class="fa fa-users"></i> Current Occpancy</label>
-                                            <h1> 17/25 </h1>
-                                        </row>
-
-                                        <row>
-                                            <label class="control-label" for="textinput"> <i class="fa fa-users"></i> Participants</label>
-                                            <h1> 5 </h1>
-                                        </row>
+                                    <br>
+                                    <div class="row"> 
+                                        <label class="control-label" for="unit_price"> <i class="fa fa-money"></i></i> Current Unit Price</label>
+                                        <h2 id="unitfee"> $10 </h2> 
                                     </div>
                                 </div>
+                            </div>
+                        </form>
 
 
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                        <form id="join-form" action="#" method="POST">   
                                 <div class="row">
                                     <div class="col-sm-12" id="orderlist">
                                         <div class="page-header text-muted"> <i class="fa fa-user-plus"></i>Want Join </div>
@@ -118,22 +157,21 @@
                                     <div class="col-xs-4 col-sm-4 col-md-4 col-sm-offset-2">
                                         <div class="form-group">
                                             <label class="control-label" for="deliver-addr"> <i class="fa fa-truck"></i> Delivery Location </label>
-                                            <input id="deliver-addr" name="deliveraddr" placeholder="IKEA Brooklyn" class="form-control input-md" type="text" data-toggle="modal" data-target="#place-modal"> </div>
+                                            <input id="deliver-addr" name="deliveraddr" placeholder="" class="form-control input-md" type="text" data-toggle="modal" data-target="#place-modal"> 
+                                        </div>
                                     </div>
                                     <div class="col-xs-4 col-sm-4 col-md-4">
                                         <div class="form-group">
-
                                             <label class="control-label" for="cargo-size"><i class="fa fa-street-view"></i> Cargo Size (unit)</label>
-                                            <input id="cargo-size" name="cargosize" placeholder="12" class="form-control input-md" type="text"> </div>
+                                            <input id="cargo-size" name="cargosize" placeholder="" class="form-control input-md" type="text"> 
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-xs-2 col-sm-2 col-md-2"> </div>
-                                    <div class="form-group col-xs-8 col-sm-8 col-md-8">
+                                    <div class="form-group col-sm-8 col-sm-offset-2">
                                         <label class="control-label" for="order-comment">Your Comment</label>
                                         <textarea class="form-control" id="order-comment" name="comment" style="border-radius: 5px; font-size: 18px;"></textarea>
                                     </div>
-                                    <div class="col-xs-2 col-sm-2 col-md-2"> </div>
                                 </div>
                                 <!-- Button -->
                                 <div class="form-group">
@@ -141,8 +179,13 @@
                                         <button id="join-submit" class="btn btn-primary">Join The Order</button>
                                     </div>
                                 </div>
-                            </fieldset>
                         </form>
+
+
+
+
+
+
                     </div>
                     <div class="clearfix"></div>
                 </div>
@@ -450,7 +493,6 @@
 
     <script>
     function draw_route(origin_lat, orign_lng, dest_lat, dest_lng) {
-        alert("I have just entered here!");
         map.drawRoute({
           origin: [origin_lat, orign_lng],
           destination: [dest_lat, dest_lng],
@@ -465,7 +507,8 @@
 
 
     <script>
-    draw_occupancy(30, 17, 5);
+    draw_occupancy(120, 29, 15);
+    draw_route(40.679308, -74.012910, 40.805986, -73.959352);
 
 
     $(document).ready(function() {
@@ -547,12 +590,12 @@
 
               var options = {
                 colors:['yellow','#E6E600'],
-                backgroundColor: 'white',
+                backgroundColor: 'transparent',
                 chartArea: {
                     top: 25,
                     left: 25,
-                    width: 450,
-                    height: 300
+                    width: 350,
+                    height: 250
                 },
                 fontSize: 12
               };
