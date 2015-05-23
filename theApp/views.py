@@ -201,7 +201,8 @@ def shipper_search():
 @login_required
 def logout():
     logout_user()
-    return redirect(url_for("home"))
+    next = request.args.get('next', '/home')
+    return redirect(next)
 
 @app.route('/reset/db')
 def reset_db():

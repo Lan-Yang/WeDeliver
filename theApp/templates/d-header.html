@@ -6,39 +6,39 @@
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                     <span class="fa fa-bars fa-lg"></span>
                 </button>
-                <a class="navbar-brand" href="/">
+                <a class="navbar-brand" href="/d-home">
                     <img src="/static/logo.png" alt="logo" class="logo">
                 </a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
-                {% if title and title == 'Home' %}
+                {% if not current_user.is_authenticated() %}
                     <li><a href="#about">about</a></li>
                     <li><a href="#demo">demo</a></li>
                     <li><a href="#support">support</a></li>
                     <li><a href="#" data-toggle="modal" data-target="#login-modal"><i class="fa fa-user"></i></a></li>
                 {% else %}
-                <li><a href="/d-search">Search</a></li>
-                <li><a href="/d-post">Post</a></li>
-                <li><a href="/d-myorder">My Orders</a></li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">John</a>
-                    <ul class="dropdown-menu profileselect" role="menu">
-                        <li id="prettySurname" class="text-center">
-                            <h5 class="text-name">Hi! John Doe</h5>
-                        </li>
-                        <li id="toProfile">
-                            <a href="/s-account" style="color: #555; font-size: 14px;">Profile</a>
-                        </li>
-                        <li id="toHelp">
-                            <a href="#" style="color: #555; font-size: 14px;">Help</a>
-                        </li>
-                        <li id="logOutButton" class="text-center">
-                            <button class="btn btn-block btn-logout" href="/logout">Log out</button>
-                        </li>
-                    </ul>
-                </li>
+                    <li><a href="/d-search">Search</a></li>
+                    <li><a href="/d-post">Post</a></li>
+                    <li><a href="/d-myorder">My Orders</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{[current_user.name]}</a>
+                        <ul class="dropdown-menu profileselect" role="menu">
+                            <li id="prettySurname" class="text-center">
+                                <h5 class="text-name">Hi! {[current_user.name]}</h5>
+                            </li>
+                            <li id="toProfile">
+                                <a href="/s-account" style="color: #555; font-size: 14px;">Profile</a>
+                            </li>
+                            <li id="toHelp">
+                                <a href="#" style="color: #555; font-size: 14px;">Help</a>
+                            </li>
+                            <li id="logOutButton" class="text-center">
+                                <button class="btn btn-block btn-logout" onclick="logout('/d-home')">Log out</button>
+                            </li>
+                        </ul>
+                    </li>
                 {% endif %}
                 </ul>
             </div> <!-- /.navbar-collapse -->

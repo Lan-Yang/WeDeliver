@@ -228,6 +228,6 @@ function initGmapSearch() {
 }
 
 /* logout */
-function logout() {
-    location.href = '/logout';
+function logout(next) {
+    location.href = '/logout?next=' + next;
 }
