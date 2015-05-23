@@ -128,7 +128,6 @@ def add_new_order():
     order.pickupaddr = data.get("pickupaddr", "IKEA Brooklyn")
     order.pickuptime = data.get("pickuptime", "")
     order.did = data.get("did", "0")
-    order.totalcargosize = data.get("cargosize", "0")
     order.trucksize = data.get("trucksize", "0")
     order.initialfee = data.get("initialfee", "0")
     order.perstopfee = data.get("perstopfee", "10")  # default 10
@@ -139,6 +138,7 @@ def add_new_order():
     # order.finishedtime = data.get("finishedtime", "")  # KEEP NULL
     order.pickupaddr_lat = data.get("pickupaddr_lat", "")
     order.pickupaddr_lng = data.get("pickupaddr_lng", "")
+    order.totalcargosize = 0
     order.participants = 0
     db_session.add(order)
     db_session.commit()
@@ -254,6 +254,7 @@ def add_new_orderRecord():
     db_session.commit()
     this_order = Order.query.get(orderRecord.oid)
     this_order.participants += 1  # update order participants
+    this_order.totalcargosize += int(orderRecord.cargosize)
     db_session.commit()
     return jsonify(
         status = 201,

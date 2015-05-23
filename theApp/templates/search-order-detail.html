@@ -515,8 +515,12 @@
         $('#deliveryaddr').html(data.orderRecords[0].stopaddress);
         $('#deliverytime').html(data.deliverdate);
         $('#unitfee').html('$' + data.unitfee);
-        $('#membernum').html('$' + data.membernum);
-        draw_occupancy(120, 29, 15);
+        $('#participants').html(' ' + data.participants);
+        var trucksize = data.trucksize ? data.trucksize : 100;
+        var cargosize = data.totalcargosize ? data.totalcargosize : 29;
+        $('#occpancy').html(' '+cargosize+'/'+trucksize);
+        $('#unitfee').html('$' + data.initialfee / trucksize);
+        draw_occupancy(trucksize, cargosize, 15);
         var from_lat = data.pickupaddr_lat ? data.pickupaddr_lat : 40.679308;
         var from_lng = data.pickupaddr_lng ? data.pickupaddr_lng : -74.012910;
         var to_lat = data.orderRecords[0].stopaddr_lat ? data.orderRecords[0].stopaddr_lat : 40.679308;
