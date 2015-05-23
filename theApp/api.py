@@ -142,8 +142,9 @@ def search_for_orderRecords_from_sid():
     )
     results = []
     for odrd in odrds:
+        # print odrd.oid
         this_order = Order.query.get(odrd.oid)
-        if odrd.status in status_list or not status_list:
+        if not status_list or this_order.status in status_list:
             odrd_dict = odrd.serialize
             odrd_dict.update(this_order.serialize)
             results.append(odrd_dict)
