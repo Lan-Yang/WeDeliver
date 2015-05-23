@@ -12,7 +12,7 @@ import math
 
 
 @app.route('/v1/order', methods=['GET'])
-def search_for_orders():
+def search_for_orders1():
     request_args = request.args
     pickupaddress = request_args.get('pickupaddress', '')
     stopaddress = request_args.get('stopaddress', '')
@@ -49,7 +49,24 @@ def search_for_orders():
             {"ref":"next","href":"/v1/order?"+"pickupaddress="+pickupaddress+"&stopaddress="+stopaddress+"&pickuptime="+pickuptime+"&cargosize="+cargosize+"&page_number="+str(next_page_num)+"&per_page="+str(per_page)+"&debug="+debug},
             {"ref":"first","href":"/v1/order?"+"pickupaddress="+pickupaddress+"&stopaddress="+stopaddress+"&pickuptime="+pickuptime+"&cargosize="+cargosize+"&page_number="+str(first_page_num)+"&per_page="+str(per_page)+"&debug="+debug},
             {"ref":"last","href":"/v1/order?"+"pickupaddress="+pickupaddress+"&stopaddress="+stopaddress+"&pickuptime="+pickuptime+"&cargosize="+cargosize+"&page_number="+str(last_page_num)+"&per_page="+str(per_page)+"&debug="+debug},
-            ]
+        ]
+    )
+
+@app.route('/v1/order/did/<did>/status/<status>', methods=['GET'])
+@app.route('/v1/order/did/<did>/status', methods=['GET'])
+@app.route('/v1/order/did/<did>', methods=['GET'])
+def search_for_orders2(did, status=""):
+    status_list = None
+    if status:
+        status_list = status.split(",")
+    results = Order.query.filter(
+            Order.did == did,
+        )
+    if status_list:
+        results = [order for order in results if order.status in status_list]
+    return jsonify(
+        status = 200,
+        data = [i.serialize for i in results]
     )
 
 @app.route('/v1/order/<oid>', methods=['GET'])
@@ -65,10 +82,12 @@ def get_order_from_oid(oid):
     odrds = OrderRecord.query.filter(
             OrderRecord.oid == oid
         )
-    shipper_info = []
+    orderRecords = []
     for odrd in odrds:
-        shipper_info.append({"sid":odrd.sid, "cargosize":odrd.cargosize})
-    result["shipper_info"] = shipper_info
+        orderRecords.append(odrd.serialize)
+    deliverer_name = Deliverer.query.get(order.did).name
+    result["orderRecords"] = orderRecords
+    result["deliverer_name"] = deliverer_name
     return jsonify(
         status = 200,
         data = [result],
@@ -107,29 +126,50 @@ def add_new_order():
 def search_for_orderRecords_from_sid():
     request_args = request.args
     sid = request_args.get('sid', '')
+    status = request_args.get('status', '')
     page_number = request_args.get('page_number', '1')
     per_page = request_args.get('per_page', DEFAULE_PER_PAGE)
 
-    results = OrderRecord.query.filter(
-            OrderRecord.sid == sid
-        )
-    results_pagination = results.paginate(int(page_number), int(per_page), False).items
+    status_list = None
+    if status:
+        status_list = status.split(',')
 
-    total_count = results.count()
-    total_page = int(math.ceil(total_count*1.0/DEFAULE_PER_PAGE))
-    first_page_num,last_page_num = 1,total_page
-    pre_page_num = int(page_number)-1 if int(page_number)>1 else first_page_num
-    next_page_num = int(page_number)+1 if int(page_number)<last_page_num else last_page_num
+    odrds = OrderRecord.query.filter(
+        OrderRecord.sid == sid
+    )
+    results = []
+    for odrd in odrds:
+        this_order = Order.query.get(odrd.oid)
+        if odrd.status in status_list or not status_list:
+            odrd_dict = odrd.serialize
+            odrd_dict.update(this_order.serialize)
+            results.append(odrd_dict)
+    # results = OrderRecord.query \
+    #     .join(Order, OrderRecord.oid==Order.oid) \
+    #     .add_columns(Order.title, Order.pickupaddr, Order.pickuptime, Order.did, Order.totalcargosize, Order.trucksize, Order.initialfee, Order.perstopfee, Order.status, Order.drivername, Order.driverphone, Order.deliverdate, Order.finishedtime, Order.pickupaddr_lat, Order.pickupaddr_lng, Order.participants) \
+    #     .filter(
+    #         OrderRecord.sid == sid,
+    #     )
+    # if status_list:
+    #     results = [order for order in results if order.status in status_list]
+
+    # results_pagination = results.paginate(int(page_number), int(per_page), False).items
+
+    # total_count = results.count()
+    # total_page = int(math.ceil(total_count*1.0/DEFAULE_PER_PAGE))
+    # first_page_num,last_page_num = 1,total_page
+    # pre_page_num = int(page_number)-1 if int(page_number)>1 else first_page_num
+    # next_page_num = int(page_number)+1 if int(page_number)<last_page_num else last_page_num
 
     return jsonify(
         status = 200,
-        data = [i.serialize for i in results_pagination],
-        links = [
-            {"ref":"pre", "href":"/v1/orderRecord?"+"sid="+sid+"&page_number="+str(pre_page_num)+"&per_page="+str(per_page)},
-            {"ref":"next","href":"/v1/orderRecord?"+"sid="+sid+"&page_number="+str(next_page_num)+"&per_page="+str(per_page)},
-            {"ref":"first","href":"/v1/orderRecord?"+"sid="+sid+"&page_number="+str(first_page_num)+"&per_page="+str(per_page)},
-            {"ref":"last","href":"/v1/orderRecord?"+"sid="+sid+"&page_number="+str(last_page_num)+"&per_page="+str(per_page)},
-            ]
+        data = results,
+        # links = [
+        #     {"ref":"pre", "href":"/v1/orderRecord?"+"sid="+sid+"&page_number="+str(pre_page_num)+"&per_page="+str(per_page)},
+        #     {"ref":"next","href":"/v1/orderRecord?"+"sid="+sid+"&page_number="+str(next_page_num)+"&per_page="+str(per_page)},
+        #     {"ref":"first","href":"/v1/orderRecord?"+"sid="+sid+"&page_number="+str(first_page_num)+"&per_page="+str(per_page)},
+        #     {"ref":"last","href":"/v1/orderRecord?"+"sid="+sid+"&page_number="+str(last_page_num)+"&per_page="+str(per_page)},
+        #     ]
     )
 
 @app.route('/v1/orderRecord/all', methods=['GET'])  # used for test
@@ -146,7 +186,6 @@ def add_new_orderRecord():
     orderRecord = OrderRecord()
     orderRecord.oid = data.get("oid", "")
     orderRecord.sid = data.get("sid", "")
-    orderRecord.did = data.get("did", "0")
     orderRecord.stopaddress = data.get("stopaddress", "")
     orderRecord.cargosize = data.get("cargosize", "5")
     orderRecord.totalfee = data.get("totalfee", "0.0")
