@@ -68,12 +68,10 @@
                             </div>
                         </form> <!-- order_basic_container -->
 
-                        <div class="col-sm-12">
-                            <div class="page-header text-muted divider"> <i class="fa fa-bar-chart"></i>Occupancy Info</div>
-                        </div>
-
-
                         <form id="order_detail_container">
+                            <div class="col-sm-12">
+                                <div class="page-header text-muted divider"> <i class="fa fa-bar-chart"></i>Occupancy Info</div>
+                            </div>
                             <div class = "row">
 
                                 <div class="col-sm-5 col-sm-offset-1">
@@ -493,10 +491,15 @@
     <script>
     var oid = $.url('?oid');
     $(document).ready(function() {
-        $.getJSON('v1/order/' + oid, function(data){
-            if (Math.floor(data.status/100) == 2) {
-                console.log(data.data[0]);
-                fillOrderHTML(data.data[0]);
+        $.getJSON('v1/order/' + oid, function(res){
+            if (Math.floor(res.status/100) == 2) {
+                console.log(res);
+                fillOrderHTML(res.data[0]);
+                // hidden some parts
+                if (res.data[0].status == 'O') {
+                    console.log('hide order_detail_container');
+                    $('#order_detail_container').hide();
+                }
             } else {
                 console.log('Fetch order failed');
             }
@@ -508,7 +511,7 @@
         $('#pickuptime').html(data.pickuptime);
         $('#perstopfee').html('$' + data.perstopfee);
         $('#deliveryaddr').html(data.deliveryaddr);
-        $('#deliverytime').html(data.deliverytime);
+        $('#deliverytime').html(data.deliverdate);
         $('#unitfee').html('$' + data.unitfee);
         $('#membernum').html('$' + data.membernum);
         draw_occupancy(120, 29, 15);
