@@ -186,6 +186,7 @@ def search_for_orderRecords_from_sid_and_status():
     results = []
     for odrd in odrds:
         # print odrd.oid
+        # print type(odrd.oid), odrd.oid
         this_order = Order.query.get(odrd.oid)
         if not status_list or this_order.status in status_list:
             odrd_dict = odrd.serialize
