@@ -441,7 +441,7 @@ $(function() {
 
     $.getJSON('/v1/order', { // data
         sid: {[current_user.sid]},
-        status: 'D',
+        status: 'D, C',
         debug: 1, // testing backdoor
     }, getHtmlFiller('ongoing-panel', '/s-view-order'));
 
