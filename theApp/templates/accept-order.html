@@ -458,7 +458,8 @@
         el: '#map',
         lat: 40.737345,
         lng: -73.984414,
-        zoom: 11
+        zoom: 11,
+        scrollwheel: false
     });
 
     function draw_route(origin_lat, orign_lng, dest_lat, dest_lng) {
@@ -513,16 +514,16 @@
             $.post('/v1/order', {
                 oid: oid,
                 did: {[current_user.did]}, // FIXME: Real SID !
-                stopaddress: $('input[name="deliveraddr"]').val(),
-                cargosize: $('input[name="cargosize"]').val(),
-                comment: $('input[name="comment"]').val(),
+                trucksize: $('input[name="trucksize"]').val(),
+                initialfee: $('input[name="initialfee"]').val(),
+                perstopfee: 10.0,
                 status: 'D',
             }, function(data){
                 if (Math.floor(data.status/100) == 2) {
                     alert('Success!');
-                    location.href = '/myorder';
+                    location.href = '/d-myorder';
                 } else {
-                    console.log('Join order failed. Change sid and try again');
+                    console.log('Accept order failed');
                 }
             });
             e.preventDefault();
@@ -540,7 +541,7 @@
             }, function(data){
                 if (Math.floor(data.status/100) == 2) {
                     alert('Success!');
-                    location.href = '/myorder';
+                    location.href = '/d-myorder';
                 } else {
                     console.log('Join order failed. Change sid and try again');
                 }
@@ -560,7 +561,7 @@
             }, function(data){
                 if (Math.floor(data.status/100) == 2) {
                     alert('Success!');
-                    location.href = '/myorder';
+                    location.href = '/d-myorder';
                 } else {
                     console.log('Join order failed. Change sid and try again');
                 }

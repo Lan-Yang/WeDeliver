@@ -97,8 +97,8 @@ def get_order_from_oid(oid):
 def add_new_order():
     data = request.form
     order = Order()
-    order.title = data.get("title", "")  # NEW
-    order.pickupaddr = data.get("pickupaddr", "")
+    order.title = data.get("title", "IKEA GO")  # NEW
+    order.pickupaddr = data.get("pickupaddr", "IKEA Brooklyn")
     order.pickuptime = data.get("pickuptime", "")
     order.did = data.get("did", "0")
     order.totalcargosize = data.get("cargosize", "0")
@@ -106,12 +106,13 @@ def add_new_order():
     order.initialfee = data.get("initialfee", "0")
     order.perstopfee = data.get("perstopfee", "10")  # default 10
     order.status = data.get("status", "O")
-    order.drivername = data.get("drivername", "")
-    order.driverphone = data.get("driverphone", "")
+    order.drivername = data.get("drivername", "xxyy")
+    order.driverphone = data.get("driverphone", "123456")
     order.deliverdate = data.get("deliverdate", "")
     # order.finishedtime = data.get("finishedtime", "")  # KEEP NULL
     order.pickupaddr_lat = data.get("pickupaddr_lat", "")
     order.pickupaddr_lng = data.get("pickupaddr_lng", "")
+    order.participants = 0
     db_session.add(order)
     db_session.commit()
     oid = order.oid
@@ -196,7 +197,8 @@ def add_new_orderRecord():
     db_session.add(orderRecord)
     db_session.commit()
     this_order = Order.query.get(orderRecord.oid)
-    this_order.update({"participants": this_order.participants+1})  # update order participants
+    this_order.participants += 1  # update order participants
+    db_session.commit()
     return jsonify(
         status = 201,
         data = "orderRecord creation succeeds"

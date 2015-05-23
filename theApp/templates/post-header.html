@@ -26,8 +26,8 @@
                                         <div class="form-group">
                                             <label class="control-label" for="pickup-addr" style="font-size: 16px;"> <i class="fa fa-truck"></i> Pickup Location</label>
                                             <input id="pickup-addr" name="pickupaddr" class="form-control input-md" type="text" data-toggle="modal" data-target="#place-modal">
-                                            <input type="hidden" name="pickaddr_lat" value="0.0" class="addr_lat">
-                                            <input type="hidden" name="pickaddr_lng" value="0.0" class="addr_lng">
+                                            <input type="hidden" name="pickupaddr_lat" value="0.0" class="addr_lat">
+                                            <input type="hidden" name="pickupaddr_lng" value="0.0" class="addr_lng">
                                         </div>
                                     </div>
                                     <div class = "col-sm-6">
@@ -338,8 +338,15 @@
         });
         /* submit */
         $('#post-form').submit(function(e){
-            var data = $(this).serialize();
-            $.post('/v1/order', data, function(result){
+            $.post('/v1/order', {
+                title: $('input[name="title"]').val(),
+                pickupaddr: $('input[name="pickupaddr"]').val(),
+                pickuptime: $('input[name="pickuptime"]').val(),
+                pickupaddr_lat: $('input[name="pickupaddr_lat"]').val(),
+                pickupaddr_lng: $('input[name="pickupaddr_lng"]').val(),
+                totalcargosize: $('input[name="cargosize"]').val(),
+                deliverdate: $('input[name="deliverdate"]').val(),
+            }, function(result){
                 if (Math.floor(result.status / 100) != 2) {
                     alert(result.data);
                     return;
@@ -349,8 +356,8 @@
                     oid: oid,
                     sid: {[current_user.sid]},
                     stopaddress: $('input[name="deliveraddr"]').val(),
-                    stopaddress_lat: $('input[name="deliveraddr_lat"]').val(),
-                    stopaddress_lng: $('input[name="deliveraddr_lng"]').val(),
+                    stopaddr_lat: $('input[name="deliveraddr_lat"]').val(),
+                    stopaddr_lng: $('input[name="deliveraddr_lng"]').val(),
                     cargosize: $('input[name="cargosize"]').val(),
                 }, function(res){
                     if (Math.floor(res.status / 100) != 2)
