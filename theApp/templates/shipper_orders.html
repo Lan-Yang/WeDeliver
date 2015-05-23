@@ -456,19 +456,8 @@ div.user-menu div.user-menu-content:not(.active) {
     }
 }
 </style>
-<!--javascript should be udpated for the latest versions, for some pages to function normally-->
-<script src="//code.jquery.com/jquery-latest.js"></script>
-<script src="/static/js/bootstrap.min.js"></script>
-<script src="//maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true&libraries=places"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.0/js/bootstrap-datepicker.min.js"></script>
-<script src="/static/js/slick.min.js"></script>
-<script src="/static/js/floatlabels.min.js"></script>
-<script src="/static/js/placeholdem.min.js"></script>
-<script src="/static/js/jsrender.js"></script>
-<script src="/static/js/rs-plugin/js/jquery.themepunch.plugins.min.js"></script>
-<script src="/static/js/rs-plugin/js/jquery.themepunch.revolution.min.js"></script>
-<script src="/static/js/waypoints.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/js-url/1.8.4/url.min.js"></script>
+
+{% include 'common-js-libs.html' %}
 <!--This part is for click action in profile -->
 <script>
 $(document).ready(function() {
