@@ -127,6 +127,8 @@
                                     <div class="form-group">
                                         <label class="control-label" for="deliver-addr"> <i class="fa fa-truck"></i> Delivery Location </label>
                                         <input id="deliver-addr" name="deliveraddr" placeholder="" class="form-control input-md" type="text" data-toggle="modal" data-target="#place-modal">
+                                        <input type="hidden" name="deliveraddr_lat" class="addr_lat" value="">
+                                        <input type="hidden" name="deliveraddr_lng" class="addr_lng" value="">
                                     </div>
                                 </div>
                                 <div class="col-xs-4 col-sm-4 col-md-4">
@@ -531,6 +533,8 @@
                 oid: oid,
                 sid: {[current_user.sid]},
                 stopaddress: $('input[name="deliveraddr"]').val(),
+                stopaddr_lat: $('input[name="deliveraddr"]').val(),
+                stopaddr_lng: $('input[name="deliveraddr"]').val(),
                 cargosize: $('input[name="cargosize"]').val(),
                 comment: $('input[name="comment"]').val(),
             }, function(data){
@@ -566,16 +570,18 @@
             }
         });
         $('#raty-form').submit(function(e){
-            $.post('/v1/orderRecord', {
-                oid: oid,
-                sid: {[current_user.sid]}, // FIXME: Real SID !
-                grade: $('input[name="rate"]').val(),
-            }, function(data) {
-                if (Math.floor(data.status/100) == 2) {
-                    alert('Success!');
-                    location.href = '/myorder';
-                } else {
-                    console.log('Join order failed. Change sid and try again');
+            $.ajax({
+                url: '/v1/orderRecord/'+oid+'/'+{[current_user.sid]},
+                data: {
+                    grade: $('input[name="rate"]').val(),
+                },
+                success: function(data) {
+                    if (Math.floor(data.status/100) == 2) {
+                        alert('Success!');
+                        location.href = '/myorder';
+                    } else {
+                        console.log('Join order failed. Change sid and try again');
+                    }
                 }
             });
             e.preventDefault();
