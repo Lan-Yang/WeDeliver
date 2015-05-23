@@ -487,9 +487,6 @@
     <script>
     $(function() {
         // $('input').floatlabel();
-        $('a, button').click(function(e) {
-            e.preventDefault();
-        });
         // submit search buttton
         $('#submit-search').click(function(e){
             $('#search-form').submit();
@@ -534,18 +531,6 @@
                 location.href = '/deliverer/authorize/facebook';
                 e.preventDefault();
             });
-        });
-        $('#place-modal').on('show.bs.modal', function(e) {
-            $(this).find('.modal-content').load('/placemodal');
-        });
-        $('#place-modal').on('shown.bs.modal', function(e) {
-            initGmapSearch();
-            $(this).data('source', e.relatedTarget);
-        });
-        $('#place-modal').on('hide.bs.modal', function(e) {
-            var source = $(this).data('source');
-            var addr = $('#pac-input').data('addr');
-            if (addr) { $(source).val(addr); }
         });
     });
     </script>
