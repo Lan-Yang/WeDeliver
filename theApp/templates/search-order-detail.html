@@ -34,7 +34,7 @@
                                             <div class="col-sm-4">
                                                 <div class="form-group">
                                                     <label class="control-label" for="base_price"> <i class="fa fa-money"></i> Base Price</label>
-                                                    <h3 id="perstopfee"> $5.00 </h3> </div>
+                                                    <h4 id="perstopfee"> $5.00 </h4> </div>
                                             </div>
                                         </div>
                                     </div>
@@ -55,42 +55,64 @@
                                             <div class="col-sm-4">
                                                 <div class="form-group">
                                                     <label class="control-label" for="unit_price"> <i class="fa fa-money"></i></i> Current Unit Price</label>
-                                                    <h3 id="unitfee"> $10 </h3> </div>
+                                                    <h4 id="unitfee"> $10 </h4> </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
+
+
+                                <div class="col-sm-12">
+                                    <div class="page-header text-muted divider"> <i class="fa fa-bar-chart"></i>Delivery Map</div>
+                                </div>
+
+
+                                <div class = "row">
+                                    <div class="col-sm-8 col-sm-offset-2">
+                                        <div id="map" style = "width: 600px; height: 400px;"></div>
+                                        <button id="draw_route" onclick ="draw_route(40.679308, -74.012910, 40.805986, -73.959352)"> Draw a route</button>
+                                    </div>
+                                </div>
+
                                 <div class="col-sm-12">
                                     <div class="page-header text-muted divider"> <i class="fa fa-bar-chart"></i>Prices Trend </div>
                                 </div>
+
+
                                 <div class="row">
-                                    <div class="col-sm-4 col-sm-offset-1">
+                                    <div class="col-sm-8">
                                         <div class="form-group">
-                                            <label class="control-label" for="textinput"> <i class="fa fa-users"></i> Participants</label>
-                                            <h1 id="membernum"> 5 </h1>
-                                            <button onclick = "draw_occupancy(115, 39, 10)">draw the occupancy</button>
-                                            <div class="col-sm-9">
+                                            <div id="chart_div" style="width: 700px; height: 300px"></div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-4">
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                               <!--  <button onclick = "draw_occupancy(30, 17, 10)">draw the occupancy</button> -->
                                                 <div id = "occupancy_graph"> </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <!-- <div class="col-sm-4">
-                                        <div class="form-group">
-                                            <label class="control-label text-center"> <i class="fa fa-level-up"></i> Prices trend</label>
-                                            <div id="chart_div" style="width: 700px; height: 400px"></div>
+                                        <div class="row">
+                                            <label class="control-label" for="textinput"> <i class="fa fa-users"></i> Participants</label>
+                                            <!-- <h1 id="membernum"> 5 </h1> -->
+                                            <h3> 5 </h3>
                                         </div>
-                                    </div> -->
-                                </div>
-
-                                <div class="row">
-                                    <div class="col-sm-3">
-                                        <button onclick = "draw_occupancy(115, 39, 10)">draw the occupancy</button>
-                                    </div>
-
-                                    <div class="col-sm-9">
-                                            <div id = "occupancy_graph"> </div>
                                     </div>
                                 </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
 
                                 <div class="row">
                                     <div class="col-sm-12" id="orderlist">
@@ -141,9 +163,12 @@
         </div> <!-- /.modal-dialog -->
     </div> <!-- /.modal -->
 
+
+
     <script src="/static/js/jquery-1.11.1.min.js"></script>
     <script src="/static/js/bootstrap.min.js"></script>
-    <script src="//maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true&libraries=places"></script>
+    <script src="//maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true&libraries=places&sensor=true"></script>
+    <script src="/static/js/gmaps.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.0/js/bootstrap-datepicker.min.js"></script>
     <script src="/static/js/slick.min.js"></script>
     <script src="/static/js/floatlabels.min.js"></script>
@@ -381,6 +406,9 @@
     }
     </style>
 
+
+
+
     <!--the script for drawing the occupancy picture-->
     <script>
     function draw_occupancy(trucksize, cargosize, row_size) {
@@ -414,21 +442,38 @@
     }
     </script>
 
+    <!--This is for drawing a route on the Map-->
+
+    <script>
+    var map = new GMaps({
+        el: '#map',
+        lat: 40.737345,
+        lng: -73.984414,
+        zoom: 11
+    });
+    </script>
 
 
-
-
-
-
-
-
-
-
-
+    <script>
+    function draw_route(origin_lat, orign_lng, dest_lat, dest_lng) {
+        alert("I have just entered here!");
+        map.drawRoute({
+          origin: [origin_lat, orign_lng],
+          destination: [dest_lat, dest_lng],
+          travelMode: 'driving',
+          strokeColor: '#0B3B39',
+          strokeOpacity: 0.7,
+          strokeWeight: 6
+      });
+    }
+    </script>
 
 
 
     <script>
+    draw_occupancy(30, 17, 5);
+
+
     $(document).ready(function() {
         //Floatlabel
         // $('input').floatlabel();
