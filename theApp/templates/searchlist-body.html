@@ -10,12 +10,16 @@
                             <div class="form-group">
                                 <label class="control-label" for="pickup-loc" style="font-size: 16px;"> <i class="fa fa-truck"></i> Pickup Location</label>
                                 <input id="pickup-loc" name="pickuploc" placeholder="IKEA Brooklyn" class="form-control input-md" type="text" data-toggle="modal" data-target="#place-modal" style="padding: 0 0;">
+                                <input type="hidden" name="pickuploc_lat" class="addr_lat">
+                                <input type="hidden" name="pickuploc_lng" class="addr_lng">
                             </div>
 
                             <!-- Text input-->
                             <div class="form-group">
                                 <label class="control-label" for="deliver-loc" style="font-size: 16px;"><i class="fa fa-street-view"></i> Delivery Location</label>
                                 <input id="deliver-loc" name="deliverloc" placeholder="Columbia University" class="form-control input-md" type="text" data-toggle="modal" data-target="#place-modal" style="padding: 0 0;">
+                                <input type="hidden" name="deliverloc_lat" class="addr_lat">
+                                <input type="hidden" name="deliverloc_lng" class="addr_lng">
                             </div>
 
                             <div class="form-group">
