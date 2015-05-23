@@ -151,6 +151,28 @@ function urldecode(str) {
     return decodeURIComponent((str+'').replace(/\+/g, '%20'));
 }
 
+$(function() {
+    /* google search modals */
+    $('#place-modal').on('show.bs.modal', function(e) {
+        $(this).find('.modal-content').load('/placemodal');
+    });
+    $('#place-modal').on('shown.bs.modal', function(e) {
+        var source = e.relatedTarget;
+        initGmapSearch();
+        $(this).data('source', source);
+        $('#pac-input').val($(source).val());
+    });
+    $('#place-modal').on('hide.bs.modal', function(e) {
+        var source = $(this).data('source');
+        var addr = $('#pac-input').data('addr');
+        var latlng = $('#pac-input').data('latlng');
+        if (addr) {
+            $(source).val(addr);
+            $(source).siblings('.addr_lat').val(latlng.lat());
+            $(source).siblings('.addr_lng').val(latlng.lng());
+        }
+    });
+});
 /*
  * Initialize google map with address search modal-dialog
  * Make sure the there are div#map-canvas and input#pac-input
