@@ -26,12 +26,16 @@
                                         <div class="form-group">
                                             <label class="control-label" for="pickup-addr" style="font-size: 16px;"> <i class="fa fa-truck"></i> Pickup Location</label>
                                             <input id="pickup-addr" name="pickupaddr" placeholder="IKEA Brooklyn" class="form-control input-md" type="text" data-toggle="modal" data-target="#place-modal">
+                                            <input type="hidden" name="pickaddr_lat" value="0.0" class="addr_lat">
+                                            <input type="hidden" name="pickaddr_lng" value="0.0" class="addr_lng">
                                         </div>
                                     </div>
                                     <div class = "col-sm-6">
                                         <div class="form-group">
                                             <label class="control-label" for="deliver-addr" style="font-size: 16px;"><i class="fa fa-street-view"></i> Delivery Location</label>
                                             <input id="deliver-addr" name="deliveraddr" placeholder="Columbia University" class="form-control input-md" type="text" data-toggle="modal" data-target="#place-modal">
+                                            <input type="hidden" name="deliveraddr_lat" value="0.0" class="addr_lat">
+                                            <input type="hidden" name="deliveraddr_lng" value="0.0" class="addr_lng">
                                         </div>
                                     </div>
                                 </div>
@@ -350,21 +354,6 @@
         $('.datetime').datetimepicker({
             format: "YYYY-MM-DD HH:mm:ss",
         });
-        /* load modals */
-        $('#place-modal').on('show.bs.modal', function(e) {
-            $(this).find('.modal-content').load('/placemodal');
-        });
-        $('#place-modal').on('shown.bs.modal', function(e) {
-            var source = e.relatedTarget;
-            initGmapSearch();
-            $(this).data('source', source);
-            $('#pac-input').val($(source).val());
-        });
-        $('#place-modal').on('hide.bs.modal', function(e) {
-            var source = $(this).data('source');
-            var addr = $('#pac-input').data('addr');
-            if (addr) { $(source).val(addr); }
-        });
         /* submit */
         $('#post-form').submit(function(e){
             var data = $(this).serialize();
@@ -376,6 +365,8 @@
                     oid: oid,
                     sid: {[current_user.sid]},
                     stopaddress: $('input[name="deliveraddr"]').val(),
+                    stopaddress_lat: $('input[name="deliveraddr_lat"]').val(),
+                    stopaddress_lng: $('input[name="deliveraddr_lng"]').val(),
                     cargosize: $('input[name="cargosize"]').val(),
                 }, function(res){
                     if (Math.floor(res.status / 100) != 2)

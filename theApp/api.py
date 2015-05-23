@@ -70,18 +70,19 @@ def get_order_from_oid(oid):
 def add_new_order():
     data = request.form
     order = Order()
+    order.title = data.get("title", "")  # NEW
     order.pickupaddr = data.get("pickupaddr", "")
     order.pickuptime = data.get("pickuptime", "")
     order.did = data.get("did", "0")
     order.totalcargosize = data.get("cargosize", "0")
     order.trucksize = data.get("trucksize", "0")
     order.initialfee = data.get("initialfee", "0")
-    order.perstopfee = data.get("perstopfee", "0")
+    order.perstopfee = data.get("perstopfee", "10")  # default 10
     order.status = data.get("status", "O")
     order.drivername = data.get("drivername", "")
     order.driverphone = data.get("driverphone", "")
     order.deliverdate = data.get("deliverdate", "")
-    # order.finishedtime = data.get("finishedtime", "")
+    # order.finishedtime = data.get("finishedtime", "")  # KEEP NULL
     db_session.add(order)
     db_session.commit()
     return jsonify(
