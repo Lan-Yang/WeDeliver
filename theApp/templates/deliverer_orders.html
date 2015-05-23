@@ -7,18 +7,18 @@
 {% include "d-header.html" %}
 {% include "myorders-body.html" %}
     <script id="list-template" type="text/x-jsrender">
-    {{for data}}
+    {{for data ~uri=uri}}
     <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
         <div class="offer {{:label}}">
             <div class="shape">
-                // <div class="shape-text"> ${{:closefee}} </div>
+                <div class="shape-text"> ${{:initialfee}} </div>
             </div>
             <div class="offer-content">
                 <h3 class="lead"> {{:pickuptime}} </h3>
                 <!-- May 25, 2015 8:00PM -->
                 <p> {{:pickupaddr}} </p>
-                <p> {{:pickupaddr}} </p>
-                <a class="btn btn-info btn-sm" href="#">Detail</a>
+                <p> {{:deliveraddr}} </p>
+                <a class="btn btn-info btn-sm" href="{{:~uri}}?oid={{:oid}}">Detail</a>
             </div>
         </div>
     </div>
@@ -396,22 +396,8 @@
         }
     }
     </style>
-    <!-- <script src="/static/js/jquery-1.11.1.min.js"></script> -->
-    <!--javascript should be udpated for the latest versions, for some pages to function normally-->
-    <script src="http://code.jquery.com/jquery-latest.js"></script>
-    <script src="/static/js/bootstrap.min.js"></script>
-    <script src="//maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true&libraries=places"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.0/js/bootstrap-datepicker.min.js"></script>
-    <script src="/static/js/slick.min.js"></script>
-    <script src="/static/js/floatlabels.min.js"></script>
-    <script src="/static/js/placeholdem.min.js"></script>
-    <script src="/static/js/jsrender.js"></script>
-    <script src="/static/js/rs-plugin/js/jquery.themepunch.plugins.min.js"></script>
-    <script src="/static/js/rs-plugin/js/jquery.themepunch.revolution.min.js"></script>
-    <script src="/static/js/waypoints.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/js-url/1.8.4/url.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery.nicescroll/3.6.0/jquery.nicescroll.min.js"></script>
 
+    {% include 'common-js-libs.html' %}
     <!--This part is for click action in profile -->
     <script>
     $(document).ready(function() {
@@ -444,12 +430,7 @@
         padding-bottom: 40px;
     }
     </style>
-    <script>
-    $(document).ready(function() {
-        appMaster.preLoader();
-        $("html").niceScroll();
-    });
-    </script>
+
     <script>
     $(function() {
         function value2label(x) {
@@ -462,35 +443,57 @@
             return "offer-default";
         }
         $.getJSON('/v1/order', { // data
-            userid: 0,  // {{current_user.uid}}
-            state: 'O, D, C',
-            debug: 1,  // testing backdoor
-        }, function(data) { // success
-            console.log(data);
-            // add color, for html
-            $.each(data.data, function(i, o) {
-                o.label = value2label(o.closefee);
-            });
-            // render
-            $('#ongoing-panel').html(
-                $("#list-template").render(data)
-            );
-        });
+            did: {[current_user.did]}, //
+            status: 'D',
+            debug: 1, // testing backdoor
+        }, getHtmlFiller('pending-panel', 'd-close-order'));
+
         $.getJSON('/v1/order', { // data
-            userid: 0,  // {{current_user.uid}}
-            state: 'F',
-            debug: 1,  // testing backdoor
-        }, function(data) { // success
-            console.log(data);
-            // add color, for html
-            $.each(data.data, function(i, o) {
-                o.label = value2label(o.closefee);
-            });
-            // render
-            $('#finished-panel').html(
-                $("#list-template").render(data)
-            );
+            did: {[current_user.did]},
+            status: 'C',
+            debug: 1, // testing backdoor
+        }, getHtmlFiller('ongoing-panel', 'd-finish-order'));
+
+        $.getJSON('/v1/order', { // data
+            did: {[current_user.did]},
+            status: 'F',
+            debug: 1, // testing backdoor
+        }, getHtmlFiller('finished-panel', 'd-view-order'));
+
+        $('a.prev-page').click(function(e){
+            var containerID = $(this).data('panel');
+            var uri = $(this).data('href');
+            $.getJSON(uri, getHtmlFiller(containerID));
+            e.preventDefault();
         });
+
+        $('a.next-page').click(function(e){
+            var containerID = $(this).data('panel');
+            var uri = $(this).data('href');
+            $.getJSON(uri, getHtmlFiller(containerID));
+            e.preventDefault();
+        });
+
+        function getHtmlFiller(containerID, uri) {
+            return function(data) {
+                console.log(data);
+                // add color, for html
+                $.each(data.data, function(i, o) {
+                    o.label = value2label(o.initialfee);
+                });
+                data.uri = uri;
+                // render
+                var $container = $('#' + containerID);
+                $container.html(
+                    $("#list-template").render(data)
+                );
+                // pre/next page
+                $container.next().find('a.prev-page')
+                    .data('href', data.links[0].href);
+                $container.next().find('a.next-page')
+                    .data('href', data.links[1].href);
+            };
+        }
     });
     </script>
 {% endblock %}

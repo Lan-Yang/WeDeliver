@@ -2,67 +2,123 @@
 {% block mycss %}
     <link rel="stylesheet" href="/static/css/index-login.css">
     <link rel="stylesheet" href="/static/css/d-searchlist.css">
+    <link rel="stylesheet" href="/static/css/freeze2.css">
 {% endblock %}
 {% block body %}
-{% include "s-header.html" %}
+    {% include "d-header.html" %}
     <div class="wrapper">
         <div class="box">
             <div class="row">
                 <!--search box-->
-                <div class="container auth col-sm-8 col-sm-offset-2" style = "padding-top: 150px; padding-left: 50px; padding-right: 20px;">
+                <div class="container auth col-sm-10 col-sm-offset-1" style="padding-top: 150px; padding-left: 50px; padding-right: 20px;">
                     <div id="big-form" class="well auth-box">
-                        <form id="inactive">
-                            <fieldset>
-                                <div class="form-group">
-                                    <h1 id="order-title">IKEA GO!</h1>
-                                </div>
-                                <div class="col-sm-12">
-                                    <div class="page-header text-muted divider">
-                                        <i class="fa fa-info-circle"></i> Order Info
+
+                        <form id="order_basic_container">
+                            <div class="form-group">
+                                <h1 id="order-title">IKEA GO!</h1>
+                            </div>
+                            <div class="col-sm-12">
+                                <div class="page-header text-muted divider"> <i class="fa fa-info-circle"></i> Order Info </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sml-8 col-sm-offset-2">
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label class="control-label" for="pickup_location"> <i class="fa fa-truck"></i> Pickup Location</label>
+                                                <h4 id="pickupaddr">IKEA Brooklyn</h4> </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label class="control-label" for="pickup_time"> <i class="fa fa-calendar"></i> Pickup Time</label>
+                                                <h4 id="pickuptime"> May 12, 2015. 5:00 PM </h4> </div>
+                                        </div>
                                     </div>
                                 </div>
+                            </div>
 
-                                <div class="row">
-                                    <div class="col-sml-1 col-sm-offset-1">
-                                        <div class="row">
-                                            <div class="col-sm-5 col-sm-offset-1">
-                                                <div class="form-group">
-                                                    <label> <i class="fa fa-truck"></i> Pickup Location</label>
-                                                    <h4 id="pickupaddr">IKEA Brooklyn</h4>
-                                                </div>
-                                            </div>
-
-                                            <div class="col-sm-5">
-                                                <div class="form-group">
-                                                    <label><i class="fa fa-street-view"></i> Delivery Location</label>
-                                                    <h4 id="deliveryaddr">Columbia University</h4>
-                                                </div>
+                            <div class="row">
+                                <div class="col-sml-8 col-sm-offset-2">
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label><i class="fa fa-street-view"></i> Delivery Location</label>
+                                                <h4 id="deliveryaddr">Columbia University</h4> </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label> <i class="fa fa-calendar-o"></i> Delivery Time</label>
+                                                <h4 id="deliverytime"> May 13, 2015. 10:00 AM </h4>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
+                            </div>
 
-                                <div class="row">
-                                    <div class="col-sml-1 col-sm-offset-1">
-                                        <div class="row">
-                                            <div class="col-sm-5 col-sm-offset-1">
-                                                <div class="form-group">
-                                                    <label><i class="fa fa-calendar"></i>Pickup Time</label>
-                                                    <h4 id="pickuptime"> May 12, 2015. 5:00 PM </h4>
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-5">
-                                                <div class="form-group">
-                                                    <label> <i class="fa fa-calendar-o"></i> Delivery Time</label>
-                                                    <h4 id="deliverytime"> May 13, 2015</h4>
-                                                </div>
-                                            </div>
-                                        </div>
+
+                            <div class="col-sm-12">
+                                <div class="page-header text-muted divider"> <i class="fa fa-bar-chart"></i>Delivery Map</div>
+                            </div>
+
+
+                            <div class="row">
+                                <div class="col-sm-8 col-sm-offset-2">
+                                    <div id="map" style="width: 600px; height: 400px;"></div>
+                                </div>
+                            </div>
+                        </form> <!-- order_basic_container -->
+
+
+                        <div class="col-sm-12">
+                            <div class="page-header text-muted divider"> <i class="fa fa-bar-chart"></i>Occupancy Info</div>
+                        </div>
+
+                        <form id="order_detail_container">
+                            <div class="row">
+                                <div class="col-sm-5 col-sm-offset-1">
+                                    <!--  <button onclick = "draw_occupancy(30, 17, 10)">draw the occupancy</button> -->
+                                    <div id="occupancy-graph"> </div>
+                                </div>
+                                <br>
+                                <div class="col-sm-3">
+                                    <label> <i class="fa fa-th"></i> Current Occpancy</label>
+                                    <h1 id="occpancy"> 17/25 </h1>
+                                </div>
+                                <br>
+                                <div class="col-sm-3">
+                                    <label> <i class="fa fa-users"></i> Participants </label>
+                                    <h1 id="participants"> 5 </h1>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-12">
+                                <div class="page-header text-muted divider"> <i class="fa fa-bar-chart"></i>Prices Trend </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-sm-7 col-sm-offset-1">
+                                    <div class="form-group">
+                                        <div id="chart_div" style="width: 500px; height: 300px;"></div>
                                     </div>
                                 </div>
-                            </fieldset>
+
+                                <div class="col-sm-4">
+                                    <br>
+                                    <br>
+                                    <div class="row">
+                                        <label class="control-label" for="base_price"> <i class="fa fa-money"></i> Base Price</label>
+                                        <h2 id="perstopfee"> $5.00 </h2>
+                                    </div>
+                                    <br>
+                                    <div class="row">
+                                        <label class="control-label" for="unit_price"> <i class="fa fa-money"></i></i> Current Unit Price</label>
+                                        <h2 id="unitfee"> $10 </h2>
+                                    </div>
+                                </div>
+                            </div>
                         </form>
 
+                        {% if case == "accept-order" %}
                         <form id="accept-form">
                             <fieldset>
                                 <div class="col-sm-12">
@@ -74,13 +130,13 @@
                                     <div class="col-xs-4 col-sm-4 col-md-4 col-sm-offset-2">
                                         <div class="form-group">
                                             <label class="control-label" for="truck-size"> <i class="fa fa-truck"></i> Truck Size (in Unit)</label>
-                                            <input id="truck-size" name="trucksize" placeholder="50" class="form-control input-md" type="text">
+                                            <input id="truck-size" name="trucksize" class="form-control input-md" type="text">
                                         </div>
                                     </div>
                                     <div class="col-xs-4 col-sm-4 col-md-4">
                                         <div class="form-group">
                                             <label class="control-label" for="initial-fee"><i class="fa fa-money"></i>  Initial Fee </label>
-                                            <input id="initial-fee" name="initialfee" placeholder="120" class="form-control input-md" type="text">
+                                            <input id="initial-fee" name="initialfee" class="form-control input-md" type="text">
                                         </div>
                                     </div>
                                 </div>
@@ -93,44 +149,55 @@
                                 </div>
                             </fieldset>
                         </form>
+                        {% elif case == "close-order" %}
+                        <form id="close-form">
+                            <!-- Button -->
+                            <div class="form-group">
+                                <div class="col-sm-offset-5">
+                                    <button id="close-submit" class="btn btn-primary">Ship This Order</button>
+                                </div>
+                            </div>
+                        </form>
+                        {% elif case == "finish-order" %}
+                        <form id="finish-form">
+                            <!-- Button -->
+                            <div class="form-group">
+                                <div class="col-sm-offset-5">
+                                    <button id="finish-submit" class="btn btn-primary">This Order is Finished</button>
+                                </div>
+                            </div>
+                        </form>
+                        {% elif case == "view-order" %}
+                        <!-- Blank -->
+                        {% else %}
+                        <h1> Error </h1>
+                        {% endif %}
+
                     </div>
                     <div class="clearfix"></div>
                 </div>
-
             </div>
         </div>
     </div>
 
-    <script src="http://code.jquery.com/jquery-latest.js"></script>
-    <script src="/static/js/bootstrap.min.js"></script>
-    <script src="//maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true&libraries=places"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.0/js/bootstrap-datepicker.min.js"></script>
-    <script src="/static/js/slick.min.js"></script>
-    <script src="/static/js/floatlabels.min.js"></script>
-    <script src="/static/js/placeholdem.min.js"></script>
-    <script src="/static/js/jsrender.js"></script>
-    <script src="/static/js/rs-plugin/js/jquery.themepunch.plugins.min.js"></script>
-    <script src="/static/js/rs-plugin/js/jquery.themepunch.revolution.min.js"></script>
-    <script src="/static/js/waypoints.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/js-url/1.8.4/url.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery.nicescroll/3.6.0/jquery.nicescroll.min.js"></script>
-    <script src="/static/js/scripts.js"></script>
+    <div class="modal fade" id="place-modal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog map-dialog">
+            <div class="modal-content">
+                <!-- TO BE LODADED -->
+            </div><!-- /.modal-content -->
+        </div> <!-- /.modal-dialog -->
+    </div> <!-- /.modal -->
 
+
+
+    {% include 'common-js-libs.html' %}
+    <script src="/static/js/scripts.js"></script>
     <!--This part is for overlaying text-muted css, to make some headline as white color-->
     <style>
     .text-muted {
         color: #FFF;
     }
     </style>
-
-    <!--center column's div vertically-->
-    <style>
-    .vertical-align {
-        display: flex;
-        align-items: center;
-    }
-    </style>
-
     <!-- This script and style part is for search form-->
     <style>
     .margin-top-20 {
@@ -352,8 +419,67 @@
     }
     </style>
 
+
+    <!-- the script for drawing the occupancy picture -->
     <script>
-    $(function() {
+    function draw_occupancy(trucksize, cargosize, row_size) {
+
+        var undraw_cargo_count = cargosize;
+        var box_count = 0;
+        var table_str = "   <table id=\"colorchart\" style = \" border-spacing : 2px !important; border-collapse: separate;\"> <tbody>";
+
+        while (box_count < trucksize) {
+            if (box_count % row_size == 0) {
+                table_str += "<tr>";
+            }
+            if (undraw_cargo_count > 0) {
+                table_str += "<td bgcolor=\"#170B3B\" width=\"20\" height = \"20\" ><\/td>";
+                undraw_cargo_count--;
+                box_count ++;
+            } else {
+                table_str += "<td bgcolor=\"#F7F2E0\" width=\"20\" height = \"20\"><\/td>";
+                box_count ++;
+            }
+            if (box_count % row_size == 0) {
+                table_str += "<\/tr>";
+            }
+        }
+        if (trucksize % row_size != 0) {
+            table_str += "<\/tr>";
+        }
+        table_str += "<\/tbody><\/table>";
+
+        $('#occupancy-graph').append(table_str);
+    }
+    </script>
+
+    <!--This is for drawing a route on the Map-->
+
+    <script>
+    var map = new GMaps({
+        el: '#map',
+        lat: 40.737345,
+        lng: -73.984414,
+        zoom: 11
+    });
+
+    function draw_route(origin_lat, orign_lng, dest_lat, dest_lng) {
+        map.drawRoute({
+          origin: [origin_lat, orign_lng],
+          destination: [dest_lat, dest_lng],
+          travelMode: 'driving',
+          strokeColor: '#0B3B39',
+          strokeOpacity: 0.7,
+          strokeWeight: 6
+      });
+    }
+    </script>
+
+
+    <script>
+    $(document).ready(function() {
+        //Floatlabel
+        // $('input').floatlabel();
         var oid = $.url('?oid');
         $.getJSON('v1/order/' + oid, function(data){
             if (Math.floor(data.status/100) == 2) {
@@ -362,27 +488,6 @@
             } else {
                 console.log('Fetch order failed');
             }
-        });
-        $('#accept-form').submit(function(e){
-            $.post('/v1/order', {
-                oid: oid,
-                did: {[current_user.did]},
-                trucksize: $('input[name="trucksize"]').val(),
-                initialfee: $('input[name="initialfee"]').val(),
-                status: 'D',
-            }, function(data) {
-                if (Math.floor(data.status/100) == 2) {
-                    alert('Success!');
-                    location.href = '/myorder';
-                } else {
-                    console.log('Join order failed. Change sid and try again');
-                }
-            });
-            e.preventDefault();
-        });
-        $('#accept-submit').click(function(e){
-            $('#accept-form').submit();
-            e.preventDefault();
         });
     });
     function fillOrderHTML(data) {
@@ -394,13 +499,75 @@
         $('#deliverytime').html(data.deliverytime);
         $('#unitfee').html('$' + data.unitfee);
         $('#membernum').html('$' + data.membernum);
+        // draw_occupancy(data.trucksize, data.totalcargosize, 15);
+        draw_occupancy(100, 29, 15);
+        draw_route(40.679308, -74.012910, 40.805986, -73.959352);
+        // draw_route(
+        //     data.pickupaddr_lat,
+        //     data.pickupaddr_lng,
+        //     data.deliveraddr_lat,
+        //     data.deliveraddr_lng,);
     }
     </script>
 
-    <script>
-    $(document).ready(function() {
-        appMaster.preLoader();
+    <script text="text/javascript">
+    $(function(){
+        // join order form
+        $('#join-form').submit(function(e){
+            $.post('/v1/orderRecord', {
+                oid: oid,
+                sid: 101, // FIXME: Real SID !
+                stopaddress: $('input[name="deliveraddr"]').val(),
+                cargosize: $('input[name="cargosize"]').val(),
+                comment: $('input[name="comment"]').val(),
+            }, function(data){
+                if (Math.floor(data.status/100) == 2) {
+                    alert('Success!');
+                    location.href = '/myorder';
+                } else {
+                    console.log('Join order failed. Change sid and try again');
+                }
+            });
+            e.preventDefault();
+        });
+        $('#join-submit').click(function(e){
+            $('#join-form').submit();
+            e.preventDefault();
+        });
     });
     </script>
 
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type="text/javascript">
+        var raw_data = [
+                [0, 60],   [1, 50],  [2, 40],  [3, 30],  [4, 18],  [5, 9],
+              ];
+        google.load('visualization', '1', {packages: ['corechart', 'line']});
+        google.setOnLoadCallback(drawBasic);
+
+        function drawBasic() {
+
+              var data = new google.visualization.DataTable();
+              data.addColumn('number', 'X');
+              data.addColumn('number', 'Unit Price');
+
+              data.addRows(raw_data);
+
+              var options = {
+                colors:['yellow','#E6E600'],
+                backgroundColor: 'transparent',
+                chartArea: {
+                    top: 25,
+                    left: 25,
+                    width: 350,
+                    height: 250
+                },
+                fontSize: 12
+              };
+
+              var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
+
+              chart.draw(data, options);
+            }
+    </script>
 {% endblock %}
