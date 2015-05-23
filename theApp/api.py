@@ -85,7 +85,10 @@ def get_order_from_oid(oid):
     orderRecords = []
     for odrd in odrds:
         orderRecords.append(odrd.serialize)
-    deliverer_name = Deliverer.query.get(order.did).name
+    try:
+        deliverer_name = Deliverer.query.get(order.did).name
+    except:
+        deliverer_name = None
     result["orderRecords"] = orderRecords
     result["deliverer_name"] = deliverer_name
     return jsonify(
@@ -158,8 +161,9 @@ def search_for_orderRecords_from_sid_and_status():
     )
     results = []
     for odrd in odrds:
+        # print odrd.oid
         this_order = Order.query.get(odrd.oid)
-        if odrd.status in status_list or not status_list:
+        if not status_list or this_order.status in status_list:
             odrd_dict = odrd.serialize
             odrd_dict.update(this_order.serialize)
             results.append(odrd_dict)

@@ -493,11 +493,15 @@
         $('#pickuptime').html(data.pickuptime);
         $('#perstopfee').html('$' + data.perstopfee);
         $('#deliveryaddr').html(data.deliveryaddr);
-        $('#deliverytime').html(data.deliverytime);
+        $('#deliverytime').html(data.deliverdate);
         $('#unitfee').html('$' + data.unitfee);
         $('#membernum').html('$' + data.membernum);
         // draw_occupancy(data.trucksize, data.totalcargosize, 15);
         draw_occupancy(100, 29, 15);
+        var from_lat = data.pickupaddr_lat ? data.pickupaddr_lat : 40.679308;
+        var from_lng = data.pickupaddr_lng ? data.pickupaddr_lng : -74.012910;
+        var to_lat = data.deliveryaddr_lat ? data.deliveryaddr_lat : 40.679308;
+        var to_lng = data.deliveryaddr_lng ? data.deliveryaddr_lng : -73.959352;
         draw_route(40.679308, -74.012910, 40.805986, -73.959352);
         // draw_route(
         //     data.pickupaddr_lat,

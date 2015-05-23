@@ -83,7 +83,6 @@
                                     <label> <i class="fa fa-th"></i> Current Occpancy</label>
                                     <h1 id="occpancy"> 17/25 </h1>
                                 </div>
-                                <br>
                                 <div class="col-sm-3">
                                     <label> <i class="fa fa-users"></i> Participants </label>
                                     <h1 id="participants"> 5 </h1>
@@ -511,12 +510,16 @@
         $('#pickupaddr').html(data.pickupaddr);
         $('#pickuptime').html(data.pickuptime);
         $('#perstopfee').html('$' + data.perstopfee);
-        $('#deliveryaddr').html(data.deliveryaddr);
+        $('#deliveryaddr').html(data.orderRecords[0].stopaddress);
         $('#deliverytime').html(data.deliverdate);
         $('#unitfee').html('$' + data.unitfee);
         $('#membernum').html('$' + data.membernum);
         draw_occupancy(120, 29, 15);
-        draw_route(40.679308, -74.012910, 40.805986, -73.959352);
+        var from_lat = data.pickupaddr_lat ? data.pickupaddr_lat : 40.679308;
+        var from_lng = data.pickupaddr_lng ? data.pickupaddr_lng : -74.012910;
+        var to_lat = data.orderRecords[0].stopaddr_lat ? data.orderRecords[0].stopaddr_lat : 40.679308;
+        var to_lng = data.orderRecords[0].stopaddr_lng ? data.orderRecords[0].stopaddr_lng : -73.959352;
+        draw_route(from_lat, from_lng, to_lat, to_lng);
     }
     </script>
 
