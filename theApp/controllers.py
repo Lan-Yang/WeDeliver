@@ -65,17 +65,6 @@ def resetdb():
     shipper_2.state = "NY"
     shipper_2.zip = "10027"
 
-    shipper_3 = Shipper()
-    shipper_3.name = "Michael Wang"
-    shipper_3.passwd = generate_password_hash("123123")
-    shipper_3.email = "mw2972@columbia.edu"
-    shipper_3.phone = "9179112008"
-    shipper_3.addr_1 = "181 Claremont Avenue, Apt 2B"
-    shipper_3.addr_2 = ""
-    shipper_3.city = "New York"
-    shipper_3.state = "NY"
-    shipper_3.zip = "10027"
-
     shipper_4 = Shipper()
     shipper_4.name = "Chandler Yang"
     shipper_4.passwd = generate_password_hash("123123")
@@ -245,10 +234,11 @@ def resetdb():
     # orderRecord_3.grade = 3.5
     # orderRecord_3.comment = "Have A TRY!"
 
-    # db_session.add(shipper_1)
-    # db_session.add(shipper_2)
-    # db_session.add(deliverer_1)
-    # db_session.add(deliverer_2)
+    db_session.add(shipper_1)
+    db_session.add(shipper_2)
+    db_session.add(shipper_4)
+    db_session.add(deliverer_1)
+    db_session.add(deliverer_2)
     # db_session.add(order_1)
     # db_session.add(order_2)
     # db_session.add(orderRecord_1)
