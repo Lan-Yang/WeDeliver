@@ -113,146 +113,146 @@ def resetdb():
     deliverer_2.grade = 3.9
 
 
-    order_1 = Order()
-    order_1.title = "Go for IKEA!"
-    order_1.pickupaddr = "IKEA Brooklyn"
-    order_1.pickupaddr_lat = 40.671341
-    order_1.pickupaddr_lng = -74.011251
-    order_1.pickuptime = datetime.strptime('2011-11-03 18:21:26', DATETIME_FORMAT)
-    order_1.deliverdate = datetime.strptime('2011-11-04 18:21:26', DATETIME_FORMAT)
-    order_1.did = 1
-    order_1.totalcargosize = 20
-    order_1.trucksize = 33
-    order_1.initialfee = 40.5
-    order_1.perstopfee = 10
-    order_1.status = "D"
-    order_1.finishedtime = datetime.strptime('2011-11-04 18:21:26', DATETIME_FORMAT)
-    # order_1.drivername = "XiDaDa"
-    # order_1.driverphone = "821931"
+    # order_1 = Order()
+    # order_1.title = "Go for IKEA!"
+    # order_1.pickupaddr = "IKEA Brooklyn"
+    # order_1.pickupaddr_lat = 40.671341
+    # order_1.pickupaddr_lng = -74.011251
+    # order_1.pickuptime = datetime.strptime('2011-11-03 18:21:26', DATETIME_FORMAT)
+    # order_1.deliverdate = datetime.strptime('2011-11-04 18:21:26', DATETIME_FORMAT)
+    # order_1.did = 1
+    # order_1.totalcargosize = 20
+    # order_1.trucksize = 33
+    # order_1.initialfee = 40.5
+    # order_1.perstopfee = 10
+    # order_1.status = "D"
+    # order_1.finishedtime = datetime.strptime('2011-11-04 18:21:26', DATETIME_FORMAT)
+    # # order_1.drivername = "XiDaDa"
+    # # order_1.driverphone = "821931"
 
-    order_2 = Order()
-    order_2.title = "Shopping Woodbury!"
-    order_2.pickupaddr = "Woodbury"
-    order_2.pickupaddr_lat = 40.671341
-    order_2.pickupaddr_lng = -73.502726
-    order_2.pickuptime = datetime.strptime('2011-11-03 18:21:26', DATETIME_FORMAT)
-    order_2.deliverdate = datetime.strptime('2011-11-04 18:21:26', DATETIME_FORMAT)
-    order_2.did = 1
-    order_2.totalcargosize = 30
-    order_2.trucksize = 35
-    order_2.initialfee = 48
-    order_2.perstopfee = 10
-    order_2.status = "D"
-    order_2.finishedtime = datetime.strptime('2011-11-04 18:21:26', DATETIME_FORMAT)
-    # order_2.drivername = "XiDaDa"
-    # order_2.driverphone = "821931"
-
-
-    # order_3 = Order()
-    # order_3.title = "Moving together"
-    # order_3.pickupaddr = "hahaha"
-    # order_3.pickuptime = datetime.strptime('2011-11-03 18:21:26', DATETIME_FORMAT)
-    # order_3.did = 1
-    # order_3.totalcargosize = 5
-    # order_3.trucksize = 33
-    # order_3.initialfee = 35.5
-    # order_3.perstopfee = 10
-    # order_3.status = "D"
-    # order_3.drivername = "XiDaDa"
-    # order_3.driverphone = "821931"
-    # order_3.deliverdate = datetime.strptime('2011-11-03 18:21:26', DATETIME_FORMAT)
-    # order_3.finishedtime = datetime.strptime('2011-11-03 18:21:26', DATETIME_FORMAT)
+    # order_2 = Order()
+    # order_2.title = "Shopping Woodbury!"
+    # order_2.pickupaddr = "Woodbury"
+    # order_2.pickupaddr_lat = 40.671341
+    # order_2.pickupaddr_lng = -73.502726
+    # order_2.pickuptime = datetime.strptime('2011-11-03 18:21:26', DATETIME_FORMAT)
+    # order_2.deliverdate = datetime.strptime('2011-11-04 18:21:26', DATETIME_FORMAT)
+    # order_2.did = 1
+    # order_2.totalcargosize = 30
+    # order_2.trucksize = 35
+    # order_2.initialfee = 48
+    # order_2.perstopfee = 10
+    # order_2.status = "D"
+    # order_2.finishedtime = datetime.strptime('2011-11-04 18:21:26', DATETIME_FORMAT)
+    # # order_2.drivername = "XiDaDa"
+    # # order_2.driverphone = "821931"
 
 
-    # order_4 = Order()
-    # order_4.title = "Woodbury Shopping"
-    # order_4.pickupaddr = "hahaha"
-    # order_4.pickuptime = datetime.strptime('2011-11-03 18:21:26', DATETIME_FORMAT)
-    # order_4.did = 1
-    # order_4.totalcargosize = 5
-    # order_4.trucksize = 33
-    # order_4.initialfee = 35.5
-    # order_4.perstopfee = 10
-    # order_4.status = "D"
-    # order_4.drivername = "XiDaDa"
-    # order_4.driverphone = "821931"
-    # order_4.deliverdate = datetime.strptime('2011-11-03 18:21:26', DATETIME_FORMAT)
-    # order_4.finishedtime = datetime.strptime('2011-11-03 18:21:26', DATETIME_FORMAT)
+    # # order_3 = Order()
+    # # order_3.title = "Moving together"
+    # # order_3.pickupaddr = "hahaha"
+    # # order_3.pickuptime = datetime.strptime('2011-11-03 18:21:26', DATETIME_FORMAT)
+    # # order_3.did = 1
+    # # order_3.totalcargosize = 5
+    # # order_3.trucksize = 33
+    # # order_3.initialfee = 35.5
+    # # order_3.perstopfee = 10
+    # # order_3.status = "D"
+    # # order_3.drivername = "XiDaDa"
+    # # order_3.driverphone = "821931"
+    # # order_3.deliverdate = datetime.strptime('2011-11-03 18:21:26', DATETIME_FORMAT)
+    # # order_3.finishedtime = datetime.strptime('2011-11-03 18:21:26', DATETIME_FORMAT)
 
 
-    # order_5 = Order()
-    # order_5.title = "Woodbury Shopping"
-    # order_5.pickupaddr = "hahaha"
-    # order_5.pickuptime = datetime.strptime('2011-11-03 18:21:26', DATETIME_FORMAT)
-    # order_5.did = 1
-    # order_5.totalcargosize = 5
-    # order_5.trucksize = 33
-    # order_5.initialfee = 35.5
-    # order_5.perstopfee = 10
-    # order_5.status = "D"
-    # order_5.drivername = "XiDaDa"
-    # order_5.driverphone = "821931"
-    # order_5.deliverdate = datetime.strptime('2011-11-03 18:21:26', DATETIME_FORMAT)
-    # order_5.finishedtime = datetime.strptime('2011-11-03 18:21:26', DATETIME_FORMAT)
+    # # order_4 = Order()
+    # # order_4.title = "Woodbury Shopping"
+    # # order_4.pickupaddr = "hahaha"
+    # # order_4.pickuptime = datetime.strptime('2011-11-03 18:21:26', DATETIME_FORMAT)
+    # # order_4.did = 1
+    # # order_4.totalcargosize = 5
+    # # order_4.trucksize = 33
+    # # order_4.initialfee = 35.5
+    # # order_4.perstopfee = 10
+    # # order_4.status = "D"
+    # # order_4.drivername = "XiDaDa"
+    # # order_4.driverphone = "821931"
+    # # order_4.deliverdate = datetime.strptime('2011-11-03 18:21:26', DATETIME_FORMAT)
+    # # order_4.finishedtime = datetime.strptime('2011-11-03 18:21:26', DATETIME_FORMAT)
 
 
-    # order_6 = Order()
-    # order_6.title = "Woodbury Shopping"
-    # order_6.pickupaddr = "hahaha"
-    # order_6.pickuptime = datetime.strptime('2011-11-03 18:21:26', DATETIME_FORMAT)
-    # order_6.did = 1
-    # order_6.totalcargosize = 5
-    # order_6.trucksize = 33
-    # order_6.initialfee = 35.5
-    # order_6.perstopfee = 10
-    # order_6.status = "D"
-    # order_6.drivername = "XiDaDa"
-    # order_6.driverphone = "821931"
-    # order_6.deliverdate = datetime.strptime('2011-11-03 18:21:26', DATETIME_FORMAT)
-    # order_6.finishedtime = datetime.strptime('2011-11-03 18:21:26', DATETIME_FORMAT)
+    # # order_5 = Order()
+    # # order_5.title = "Woodbury Shopping"
+    # # order_5.pickupaddr = "hahaha"
+    # # order_5.pickuptime = datetime.strptime('2011-11-03 18:21:26', DATETIME_FORMAT)
+    # # order_5.did = 1
+    # # order_5.totalcargosize = 5
+    # # order_5.trucksize = 33
+    # # order_5.initialfee = 35.5
+    # # order_5.perstopfee = 10
+    # # order_5.status = "D"
+    # # order_5.drivername = "XiDaDa"
+    # # order_5.driverphone = "821931"
+    # # order_5.deliverdate = datetime.strptime('2011-11-03 18:21:26', DATETIME_FORMAT)
+    # # order_5.finishedtime = datetime.strptime('2011-11-03 18:21:26', DATETIME_FORMAT)
 
 
-    orderRecord_1 = OrderRecord()
-    orderRecord_1.oid = 1
-    orderRecord_1.sid = 785648240
-    orderRecord_1.stopaddress = "121 La Salle St, New York, NY 20017"
-    orderRecord_1.stopaddr_lat = 40.8140929
-    orderRecord_1.stopaddr_lng = -73.9600902
-    orderRecord_1.cargosize = 10
-    orderRecord_1.totalfee = 33.3
-    orderRecord_1.grade = 3
-    orderRecord_1.comment = "Not Bad."
+    # # order_6 = Order()
+    # # order_6.title = "Woodbury Shopping"
+    # # order_6.pickupaddr = "hahaha"
+    # # order_6.pickuptime = datetime.strptime('2011-11-03 18:21:26', DATETIME_FORMAT)
+    # # order_6.did = 1
+    # # order_6.totalcargosize = 5
+    # # order_6.trucksize = 33
+    # # order_6.initialfee = 35.5
+    # # order_6.perstopfee = 10
+    # # order_6.status = "D"
+    # # order_6.drivername = "XiDaDa"
+    # # order_6.driverphone = "821931"
+    # # order_6.deliverdate = datetime.strptime('2011-11-03 18:21:26', DATETIME_FORMAT)
+    # # order_6.finishedtime = datetime.strptime('2011-11-03 18:21:26', DATETIME_FORMAT)
 
-    orderRecord_2 = OrderRecord()
-    orderRecord_2.oid = 1
-    orderRecord_2.sid = 1047413846
-    orderRecord_2.stopaddress = "186 Claremont Ave, New York, NY"
-    orderRecord_2.stopaddr_lat = 40.814639
-    orderRecord_2.stopaddr_lng = -73.959984
-    orderRecord_2.cargosize = 10
-    orderRecord_2.totalfee = 33.3
-    orderRecord_2.grade = 4
-    orderRecord_2.comment = "This is great!"
 
-    orderRecord_3 = OrderRecord()
-    orderRecord_3.oid = 2
-    orderRecord_3.sid = 785648240
-    orderRecord_3.stopaddress = "121 La Salle St, New York, NY 20017"
-    orderRecord_3.stopaddr_lat = 40.8140929
-    orderRecord_3.stopaddr_lng = -73.9600902
-    orderRecord_3.cargosize = 30
-    orderRecord_3.totalfee = 33.3
-    orderRecord_3.grade = 3.5
-    orderRecord_3.comment = "Have A TRY!"
+    # orderRecord_1 = OrderRecord()
+    # orderRecord_1.oid = 1
+    # orderRecord_1.sid = 785648240
+    # orderRecord_1.stopaddress = "121 La Salle St, New York, NY 20017"
+    # orderRecord_1.stopaddr_lat = 40.8140929
+    # orderRecord_1.stopaddr_lng = -73.9600902
+    # orderRecord_1.cargosize = 10
+    # orderRecord_1.totalfee = 33.3
+    # orderRecord_1.grade = 3
+    # orderRecord_1.comment = "Not Bad."
 
-    db_session.add(shipper_1)
-    db_session.add(shipper_2)
-    db_session.add(deliverer_1)
-    db_session.add(deliverer_2)
-    db_session.add(order_1)
-    db_session.add(order_2)
-    db_session.add(orderRecord_1)
-    db_session.add(orderRecord_2)
-    db_session.add(orderRecord_3)
+    # orderRecord_2 = OrderRecord()
+    # orderRecord_2.oid = 1
+    # orderRecord_2.sid = 1047413846
+    # orderRecord_2.stopaddress = "186 Claremont Ave, New York, NY"
+    # orderRecord_2.stopaddr_lat = 40.814639
+    # orderRecord_2.stopaddr_lng = -73.959984
+    # orderRecord_2.cargosize = 10
+    # orderRecord_2.totalfee = 33.3
+    # orderRecord_2.grade = 4
+    # orderRecord_2.comment = "This is great!"
+
+    # orderRecord_3 = OrderRecord()
+    # orderRecord_3.oid = 2
+    # orderRecord_3.sid = 785648240
+    # orderRecord_3.stopaddress = "121 La Salle St, New York, NY 20017"
+    # orderRecord_3.stopaddr_lat = 40.8140929
+    # orderRecord_3.stopaddr_lng = -73.9600902
+    # orderRecord_3.cargosize = 30
+    # orderRecord_3.totalfee = 33.3
+    # orderRecord_3.grade = 3.5
+    # orderRecord_3.comment = "Have A TRY!"
+
+    # db_session.add(shipper_1)
+    # db_session.add(shipper_2)
+    # db_session.add(deliverer_1)
+    # db_session.add(deliverer_2)
+    # db_session.add(order_1)
+    # db_session.add(order_2)
+    # db_session.add(orderRecord_1)
+    # db_session.add(orderRecord_2)
+    # db_session.add(orderRecord_3)
 
     db_session.commit()
