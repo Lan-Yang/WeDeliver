@@ -450,7 +450,6 @@
     </script>
 
     <!--This is for drawing a route on the Map-->
-
     <script>
     var map = new GMaps({
         el: '#map',
@@ -472,13 +471,15 @@
     }
     </script>
 
-
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
     <script>
     var oid = $.url('?oid');
+    var order = null;
     $(document).ready(function() {
         $.getJSON('v1/order/' + oid, function(res){
             if (Math.floor(res.status/100) == 2) {
                 console.log(res);
+                order = res.data[0];
                 fillOrderHTML(res.data[0]);
                 // hidden some parts
                 if (res.data[0].status == 'O') {
@@ -497,20 +498,28 @@
         $('#perstopfee').html('$' + data.perstopfee);
         $('#deliveryaddr').html(data.orderRecords[0].stopaddress);
         $('#deliverytime').html(data.deliverdate);
-        $('#unitfee').html('$' + data.unitfee);
-        $('#membernum').html('$' + data.membernum);
-        // draw_occupancy(data.trucksize, data.totalcargosize, 15);
-        draw_occupancy(100, 29, 15);
+        $('#participants').html(' ' + data.participants);
+        var trucksize = data.trucksize ? data.trucksize : 100;
+        var cargosize = data.totalcargosize ? data.totalcargosize : 29;
+        $('#occpancy').html(' '+cargosize+'/'+trucksize);
+        var unitfee = (data.initialfee / data.totalcargosize).toFixed(2);
+        $('#unitfee').html('$' + unitfee);
+        draw_occupancy(trucksize, cargosize, 15);
         var from_lat = data.pickupaddr_lat ? data.pickupaddr_lat : 40.679308;
         var from_lng = data.pickupaddr_lng ? data.pickupaddr_lng : -74.012910;
         var to_lat = data.orderRecords[0].stopaddr_lat ? data.orderRecords[0].stopaddr_lat : 40.679308;
         var to_lng = data.orderRecords[0].stopaddr_lng ? data.orderRecords[0].stopaddr_lng : -73.959352;
         draw_route(from_lat, from_lng, to_lat, to_lng);
-        // draw_route(
-        //     data.pickupaddr_lat,
-        //     data.pickupaddr_lng,
-        //     data.deliveraddr_lat,
-        //     data.deliveraddr_lng,);
+        // line chart
+        var raw_data = [], accu_size = 0;
+        $.each(data.orderRecords, function(i, o){
+            accu_size += o.cargosize;
+            raw_data.push([i, data.initialfee/accu_size]);
+        });
+        google.load('visualization', '1', {
+            packages: ['corechart', 'line'],
+            callback: drawBasic(raw_data),
+        });
     }
     </script>
 
@@ -554,6 +563,13 @@
                 success: function(data) {
                     if (Math.floor(data.status/100) == 2) {
                         alert('Success!');
+                        $.each(order.orderRecords, function(i, o){
+                            alert("Mail to " + o.sid);
+                            $.post('/v1/mailto/'+o.sid, {
+                                title: 'Your Order is shipped',
+                                body: 'Dear User:\nYour Order is to be delivered. Please check it in our website.',
+                            });
+                        });
                         location.href = '/d-myorder';
                     } else {
                         console.log('Close order failed');
@@ -576,7 +592,16 @@
                 },
                 success: function(data) {
                     if (Math.floor(data.status/100) == 2) {
+                        console.log(order);
                         alert('Success!');
+                        $.each(order.orderRecords, function(i, o){
+                            $.post('/v1/mailto/'+o.sid, {
+                                title: 'Your Order has been delivered',
+                                body: 'Dear User:\nYour Order has been delivered. Thanks for using We Deliver!',
+                            }, function(result){
+                                alert('Mail success!');
+                            });
+                        });
                         location.href = '/d-myorder';
                     } else {
                         console.log('Finish order failed');
@@ -592,23 +617,15 @@
     });
     </script>
 
-    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
     <script type="text/javascript">
-        var raw_data = [
-                [0, 60],   [1, 50],  [2, 40],  [3, 30],  [4, 18],  [5, 9],
-              ];
-        google.load('visualization', '1', {packages: ['corechart', 'line']});
-        google.setOnLoadCallback(drawBasic);
+    function drawBasic(raw_data) {
+        return function() {
+            var data = new google.visualization.DataTable();
+            data.addColumn('number', 'X');
+            data.addColumn('number', 'Unit Price');
+            data.addRows(raw_data);
 
-        function drawBasic() {
-
-              var data = new google.visualization.DataTable();
-              data.addColumn('number', 'X');
-              data.addColumn('number', 'Unit Price');
-
-              data.addRows(raw_data);
-
-              var options = {
+            var options = {
                 colors:['yellow','#E6E600'],
                 backgroundColor: 'transparent',
                 chartArea: {
@@ -618,11 +635,12 @@
                     height: 250
                 },
                 fontSize: 12
-              };
+            };
 
-              var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
-
-              chart.draw(data, options);
-            }
+            var chart = new google.visualization.LineChart($('#chart_div')[0]);
+            chart.draw(data, options);
+            return chart;
+        }
+    }
     </script>
 {% endblock %}

@@ -127,6 +127,8 @@
                                     <div class="form-group">
                                         <label class="control-label" for="deliver-addr"> <i class="fa fa-truck"></i> Delivery Location </label>
                                         <input id="deliver-addr" name="deliveraddr" placeholder="" class="form-control input-md" type="text" data-toggle="modal" data-target="#place-modal">
+                                        <input type="hidden" name="deliveraddr_lat" class="addr_lat" value="">
+                                        <input type="hidden" name="deliveraddr_lng" class="addr_lng" value="">
                                     </div>
                                 </div>
                                 <div class="col-xs-4 col-sm-4 col-md-4">
@@ -487,7 +489,7 @@
       });
     }
     </script>
-
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
     <script>
     var oid = $.url('?oid');
     $(document).ready(function() {
@@ -497,7 +499,6 @@
                 fillOrderHTML(res.data[0]);
                 // hidden some parts
                 if (res.data[0].status == 'O') {
-                    console.log('hide order_detail_container');
                     $('#order_detail_container').hide();
                 }
             } else {
@@ -512,14 +513,30 @@
         $('#perstopfee').html('$' + data.perstopfee);
         $('#deliveryaddr').html(data.orderRecords[0].stopaddress);
         $('#deliverytime').html(data.deliverdate);
-        $('#unitfee').html('$' + data.unitfee);
-        $('#membernum').html('$' + data.membernum);
-        draw_occupancy(120, 29, 15);
+        $('#participants').html(' ' + data.participants);
+        // occupancy
+        var trucksize = data.trucksize ? data.trucksize : 100;
+        var cargosize = data.totalcargosize ? data.totalcargosize : 29;
+        $('#occpancy').html(' '+data.totalcargosize+'/'+data.trucksize);
+        var unitfee = (data.initialfee / data.totalcargosize).toFixed(2);
+        $('#unitfee').html('$' + unitfee);
+        draw_occupancy(trucksize, cargosize, 15);
+        // drive route
         var from_lat = data.pickupaddr_lat ? data.pickupaddr_lat : 40.679308;
         var from_lng = data.pickupaddr_lng ? data.pickupaddr_lng : -74.012910;
         var to_lat = data.orderRecords[0].stopaddr_lat ? data.orderRecords[0].stopaddr_lat : 40.679308;
         var to_lng = data.orderRecords[0].stopaddr_lng ? data.orderRecords[0].stopaddr_lng : -73.959352;
         draw_route(from_lat, from_lng, to_lat, to_lng);
+        // line chart
+        var raw_data = [], accu_size = 0;
+        $.each(data.orderRecords, function(i, o){
+            accu_size += o.cargosize;
+            raw_data.push([i, data.initialfee/accu_size]);
+        });
+        google.load('visualization', '1', {
+            packages: ['corechart', 'line'],
+            callback: drawBasic(raw_data),
+        });
     }
     </script>
 
@@ -531,6 +548,8 @@
                 oid: oid,
                 sid: {[current_user.sid]},
                 stopaddress: $('input[name="deliveraddr"]').val(),
+                stopaddr_lat: $('input[name="deliveraddr_lat"]').val(),
+                stopaddr_lng: $('input[name="deliveraddr_lng"]').val(),
                 cargosize: $('input[name="cargosize"]').val(),
                 comment: $('input[name="comment"]').val(),
             }, function(data){
@@ -566,16 +585,20 @@
             }
         });
         $('#raty-form').submit(function(e){
-            $.post('/v1/orderRecord', {
-                oid: oid,
-                sid: {[current_user.sid]}, // FIXME: Real SID !
-                grade: $('input[name="rate"]').val(),
-            }, function(data) {
-                if (Math.floor(data.status/100) == 2) {
-                    alert('Success!');
-                    location.href = '/myorder';
-                } else {
-                    console.log('Join order failed. Change sid and try again');
+            console.log("Rate: " + $('input[name="rate"]').val());
+            $.ajax({
+                url: '/v1/orderRecord/'+oid+'/'+{[current_user.sid]},
+                type: 'PUT',
+                data: {
+                    grade: $('input[name="rate"]').val(),
+                },
+                success: function(data) {
+                    if (Math.floor(data.status/100) == 2) {
+                        alert('Success!');
+                        location.href = '/myorder';
+                    } else {
+                        console.log('Join order failed. Change sid and try again');
+                    }
                 }
             });
             e.preventDefault();
@@ -587,23 +610,18 @@
     });
     </script>
 
-    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
     <script type="text/javascript">
-        var raw_data = [
-                [0, 60],   [1, 50],  [2, 40],  [3, 30],  [4, 18],  [5, 9],
-              ];
-        google.load('visualization', '1', {packages: ['corechart', 'line']});
-        google.setOnLoadCallback(drawBasic);
+    // var raw_data = [
+    //     [0, 60], [1, 50], [2, 40], [3, 30], [4, 18], [5, 9],
+    // ];
+    function drawBasic(raw_data) {
+        return function() {
+            var data = new google.visualization.DataTable();
+            data.addColumn('number', 'X');
+            data.addColumn('number', 'Unit Price');
+            data.addRows(raw_data);
 
-        function drawBasic() {
-
-              var data = new google.visualization.DataTable();
-              data.addColumn('number', 'X');
-              data.addColumn('number', 'Unit Price');
-
-              data.addRows(raw_data);
-
-              var options = {
+            var options = {
                 colors:['yellow','#E6E600'],
                 backgroundColor: 'transparent',
                 chartArea: {
@@ -613,11 +631,12 @@
                     height: 250
                 },
                 fontSize: 12
-              };
+            };
 
-              var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
-
-              chart.draw(data, options);
-            }
+            var chart = new google.visualization.LineChart($('#chart_div')[0]);
+            chart.draw(data, options);
+            return chart;
+        }
+    }
     </script>
 {% endblock %}

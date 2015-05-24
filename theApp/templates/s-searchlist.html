@@ -70,7 +70,7 @@
                                     Occupancy
                                 </div>
                                 <div class="col-sm-2 page-header text-muted text-center col-header-list">
-                                    Base Unit Price
+                                    Action
                                 </div>
                             </div>
 
@@ -132,12 +132,12 @@
         <div class="row">
             <div class="col-sm-2 text-center" style="padding-left: 1px; padding-right: 0px;">
                 <h5 class="white curprice"><i class="fa fa-usd"></i>
-                <span> 32{{:unitprice}} </span></h5>
+                <span> {{:unitprice}} </span></h5>
             </div>
 
             <div class="col-sm-3 text-center">
                 <h5 class="white othertext">{{:deliverer_name}}</h5>
-                <div class="orderRating" data-stars="3"></div>
+                <div class="orderRating" data-stars="{{:deliverer_grade}}"></div>
             </div>
 
             <div class="col-sm-3 text-left">
@@ -444,6 +444,9 @@
         });
         function updateHTML(data) {
             console.log(data);
+            $.each(data.data, function(i, o){
+                o.unitprice = (o.initialfee / o.totalcargosize).toFixed(2);
+            });
             $('#orderlist').html(
                 $('#list-template').render(data)
             );
