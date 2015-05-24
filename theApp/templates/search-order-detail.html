@@ -36,7 +36,7 @@
                                         <div class="col-sm-3">
                                             <div class="form-group">
                                                 <label class="control-label" for="cargo_size"> <i class="fa fa-cart-arrow-down"></i> Cargo Size</label>
-                                                <h4 id="cargo_size"> 10 </h4>
+                                                <h4 id="cargo-size"> 10 </h4>
                                             </div>
                                         </div>
                                     </div>
@@ -121,7 +121,7 @@
                                     <br>
                                     <div class="row">
                                         <label class="control-label" for="total_fee"> <i class="fa fa-money"></i> Total Fee (include base fee)</label>
-                                        <h2 id="total_fee"> $50 </h2>
+                                        <h2 id="total-fee"> $50 </h2>
                                     </div>
                                 </div>
                             </div>
@@ -526,13 +526,20 @@
         $('#deliveryaddr').html(data.orderRecords[0].stopaddress);
         $('#deliverytime').html(data.deliverdate);
         $('#participants').html(' ' + data.participants);
+        var cargosize = 0;
+        $.each(data.orderRecords, function(i, o){
+            if (o.sid == {[current_user.sid]})
+                cargosize = o.cargosize;
+        });
+        $('#cargo-size').html('' + data.orderRecords[0].cargosize); // FIXME : need lookup
+        $('#total-fee').html('$' + );
         // occupancy
         var trucksize = data.trucksize ? data.trucksize : 100;
-        var cargosize = data.totalcargosize ? data.totalcargosize : 29;
-        $('#occpancy').html(' '+data.totalcargosize+'/'+data.trucksize);
-        var unitfee = (data.initialfee / data.totalcargosize).toFixed(2);
+        var totalcargosize = data.totalcargosize ? data.totalcargosize : 29;
+        $('#occpancy').html(' '+totalcargosize+'/'+data.trucksize);
+        var unitfee = (data.initialfee / totalcargosize).toFixed(2);
         $('#unitfee').html('$' + unitfee);
-        draw_occupancy(trucksize, cargosize, 15);
+        draw_occupancy(trucksize, totalcargosize, 15);
         // drive route
         var from_lat = data.pickupaddr_lat ? data.pickupaddr_lat : 40.679308;
         var from_lng = data.pickupaddr_lng ? data.pickupaddr_lng : -74.012910;
