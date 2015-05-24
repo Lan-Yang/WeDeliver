@@ -126,18 +126,18 @@ def add_new_order():
     order = Order()
     order.title = data.get("title", "IKEA GO")  # NEW
     order.pickupaddr = data.get("pickupaddr", "IKEA Brooklyn")
-    order.pickuptime = data.get("pickuptime", "")
-    order.did = data.get("did", "0")
-    order.trucksize = data.get("trucksize", "0")
-    order.initialfee = data.get("initialfee", "0")
-    order.perstopfee = data.get("perstopfee", "10")  # default 10
+    order.pickuptime = data.get("pickuptime", None)
+    order.did = data.get("did", 0)
+    order.trucksize = data.get("trucksize", 0)
+    order.initialfee = data.get("initialfee", 0)
+    order.perstopfee = data.get("perstopfee", 10)  # default 10
     order.status = data.get("status", "O")
     order.drivername = data.get("drivername", "xxyy")
     order.driverphone = data.get("driverphone", "123456")
-    order.deliverdate = data.get("deliverdate", "")
+    order.deliverdate = data.get("deliverdate", None)
     # order.finishedtime = data.get("finishedtime", "")  # KEEP NULL
-    order.pickupaddr_lat = data.get("pickupaddr_lat", "")
-    order.pickupaddr_lng = data.get("pickupaddr_lng", "")
+    order.pickupaddr_lat = data.get("pickupaddr_lat", 0)
+    order.pickupaddr_lng = data.get("pickupaddr_lng", 0)
     order.totalcargosize = 0
     order.participants = 0
     db_session.add(order)
@@ -173,7 +173,7 @@ def search_for_orderRecords_from_sid_and_status():
                 data = "no sid provided"
             )
     status = request_args.get('status', '')
-    page_number = request_args.get('page_number', '1')
+    page_number = request_args.get('page_number', 1)
     per_page = request_args.get('per_page', DEFAULE_PER_PAGE)
 
     status_list = None
@@ -242,16 +242,16 @@ def get_orderRecords(oid=None, sid=None):
 def add_new_orderRecord():
     data = request.form
     orderRecord = OrderRecord()
-    orderRecord.oid = data.get("oid", "0")
-    orderRecord.sid = data.get("sid", "0")
+    orderRecord.oid = data.get("oid", 0)
+    orderRecord.sid = data.get("sid", 0)
     orderRecord.stopaddress = data.get("stopaddress", "")
-    orderRecord.cargosize = data.get("cargosize", "5")
-    orderRecord.totalfee = data.get("totalfee", "0.0")
+    orderRecord.cargosize = data.get("cargosize", 5)
+    orderRecord.totalfee = data.get("totalfee", 0)
     # orderRecord.status = data.get("status", "")
-    orderRecord.grade = data.get("grade", "0.0")
+    orderRecord.grade = data.get("grade", 0)
     orderRecord.comment = data.get("comment", "")
-    orderRecord.stopaddr_lat = data.get("stopaddr_lat", "0.0")
-    orderRecord.stopaddr_lng = data.get("stopaddr_lng", "0.0")
+    orderRecord.stopaddr_lat = data.get("stopaddr_lat", 0)
+    orderRecord.stopaddr_lng = data.get("stopaddr_lng", 0)
     db_session.add(orderRecord)
     db_session.commit()
     this_order = Order.query.get(orderRecord.oid)
