@@ -17,7 +17,7 @@ def search_for_orders1():
     pickupaddress = request_args.get('pickupaddress', '')
     stopaddress = request_args.get('stopaddress', '')
     pickuptime = request_args.get('pickuptime', '')
-    cargosize = request_args.get('cargosize', '')
+    cargosize = request_args.get('cargosize', 0)
     status = request_args.get('status', '')  # NEW, single status query
     page_number = request_args.get('page_number', '1')
     per_page = request_args.get('per_page', DEFAULE_PER_PAGE)
@@ -31,7 +31,7 @@ def search_for_orders1():
         results = Order.query.filter(
             and_(
                 Order.pickupaddr==pickupaddress,
-                Order.pickuptime<=datetime.strptime(pickuptime, DATETIME_FORMAT),
+                # Order.pickuptime<=datetime.strptime(pickuptime, DATETIME_FORMAT),
                 Order.trucksize-Order.totalcargosize>=int(cargosize),
                 )).order_by(desc(Order.oid))
     results_pagination = results.paginate(int(page_number), int(per_page), False).items
@@ -241,27 +241,33 @@ def get_orderRecords(oid=None, sid=None):
 @app.route('/v1/orderRecord', methods=['POST'])
 def add_new_orderRecord():
     data = request.form
-    orderRecord = OrderRecord()
-    orderRecord.oid = data.get("oid", 0)
-    orderRecord.sid = data.get("sid", 0)
-    orderRecord.stopaddress = data.get("stopaddress", "")
-    orderRecord.cargosize = data.get("cargosize", 5)
-    orderRecord.totalfee = data.get("totalfee", 0)
-    # orderRecord.status = data.get("status", "")
-    orderRecord.grade = data.get("grade", 0)
-    orderRecord.comment = data.get("comment", "")
-    orderRecord.stopaddr_lat = data.get("stopaddr_lat", 0)
-    orderRecord.stopaddr_lng = data.get("stopaddr_lng", 0)
-    db_session.add(orderRecord)
-    db_session.commit()
-    this_order = Order.query.get(orderRecord.oid)
-    this_order.participants += 1  # update order participants
-    this_order.totalcargosize += int(orderRecord.cargosize)
-    db_session.commit()
-    return jsonify(
-        status = 201,
-        data = "orderRecord creation succeeds"
-    )
+    try:
+        orderRecord = OrderRecord()
+        orderRecord.oid = data.get("oid", 0)
+        orderRecord.sid = data.get("sid", 0)
+        orderRecord.stopaddress = data.get("stopaddress", "")
+        orderRecord.cargosize = data.get("cargosize", 5)
+        orderRecord.totalfee = data.get("totalfee", 0)
+        # orderRecord.status = data.get("status", "")
+        orderRecord.grade = data.get("grade", 0)
+        orderRecord.comment = data.get("comment", "")
+        orderRecord.stopaddr_lat = data.get("stopaddr_lat", 0)
+        orderRecord.stopaddr_lng = data.get("stopaddr_lng", 0)
+        db_session.add(orderRecord)
+        db_session.commit()
+        this_order = Order.query.get(orderRecord.oid)
+        this_order.participants += 1  # update order participants
+        this_order.totalcargosize += int(orderRecord.cargosize)
+        db_session.commit()
+        return jsonify(
+            status = 201,
+            data = "orderRecord creation succeeds"
+        )
+    except Exception as e:
+        return jsonify(
+            status = 400,
+            data = "%r" % e,
+        )
 
 @app.route('/v1/orderRecord/<oid>/<sid>', methods=['PUT'])
 def update_orderRecord(oid, sid):
