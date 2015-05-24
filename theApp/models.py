@@ -64,13 +64,13 @@ class OrderRecord(db.Model):
     oid = db.Column(db.Integer, primary_key=True)
     sid = db.Column(db.Integer, primary_key=True)
     stopaddress = db.Column(db.String(128))
-    cargosize = db.Column(db.Integer)
-    totalfee = db.Column(db.Float)
-    status = db.Column(db.String(4))
-    grade = db.Column(db.Float)
-    comment = db.Column(db.Text)
     stopaddr_lat = db.Column(db.Float)
     stopaddr_lng = db.Column(db.Float)
+    cargosize = db.Column(db.Integer)
+    totalfee = db.Column(db.Float)
+    # status = db.Column(db.String(4))
+    grade = db.Column(db.Float)
+    comment = db.Column(db.Text)
 
     def __repr__(self):
         return '<OrderRecord %s, %s>' % (self.oid, self.sid)
@@ -84,12 +84,13 @@ class OrderRecord(db.Model):
             'stopaddress' : self.stopaddress,
             'cargosize' : self.cargosize,
             'totalfee' : self.totalfee,
-            'status' : self.status,
+            # 'status' : self.status,
             'grade' : self.grade,
             'comment' : self.comment,
             'stopaddr_lat' : self.stopaddr_lat,
             'stopaddr_lng' : self.stopaddr_lng
         }
+
 
 class Shipper(UserMixin, db.Model):
     sid = db.Column(db.Integer, primary_key=True)  # auto-inc
@@ -133,6 +134,7 @@ class Shipper(UserMixin, db.Model):
             'state' : self.state,
             'zip' : self.zip,
         }
+
 
 class Deliverer(db.Model):
     did = db.Column(db.Integer, primary_key=True)  # auto-inc

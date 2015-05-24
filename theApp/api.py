@@ -2,7 +2,7 @@
 """
 data API
 """
-from theApp import app
+from theApp import app, ses
 from flask import render_template, request, flash, redirect, url_for, jsonify
 from .models import *
 from sqlalchemy import and_, desc, update
@@ -142,7 +142,7 @@ def add_new_order():
     order.participants = 0
     db_session.add(order)
     db_session.commit()
-    oid = order.oid
+    oid = str(order.oid)
     return jsonify(
         status = 201,
         data = "order creation succeeds",
@@ -187,7 +187,8 @@ def search_for_orderRecords_from_sid_and_status():
     for odrd in odrds:
         # print odrd.oid
         # print type(odrd.oid), odrd.oid
-        this_order = Order.query.get(odrd.oid)
+        oid = odrd.oid
+        this_order = Order.query.get(oid)
         if not status_list or this_order.status in status_list:
             odrd_dict = odrd.serialize
             odrd_dict.update(this_order.serialize)
@@ -241,8 +242,8 @@ def get_orderRecords(oid=None, sid=None):
 def add_new_orderRecord():
     data = request.form
     orderRecord = OrderRecord()
-    orderRecord.oid = data.get("oid", "")
-    orderRecord.sid = data.get("sid", "")
+    orderRecord.oid = data.get("oid", "0")
+    orderRecord.sid = data.get("sid", "0")
     orderRecord.stopaddress = data.get("stopaddress", "")
     orderRecord.cargosize = data.get("cargosize", "5")
     orderRecord.totalfee = data.get("totalfee", "0.0")
@@ -301,6 +302,26 @@ def get_shipper_profile(sid):
             status = 404,
             data = "shipper not found"
         )
+
+@app.route('/v1/mailto/<sid>', methods=["POST"])
+def mail_to_sid(sid):
+    request_args = request.form
+    shipper = Shipper.query.get(int(sid))
+    if not shipper:
+        return "no such shipper"
+    title = request_args.get("title", "Email from WeDeliver")
+    body = request_args.get("body", "This is an email from WeDeliver")
+    recipient = shipper.email
+    try:
+        ses.send_email(
+            app.config['SES_SENDER_EMAIL'],
+            title, body, [recipient])
+        print "success"
+        return "success"
+    except Exception as e:
+        print "fail: %r" % e
+        return "fail: %r" % e
+
 
 def get_shipper_total_delivers(shipping_history):
     return len(shipping_history)
