@@ -64,14 +64,20 @@ def search_for_orders1():
                 'deliverloc': record.stopaddress,
             });
 
+    PAGELINK = "/v1/order?pickupaddress=%s&stopaddress=%s&pickuptime=%s&cargosize=%s&page_number=%s&per_page=%s&debug=%s"
+
     return jsonify(
         status = 200,
         data = result,
         links = [
-            {"ref":"pre", "href":"/v1/order?"+"pickupaddress="+pickupaddress+"&stopaddress="+stopaddress+"&pickuptime="+pickuptime+"&cargosize="+cargosize+"&page_number="+str(pre_page_num)+"&per_page="+str(per_page)+"&debug="+debug},
-            {"ref":"next","href":"/v1/order?"+"pickupaddress="+pickupaddress+"&stopaddress="+stopaddress+"&pickuptime="+pickuptime+"&cargosize="+cargosize+"&page_number="+str(next_page_num)+"&per_page="+str(per_page)+"&debug="+debug},
-            {"ref":"first","href":"/v1/order?"+"pickupaddress="+pickupaddress+"&stopaddress="+stopaddress+"&pickuptime="+pickuptime+"&cargosize="+cargosize+"&page_number="+str(first_page_num)+"&per_page="+str(per_page)+"&debug="+debug},
-            {"ref":"last","href":"/v1/order?"+"pickupaddress="+pickupaddress+"&stopaddress="+stopaddress+"&pickuptime="+pickuptime+"&cargosize="+cargosize+"&page_number="+str(last_page_num)+"&per_page="+str(per_page)+"&debug="+debug},
+            {"ref":"pre", "href":PAGELINK % (pickupaddress, stopaddress, pickuptime, cargosize, pre_page_num, per_page, debug)},
+            {"ref":"next", "href":PAGELINK % (pickupaddress, stopaddress, pickuptime, cargosize, next_page_num, per_page, debug)},
+            {"ref":"first", "href":PAGELINK % (pickupaddress, stopaddress, pickuptime, cargosize, first_page_num, per_page, debug)},
+            {"ref":"last", "href":PAGELINK % (pickupaddress, stopaddress, pickuptime, cargosize, last_page_num, per_page, debug)},
+            # {"ref":"pre", "href":"/v1/order?"+"pickupaddress="+pickupaddress+"&stopaddress="+stopaddress+"&pickuptime="+pickuptime+"&cargosize="+cargosize+"&page_number="+str(pre_page_num)+"&per_page="+str(per_page)+"&debug="+debug},
+            # {"ref":"next","href":"/v1/order?"+"pickupaddress="+pickupaddress+"&stopaddress="+stopaddress+"&pickuptime="+pickuptime+"&cargosize="+cargosize+"&page_number="+str(next_page_num)+"&per_page="+str(per_page)+"&debug="+debug},
+            # {"ref":"first","href":"/v1/order?"+"pickupaddress="+pickupaddress+"&stopaddress="+stopaddress+"&pickuptime="+pickuptime+"&cargosize="+cargosize+"&page_number="+str(first_page_num)+"&per_page="+str(per_page)+"&debug="+debug},
+            # {"ref":"last","href":"/v1/order?"+"pickupaddress="+pickupaddress+"&stopaddress="+stopaddress+"&pickuptime="+pickuptime+"&cargosize="+cargosize+"&page_number="+str(last_page_num)+"&per_page="+str(per_page)+"&debug="+debug},
         ]
     )
 
