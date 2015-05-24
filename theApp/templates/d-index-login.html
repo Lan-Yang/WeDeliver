@@ -491,32 +491,6 @@
         $('#submit-search').click(function(e){
             $('#search-form').submit();
         });
-        //
-        $('#login-form').submit(function(e){
-            var postData = $(this).serializeArray();
-            var formURL = $(this).attr("action");
-            $(this).find("p.error").html("");
-            var _this = this;
-            $.ajax({
-                url: formURL,
-                type: "POST",
-                data: postData,
-                success: function(data){
-                    if (data.status == 0) { // fail
-                        // console.log(_this);
-                        $.each(data.errors, function(key, val){
-                            $(_this).find("input[name=\""+key+"\"]").next().html(val[0]);
-                        });
-                    } else { // sucess
-                        location.reload();
-                    }
-                },
-            });
-            e.preventDefault(); //STOP default action
-        });
-        $('#login-submit').click(function(e){
-            $('#login-form').submit();
-        });
         /* Date Picker */
         $('.date').datepicker({
             format: "mm/dd/yyyy"
@@ -530,6 +504,31 @@
             $(this).find('#login-facebook').click(function(e){
                 location.href = '/deliverer/authorize/facebook';
                 e.preventDefault();
+            });
+            //
+            $(this).find('#login-form').submit(function(e){
+                var postData = $(this).serializeArray();
+                var _this = this;
+                $.ajax({
+                    url: '/deliverer/login',
+                    type: "POST",
+                    data: postData,
+                    success: function(data){
+                        if (data.status == 0) { // fail
+                            // console.log(_this);
+                            $.each(data.errors, function(key, val){
+                                $(_this).find("input[name=\""+key+"\"]").next().html(val[0]);
+                            });
+                        } else { // sucess
+                            location.reload();
+                        }
+                    },
+                });
+                e.preventDefault(); //STOP default action
+            });
+            $(this).find('#login-submit').click(function(e){
+                $('#login-form').submit();
+                e.preventDefault(); //STOP default action
             });
         });
     });

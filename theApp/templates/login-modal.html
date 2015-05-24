@@ -1,38 +1,40 @@
 <!-- <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-hidden="true"> -->
     <!-- <div class="modal-dialog"> -->
-        <form class="form-login text-center" action="/user/login" method="POST">
-
+        <form class="form-login text-center" id="login-form" action="#" method="POST">
             <div class="row">
+
                 <h2 class="form-login-heading" style="margin-left: 0px; font-weight: 300; font-family: 'Montserrat', sans-serif; padding: 20px 20px; font-size: 22px;" >Sign in</h2>
 
                 <div class="login-wrap" style="padding: 20px;">
-                    <button id="login-facebook" class="btn btn-block btn-facebook">CONNECT WITH FACEBOOK
+                    <button id="login-facebook" class="btn btn-block btn-facebook">
+                        CONNECT WITH FACEBOOK
                     </button>
                     <hr>
 
                     <div class="form-group">
-                        <label class="label">EMAIL</label>
-                        <input type="text" class="form-control" placeholder="Email Address">
+                        <label for="input-email">EMAIL</label>
+                        <input type="text" id="input-email" class="form-control" name="email">
+                        <input type="hidden" name="who" value="{[who]}">
                     </div>
                     <div class="form-group">
-                        <label class="label">PASSWORD</label>
-                        <input type="text" class="form-control" placeholder="Password">
+                        <label class="input-passwd">PASSWORD</label>
+                        <input type="password" id="input-passwd" class="form-control" name="passwd">
                     </div>
                     <div class="checkbox">
-                        <label class="pull-right">
-                            <a data-toggle="modal" href="login.html#myModal" style= "position: middle;"> Forgot Password?</a>
-                        </label>
+                        <div class="pull-right">
+                            <a href="#" style="position: middle;">Forgot Password?</a>
+                        </div>
                     </div>
+                    <br>
                     <div class="log-in">
-                        <br>
-                        <button class="btn btn-theme btn-block">
+                        <button class="btn btn-theme btn-block" id="login-submit">
                             <i class="fa fa-lock"></i> SIGN IN
                         </button>
                     </div>
                     <hr>
+
                     <p style="font-family: 'Lato'; text-align: center;">Don't have an account? <a>Sign up</a></p>
                     <p style="font-family: 'Lato'; text-align: center;">I'm a <a href="/d-home">Deliverer</a></p>
-
                 </div>
             </div>
         </form>

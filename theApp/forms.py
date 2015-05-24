@@ -73,17 +73,17 @@ class ShipperPostForm(Form):
     # delivertime = StringField('delivertime')
     stopaddress = StringField('stopaddress')
     # expectfee = StringField('expectfee')
-    
-    
+
+
     def __init__(self, *args, **kwargs):
         '''initiate self with request parameters'''
         Form.__init__(self, *args, **kwargs)
-    
+
     def validate(self):
         rv = Form.validate(self)
         if not rv:
             return False
-        
+
         if self.pickupaddr is None:
             return False
         if self.pickuptime is None:
@@ -102,7 +102,7 @@ class ShipperPostForm(Form):
         order.pickuptime = self.pickuptime.data
         order.cargosize = self.cargosize.data
         order.oid = 13
-        
+
         order_record = OrderRecord()
         order_record.sid = 13
         order_record.oid = 13

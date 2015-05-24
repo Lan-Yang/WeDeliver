@@ -27,18 +27,17 @@ def home():
         title="Home"
         )
 
-@app.route('/loginmodal')
-def login():
+@app.route('/loginmodal/<who>')
+def loginmodal(who):
     return render_template(
         'login-modal.html',
-        title="Login"
+        who=who
         )
 
 @app.route('/placemodal')
 def placemodal():
     return render_template(
         'place-modal.html',
-        title="Login"
         )
 
 @app.route('/s-search')
@@ -123,29 +122,33 @@ def rate_order():
         case="rate-order",
         )
 
+# @app.route('/test/email')
+# def test_ses():
+#     title = "We Deliver Email Test"
+#     body = "This is a test email, send by We Deliver 2015."
+#     recipients = ["mw2972@columbia.edu", "ly2331@columbia.edu", "jy2653@columbia.edu"]
+#     controllers.sendmail(title, body, recipients)
+#     return "Email send to %r" % recipients
 
-
-
-@app.route('/test/email')
-def test_ses():
-    title = "We Deliver Email Test"
-    body = "This is a test email, send by We Deliver 2015."
-    recipients = ["mw2972@columbia.edu", "ly2331@columbia.edu", "jy2653@columbia.edu"]
-    controllers.sendmail(title, body, recipients)
-    return "Email send to %r" % recipients
-
-@app.route('/user/login', methods=['POST'])
-def user_login():
+@app.route('/<user_type>/login', methods=['POST'])
+def user_login(user_type):
     form = LoginForm()
     if not form.validate_on_submit():
+        print "=============Fail!============="
         return jsonify(
             status=0,
             errors=form.errors  # first error message
         )
     # Login valid form
-    login_user(form.user, remember=form.rememberme)
+    login_user(form.user)
+    print "=============Success!============="
+    if user_type == "shipper":
+        re_url = url_for('home')
+    elif user_type == "deliverer":
+        re_url = url_for('d_home')
     return jsonify(
-        status=1
+        status=1,
+        next=re_url,
     )
 
 @app.route('/<user_type>/authorize/<provider>')
@@ -227,7 +230,8 @@ def d_home():
 def d_login():
     return render_template(
         'd-login-modal.html',
-        title="Login"
+        title="Login",
+        who="deliverer",
         )
 
 @app.route('/d-search')
