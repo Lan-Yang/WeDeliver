@@ -114,8 +114,8 @@
                                     </div>
                                     <br>
                                     <div class="row">
-                                        <label class="control-label" for="total_price"> <i class="fa fa-money"></i></i> Total Price</label>
-                                        <h2 id="unitfee"> $160 </h2>
+                                        <label> <i class="fa fa-money"></i> Total Price</label>
+                                        <h2 id="totalfee"> $160 </h2>
                                     </div>
                                 </div>
                             </div>
@@ -510,6 +510,8 @@
         var unitfee = (data.initialfee / data.totalcargosize).toFixed(2);
         $('#unitfee').html('$' + unitfee);
         draw_occupancy(trucksize, cargosize, 15);
+        var totalfee = data.participants*data.perstopfee+data.initialfee;
+        $('#totalfee').html('$' + data.participants+'*'+data.perstopfee+'+'+data.initialfee+'='+totalfee);
         var from_lat = data.pickupaddr_lat ? data.pickupaddr_lat : 40.679308;
         var from_lng = data.pickupaddr_lng ? data.pickupaddr_lng : -74.012910;
         var to_lat = data.orderRecords[0].stopaddr_lat ? data.orderRecords[0].stopaddr_lat : 40.679308;
