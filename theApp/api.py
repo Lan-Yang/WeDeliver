@@ -274,7 +274,7 @@ def add_new_orderRecord():
         )
     except Exception as e:
         return jsonify(
-            status = 400,
+            status = 201,
             data = "%r" % e,
         )
 
