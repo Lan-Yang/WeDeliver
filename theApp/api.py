@@ -148,10 +148,10 @@ def add_new_order():
     order.participants = 0
     db_session.add(order)
     db_session.commit()
-    # try:
-    oid = order.oid
-    # except Exception as e:
-    # oid = Order.query.count()
+    try:
+        oid = order.oid
+    except Exception as e:
+        oid = Order.query.count()
     return jsonify(
         status = 201,
         data = "order creation succeeds",
