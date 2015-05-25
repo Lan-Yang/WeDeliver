@@ -4,7 +4,7 @@
 This is a web APP "WeDeliver" by python Flask framework.
 
 ## By who?
-- Columbia CS Students:
+Columbia CS Students:
 - Bo Jin (bj2327)
 - Lan Yang (ly2331)
 - Jingwei Yang (jy2653)
