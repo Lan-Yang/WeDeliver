@@ -3,7 +3,7 @@
 ## What is this?
 This is a web APP "WeDeliver" by python Flask framework.
 
-## By who?
+## By whom?
 Columbia CS Students:
 - Bo Jin (bj2327)
 - Lan Yang (ly2331)
