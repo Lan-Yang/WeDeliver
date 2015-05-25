@@ -17,6 +17,7 @@ Columbia CS Students:
 `python application.py`
 
 ## File Structure
+```
 application.py : main script
 theApp/ : structured Flask app
   |- templates/: html templates
@@ -28,3 +29,4 @@ theApp/ : structured Flask app
   |- models.py: Database table structures
   |- forms.py: Handle html form validation
   |- oauth.py: Helper functions of OAuth, for Facebook Login
+```
