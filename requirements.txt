@@ -8,4 +8,4 @@ boto
 argparse
 rauth
 requests
-SQLAlchemy
+SQLAlchemypymysql
