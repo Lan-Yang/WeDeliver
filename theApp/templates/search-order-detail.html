@@ -525,7 +525,8 @@
         $('#perstopfee').html('$' + data.perstopfee);
         $('#deliveryaddr').html(data.orderRecords[0].stopaddress);
         $('#deliverytime').html(data.deliverdate);
-        $('#participants').html(' ' + data.participants);
+        var participants = data.orderRecords.length;
+        $('#participants').html(' ' + participants);
         var cargosize = 0;
         console.log(data);
         $.each(data.orderRecords, function(i, o){
@@ -535,7 +536,10 @@
         $('#cargo-size').html('' + cargosize); // FIXME : need lookup
         // occupancy
         var trucksize = data.trucksize ? data.trucksize : 100;
-        var totalcargosize = data.totalcargosize ? data.totalcargosize : 29;
+        var totalcargosize = 0;
+        $.each(data.orderRecords, function(i, o) {
+            totalcargosize += o.cargosize;
+        });
         $('#occpancy').html(' '+totalcargosize+'/'+data.trucksize);
         var unitfee = (data.initialfee / totalcargosize).toFixed(2);
         var totalfee = (cargosize*unitfee+data.perstopfee).toFixed(2);

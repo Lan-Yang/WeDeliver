@@ -264,10 +264,12 @@ def add_new_orderRecord():
         orderRecord.stopaddr_lng = data.get("stopaddr_lng", 0)
         db_session.add(orderRecord)
         db_session.commit()
+
         this_order = Order.query.get(orderRecord.oid)
         this_order.participants += 1  # update order participants
         this_order.totalcargosize += int(orderRecord.cargosize)
         db_session.commit()
+
         return jsonify(
             status = 201,
             data = "orderRecord creation succeeds"
