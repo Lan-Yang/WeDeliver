@@ -102,22 +102,22 @@ def resetdb():
     deliverer_2.grade = 3.9
 
 
-    order_1 = Order()
-    order_1.title = "Go for IKEA!"
-    order_1.pickupaddr = "IKEA Brooklyn"
-    order_1.pickupaddr_lat = 40.671341
-    order_1.pickupaddr_lng = -74.011251
-    order_1.pickuptime = datetime.strptime('2011-11-03 18:21:26', DATETIME_FORMAT)
-    order_1.deliverdate = datetime.strptime('2011-11-04 18:21:26', DATETIME_FORMAT)
-    order_1.did = 1
-    order_1.totalcargosize = 20
-    order_1.trucksize = 100
-    order_1.initialfee = 300
-    order_1.perstopfee = 10
-    order_1.status = "D"
-    order_1.finishedtime = datetime.strptime('2011-11-04 18:21:26', DATETIME_FORMAT)
-    # order_1.drivername = "XiDaDa"
-    # order_1.driverphone = "821931"
+    # order_1 = Order()
+    # order_1.title = "Go for IKEA!"
+    # order_1.pickupaddr = "IKEA Brooklyn"
+    # order_1.pickupaddr_lat = 40.671341
+    # order_1.pickupaddr_lng = -74.011251
+    # order_1.pickuptime = datetime.strptime('2011-11-03 18:21:26', DATETIME_FORMAT)
+    # order_1.deliverdate = datetime.strptime('2011-11-04 18:21:26', DATETIME_FORMAT)
+    # order_1.did = 1
+    # order_1.totalcargosize = 20
+    # order_1.trucksize = 100
+    # order_1.initialfee = 300
+    # order_1.perstopfee = 10
+    # order_1.status = "D"
+    # order_1.finishedtime = datetime.strptime('2011-11-04 18:21:26', DATETIME_FORMAT)
+    # # order_1.drivername = "XiDaDa"
+    # # order_1.driverphone = "821931"
 
     # order_2 = Order()
     # order_2.title = "Shopping Woodbury!"
@@ -201,16 +201,16 @@ def resetdb():
     # # order_6.finishedtime = datetime.strptime('2011-11-03 18:21:26', DATETIME_FORMAT)
 
 
-    orderRecord_1 = OrderRecord()
-    orderRecord_1.oid = 1
-    orderRecord_1.sid = 785648240
-    orderRecord_1.stopaddress = "121 La Salle St, New York, NY 20017"
-    orderRecord_1.stopaddr_lat = 40.8140929
-    orderRecord_1.stopaddr_lng = -73.9600902
-    orderRecord_1.cargosize = 10
-    orderRecord_1.totalfee = 33.3
-    orderRecord_1.grade = 3
-    orderRecord_1.comment = "Not Bad."
+    # orderRecord_1 = OrderRecord()
+    # orderRecord_1.oid = 1
+    # orderRecord_1.sid = 785648240
+    # orderRecord_1.stopaddress = "121 La Salle St, New York, NY 20017"
+    # orderRecord_1.stopaddr_lat = 40.8140929
+    # orderRecord_1.stopaddr_lng = -73.9600902
+    # orderRecord_1.cargosize = 10
+    # orderRecord_1.totalfee = 33.3
+    # orderRecord_1.grade = 3
+    # orderRecord_1.comment = "Not Bad."
 
     # orderRecord_2 = OrderRecord()
     # orderRecord_2.oid = 1
@@ -223,26 +223,26 @@ def resetdb():
     # orderRecord_2.grade = 4
     # orderRecord_2.comment = "This is great!"
 
-    orderRecord_3 = OrderRecord()
-    orderRecord_3.oid = 1
-    orderRecord_3.sid = 785648240
-    orderRecord_3.stopaddress = "121 La Salle St, New York, NY 20017"
-    orderRecord_3.stopaddr_lat = 40.8140929
-    orderRecord_3.stopaddr_lng = -73.9600902
-    orderRecord_3.cargosize = 30
-    orderRecord_3.totalfee = 33.3
-    orderRecord_3.grade = 3.5
-    orderRecord_3.comment = "Have A TRY!"
+    # orderRecord_3 = OrderRecord()
+    # orderRecord_3.oid = 1
+    # orderRecord_3.sid = 1
+    # orderRecord_3.stopaddress = "121 La Salle St, New York, NY 20017"
+    # orderRecord_3.stopaddr_lat = 40.8140929
+    # orderRecord_3.stopaddr_lng = -73.9600902
+    # orderRecord_3.cargosize = 30
+    # orderRecord_3.totalfee = 33.3
+    # orderRecord_3.grade = 3.5
+    # orderRecord_3.comment = "Have A TRY!"
 
     db_session.add(shipper_1)
     db_session.add(shipper_2)
     db_session.add(shipper_4)
     db_session.add(deliverer_1)
     db_session.add(deliverer_2)
-    db_session.add(order_1)
+    # db_session.add(order_1)
     # db_session.add(order_2)
-    db_session.add(orderRecord_1)
+    # db_session.add(orderRecord_1)
     # db_session.add(orderRecord_2)
-    db_session.add(orderRecord_3)
+    # db_session.add(orderRecord_3)
 
     db_session.commit()

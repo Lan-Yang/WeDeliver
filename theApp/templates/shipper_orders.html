@@ -440,7 +440,7 @@ $(function() {
 
     $.getJSON('/v1/orderRecord', { // data
         sid: {[current_user.sid]},
-        status: 'D, C',
+        status: 'D,C',
     }, getHtmlFiller('ongoing-panel', '/s-view-order'));
 
     $.getJSON('/v1/orderRecord', { // data
