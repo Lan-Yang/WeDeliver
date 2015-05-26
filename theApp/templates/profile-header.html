@@ -423,21 +423,16 @@
         padding-bottom: 40px;
     }
     </style>
-    <!-- {[ data ]} -->
+
     <script type="text/javascript">
     $(function(){
-        re_uri = "https://www.facebook.com/dialog/share?"+
-                "app_id=145634995501895"+
-                "&display=popup"+
-                "&href=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2F"+
-                "&redirect_uri="+location.href;
-        console.log(re_uri);
-        $('.fb-share').attr('href', re_uri);
         $('.fb-share').click(function(e){
             FB.ui({
               method: 'share',
               href: 'http://wedeliver.elasticbeanstalk.com/',
-            }, function(response){});
+            }, function(response){
+                ;
+            });
             e.preventDefault();
         });
     });
