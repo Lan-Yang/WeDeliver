@@ -3,6 +3,14 @@
     <link rel="stylesheet" href="/static/css/searchlist-header.css">
 {% endblock %}
 {% block body %}
+    <div id="fb-root"></div>
+    <script>(function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/zh_CN/sdk.js#xfbml=1&version=v2.3&appId=1642937289257853";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>
     {% include "s-header.html" %}
     <div class="container">
         <div class="row  user-menu-container square" style="margin-top: 150px;">
@@ -94,7 +102,8 @@
                     <center><i class="fa fa-diamond fa-2x" ></i></center>
                     <div class="share-links">
                         <center>
-                            <button type="button" class="btn btn-lg btn-labeled btn-success" href="#" style="margin-bottom: 15px;"> <span class="btn-label"><i class="fa fa-bell-o"></i></span>Share your delivery experience on Facebook, and get 50 credits as reward!</button>
+                            <button class="fb-share btn btn-lg btn-labeled btn-success" style="margin-bottom: 15px;"> <span class="btn-label"><i class="fa fa-bell-o"></i></span>Share your delivery experience on Facebook, and get 50 credits as reward!</button>
+                            <!-- <a class="fb-share" href="#">FB</a> -->
                         </center>
                     </div>
                 </div>
@@ -358,29 +367,29 @@
     {% include 'common-js-libs.html' %}
     <script type="text/javascript" src="https://www.google.com/jsapi"></script>
     <script type="text/javascript">
-    var raw_data = [
-        ['Date', 'Actual Pay', 'Expected Pay', 'You Save'],
-        ['2014-09-10', 33, 100, 67],
-        ['2015-01-10', 44, 100, 56],
-        ['2015-02-20', 35, 100, 65],
-        ['2015-05-03', 40, 100, 60]
-    ];
-    google.load("visualization", "1.1", {
-        packages: ["bar"]
-    });
-    google.setOnLoadCallback(drawChart);
+    // var raw_data = [
+    //     ['Date', 'Actual Pay', 'Expected Pay', 'You Save'],
+    //     ['2014-09-10', 33, 100, 67],
+    //     ['2015-01-10', 44, 100, 56],
+    //     ['2015-02-20', 35, 100, 65],
+    //     ['2015-05-03', 40, 100, 60]
+    // ];
+    // google.load("visualization", "1.1", {
+    //     packages: ["bar"]
+    // });
+    // google.setOnLoadCallback(drawChart);
 
-    function drawChart() {
-        var data = google.visualization.arrayToDataTable(raw_data);
-        var options = {
-            chart: {
-                title: 'Recent Payment Show',
-                subtitle: 'Actual Pay, Expected Pay, and You Save: 2014--',
-            }
-        };
-        var chart = new google.charts.Bar(document.getElementById('columnchart_material'));
-        chart.draw(data, options);
-    }
+    // function drawChart() {
+    //     var data = google.visualization.arrayToDataTable(raw_data);
+    //     var options = {
+    //         chart: {
+    //             title: 'Recent Payment Show',
+    //             subtitle: 'Actual Pay, Expected Pay, and You Save: 2014--',
+    //         }
+    //     };
+    //     var chart = new google.charts.Bar(document.getElementById('columnchart_material'));
+    //     chart.draw(data, options);
+    // }
     </script>
 
     <script type="text/javascript">
@@ -415,6 +424,25 @@
     }
     </style>
     <!-- {[ data ]} -->
+    <script type="text/javascript">
+    $(function(){
+        re_uri = "https://www.facebook.com/dialog/share?"+
+                "app_id=145634995501895"+
+                "&display=popup"+
+                "&href=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2F"+
+                "&redirect_uri="+location.href;
+        console.log(re_uri);
+        $('.fb-share').attr('href', re_uri);
+        $('.fb-share').click(function(e){
+            FB.ui({
+              method: 'share',
+              href: 'http://wedeliver.elasticbeanstalk.com/',
+            }, function(response){});
+            e.preventDefault();
+        });
+    });
+    </script>
+
     <script type="text/javascript">
     var sid = {[current_user.sid]};
     $.getJSON('/v1/shipper/'+sid, function(res){
