@@ -12,6 +12,7 @@ from .forms import *
 from .oauth import OAuthSignIn
 from .models import *
 from .util import *
+from .api import *
 
 
 @app.before_first_request
@@ -78,9 +79,12 @@ def songoing():
 
 @app.route('/s-account')
 def account():
+    # sid = current_user.sid
+    # shipper_data = get_shipper_profile_(sid)
     return render_template(
         'profile-header.html',
-        title="Account"
+        title="Account",
+        # data=shipper_data,
         )
 
 @app.route('/order')

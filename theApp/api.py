@@ -300,16 +300,24 @@ def update_orderRecord(oid, sid):
         sid = sid
     )
 
+
+def get_shipper_profile_(sid):
+    shipper = Shipper.query.get(sid)
+    if not shipper:  # if not found
+        return None
+    shipper_data = shipper.serialize
+    shipping_history = get_shipping_history(sid)
+    shipper_data['shipping_history'] = shipping_history
+    shipper_data['shipper_total_delivers'] = get_shipper_total_delivers(shipping_history)
+    shipper_data['shipper_total_savings'] = get_shipper_total_savings(shipping_history)
+    shipper_data['shipper_credits'] = get_shipper_credits(shipping_history)
+    return shipper_data
+
+
 @app.route('/v1/shipper/<sid>', methods=['GET'])
 def get_shipper_profile(sid):
-    shipper = Shipper.query.get(sid)
-    if shipper:  # if found
-        shipper_data = shipper.serialize
-        shipping_history = get_shipping_history(sid)
-        shipper_data['shipping_history'] = shipping_history
-        shipper_data['shipper_total_delivers'] = get_shipper_total_delivers(shipping_history)
-        shipper_data['shipper_total_savings'] = get_shipper_total_savings(shipping_history)
-        shipper_data['shipper_credits'] = get_shipper_credits(shipping_history)
+    shipper_data = get_shipper_profile_(sid)
+    if shipper_data:  # if found
         return jsonify(
             status = 200,
             data = [shipper_data],
@@ -362,7 +370,7 @@ def get_shipper_complete_order_records(sid):
     return OrderRecord.query.filter(
         and_(
             OrderRecord.sid == sid,
-            OrderRecord.status == "F"
+            # OrderRecord.status == "F"
         ))
 
 def get_shipping_history(sid):
@@ -372,7 +380,7 @@ def get_shipping_history(sid):
         actual_pay = orderRecord.totalfee
         expected_pay = get_initialfee_from_oid(orderRecord.oid)
         record = {
-            "order_record_date": orderRecord.acceptedtime.strftime(DATETIME_FORMAT),
+            # "order_record_date": orderRecord.deliverdate.strftime(DATETIME_FORMAT),
             "actual_pay": actual_pay,
             "expected_pay": expected_pay,
             "you_save": expected_pay-actual_pay
