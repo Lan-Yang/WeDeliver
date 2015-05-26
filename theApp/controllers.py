@@ -87,7 +87,7 @@ def resetdb():
     deliverer_1.city = "New York"
     deliverer_1.state = "NY"
     deliverer_1.zip = "10022"
-    deliverer_1.grade = 4.3
+    deliverer_1.grade = 5
 
     deliverer_2 = Deliverer()
     deliverer_2.name = "Paul Aho"
@@ -99,8 +99,7 @@ def resetdb():
     deliverer_2.city = "New York"
     deliverer_2.state = "NY"
     deliverer_2.zip = "10010"
-    deliverer_2.grade = 3.9
-
+    deliverer_2.grade = 5
 
     # order_1 = Order()
     # order_1.title = "Go for IKEA!"
