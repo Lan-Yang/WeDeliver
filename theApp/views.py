@@ -290,5 +290,10 @@ def d_post():
         'd-post-header.html',
         title="DelivererPost"
         )
-
+@app.route('/d-account')
+def d_account():
+    return render_template(
+        'd-profile-head.html',
+        title="Account",
+        )
 
