@@ -359,29 +359,29 @@
     {% include 'common-js-libs.html' %}
     <script type="text/javascript" src="https://www.google.com/jsapi"></script>
     <script type="text/javascript">
-    var raw_data = [
-        ['Date', 'Actual Pay', 'Expected Pay', 'You Save'],
-        ['2014-09-10', 33, 100, 67],
-        ['2015-01-10', 44, 100, 56],
-        ['2015-02-20', 35, 100, 65],
-        ['2015-05-03', 40, 100, 60]
-    ];
-    google.load("visualization", "1.1", {
-        packages: ["bar"]
-    });
-    google.setOnLoadCallback(drawChart);
+    // var raw_data = [
+    //     ['Date', 'Actual Pay', 'Expected Pay', 'You Save'],
+    //     ['2014-09-10', 33, 100, 67],
+    //     ['2015-01-10', 44, 100, 56],
+    //     ['2015-02-20', 35, 100, 65],
+    //     ['2015-05-03', 40, 100, 60]
+    // ];
+    // google.load("visualization", "1.1", {
+    //     packages: ["bar"]
+    // });
+    // google.setOnLoadCallback(drawChart);
 
-    function drawChart() {
-        var data = google.visualization.arrayToDataTable(raw_data);
-        var options = {
-            chart: {
-                title: 'Recent Payment Show',
-                subtitle: 'Actual Pay, Expected Pay, and You Save: 2014--',
-            }
-        };
-        var chart = new google.charts.Bar(document.getElementById('columnchart_material'));
-        chart.draw(data, options);
-    }
+    // function drawChart() {
+    //     var data = google.visualization.arrayToDataTable(raw_data);
+    //     var options = {
+    //         chart: {
+    //             title: 'Recent Payment Show',
+    //             subtitle: 'Actual Pay, Expected Pay, and You Save: 2014--',
+    //         }
+    //     };
+    //     var chart = new google.charts.Bar(document.getElementById('columnchart_material'));
+    //     chart.draw(data, options);
+    // }
     </script>
 
     <script type="text/javascript">
@@ -417,26 +417,22 @@
     </style>
     <!-- {[ data ]} -->
     <script type="text/javascript">
-    var sid = {[current_user.sid]};
-    $.getJSON('/v1/shipper/'+sid, function(res){
-        data = res.data[0];
-        $('#s-name').html(data.name);
-        $('#s-email').html(data.email);
-        $('#s-addr1').html(data.addr_1);
-        $('#s-addr2').html(data.addr_2);
-        $('#s-phone').html(data.phone);
-    });
-    $.getJSON('/v1/orderRecord', {
-        sid: sid,
-        status: 'F',
-    }, function(res){
+    var did = {[current_user.did]};
+    // $.getJSON('/v1/shipper/'+did, function(res){
+    //     data = res.data[0];
+    //     $('#s-name').html(data.name);
+    //     $('#s-email').html(data.email);
+    //     $('#s-addr1').html(data.addr_1);
+    //     $('#s-addr2').html(data.addr_2);
+    //     $('#s-phone').html(data.phone);
+    // });
+    $.getJSON('/v1/order/did/'+did+'/status/F', function(res){
         data = res.data;
         console.log(data);
         $('#s-total-orders').html(data.length);
         var total_save = 0;
         $.each(data, function(i, o){
-            var totalfee = o.initialfee/o.totalcargosize*o.cargosize;
-            total_save += o.initialfee - totalfee;
+            total_save += o.initialfee + o.participants*o.perstopfee;
         });
         total_save = Math.floor(total_save);
         $('#s-total-saving').html(total_save);
