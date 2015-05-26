@@ -328,6 +328,34 @@ def get_shipper_profile(sid):
             data = "shipper not found"
         )
 
+# def get_deliverer_profile_(did):
+    # deliverer = Deliverer.query.get(did)
+    # if not deliverer:
+    #     return None
+#     deliverer_data = deliverer.serialize
+#     # delivering_history = get_delivering_history(did)
+#     # deliverer_data['delivering_history'] = delivering_history
+#     deliverer_data['deliverer_total_delivers'] = get_deliverer_total_delivers(did)
+#     deliverer_data['deliverer_total_savings'] = get_deliverer_total_savings(did)
+#     deliverer_data['deliverer_credits'] = get_shipper_credits(did)
+#     return deliverer_data
+
+
+@app.route('/v1/deliverer/<did>', methods=['GET'])
+def get_deliverer_profile(did):
+    deliverer = Deliverer.query.get(did)
+    if not deliverer:
+        return jsonify(
+            status = 404,
+            data = "deliverer not found"
+        )
+    else:
+        return jsonify(
+            status = 200,
+            data = [deliverer.serialize]
+        )
+
+
 @app.route('/v1/mailto/<sid>', methods=["POST"])
 def mail_to_sid(sid):
     request_args = request.form
@@ -396,3 +424,19 @@ def get_shipping_history(sid):
         }
         shipping_history.append(record)
     return shipping_history
+
+# def get_deliverer_complete_orders(sid):
+#     return Order.query.filter(
+#         and_(
+#             Order.sid == did,
+#             Order.status == "F"
+#         ))
+
+# def get_delivering_history(did):
+#     deliverer_complete_orders = get_deliverer_complete_orders(sid)
+#     delivering_history = []
+#     for order in deliverer_complete_orders:
+
+
+# def get_deliverer_total_delivers(did):
+#     deliverer_complete_orders = get_deliverer_complete_orders(sid)
