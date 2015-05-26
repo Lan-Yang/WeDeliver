@@ -418,14 +418,14 @@
     <!-- {[ data ]} -->
     <script type="text/javascript">
     var did = {[current_user.did]};
-    // $.getJSON('/v1/shipper/'+did, function(res){
-    //     data = res.data[0];
-    //     $('#s-name').html(data.name);
-    //     $('#s-email').html(data.email);
-    //     $('#s-addr1').html(data.addr_1);
-    //     $('#s-addr2').html(data.addr_2);
-    //     $('#s-phone').html(data.phone);
-    // });
+    $.getJSON('/v1/deliverer/'+did, function(res){
+        data = res.data[0];
+        $('#s-name').html(data.name);
+        $('#s-email').html(data.email);
+        $('#s-addr1').html(data.addr_1);
+        $('#s-addr2').html(data.addr_2);
+        $('#s-phone').html(data.phone);
+    });
     $.getJSON('/v1/order/did/'+did+'/status/F', function(res){
         data = res.data;
         console.log(data);
