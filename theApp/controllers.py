@@ -77,17 +77,17 @@ def resetdb():
     shipper_4.zip = "10027"
 
 
-    deliverer_1 = Deliverer(did=1590134365)
-    deliverer_1.name = "Jingwei Yang"
-    deliverer_1.passwd = generate_password_hash("123123")
-    deliverer_1.email = "jy2653@columbia.edu"
-    deliverer_1.phone = "9179133308"
-    deliverer_1.addr_1 = "Flusing Shildern Garden"
-    deliverer_1.addr_2 = "Apt 5B"
-    deliverer_1.city = "New York"
-    deliverer_1.state = "NY"
-    deliverer_1.zip = "10022"
-    deliverer_1.grade = 5
+    # deliverer_1 = Deliverer(did=1590134365)
+    # deliverer_1.name = "Jingwei Yang"
+    # deliverer_1.passwd = generate_password_hash("123123")
+    # deliverer_1.email = "jy2653@columbia.edu"
+    # deliverer_1.phone = "9179133308"
+    # deliverer_1.addr_1 = "Flusing Shildern Garden"
+    # deliverer_1.addr_2 = "Apt 5B"
+    # deliverer_1.city = "New York"
+    # deliverer_1.state = "NY"
+    # deliverer_1.zip = "10022"
+    # deliverer_1.grade = 5
 
     deliverer_2 = Deliverer()
     deliverer_2.name = "Paul Aho"
@@ -236,7 +236,7 @@ def resetdb():
     db_session.add(shipper_1)
     db_session.add(shipper_2)
     db_session.add(shipper_4)
-    db_session.add(deliverer_1)
+    # db_session.add(deliverer_1)
     db_session.add(deliverer_2)
     # db_session.add(order_1)
     # db_session.add(order_2)
