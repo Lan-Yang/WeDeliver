@@ -34,4 +34,4 @@ ses = boto.ses.connect_to_region(
 #configure_uploads(app, (photos,))
 
 import theApp.views
-import theApp.api
+# import theApp.api

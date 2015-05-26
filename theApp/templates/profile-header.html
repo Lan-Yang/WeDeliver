@@ -10,11 +10,12 @@
                 <div class="row coralbg white">
                     <div class="col-md-6 no-pad">
                         <div class="user-pad">
-                            <h2>Welcome back, Tom Young</h2>
-                            <h4 class="white"><i class="fa fa-street-view"></i> Claremont Avenue 122, APT 2B</h4>
-                            <h4 class="white"> New York, NY</h4>
-                            <h4 class="white"><i class="fa fa-envelope-o"></i> jj2222@gmail.com</h4>
-                            <h4 class="white"><i class="fa fa-phone"></i> (917) - 912 - 0215</h4> </div>
+                            <h2>Welcome back, <span id="s-name">Tom Young</span></h2>
+                            <h4 class="white"><i class="fa fa-street-view"></i> <span id="s-addr1">Claremont Avenue 122, APT 2B</span></h4>
+                            <h4 class="white"> <span id="s-addr2">New York, NY</span></h4>
+                            <h4 class="white"><i class="fa fa-envelope-o"></i> <span id="s-email">jj2222@gmail.com</span></h4>
+                            <h4 class="white"><i class="fa fa-phone"></i> <span id="s-phone">(917) - 912 - 0215</span></h4>
+                        </div>
                     </div>
                     <div class="col-md-6 no-pad">
                         <div class="user-image"> <img src="https://farm7.staticflickr.com/6163/6195546981_200e87ddaf_b.jpg" class="img-responsive thumbnail"> </div>
@@ -23,13 +24,13 @@
                 <div class="row overview">
                     <div class="col-md-4 user-pad text-center">
                         <h3>TOTAL DELIVERS</h3>
-                        <h4>10</h4> </div>
+                        <h4 id="s-total-orders">10</h4> </div>
                     <div class="col-md-4 user-pad text-center">
                         <h3>TOTAL SAVINGS</h3>
-                        <h4><i class="fa fa-usd fa-fw"></i>810</h4> </div>
+                        <h4><i class="fa fa-usd fa-fw"></i><span id="s-total-saving">810</span></h4> </div>
                     <div class="col-md-4 user-pad text-center">
                         <h3>Credits</h3>
-                        <h4>1255</h4> </div>
+                        <h4><span id="s-credit">1255</span></h4> </div>
                 </div>
             </div>
         </div>
@@ -413,6 +414,33 @@
         padding-bottom: 40px;
     }
     </style>
+    <!-- {[ data ]} -->
+    <script type="text/javascript">
+    var sid = {[current_user.sid]};
+    $.getJSON('/v1/shipper/'+sid, function(res){
+        data = res.data[0];
+        $('#s-name').html(data.name);
+        $('#s-email').html(data.email);
+        $('#s-addr1').html(data.addr_1);
+        $('#s-addr2').html(data.addr_2);
+        $('#s-phone').html(data.phone);
+    });
+    $.getJSON('/v1/orderRecord', {
+        sid: sid,
+        status: 'F',
+    }, function(res){
+        data = res.data;
+        console.log(data);
+        $('#s-total-orders').html(data.length);
+        var total_save = 0;
+        $.each(data, function(i, o){
+            var totalfee = o.initialfee/o.totalcargosize*o.cargosize;
+            total_save += o.initialfee - totalfee;
+        });
+        total_save = Math.floor(total_save);
+        $('#s-total-saving').html(total_save);
+    });
+    </script>
     <!--This part is for click action in profile -->
     <script>
     $(function() {
