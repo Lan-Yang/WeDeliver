@@ -576,6 +576,8 @@
                             $.post('/v1/mailto/'+o.sid, {
                                 title: 'Your Order is shipped',
                                 body: 'Dear User:\nYour Order is to be delivered. Please check it in our website.',
+                            }, function(result){
+                                ;
                             });
                         });
                         location.href = '/d-myorder';
@@ -603,10 +605,12 @@
                         console.log(order);
                         alert('Success!');
                         $.each(order.orderRecords, function(i, o){
-                            alert('Mail to '+o.sid);
+                            alert('Mail to ' + o.sid);
                             $.post('/v1/mailto/'+o.sid, {
                                 title: 'Your Order has been delivered',
                                 body: 'Dear User:\nYour Order has been delivered. Thanks for using We Deliver!',
+                            }, function(result){
+                                ;
                             });
                         });
                         location.href = '/d-myorder';
