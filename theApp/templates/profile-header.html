@@ -364,17 +364,8 @@
         }
     }
     </style>
-    <script src="/static/js/jquery-1.11.1.min.js"></script>
-    <script src="/static/js/bootstrap.min.js"></script>
-    <script src="//maps.googleapis.com/maps/api/js?v=3.exp&libraries=places"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.0/js/bootstrap-datepicker.min.js"></script>
-    <script src="/static/js/slick.min.js"></script>
-    <script src="/static/js/floatlabels.min.js"></script>
-    <script src="/static/js/placeholdem.min.js"></script>
-    <script src="/static/js/rs-plugin/js/jquery.themepunch.plugins.min.js"></script>
-    <script src="/static/js/rs-plugin/js/jquery.themepunch.revolution.min.js"></script>
-    <script src="/static/js/waypoints.min.js"></script>
 
+    {% include 'common-js-libs.html' %}
     <script type="text/javascript" src="https://www.google.com/jsapi"></script>
     <script type="text/javascript">
     var raw_data = [
@@ -442,11 +433,6 @@
         }, function() {
             $(this).find('.caption').slideUp(250); //.fadeOut(205)
         });
-    });
-    </script>
-    <script>
-    $(document).ready(function() {
-        appMaster.preLoader();
     });
     </script>
 {% endblock %}
