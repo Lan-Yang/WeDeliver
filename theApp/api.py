@@ -333,7 +333,10 @@ def mail_to_sid(sid):
     request_args = request.form
     shipper = Shipper.query.get(int(sid))
     if not shipper:
-        return "no such shipper"
+        return jsonify(
+            status=404,
+            data="no such shipper",
+        )
     title = request_args.get("title", "Email from WeDeliver")
     body = request_args.get("body", "This is an email from WeDeliver")
     recipient = shipper.email
@@ -341,11 +344,17 @@ def mail_to_sid(sid):
         ses.send_email(
             app.config['SES_SENDER_EMAIL'],
             title, body, [recipient])
-        print "success"
-        return "success"
+        # print "success"
+        return jsonify(
+            status=200,
+            data="success",
+        )
     except Exception as e:
-        print "fail: %r" % e
-        return "fail: %r" % e
+        # print "fail: %r" % e
+        return jsonify(
+            status=500,
+            data="fail: %r" % e,
+        )
 
 
 def get_shipper_total_delivers(shipping_history):
